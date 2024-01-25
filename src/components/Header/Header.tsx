@@ -31,10 +31,18 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
 
-import { toggleSidebar } from '../utils';
-import ColorSchemeToggle from './ColorSchemeToggle';
+import { toggleSidebar } from '../../utils/utils';
+import ColorSchemeToggle from '../ColorSchemeToggle/ColorSchemeToggle';
+import { Apps } from '@mui/icons-material';
 
 export default function Header() {
+  const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
+
+  const createHandleClose = (index: number) => () => {
+    if (typeof index === 'number') {
+      setSelectedIndex(index);
+    }
+  };
   return (
     <Sheet
       sx={{
@@ -143,6 +151,23 @@ export default function Header() {
           </IconButton>
         </Tooltip>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
+        <Dropdown>
+      <MenuButton startDecorator={<Apps />}>Admin</MenuButton>
+      <Menu>
+        <MenuItem
+          {...(selectedIndex === 0 && { selected: true, variant: 'soft' })}
+          onClick={createHandleClose(0)}
+        >
+          Admin
+        </MenuItem>
+        <MenuItem selected={selectedIndex === 1} onClick={createHandleClose(1)}>
+          Mentee
+        </MenuItem>
+        <MenuItem selected={selectedIndex === 2} onClick={createHandleClose(2)}>
+          Mentor
+        </MenuItem>
+      </Menu>
+    </Dropdown>
         <Dropdown>
           <MenuButton
             variant="plain"

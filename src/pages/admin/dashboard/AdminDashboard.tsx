@@ -2,6 +2,8 @@ import { AspectRatio, Box, Breadcrumbs, Card, CardContent, Divider, Link, Stack,
 import React from 'react';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import CountCard from '../../../components/CountCard/CountCard';
+import DashboardTable from '../../../components/DashboardTable/DashboardTable';
 
 const AdminDashboard = () => {
     
@@ -51,43 +53,23 @@ const AdminDashboard = () => {
         </Box>
         <Divider/>
         <Stack sx={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', mt: 2}}>
-        <Card variant="soft" sx={{ width: 1/3 }}>
-      <div>
-        <Typography level="title-lg">Active Mentor Count</Typography>
-      </div>
-      <CardContent orientation="horizontal">
-        <div>
-          <Typography fontSize="lg" fontWeight="lg">
-            10
-          </Typography>
-        </div>
-      </CardContent>
-    </Card>
-    <Card variant="soft" sx={{ width: 1/3, mx:2 }}>
-      <div>
-        <Typography level="title-lg">Active Mentee Count</Typography>
-      </div>
-      <CardContent orientation="horizontal">
-        <div>
-          <Typography fontSize="lg" fontWeight="lg">
-            10
-          </Typography>
-        </div>
-      </CardContent>
-    </Card>
-    <Card variant="soft" sx={{ width: 1/3 }}>
-      <div>
-        <Typography level="title-lg">Active Pair Count</Typography>
-      </div>
-      <CardContent orientation="horizontal">
-        <div>
-          <Typography fontSize="lg" fontWeight="lg">
-            10
-          </Typography>
-        </div>
-      </CardContent>
-    </Card>
+        <CountCard title={'Active Mentor Count'} count={9}   sx={(theme) => ({
+            width:1/3
+      })}></CountCard>
+       <CountCard title={'Active Mentee Count'} count={10}   sx={(theme) => ({
+            width:1/3, mx:2
+      })}></CountCard>
+       <CountCard title={'Active Pair Count'} count={11}   sx={(theme) => ({
+            width:1/3
+      })}></CountCard>
         </Stack>
+        <Box sx={{ display: 'flex', mt: 2 }}>
+          <Box>
+          <DashboardTable/>
+          </Box>
+          <Box><DashboardTable/></Box>
+        </Box>
+        
     </Box>
   )
 }
