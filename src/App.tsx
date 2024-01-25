@@ -2,11 +2,20 @@ import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import AdminDashboard from './components/Pages/AdminDashboard';
+import Sidebar from './components/Sidebar/Sidebar';
+import Header from './components/Header/Header';
+import AdminDashboard from './pages/admin/dashboard/AdminDashboard';
+import { useState } from 'react';
+import { Routes } from 'react-router-dom';
 
+type UserRole = 1 | 2 | 3;
 export default function JoyOrderDashboardTemplate() {
+
+  const [userRole, setUserRole] = useState<UserRole | null>(null);
+
+  const handleLogin = (role: UserRole) => {
+    setUserRole(role);
+  };
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />

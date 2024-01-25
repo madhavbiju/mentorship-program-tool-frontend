@@ -30,8 +30,8 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-import ColorSchemeToggle from './ColorSchemeToggle';
-import { closeSidebar } from '../utils';
+import ColorSchemeToggle from '../ColorSchemeToggle/ColorSchemeToggle';
+import { closeSidebar } from '../../utils/utils';
 
 function Toggler({
   defaultExpanded = false,
