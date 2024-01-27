@@ -24,7 +24,7 @@ const MentorTask = () => {
           </Menu>
         </Dropdown>
       </Box>
-      <Box sx={{my:"3   %", mx:"2%"}} >
+      <Box sx={{my:"5%", mx:"2%"}} >
         <MentorTaskCard/>
         <br />
         <MentorTaskCard/>

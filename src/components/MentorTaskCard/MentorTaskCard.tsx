@@ -15,19 +15,19 @@ const MentorTaskCard = () => {
             "--ListItem-paddingY": "1rem",
             borderRadius: "sm",
             py: "2%",
-            justifyContent: "center",
+            "&:hover": {
+              backgroundColor: "lightgrey"
+            }
+            // justifyContent: "center",
           }}
         >
-          <ListItem sx={{ mr: 12 }}>
-            <ListItemDecorator>
-              <Avatar src="/static/images/avatar/1.jpg" />
-            </ListItemDecorator>
-          </ListItem>
+          {/* <ListItem sx={{ mr: 12 }}>
+            
+          </ListItem> */}
           
           <Box sx={{ display: "flex" }}>
-          <ListDivider inset="gutter" />
             
-              <ListItem sx={{ mx: 5 }}>Mahfooz Ahamed</ListItem> 
+              <ListItem sx={{ mx: 6 }}>Mahfooz Ahamed</ListItem> 
             
             
             <ListDivider inset="gutter" />
@@ -36,10 +36,10 @@ const MentorTaskCard = () => {
             
             <ListDivider inset="gutter" />
             
-            <ListItem sx={{ ml: 4 }}>Due Date: 12/02/2024</ListItem>
+            <ListItem sx={{ mx: 4 }}><Typography sx={{color:"red"}}>Due Date: </Typography> 12/02/2024</ListItem>
             <ListDivider inset="gutter" />
             
-            <ListItem sx={{ ml: 4 }}>InProgress</ListItem>
+            <ListItem sx={{ ml: 4, color:"blue"}}>InProgress</ListItem>
           </Box>
         </List>
       </Box>
