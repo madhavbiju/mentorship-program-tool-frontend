@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import AdminDashboard from './pages/admin/dashboard/AdminDashboard';
 import { useState } from 'react';
 import { Routes } from 'react-router-dom';
+import MentorDashboard from './pages/mentor/dashboard/MentorDashboard';
 
 type UserRole = 1 | 2 | 3;
 export default function JoyOrderDashboardTemplate() {
@@ -44,7 +45,9 @@ export default function JoyOrderDashboardTemplate() {
         >
           
            {/* Here */}
-          <AdminDashboard/>
+          {/* <AdminDashboard/> */}
+<MentorDashboard/>
+
             </Box>
       </Box>
     </CssVarsProvider>
