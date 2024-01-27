@@ -41,18 +41,18 @@ const MenteesListCard = () => {
               <Typography sx={{ml:9 }} level="body-sm" 
               style={{ fontSize: "10px"}}
               >Mentee</Typography>
-              <ListItem sx={{ mx: 5 }}>Boyd Burt</ListItem> 
+              <ListItem sx={{ mx: 5 , paddingTop:1.5 }}>Boyd Burt </ListItem> 
             </Stack>
             
             <ListDivider inset="gutter" />
             <Stack>
             <Typography sx={{ml:9}} level="body-sm"  style={{ fontSize: "10px"}}>Program</Typography>
-            <ListItem sx={{ mx: 4 }}>Program Name</ListItem>
+            <ListItem sx={{ mx: 4,  paddingTop:1.5 }}>Program Name</ListItem>
             </Stack>
             <ListDivider inset="gutter" />
             <Stack>
-            <Typography sx={{ml:9}} level="body-sm"  style={{ fontSize: "10px"}}>End date</Typography>
-            <ListItem sx={{ ml: 4 }}>12/02/2024</ListItem>
+            <Typography sx={{ml:9 }} level="body-sm"  style={{ fontSize: "10px"}}>End date</Typography>
+            <ListItem sx={{ ml: 4 , paddingTop:1.5 }}>12/02/2024</ListItem>
             </Stack>
           </Box>
         </List>
