@@ -4,6 +4,7 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import CountCard from '../../../components/CountCard/CountCard';
 import DashboardTable from '../../../components/DashboardTable/DashboardTable';
+import GreetCard from '../../../components/GreetCard/GreetCard';
 
 const AdminDashboard = () => {
     
@@ -28,29 +29,7 @@ const AdminDashboard = () => {
 
             </Breadcrumbs>
           </Box>
-        <Box sx={{ display: 'flex',
-    width: 400,
-    height: 150,
-    mb:2,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center'}}>
-          <AspectRatio
-        ratio="1"
-        sx={{ minWidth: 130, borderRadius: '50%' }}
-      >
-                <img
-                 src='/Assets/dp.png'
-                 srcSet='/Assets/dp.png'
-                 loading="lazy"
-                  alt=""
-                />
-              </AspectRatio>
-              <Stack sx={{ml:2}}>
-                  <Typography level="title-lg">Hi,</Typography>
-                         <Typography level="title-lg">Admin</Typography>
-              </Stack>
-        </Box>
+       <GreetCard/>
         <Divider/>
         <Stack sx={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', mt: 2}}>
         <CountCard title={'Active Mentor Count'} count={9}   sx={(theme) => ({
