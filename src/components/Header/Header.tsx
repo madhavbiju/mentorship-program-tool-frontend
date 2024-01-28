@@ -34,6 +34,7 @@ import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded
 import { toggleSidebar } from '../../utils/utils';
 import ColorSchemeToggle from '../ColorSchemeToggle/ColorSchemeToggle';
 import { Apps } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
@@ -43,6 +44,12 @@ export default function Header() {
       setSelectedIndex(index);
     }
   };
+
+  const history = useNavigate();
+    const logOut = () => {
+      localStorage.removeItem('roleID');
+        return history('/')
+    };
   return (
     <Sheet
       sx={{
@@ -234,7 +241,7 @@ export default function Header() {
               <OpenInNewRoundedIcon />
             </MenuItem>
             <ListDivider />
-            <MenuItem>
+            <MenuItem onClick={logOut}>
               <LogoutRoundedIcon />
               Log out
             </MenuItem>
