@@ -5,6 +5,7 @@ import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import CountCard from '../../../components/CountCard/CountCard';
 import DashboardTable from '../../../components/DashboardTable/DashboardTable';
 import GreetCard from '../../../components/GreetCard/GreetCard';
+import RequestBox from '../../../components/RequestBox/RequestBox';
 
 const AdminDashboard = () => {
     
@@ -43,10 +44,10 @@ const AdminDashboard = () => {
       })}></CountCard>
         </Stack>
         <Box sx={{ display: 'flex', mt: 2 }}>
-          <Box>
+          <Box sx={{width: 2/3}}>
           <DashboardTable/>
           </Box>
-          <Box><DashboardTable/></Box>
+          <Box sx={{width: 1/3}}><RequestBox/></Box>
         </Box>
         
     </Box>
