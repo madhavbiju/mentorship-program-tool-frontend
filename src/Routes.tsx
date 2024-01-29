@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoutes from './PrivateRoutes';
 import JoySignInSideTemplate from './pages/common/login/Login';
 import AdminDashboard from './pages/admin/dashboard/AdminDashboard';
+import MenteeDashboard from './pages/mentee/dashboard/MenteeDashboard';
+import MentorDashboard from './pages/mentor/dashboard/MentorDashboard';
 import App from './App';
 
 const AppRoutes = () => {
@@ -12,8 +14,8 @@ const AppRoutes = () => {
             <Route path='/' element={<PrivateRoutes />} />
             <Route path='/login' element={<JoySignInSideTemplate />} />
             <Route path='/admin/dashboard' element={<App/>} />
-            <Route path='/mentor/dashboard' element={<AdminDashboard />} />
-            <Route path='/mentee/dashboard' element={<AdminDashboard />} />
+            <Route path='/mentor/dashboard' element={<MentorDashboard />} />
+            <Route path='/mentee/dashboard' element={<MenteeDashboard />} />
         </Routes>
     );
 };

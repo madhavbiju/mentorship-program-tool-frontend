@@ -47,9 +47,10 @@ const AdminDashboard = () => {
           <Box sx={{width: 2/3}}>
           <DashboardTable/>
           </Box>
-          <Box sx={{width: 1/3}}><RequestBox/></Box>
+          <Box sx={{width: 1/3}}>
+            <RequestBox/>
+            </Box>
         </Box>
-        
     </Box>
   )
 }
