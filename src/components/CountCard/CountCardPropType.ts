@@ -3,4 +3,5 @@ export interface CountCardPropsType {
     title: string;
     count: number;
   sx?: SxProps<Theme>;
+  children?: React.ReactNode;
   }
