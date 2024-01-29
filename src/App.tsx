@@ -1,14 +1,16 @@
-import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
-import CssBaseline from '@mui/joy/CssBaseline';
-import Box from '@mui/joy/Box';
-import Sidebar from './components/Sidebar/Sidebar';
-import Header from './components/Header/Header';
-import AdminDashboard from './pages/admin/dashboard/AdminDashboard';
-import { useState } from 'react';
+import * as React from "react";
+import { CssVarsProvider } from "@mui/joy/styles";
+import CssBaseline from "@mui/joy/CssBaseline";
+import Box from "@mui/joy/Box";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Header from "./components/Header/Header";
+import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
+import { useState } from "react";
+import OrderTable from "./pages/admin/pairs/OrderTable";
+import { Outlet } from "react-router";
 
 type UserRole = 1 | 2 | 3;
-export default function JoyOrderDashboardTemplate() {
+export default function JoyOrderDashboardTemplate({ role }: { role: string }) {
   const [userRole, setUserRole] = useState<UserRole | null>(null);
 
   const handleLogin = (role: UserRole) => {
@@ -21,7 +23,7 @@ export default function JoyOrderDashboardTemplate() {
         sx={{ display: "flex", flexDirection: "column", minHeight: "100dvh" }}
       >
         <Header />
-        <Sidebar />
+        <Sidebar role={role} />
         <Box
           component="main"
           className="MainContent"
@@ -42,9 +44,9 @@ export default function JoyOrderDashboardTemplate() {
             gap: 1,
           }}
         >
-           {/* Here */}
-         <AdminDashboard/>
-            </Box>
+          {/* Here */}
+          <Outlet />
+        </Box>
       </Box>
     </CssVarsProvider>
   );
