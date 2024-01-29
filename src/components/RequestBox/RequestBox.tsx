@@ -10,14 +10,7 @@ import { ListItemContent } from '@mui/joy';
 
 export default function RequestBox() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: 4,
-      }}
-    >
+    <Box>
       <div>
         <Typography level="body-lg" mb={2}>
           Requests

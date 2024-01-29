@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Breadcrumbs, Card, CardContent, Divider, Link, Stack, Typography } from '@mui/joy'
+import { AspectRatio, Box, Breadcrumbs, Card, CardContent, Divider, Grid, Link, Stack, Typography } from '@mui/joy'
 import React from 'react';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
@@ -43,14 +43,14 @@ const AdminDashboard = () => {
             width:1/3
       })}></CountCard>
         </Stack>
-        <Box sx={{ display: 'flex', mt: 2 }}>
-          <Box sx={{width: 2/3}}>
+        <Grid container>
+          <Grid xs={12} lg={8}>
           <DashboardTable/>
-          </Box>
-          <Box sx={{width: 1/3}}>
+          </Grid>
+          <Grid xs={12} lg={3}>
             <RequestBox/>
-            </Box>
-        </Box>
+            </Grid>
+        </Grid>
     </Box>
   )
 }
