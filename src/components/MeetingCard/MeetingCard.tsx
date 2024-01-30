@@ -12,14 +12,14 @@ const MeetingCard = () => {
           "--ListItemDecorator-size": "44px",
           "--ListItem-paddingY": "1rem",
           borderRadius: "sm",
-          justifyContent: "center",
+          justifyContent: "space-around",
         }}
       >
-        <ListItem sx={{mr:4}}>Meeting Name</ListItem>
+        <ListItem>Meeting Name</ListItem>
         <ListDivider inset="gutter" />
-        <ListItem sx={{mx:4}}>12:10pm</ListItem>
+        <ListItem>12:10pm</ListItem>
         <ListDivider inset="gutter" />
-        <ListItem sx={{ml:4}}>12/02/2024</ListItem>
+        <ListItem>12/02/2024</ListItem>
       </List>
     </Box>
   );
