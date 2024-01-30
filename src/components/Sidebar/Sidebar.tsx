@@ -17,8 +17,14 @@ export default function Sidebar({ role }: { role: string }) {
   const [selectedItem, setSelectedItem] = React.useState("Home"); // Initialize the selected item
   const history = useNavigate();
 
+  React.useEffect(() => {
+    // Extract the pathname from the location object
+    const pathname = location.pathname;
+    // Update the selected item based on the pathname
+    setSelectedItem(pathname);
+  }, [location.pathname]);
+
   const handleItemClick = (itemName: string) => {
-    setSelectedItem(itemName); // Update the selected item when clicked
     history(itemName);
   };
 
@@ -30,8 +36,8 @@ export default function Sidebar({ role }: { role: string }) {
             {/* Admin specific list items */}
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Home"}
-                onClick={() => handleItemClick("Home")}
+                selected={selectedItem.includes("/admin/home")}
+                onClick={() => handleItemClick("home")}
               >
                 <HomeRoundedIcon />
                 <ListItemContent>
@@ -52,7 +58,7 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Pairs"}
+                selected={selectedItem.includes("/admin/Pairs")}
                 onClick={() => handleItemClick("Pairs")}
               >
                 <DashboardRoundedIcon />
@@ -82,7 +88,7 @@ export default function Sidebar({ role }: { role: string }) {
             {/* Admin specific list items */}
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Home"}
+                selected={selectedItem.includes("/mentor/home")}
                 onClick={() => handleItemClick("Home")}
               >
                 <HomeRoundedIcon />
@@ -145,7 +151,7 @@ export default function Sidebar({ role }: { role: string }) {
             {/* Admin specific list items */}
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Home"}
+                selected={selectedItem.includes("/mentee/home")}
                 onClick={() => handleItemClick("Home")}
               >
                 <HomeRoundedIcon />

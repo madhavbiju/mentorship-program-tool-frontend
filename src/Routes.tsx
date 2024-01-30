@@ -8,6 +8,7 @@ import MenteeDashboard from "./pages/mentee/dashboard/MenteeDashboard";
 import MentorDashboard from "./pages/mentor/dashboard/MentorDashboard";
 import OrderTable from "./pages/admin/pairs/OrderTable";
 import App from "./App";
+import CalendarPage from "./pages/common/calendar/CalendarPage";
 
 const AppRoutes = () => {
   return (
@@ -18,9 +19,11 @@ const AppRoutes = () => {
       </Route>
       <Route path="/mentee" element={<App role="mentee" />}>
         <Route path="home" element={<MenteeDashboard />} />
+        <Route path="calendar" element={<CalendarPage />} />
       </Route>
       <Route path="/mentor" element={<App role="mentor" />}>
         <Route path="home" element={<MentorDashboard />} />
+        <Route path="calendar" element={<CalendarPage />} />
       </Route>
     </Routes>
   );
