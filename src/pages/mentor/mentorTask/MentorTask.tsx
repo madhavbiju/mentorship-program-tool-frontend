@@ -1,14 +1,17 @@
-import { Box, Dropdown, MenuButton, Menu, MenuItem, MenuList } from '@mui/joy'
-import React from 'react'
-import MenteesListCard from '../../../components/MenteesList/MenteesListCard'
-import MentorTaskCard from '../../../components/MentorTaskCard/MentorTaskCard'
+import { Box, Dropdown, MenuButton, Menu, MenuItem, MenuList } from "@mui/joy";
+import React from "react";
+import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
+import MentorTaskCard from "../../../components/MentorTaskCard/MentorTaskCard";
+import Grid from "@mui/material/Grid";
 
 const MentorTask = () => {
   return (
     <Box>
-        <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
+      <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
         <Dropdown>
-          <MenuButton color="primary" sx={{borderRadius:10 ,px:"3%"}}>Sort</MenuButton>
+          <MenuButton color="primary" sx={{ borderRadius: 10, px: "3%" }}>
+            Sort
+          </MenuButton>
           <Menu>
             <MenuItem>Choose item</MenuItem>
             <MenuList>Add item</MenuList>
@@ -16,7 +19,12 @@ const MentorTask = () => {
           </Menu>
         </Dropdown>
         <Dropdown>
-          <MenuButton color="primary" sx={{borderRadius:10 ,mx:"3%",px:"3%"}}>Filter</MenuButton>
+          <MenuButton
+            color="primary"
+            sx={{ borderRadius: 10, mx: "3%", px: "3%" }}
+          >
+            Filter
+          </MenuButton>
           <Menu>
             <MenuItem>Choose item</MenuItem>
             <MenuList>Add item</MenuList>
@@ -24,15 +32,14 @@ const MentorTask = () => {
           </Menu>
         </Dropdown>
       </Box>
-      <Box sx={{my:"5%", mx:"2%"}} >
-        <MentorTaskCard/>
-        <br />
-        <MentorTaskCard/>
-        <br/>
-        <MentorTaskCard/>
-      </Box>
-    </Box>
-  )
-}
 
-export default MentorTask
+      <Grid container spacing={1} rowGap={3} sx={{ my: "5%" }}>
+        <MentorTaskCard />
+        <MentorTaskCard />
+        <MentorTaskCard />
+      </Grid>
+    </Box>
+  );
+};
+
+export default MentorTask;
