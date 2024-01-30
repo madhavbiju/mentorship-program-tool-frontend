@@ -31,7 +31,7 @@ const MentorTaskCard = () => {
       >
 
         <Stack >
-            <Typography sx={{display:"flex", justifyContent:"center"}} level="body-sm">Mentee</Typography>
+            <Typography sx={{display:"flex", justifyContent:"center"}} level="body-sm" style={{ fontSize: "10px"}}>Mentee</Typography>
             <ListItem sx={{  paddingTop:1.5 }}>Mahfooz Ahamed</ListItem>
             </Stack>
           
@@ -46,14 +46,14 @@ const MentorTaskCard = () => {
             <ListDivider inset="gutter" />
 
             <Stack >
-            <Typography sx={{display:"flex", justifyContent:"center",color: "red"}}  level="body-sm"  >Due Date</Typography>
+            <Typography sx={{display:"flex", justifyContent:"center",color: "red"}}  level="body-sm" style={{ fontSize: "10px"}} >Due Date</Typography>
             <ListItem sx={{   paddingTop:1.5 }}>12/02/2024</ListItem>
             </Stack>
 
             <ListDivider inset="gutter" />
 
             <Stack >
-            <Typography sx={{display:"flex", justifyContent:"center"}} level="body-sm">Status</Typography>
+            <Typography sx={{display:"flex", justifyContent:"center"}} level="body-sm" style={{ fontSize: "10px"}}>Status</Typography>
             <ListItem sx={{  paddingTop:1.5 ,color: "blue" }}>InProgress</ListItem>
             </Stack>
       </List>
