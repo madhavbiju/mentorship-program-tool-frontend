@@ -30,11 +30,11 @@ const AppRoutes = () => {
 };
 
 const AppRouter = () => {
-    return (
-        <Router>
-            <AppRoutes />
-        </Router>
-    );
-}
+  return (
+    <Router>
+      <AppRoutes />
+    </Router>
+  );
+};
 
 export default AppRouter;

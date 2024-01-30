@@ -21,10 +21,10 @@ const MentorDashboard = () => {
           // gap: '20px'
         }}
       >
-        <Grid xs={12} md={4} >
+        <Grid xs={12} md={4}>
           <GreetCard />
         </Grid>
-        <Grid xs={12} md={3} sx={{mr:{sx:0,md:"150px"}}}>
+        <Grid xs={12} md={3} sx={{ mr: { sx: 0, md: "150px" } }}>
           <CountCard title={"mentee Count"} count={5}></CountCard>
         </Grid>
       </Grid>
