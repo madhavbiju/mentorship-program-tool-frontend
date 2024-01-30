@@ -10,7 +10,13 @@ import Sheet from "@mui/joy/Sheet";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import { useNavigate } from "react-router-dom";
-
+import InsertInvitationIcon from "@mui/icons-material/InsertInvitation";
+import PeopleIcon from "@mui/icons-material/People";
+import TaskIcon from "@mui/icons-material/Task";
+import ChatIcon from "@mui/icons-material/Chat";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import SocialDistanceIcon from "@mui/icons-material/SocialDistance";
+import AssessmentIcon from "@mui/icons-material/Assessment";
 import { closeSidebar } from "../../utils/utils";
 
 export default function Sidebar({ role }: { role: string }) {
@@ -50,7 +56,7 @@ export default function Sidebar({ role }: { role: string }) {
                 selected={selectedItem === "Users"}
                 onClick={() => handleItemClick("Users")}
               >
-                <DashboardRoundedIcon />
+                <AdminPanelSettingsIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Users</Typography>
                 </ListItemContent>
@@ -58,10 +64,10 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem.includes("/admin/Pairs")}
-                onClick={() => handleItemClick("Pairs")}
+                selected={selectedItem.includes("/admin/pairs")}
+                onClick={() => handleItemClick("pairs")}
               >
-                <DashboardRoundedIcon />
+                <SocialDistanceIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Pairs</Typography>
                 </ListItemContent>
@@ -72,7 +78,7 @@ export default function Sidebar({ role }: { role: string }) {
                 selected={selectedItem === "Report"}
                 onClick={() => handleItemClick("Report")}
               >
-                <DashboardRoundedIcon />
+                <AssessmentIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Report</Typography>
                 </ListItemContent>
@@ -99,10 +105,10 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Calendar"}
-                onClick={() => handleItemClick("Calendar")}
+                selected={selectedItem.includes("/mentor/calendar")}
+                onClick={() => handleItemClick("calendar")}
               >
-                <DashboardRoundedIcon />
+                <InsertInvitationIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Calendar</Typography>
                 </ListItemContent>
@@ -113,7 +119,7 @@ export default function Sidebar({ role }: { role: string }) {
                 selected={selectedItem === "Mentees"}
                 onClick={() => handleItemClick("Mentees")}
               >
-                <DashboardRoundedIcon />
+                <PeopleIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Mentees</Typography>
                 </ListItemContent>
@@ -124,7 +130,7 @@ export default function Sidebar({ role }: { role: string }) {
                 selected={selectedItem === "Tasks"}
                 onClick={() => handleItemClick("Tasks")}
               >
-                <DashboardRoundedIcon />
+                <TaskIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Tasks</Typography>
                 </ListItemContent>
@@ -135,7 +141,7 @@ export default function Sidebar({ role }: { role: string }) {
                 selected={selectedItem === "Chat"}
                 onClick={() => handleItemClick("Chat")}
               >
-                <DashboardRoundedIcon />
+                <ChatIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Chat</Typography>
                 </ListItemContent>
@@ -162,10 +168,11 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Calendar"}
-                onClick={() => handleItemClick("Calendar")}
+                selected={selectedItem.includes("/mentee/calendar")}
+                onClick={() => handleItemClick("calendar")}
               >
-                <DashboardRoundedIcon />
+                <InsertInvitationIcon />
+
                 <ListItemContent>
                   <Typography level="title-sm">Calendar</Typography>
                 </ListItemContent>
@@ -176,7 +183,7 @@ export default function Sidebar({ role }: { role: string }) {
                 selected={selectedItem === "Tasks"}
                 onClick={() => handleItemClick("Tasks")}
               >
-                <DashboardRoundedIcon />
+                <TaskIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Tasks</Typography>
                 </ListItemContent>
@@ -187,7 +194,7 @@ export default function Sidebar({ role }: { role: string }) {
                 selected={selectedItem === "Chat"}
                 onClick={() => handleItemClick("Chat")}
               >
-                <DashboardRoundedIcon />
+                <ChatIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Chat</Typography>
                 </ListItemContent>
