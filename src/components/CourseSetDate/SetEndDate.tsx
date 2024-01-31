@@ -15,6 +15,7 @@ const SetEndDate = () => {
             <DatePicker sx={{
             "& .MuiInputBase-root": {
               height: "2.5rem",
+              borderColor:"transparent"
             }
           }}/>
           </LocalizationProvider>

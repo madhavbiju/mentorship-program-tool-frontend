@@ -39,7 +39,7 @@ const MenteeSearch = () => {
                 variant="outlined"
                 color="neutral"
                 
-                sx={{ minWidth: 540 }}
+                sx={{ minWidth: 540}}
                 onClick={() => {
                   setLayout("center");
                 }}
