@@ -13,9 +13,9 @@ import {
 } from "@mui/material/styles";
 import { CssVarsProvider as JoyCssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/material/CssBaseline";
- 
+
 const materialTheme = materialExtendTheme();
- 
+
 type UserRole = 1 | 2 | 3;
 export default function JoyOrderDashboardTemplate({ role }: { role: string }) {
   const [userRole, setUserRole] = useState<UserRole | null>(null);
@@ -24,7 +24,7 @@ export default function JoyOrderDashboardTemplate({ role }: { role: string }) {
     setUserRole(role);
   };
   return (
-    <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
+    <MaterialCssVarsProvider>
       <JoyCssVarsProvider>
         <CssBaseline enableColorScheme />
         <Box
