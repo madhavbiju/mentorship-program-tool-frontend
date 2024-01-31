@@ -9,6 +9,7 @@ import MentorDashboard from "./pages/mentor/dashboard/MentorDashboard";
 import OrderTable from "./pages/admin/pairs/OrderTable";
 import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
+import CreatePair from "./pages/admin/createPair/CreatePair";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = () => {
       <Route path="/admin" element={<App role="admin" />}>
         <Route path="home" element={<AdminDashboard />} />
         <Route path="pairs" element={<OrderTable />} />
+        <Route path="pairs/create" element={<CreatePair />} />
       </Route>
       <Route path="/mentee" element={<App role="mentee" />}>
         <Route path="home" element={<MenteeDashboard />} />
