@@ -1,13 +1,14 @@
-import * as React from 'react';
-import { useColorScheme } from '@mui/joy/styles';
-import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
-
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import LightModeIcon from '@mui/icons-material/LightMode';
+import * as React from "react";
+import IconButton, { IconButtonProps } from "@mui/joy/IconButton";
+import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import { useColorScheme as useJoyColorScheme } from "@mui/joy/styles";
+import { useColorScheme as useMaterialColorScheme } from "@mui/material/styles";
 
 export default function ColorSchemeToggle(props: IconButtonProps) {
   const { onClick, sx, ...other } = props;
-  const { mode, setMode } = useColorScheme();
+  const { mode, setMode: setMaterialMode } = useMaterialColorScheme();
+  const { setMode: setJoyMode } = useJoyColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);
@@ -32,20 +33,22 @@ export default function ColorSchemeToggle(props: IconButtonProps) {
       color="neutral"
       {...other}
       onClick={(event) => {
-        if (mode === 'light') {
-          setMode('dark');
+        if (mode === "light") {
+          setMaterialMode("dark");
+          setJoyMode("dark");
         } else {
-          setMode('light');
+          setMaterialMode("light");
+          setJoyMode("light");
         }
         onClick?.(event);
       }}
       sx={[
         {
-          '& > *:first-child': {
-            display: mode === 'dark' ? 'none' : 'initial',
+          "& > *:first-child": {
+            display: mode === "dark" ? "none" : "initial",
           },
-          '& > *:last-child': {
-            display: mode === 'light' ? 'none' : 'initial',
+          "& > *:last-child": {
+            display: mode === "light" ? "none" : "initial",
           },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
