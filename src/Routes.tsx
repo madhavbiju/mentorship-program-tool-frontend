@@ -9,6 +9,7 @@ import MentorDashboard from "./pages/mentor/dashboard/MentorDashboard";
 import OrderTable from "./pages/admin/pairs/OrderTable";
 import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
+import MentorReport from "./pages/mentor/report/MentorReport";
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
       <Route path="/mentor" element={<App role="mentor" />}>
         <Route path="home" element={<MentorDashboard />} />
         <Route path="calendar" element={<CalendarPage />} />
+        <Route path="report" element={<MentorReport />} />
       </Route>
     </Routes>
   );
