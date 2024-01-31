@@ -1,6 +1,7 @@
 import { Box, Button, Dropdown, Menu, MenuButton, MenuItem, MenuList } from "@mui/joy";
 import React from "react";
 import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
+import Grid from "@mui/material/Grid";
 
 const MenteesList = () => {
   return (
@@ -23,13 +24,17 @@ const MenteesList = () => {
           </Menu>
         </Dropdown>
       </Box>
-      <Box sx={{my:"5%", mx:"2%"}} >
-        <MenteesListCard  />
-        <br />
-        <MenteesListCard/>
-        <br/>
-        <MenteesListCard/>
-      </Box>
+      <Grid container spacing={1} sx={{ my: '5%' }}>
+      <Grid item xs={12} sm={12} md={12}>
+        <MenteesListCard />
+      </Grid>
+      <Grid item xs={12} sm={12} md={12}>
+        <MenteesListCard />
+      </Grid>
+      <Grid item xs={12} sm={12} md={12}>
+        <MenteesListCard />
+      </Grid>
+    </Grid>
     </Box>
   );
 };

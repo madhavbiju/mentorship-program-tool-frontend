@@ -1,4 +1,3 @@
-// Routes.tsx
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PrivateRoutes from "./PrivateRoutes";
@@ -10,6 +9,8 @@ import OrderTable from "./pages/admin/pairs/OrderTable";
 import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
 import MentorReport from "./pages/mentor/report/MentorReport";
+import MenteesList from "./pages/mentor/menteesList/MenteesList";
+import MentorTask from "./pages/mentor/mentorTask/MentorTask";
 
 const AppRoutes = () => {
   return (
@@ -20,12 +21,13 @@ const AppRoutes = () => {
       </Route>
       <Route path="/mentee" element={<App role="mentee" />}>
         <Route path="home" element={<MenteeDashboard />} />
-        <Route path="calendar" element={<CalendarPage />} />
       </Route>
       <Route path="/mentor" element={<App role="mentor" />}>
         <Route path="home" element={<MentorDashboard />} />
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="report" element={<MentorReport />} />
+        <Route path="mentees" element={<MenteesList />} />
+        <Route path="tasks" element={<MentorTask />} />
       </Route>
     </Routes>
   );

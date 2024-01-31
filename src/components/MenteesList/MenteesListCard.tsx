@@ -14,50 +14,52 @@ import React from "react";
 
 const MenteesListCard = () => {
   return (
-    <Box>
-      <Box sx={{ marginRight: "10%" }}>
+    
+      <Grid  xs={12}>
         <List
           orientation="horizontal"
           variant="soft"
           sx={{
-            flexGrow: 0,
-            mx: "auto",
             "--ListItemDecorator-size": "48px",
             "--ListItem-paddingY": "1rem",
             borderRadius: "sm",
             py: "2%",
-            justifyContent: "center",
+            display: "flex" ,
+            justifyContent: "space-around",
           }}
         >
-          <ListItem sx={{ mr: 12 }}>
+          
+          <ListItem >
             <ListItemDecorator>
               <Avatar src="/static/images/avatar/1.jpg" />
             </ListItemDecorator>
           </ListItem>
           
-          <Box sx={{ display: "flex" }}>
           <ListDivider inset="gutter" />
-            <Stack>
-              <Typography sx={{ml:9 }} level="body-sm" 
+            <Stack >
+              <Typography level="body-sm" sx={{display:"flex", justifyContent:"center"}}
               style={{ fontSize: "10px"}}
               >Mentee</Typography>
-              <ListItem sx={{ mx: 5 , paddingTop:1.5 }}>Boyd Burt </ListItem> 
+              <ListItem sx={{  paddingTop:1.5 }}>Boyd Burt </ListItem> 
             </Stack>
             
             <ListDivider inset="gutter" />
-            <Stack>
-            <Typography sx={{ml:9}} level="body-sm"  style={{ fontSize: "10px"}}>Program</Typography>
-            <ListItem sx={{ mx: 4,  paddingTop:1.5 }}>Program Name</ListItem>
+
+            <Stack >
+            <Typography sx={{display:"flex", justifyContent:"center"}}  level="body-sm" style={{ fontSize: "10px"}} >Program</Typography>
+            <ListItem sx={{   paddingTop:1.5 }}>Program Name</ListItem>
             </Stack>
+
             <ListDivider inset="gutter" />
-            <Stack>
-            <Typography sx={{ml:9 }} level="body-sm"  style={{ fontSize: "10px"}}>End date</Typography>
-            <ListItem sx={{ ml: 4 , paddingTop:1.5 }}>12/02/2024</ListItem>
+
+            <Stack >
+            <Typography sx={{display:"flex", justifyContent:"center"}} level="body-sm" style={{ fontSize: "10px"}}>End date</Typography>
+            <ListItem sx={{  paddingTop:1.5 }}>12/02/2024</ListItem>
             </Stack>
-          </Box>
+          
         </List>
-      </Box>
-    </Box>
+      </Grid>
+   
   );
 };
 
