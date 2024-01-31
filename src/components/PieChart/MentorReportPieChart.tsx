@@ -1,43 +1,20 @@
-import * as React from "react";
-import { DefaultizedPieValueType } from "@mui/x-charts";
-import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
+import { PieChart } from "@mui/x-charts/PieChart";
+import React from "react";
 
 const MentorReportPieChart = () => {
-  const data = [
-    { label: "Mentors", value: 45, color: "#0088FE" },
-    { label: "Mentees", value: 50, color: "#00C49F" },
-    { label: "Users", value: 60, color: "#FFBB28" },
-  ];
-
-  const sizing = {
-    margin: { right: 5 },
-    width: 200,
-    height: 200,
-    legend: { hidden: true },
-  };
-  const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
-
-  const getArcLabel = (params: DefaultizedPieValueType) => {
-    const percent = params.value / TOTAL;
-    return `${params.label}`;
-  };
-
   return (
     <PieChart
       series={[
         {
-          outerRadius: 80,
-          data,
-          arcLabel: getArcLabel,
+          data: [
+            { id: 0, value: 10, label: "Mentors" },
+            { id: 1, value: 15, label: "Mentees " },
+            { id: 2, value: 20, label: "Users" },
+          ],
         },
       ]}
-      sx={{
-        [`& .${pieArcLabelClasses.root}`]: {
-          fill: "white",
-          fontSize: 14,
-        },
-      }}
-      {...sizing}
+      width={400}
+      height={200}
     />
   );
 };

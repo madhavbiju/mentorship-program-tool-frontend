@@ -5,7 +5,7 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Table, { TableProps } from "@mui/joy/Table";
 
-const ReportTaskTable = () => {
+const ReportMeetingsTable = () => {
   function createData(
     meetingName: string,
     scheduledDate: string,
@@ -49,4 +49,4 @@ const ReportTaskTable = () => {
   );
 };
 
-export default ReportTaskTable;
+export default ReportMeetingsTable;
