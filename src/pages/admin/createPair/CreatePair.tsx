@@ -1,5 +1,5 @@
 import Input from "@mui/joy/Input";
-import { Box } from "@mui/system";
+import { Box, display } from "@mui/system";
 import * as React from "react";
 import Button from "@mui/joy/Button";
 // import FormControl from "@mui/joy/FormControl";
@@ -23,24 +23,48 @@ import SetEndDate from "../../../components/CourseSetDate/SetEndDate";
 const CreatePair = () => {
   return (
     <Box sx={{ pt: 5 }}>
-      <Input
-        sx={{ display: "flex", justifyContent: "center" }}
-        placeholder="                                                                                        Enter Program Name..!"
-        variant="plain"
-      />
-      <Box>
-        <Grid sx={{ display: "flex", justifyContent: "space-around", pt: 10 }}>
+      <Grid xs={12}>
+        <Input
+          sx={{ display: "flex", justifyContent: "center" }}
+          placeholder="Enter Program Name..!"
+          variant="soft"
+        />
+      </Grid>
+      <Grid container sx={{ display: "flex", flexDirection: "column" }}>
+        <Grid
+          xs={12}
+          sx={{ display: "flex", justifyContent: "space-around", pt: 8 }}
+        >
           <MentorSearch />
           <MenteeSearch />
         </Grid>
 
-        <Grid sx={{ display: "flex", justifyContent: "space-around", pt: 10 }}>
-          <SetStartDate />
-          <SetEndDate/>
+        <Grid
+          //   md={8}
+          sx={{
+            // border: "2px solid red",
+            display: "flex",
+            justifyContent: "space-around",
+            pt: 7,
+          }}
+        >
+          <Grid xs={12} sx={{ justifyContent: "center" }}>
+            <SetStartDate />
+          </Grid>
+          <Grid xs={12} sx={{ justifyContent: "center" }}>
+            <SetEndDate />
+          </Grid>
         </Grid>
-<Grid rowSpacing={10} sx={{display:"flex" , justifyContent:"center", pt:10}}>
-        <Button size="md" variant="solid">+ Create Pair</Button></Grid>
-      </Box>
+      </Grid>
+
+      <Grid
+        rowSpacing={7}
+        sx={{ display: "flex", justifyContent: "center", pt: 7 }}
+      >
+        <Button size="md" variant="solid">
+          + Create Pair
+        </Button>
+      </Grid>
     </Box>
   );
 };

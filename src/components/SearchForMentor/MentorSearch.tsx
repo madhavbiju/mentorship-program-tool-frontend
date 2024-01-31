@@ -9,6 +9,7 @@ import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
 import ModalOverflow from "@mui/joy/ModalOverflow";
 import Stack from "@mui/joy/Stack";
+import { positions } from "@mui/system";
 
 const MentorSearch = () => {
   const mentors = [
@@ -24,29 +25,24 @@ const MentorSearch = () => {
   ];
 
   const [layout, setLayout] = React.useState<ModalDialogProps["layout"] | undefined>(undefined);
-  const [selectedMentor, setSelectedMentor] = React.useState<string | null>(null);
-  const [scroll, setScroll] = React.useState<boolean>(true);
-
-  const handleOk = () => {
-    // Perform any actions needed with the selected mentor
-    console.log("Selected mentor:", selectedMentor);
-    // Close the modal
-    setLayout(undefined);
-  };
+  const [selectedMentor, setSelectedMentor] = React.useState<string>();
 
   return (
-    <Grid container columnSpacing={8} sx={{ display: "flex", justifyContent: "space-around" }}>
+    <Grid container justifyContent="center" >
+        <Grid xs={12} sm={10} >
+      <Stack>
       <Grid>Mentor :</Grid>
       <Grid>
         <Stack direction="row" spacing={1}>
-          <Button
+          <Button 
             variant="outlined"
             color="neutral"
+            
             onClick={() => {
               setLayout("center");
             }}
           >
-            --SELECT MENTOR--
+            {selectedMentor || "--SELECT MENTOR--"}
           </Button>
         </Stack>
         <Modal open={!!layout} onClose={() => setLayout(undefined)}>
@@ -76,12 +72,11 @@ const MentorSearch = () => {
                   />
                 </FormControl>
               </FormControl>
-              <Button  onClick={handleOk}>
-                SET
-              </Button>
             </ModalDialog>
           </ModalOverflow>
         </Modal>
+      </Grid>
+      </Stack>
       </Grid>
     </Grid>
   );
