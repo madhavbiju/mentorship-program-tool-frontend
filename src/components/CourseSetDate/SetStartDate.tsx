@@ -8,11 +8,15 @@ import Stack from "@mui/joy/Stack";
 const SetStartDate = () => {
   return (
     <Grid container direction="row" justifyContent="center">
-      <Grid item xs={12} sm={8} md={6}>
+      <Grid item xs={12} sm={10}>
         <Stack >
-          <Grid item>Select Start Date :</Grid>
+          <Grid item>Start Date :</Grid>
           <LocalizationProvider dateAdapter={AdapterMoment}>
-            <DatePicker />
+            <DatePicker sx={{
+            "& .MuiInputBase-root": {
+              height: "2.5rem",
+            }
+          }}/>
           </LocalizationProvider>
         </Stack>
       </Grid>

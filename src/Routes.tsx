@@ -8,9 +8,9 @@ import MentorDashboard from "./pages/mentor/dashboard/MentorDashboard";
 import OrderTable from "./pages/admin/pairs/OrderTable";
 import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
-import CreatePair from "./pages/admin/createPair/CreatePair";
 import MenteesList from "./pages/mentor/menteesList/MenteesList";
 import MentorTask from "./pages/mentor/mentorTask/MentorTask";
+import CreatePairCard from "./pages/admin/createPair/CreatePairCard";
 
 const AppRoutes = () => {
   return (
@@ -18,7 +18,7 @@ const AppRoutes = () => {
       <Route path="/admin" element={<App role="admin" />}>
         <Route path="home" element={<AdminDashboard />} />
         <Route path="pairs" element={<OrderTable />} />
-        <Route path="pairs/create" element={<CreatePair />} />
+        <Route path="pairs/create" element={<CreatePairCard />} />
       </Route>
       <Route path="/mentee" element={<App role="mentee" />}>
         <Route path="home" element={<MenteeDashboard />} />
