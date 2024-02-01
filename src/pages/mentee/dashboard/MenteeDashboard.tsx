@@ -46,7 +46,7 @@ const MenteeDashboard = () => {
         <Grid item xs={12}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
-              <Typography variant="h3">Tasks</Typography>
+              <Typography>Tasks</Typography>
               <TasksNameAndDueDate
                 taskName={"Assignment 1"}
                 submissionDate={"2024-04-23"}
@@ -57,7 +57,7 @@ const MenteeDashboard = () => {
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <Typography variant="h3">Meetings</Typography>
+              <Typography>Meetings</Typography>
               <TasksNameAndDueDate
                 taskName={"Assignment 1"}
                 submissionDate={"2024-04-23"}
