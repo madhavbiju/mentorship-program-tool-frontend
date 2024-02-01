@@ -20,15 +20,10 @@ const TasksNameAndDueDate = ({
         orientation="horizontal"
         variant="soft"
         sx={{
-          flexGrow: 0,
-          mx: "auto",
-          "--ListItemDecorator-size": "48px",
+          // "--ListItemDecorator-size": "48px",
           "--ListItem-paddingY": "1rem",
-          "--ListItem-paddingX": "6rem",
+          // "--ListItem-paddingX": "1rem",
           borderRadius: "sm",
-          marginBottom: "10px",
-          marginRight: "10px",
-          marginTop: "10px",
           justifyContent: "center",
         }}
       >
