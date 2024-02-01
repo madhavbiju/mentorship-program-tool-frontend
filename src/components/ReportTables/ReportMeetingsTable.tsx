@@ -7,19 +7,20 @@ import Table, { TableProps } from "@mui/joy/Table";
 
 const ReportMeetingsTable = () => {
   function createData(
+    menteeName: string,
     meetingName: string,
     scheduledDate: string,
     scheduledTime: string,
     status: string
   ) {
-    return { meetingName, scheduledDate, scheduledTime, status };
+    return { menteeName, meetingName, scheduledDate, scheduledTime, status };
   }
 
   const rows = [
-    createData("Meeting1", "12/05/2024", "25/05/2024", "Scheduled"),
-    createData("Meeting2", "25/05/2024", "05/05/2024", "Scheduled"),
-    createData("Meeting3", "05/05/2024", "25/05/2024", "Completed"),
-    createData("Meeting4", "12/05/2024", "05/05/2024", "Completed"),
+    createData("Shiyas", "Meeting1", "12/05/2024", "25/05/2024", "Scheduled"),
+    createData("Madhav", "Meeting2", "25/05/2024", "05/05/2024", "Scheduled"),
+    createData("Mehanoor", "Meeting3", "05/05/2024", "25/05/2024", "Completed"),
+    createData("Aadarsh", "Meeting4", "12/05/2024", "05/05/2024", "Completed"),
   ];
 
   return (
@@ -28,6 +29,7 @@ const ReportMeetingsTable = () => {
       <Table>
         <thead>
           <tr>
+            <th>Mentee Name</th>
             <th>Meeting Name</th>
             <th>Scheduled Date</th>
             <th>Scheduled Time</th>
@@ -36,7 +38,8 @@ const ReportMeetingsTable = () => {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.meetingName}>
+            <tr key={row.menteeName}>
+              <td>{row.menteeName}</td>
               <td>{row.meetingName}</td>
               <td>{row.scheduledDate}</td>
               <td>{row.scheduledTime}</td>
