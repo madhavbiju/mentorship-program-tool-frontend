@@ -7,19 +7,20 @@ import Table, { TableProps } from "@mui/joy/Table";
 
 const ReportTaskTable = () => {
   function createData(
+    menteeName: string,
     taskTitle: string,
     assignedDate: string,
     submissionDate: string,
     status: string
   ) {
-    return { taskTitle, assignedDate, submissionDate, status };
+    return { menteeName, taskTitle, assignedDate, submissionDate, status };
   }
 
   const rows = [
-    createData("Task1", "12/05/2024", "25/05/2024", "Active"),
-    createData("Task2", "25/05/2024", "05/05/2024", "Inactive"),
-    createData("Task3", "05/05/2024", "25/05/2024", "Active"),
-    createData("Task4", "12/05/2024", "05/05/2024", "Submitted"),
+    createData("Shiyas", "Task1", "12/05/2024", "25/05/2024", "Active"),
+    createData("Aadarsh", "Task2", "25/05/2024", "05/05/2024", "Inactive"),
+    createData("Mehanoor", "Task3", "05/05/2024", "25/05/2024", "Active"),
+    createData("Madhav", "Task4", "12/05/2024", "05/05/2024", "Submitted"),
   ];
 
   return (
@@ -28,7 +29,8 @@ const ReportTaskTable = () => {
       <Table>
         <thead>
           <tr>
-            <th>Task title</th>
+            <th>Mentee Name</th>
+            <th>Task Title</th>
             <th>Assigned Date</th>
             <th>Submission Date</th>
             <th>Status</th>
@@ -36,7 +38,8 @@ const ReportTaskTable = () => {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.taskTitle}>
+            <tr key={row.menteeName}>
+              <td>{row.menteeName}</td>
               <td>{row.taskTitle}</td>
               <td>{row.assignedDate}</td>
               <td>{row.submissionDate}</td>

@@ -66,9 +66,6 @@ const MentorReport = () => {
             <Grid>
               <SortByReportTaskTable />
             </Grid>
-            <Grid>
-              <SelectMenteeDropDown />
-            </Grid>
           </Grid>
 
           <Grid>
@@ -92,9 +89,6 @@ const MentorReport = () => {
 
             <Grid>
               <SortByReportMeetingsTable />
-            </Grid>
-            <Grid>
-              <SelectMenteeDropDown />
             </Grid>
           </Grid>
 

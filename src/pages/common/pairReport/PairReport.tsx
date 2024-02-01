@@ -1,15 +1,11 @@
 import { Box, Typography } from "@mui/joy";
 import { Grid, Button } from "@mui/joy";
-import React from "react";
-import MentorMenteeTable from "../../../components/MentorMenteeTable/MentorMenteeTable";
-import AdminReportPieChart from "../../../components/PieChart/AdminReportPieChart";
-import SortByMentorMenteeTable from "../../../components/Sort/SortByMentorMenteeTable";
-import Mentor_Program_Status from "../../../components/Mentor_Program_Status.tsx/Mentor_Program_Status";
 import ReportTaskTable from "../../../components/ReportTables/ReportTaskTable";
 import MenteeTaskGraph from "../../../components/MenteeTaskGraph/MenteeTaskGraph";
 import ReportMeetingsTable from "../../../components/ReportTables/ReportMeetingsTable";
+import MenteeInfoBar from "../../../components/menteeInfoBar/MenteeInfoBar";
 
-const MenteeReport = () => {
+const PairReport = () => {
   return (
     <div>
       <Box>
@@ -25,7 +21,7 @@ const MenteeReport = () => {
             <Typography level={"h2"}>Report</Typography>
           </Grid>
           <Grid xs={12} lg={7}>
-            <Mentor_Program_Status />
+            <MenteeInfoBar />
           </Grid>
 
           <Grid xs={12} lg={3}>
@@ -48,4 +44,4 @@ const MenteeReport = () => {
   );
 };
 
-export default MenteeReport;
+export default PairReport;

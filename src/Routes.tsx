@@ -12,8 +12,9 @@ import MentorReport from "./pages/mentor/report/MentorReport";
 import MenteesList from "./pages/mentor/menteesList/MenteesList";
 import MentorTask from "./pages/mentor/mentorTask/MentorTask";
 import AdminReport from "./pages/admin/report/AdminReport";
-import MenteeReport from "./pages/mentee/report/MenteeReport";
+import MenteeReport from "./pages/common/pairReport/PairReport";
 import CreatePairCard from "./pages/admin/createPair/CreatePairCard";
+import PairReport from "./pages/common/pairReport/PairReport";
 
 const AppRoutes = () => {
   return (
@@ -21,19 +22,22 @@ const AppRoutes = () => {
       <Route path="/admin" element={<App role="admin" />}>
         <Route path="home" element={<AdminDashboard />} />
         <Route path="pairs" element={<OrderTable />} />
-        <Route path="report" element={<AdminReport />} />
+        <Route path="report/overall" element={<AdminReport />} />
+        <Route path="report/mentor" element={<MentorReport />} />
+        <Route path="report/pair" element={<PairReport />} />
+
         <Route path="pairs/create" element={<CreatePairCard />} />
       </Route>
       <Route path="/mentee" element={<App role="mentee" />}>
         <Route path="home" element={<MenteeDashboard />} />
-        <Route path="report" element={<MenteeReport />} />
       </Route>
       <Route path="/mentor" element={<App role="mentor" />}>
         <Route path="home" element={<MentorDashboard />} />
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="mentees" element={<MenteesList />} />
         <Route path="tasks" element={<MentorTask />} />
-        <Route path="report" element={<MentorReport />} />
+        <Route path="report/pair" element={<PairReport />} />
+        <Route path="report/mentor" element={<MentorReport />} />
       </Route>
     </Routes>
   );
