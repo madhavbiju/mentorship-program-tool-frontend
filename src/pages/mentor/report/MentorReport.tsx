@@ -9,6 +9,7 @@ import SortByMentorMenteeTable from "../../../components/Sort/SortByMentorMentee
 import SortByReportMeetingsTable from "../../../components/Sort/SortByReportMeetingsTable";
 import SortByReportTaskTable from "../../../components/Sort/SortByReportTaskTable";
 import MentorReportGraph from "../../../components/MentorReportGraph/MentorReportGraph";
+import MenteeProgramTable from "../../../components/MenteeProgramTable/MenteeProgramTable";
 
 const MentorReport = () => {
   return (
@@ -33,7 +34,7 @@ const MentorReport = () => {
               sx={{ display: "flex" }}
             >
               <Grid>
-                <Typography level={"h3"}>Pairs</Typography>
+                <Typography level={"h3"}>Programs</Typography>
               </Grid>
 
               <Grid>
@@ -42,7 +43,7 @@ const MentorReport = () => {
             </Grid>
 
             <Grid xs={12} lg={6}>
-              <MentorMenteeTable />
+              <MenteeProgramTable />
             </Grid>
           </Grid>
           <Grid lg={6}>
