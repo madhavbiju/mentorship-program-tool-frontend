@@ -1,7 +1,7 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import React from "react";
 
-const MentorReportPieChart = () => {
+const AdminReportPieChart = () => {
   return (
     <PieChart
       series={[
@@ -19,4 +19,4 @@ const MentorReportPieChart = () => {
   );
 };
 
-export default MentorReportPieChart;
+export default AdminReportPieChart;
