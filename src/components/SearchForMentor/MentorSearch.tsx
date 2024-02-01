@@ -13,7 +13,7 @@ import { positions } from "@mui/system";
 
 const MentorSearch = () => {
   const mentors = [
-    { name: "Ashiq" },
+    { name: "Ashiq Tharkoski" },
     { name: "Anish" },
     { name: "aadarsh" },
     { name: "hari" },
@@ -36,16 +36,18 @@ const MentorSearch = () => {
           <Grid>Mentor :</Grid>
           <Grid>
             <Stack direction="row" spacing={1}>
-              <Button
-                variant="outlined"
-                color="neutral"
-                sx={{ minWidth: 540 }}
-                onClick={() => {
-                  setLayout("center");
-                }}
-              >
-                {selectedMentor || "--SELECT MENTOR--"}
-              </Button>
+            <Button
+  variant="outlined"
+  color="neutral"
+  sx={{ width: "-webkit-fill-available" }}
+  onClick={() => {
+    setLayout("center");
+    setSelectedMentor(""); // Reset selectedMentor state
+  }}
+>
+  {selectedMentor || "--SELECT MENTEE--"}
+</Button>
+
             </Stack>
             <Modal open={!!layout} onClose={() => setLayout(undefined)}>
               <ModalOverflow>
@@ -66,17 +68,19 @@ const MentorSearch = () => {
                     }}
                   >
                     <FormControl>
-                      <Autocomplete
-                        placeholder="Search here"
-                        type="search"
-                        // freeSolo
-                        disableClearable
-                        options={mentors.map((option) => option.name)}
-                        value={selectedMentor}
-                        onChange={(event, newValue) =>
-                          setSelectedMentor(newValue)
-                        }
-                      />
+                    <Autocomplete
+  placeholder="Search here"
+  type="search"
+  disableClearable
+  options={mentors.map((option) => option.name)}
+  value={selectedMentor}
+  onChange={(event, newValue) => setSelectedMentor(newValue)}
+  onInputChange={(event, newInputValue) => {
+    if (newInputValue.trim() !== '') {
+      setLayout(undefined); // Close the modal
+    }
+  }}
+/>
                     </FormControl>
                   </FormControl>
                 </ModalDialog>

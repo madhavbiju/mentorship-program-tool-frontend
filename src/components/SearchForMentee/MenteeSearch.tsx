@@ -12,7 +12,7 @@ import Stack from "@mui/joy/Stack";
 
 const MenteeSearch = () => {
   const mentees = [
-    { name: "Ashiq" },
+    { name: "Ashiq Tharkoski" },
     { name: "Anish" },
     { name: "aadarsh" },
     { name: "hari" },
@@ -35,17 +35,18 @@ const MenteeSearch = () => {
           <Grid>Mentee :</Grid>
           <Grid>
             <Stack direction="row">
-              <Button
-                variant="outlined"
-                color="neutral"
-                
-                sx={{ minWidth: 540}}
-                onClick={() => {
-                  setLayout("center");
-                }}
-              >
-                {selectedMentee || "--SELECT MENTEE--"}
-              </Button>
+            <Button
+  variant="outlined"
+  color="neutral"
+  sx={{ width: "-webkit-fill-available" }}
+  onClick={() => {
+    setLayout("center");
+    setSelectedMentee(""); // Reset selectedMentee state
+  }}
+>
+  {selectedMentee || "--SELECT MENTEE--"}
+</Button>
+
             </Stack>
 
             <Modal open={!!layout} onClose={() => setLayout(undefined)}>
@@ -68,18 +69,20 @@ const MenteeSearch = () => {
                     }}
                   >
                     <FormControl>
-                      <Autocomplete
-                        placeholder="Search here"
-                        type="search"
-                        // freeSolo
-                        disableClearable
-                        options={mentees.map((option) => option.name)}
-                        value={selectedMentee}
-                        onChange={(event, newValue) =>
-                          setSelectedMentee(newValue)
-                        }
-                        
-                      />
+                    <Autocomplete
+  placeholder="Search here"
+  type="search"
+  disableClearable
+  options={mentees.map((option) => option.name)}
+  value={selectedMentee}
+  onChange={(event, newValue) => setSelectedMentee(newValue)}
+  onInputChange={(event, newInputValue) => {
+    if (newInputValue.trim() !== '') {
+      setLayout(undefined); // Close the modal
+    }
+  }}
+/>
+
                     </FormControl>
                   </FormControl>
                 </ModalDialog>
