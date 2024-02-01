@@ -30,6 +30,8 @@ const AppRoutes = () => {
       </Route>
       <Route path="/mentee" element={<App role="mentee" />}>
         <Route path="home" element={<MenteeDashboard />} />
+        <Route path="calendar" element={<CalendarPage />} />
+        <Route path="report" element={<MenteeReport />} />
       </Route>
       <Route path="/mentor" element={<App role="mentor" />}>
         <Route path="home" element={<MentorDashboard />} />
