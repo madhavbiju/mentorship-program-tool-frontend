@@ -53,8 +53,8 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Users"}
-                onClick={() => handleItemClick("Users")}
+                selected={selectedItem.includes("/admin/users")}
+                onClick={() => handleItemClick("users")}
               >
                 <AdminPanelSettingsIcon />
                 <ListItemContent>
@@ -75,8 +75,8 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Report"}
-                onClick={() => handleItemClick("Report")}
+                selected={selectedItem.includes("/admin/report")}
+                onClick={() => handleItemClick("report")}
               >
                 <AssessmentIcon />
                 <ListItemContent>
@@ -95,7 +95,7 @@ export default function Sidebar({ role }: { role: string }) {
             <ListItem>
               <ListItemButton
                 selected={selectedItem.includes("/mentor/home")}
-                onClick={() => handleItemClick("Home")}
+                onClick={() => handleItemClick("home")}
               >
                 <HomeRoundedIcon />
                 <ListItemContent>
@@ -116,8 +116,8 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Mentees"}
-                onClick={() => handleItemClick("Mentees")}
+                selected={selectedItem.includes("/mentor/mentees")}
+                onClick={() => handleItemClick("mentees")}
               >
                 <PeopleIcon />
                 <ListItemContent>
@@ -127,8 +127,8 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Tasks"}
-                onClick={() => handleItemClick("Tasks")}
+                selected={selectedItem.includes("/mentor/tasks")}
+                onClick={() => handleItemClick("tasks")}
               >
                 <TaskIcon />
                 <ListItemContent>
@@ -138,8 +138,8 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Chat"}
-                onClick={() => handleItemClick("Chat")}
+                selected={selectedItem.includes("/mentor/chat")}
+                onClick={() => handleItemClick("chat")}
               >
                 <ChatIcon />
                 <ListItemContent>
@@ -158,7 +158,7 @@ export default function Sidebar({ role }: { role: string }) {
             <ListItem>
               <ListItemButton
                 selected={selectedItem.includes("/mentee/home")}
-                onClick={() => handleItemClick("Home")}
+                onClick={() => handleItemClick("home")}
               >
                 <HomeRoundedIcon />
                 <ListItemContent>
@@ -180,8 +180,8 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Tasks"}
-                onClick={() => handleItemClick("Tasks")}
+                selected={selectedItem.includes("/mentee/tasks")}
+                onClick={() => handleItemClick("tasks")}
               >
                 <TaskIcon />
                 <ListItemContent>
@@ -191,8 +191,8 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "Chat"}
-                onClick={() => handleItemClick("Chat")}
+                selected={selectedItem.includes("/mentee/chat")}
+                onClick={() => handleItemClick("chat")}
               >
                 <ChatIcon />
                 <ListItemContent>
