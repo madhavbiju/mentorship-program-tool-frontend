@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import GreetCard from "../../../components/GreetCard/GreetCard";
 import MentorAndProgramCard from "../../../components/MentorAndProgramCard/MentorAndProgramCard";
 import TasksNameAndDueDate from "../../../components/TasksNameAndDueDate/TasksNameAndDueDate";
-import ProgramProgressCircularBar from "../../../components/ProgramProgressBar/ProgramProgressBar";
 import { MentorNameAndProgramNameAPI } from "./API/MentorNameAndProgramNameAPI/MentorNameAndProgramNameAPI";
 import { Grid } from "@mui/material";
+import ProgramProgressBar from "../../../components/ProgramProgressBar/ProgramProgressBar";
 
 const MenteeDashboard = () => {
   const [mentorName, setMentorName] = useState<string>("");
@@ -26,48 +26,52 @@ const MenteeDashboard = () => {
   }, []);
 
   return (
-    <Box sx={{ p: 2 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} lg={6}>
+    <Box>
+      <Grid sx={{ display: "flex", alignItems: "center" }}>
+        <Grid xs={12} lg={6}>
           <GreetCard />
         </Grid>
-        <Grid item xs={3} lg={2}>
+        <Grid xs={12} lg={6}>
           <MentorAndProgramCard
             mentorName={mentorName}
             programName={programName}
           />
         </Grid>
-        <Grid item xs={12}>
-          <Divider />
+      </Grid>
+      <Divider />
+      <br />
+      <ProgramProgressBar />
+      <br />
+      <Grid columnGap={2} sx={{ display: "flex" }} container>
+        <Grid xs={12} lg={5}>
+          <Typography>Tasks</Typography>
+          <div style={{ marginBottom: "10px" }}>
+            <TasksNameAndDueDate
+              taskName={"Assignment 1"}
+              submissionDate={"2024-04-23"}
+            />
+          </div>
+          <div style={{ marginBottom: "10px" }}>
+            <TasksNameAndDueDate
+              taskName={"Assignment 2"}
+              submissionDate={"2024-04-23"}
+            />
+          </div>
         </Grid>
-        <Grid item xs={12}>
-          <ProgramProgressCircularBar />
-        </Grid>
-        <Grid item xs={12}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <Typography>Tasks</Typography>
-              <TasksNameAndDueDate
-                taskName={"Assignment 1"}
-                submissionDate={"2024-04-23"}
-              />
-              <TasksNameAndDueDate
-                taskName={"Assignment 2"}
-                submissionDate={"2024-04-23"}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Typography>Meetings</Typography>
-              <TasksNameAndDueDate
-                taskName={"Assignment 1"}
-                submissionDate={"2024-04-23"}
-              />
-              <TasksNameAndDueDate
-                taskName={"Assignment 2"}
-                submissionDate={"2024-04-23"}
-              />
-            </Grid>
-          </Grid>
+        <Grid xs={12} lg={5}>
+          <Typography>Meetings</Typography>
+          <div style={{ marginBottom: "10px" }}>
+            <TasksNameAndDueDate
+              taskName={"Meeting 1"}
+              submissionDate={"2024-04-23"}
+            />
+          </div>
+          <div style={{ marginBottom: "10px" }}>
+            <TasksNameAndDueDate
+              taskName={"Meeting 2"}
+              submissionDate={"2024-04-23"}
+            />
+          </div>
         </Grid>
       </Grid>
     </Box>
