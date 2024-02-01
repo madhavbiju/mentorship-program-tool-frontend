@@ -11,7 +11,7 @@ import {
 } from "@mui/joy";
 import React from "react";
 
-const Mentor_Program_Status = () => {
+const MenteeInfoBar = () => {
   return (
     <div>
       <Grid
@@ -21,7 +21,7 @@ const Mentor_Program_Status = () => {
       >
         <List orientation="horizontal">
           <ListItem role="none">
-            <Typography level="body-xs"> Mentor:</Typography>
+            <Typography level="body-xs"> Mentee:</Typography>
             <Typography level="title-sm"> Shiyas</Typography>
           </ListItem>
           <ListDivider />
@@ -45,4 +45,4 @@ const Mentor_Program_Status = () => {
   );
 };
 
-export default Mentor_Program_Status;
+export default MenteeInfoBar;

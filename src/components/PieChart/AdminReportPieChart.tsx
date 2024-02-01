@@ -9,7 +9,7 @@ const AdminReportPieChart = () => {
           data: [
             { id: 0, value: 10, label: "Mentors" },
             { id: 1, value: 15, label: "Mentees " },
-            { id: 2, value: 20, label: "Users" },
+            { id: 2, value: 3, label: "Unallocated" },
           ],
         },
       ]}

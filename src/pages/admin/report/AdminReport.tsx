@@ -70,9 +70,6 @@ const AdminReport = () => {
             <Grid>
               <SortByReportTaskTable />
             </Grid>
-            <Grid>
-              <SelectMenteeDropDown />
-            </Grid>
           </Grid>
 
           <Grid>
@@ -96,9 +93,6 @@ const AdminReport = () => {
 
             <Grid>
               <SortByReportMeetingsTable />
-            </Grid>
-            <Grid>
-              <SelectMenteeDropDown />
             </Grid>
           </Grid>
 

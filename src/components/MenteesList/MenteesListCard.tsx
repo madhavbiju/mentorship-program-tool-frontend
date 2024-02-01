@@ -29,8 +29,8 @@ const MenteesListCard = () => {
           }}
         >
           
-          <ListItem >
-            <ListItemDecorator>
+          <ListItem sx={{pt:"12px",pb:"12px"}}>
+            <ListItemDecorator >
               <Avatar src="/static/images/avatar/1.jpg" />
             </ListItemDecorator>
           </ListItem>
