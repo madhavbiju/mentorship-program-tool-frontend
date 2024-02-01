@@ -33,10 +33,16 @@ const MentorTask = () => {
         </Dropdown>
       </Box>
 
-      <Grid container spacing={1} rowGap={3} sx={{ my: "5%" }}>
-        <MentorTaskCard />
-        <MentorTaskCard />
-        <MentorTaskCard />
+      <Grid container spacing={1} sx={{ my: "5%" }}>
+        <Grid item xs={12} sm={12} md={12}>
+          <MentorTaskCard />
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}>
+          <MentorTaskCard />
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}>
+          <MentorTaskCard />
+        </Grid>
       </Grid>
     </Box>
   );
