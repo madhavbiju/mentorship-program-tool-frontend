@@ -19,12 +19,12 @@ const materialTheme = materialExtendTheme();
 type UserRole = 1 | 2 | 3;
 export default function JoyOrderDashboardTemplate({ role }: { role: string }) {
   const [userRole, setUserRole] = useState<UserRole | null>(null);
-
+ 
   const handleLogin = (role: UserRole) => {
     setUserRole(role);
   };
   return (
-    <MaterialCssVarsProvider>
+    <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
       <JoyCssVarsProvider>
         <CssBaseline enableColorScheme />
         <Box

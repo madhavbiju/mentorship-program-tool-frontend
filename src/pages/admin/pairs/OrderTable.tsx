@@ -38,6 +38,10 @@ import Breadcrumbs from "@mui/joy/Breadcrumbs";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddIcon from "@mui/icons-material/Add";
+// import CreatePair from "../createPair/CreatePair";
+import CreatePairCard from "../createPair/CreatePairCard";
+// import { Navigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const rows = [
   {
@@ -112,7 +116,14 @@ const rows = [
   },
 ];
 
+
 export default function OrderTable() {
+  const history = useNavigate();
+
+  const handleClick = () => {
+    history("/admin/pairs/create");
+  };
+
   const renderFilters = () => (
     <React.Fragment>
       <FormControl size="sm">
@@ -173,7 +184,7 @@ export default function OrderTable() {
         <Typography level="h2" component="h1">
           Pairs
         </Typography>
-        <Button color="primary" startDecorator={<AddIcon />} size="sm">
+        <Button color="primary" startDecorator={<AddIcon />} size="sm" onClick={handleClick}>
           Create Pair
         </Button>
       </Box>
