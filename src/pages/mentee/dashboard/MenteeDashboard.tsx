@@ -17,6 +17,7 @@ const MenteeDashboard = () => {
         const menteeDetails = await MentorNameAndProgramNameAPI(3); // 3 is the Mentee id
         setMentorName(menteeDetails.mentorFirstName);
         setProgramName(menteeDetails.programName);
+        console.log("Hello world");
       } catch (error) {
         console.error("Error fetching mentee details:", error);
       }

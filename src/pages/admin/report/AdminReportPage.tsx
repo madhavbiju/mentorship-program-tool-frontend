@@ -6,7 +6,7 @@ import SelectMenteeDropDown from "../../../components/SelectMenteeDropDown/Selec
 import { Download } from "@mui/icons-material";
 import PairReport from "../../../components/pairreport/PairReport";
 import MentorReport from "../../../components/mentorreport/MentorReport";
-import SelectMentorDropDown from "../../../SelectMentorDropDown/SelectMentorDropDown";
+import SelectMentorDropDown from "../../../components/SelectMentorDropDown/SelectMentorDropDown";
 import AdminReport from "../../../components/adminreport/AdminReport"; // Import AdminReport component
 
 const AdminReportPage = () => {
