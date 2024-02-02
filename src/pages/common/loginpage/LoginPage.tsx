@@ -1,4 +1,3 @@
-import React from "react";
 import { CssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
 import GlobalStyles from "@mui/joy/GlobalStyles";
@@ -7,11 +6,10 @@ import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
-import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
-import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+
 // import MicrosoftIcon from "./MicrosoftIcon"; // Ensure you have this component
 import ColorSchemeToggle from "./ColorSchemeToggle"; // Assuming you separate ColorSchemeToggle as well
-import LoginHandler, { useLoginHandler } from "./LoginHandler";
+import { useLoginHandler } from "./LoginHandler";
 import { Stack, formLabelClasses } from "@mui/joy";
 // import ColorSchemeToggle from "../../../components/ColorSchemeToggle/ColorSchemeToggle";
 import MicrosoftIcon from "../../../components/MicrosoftIcon/MicrosoftIcon";
