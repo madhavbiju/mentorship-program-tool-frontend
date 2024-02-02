@@ -26,6 +26,7 @@ import { toggleSidebar } from "../../utils/utils";
 import ColorSchemeToggle from "../ColorSchemeToggle/ColorSchemeToggle";
 import { Apps } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { useMsal } from "@azure/msal-react";
 
 export default function Header() {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
@@ -46,10 +47,14 @@ export default function Header() {
       }
     }
   };
-
+  const { instance } = useMsal();
   const logOut = () => {
     localStorage.removeItem("roleID");
-    return history("/");
+    sessionStorage.clear();
+    instance.logoutPopup({
+      postLogoutRedirectUri: "/",
+      mainWindowRedirectUri: "/",
+    });
   };
   return (
     <Sheet
