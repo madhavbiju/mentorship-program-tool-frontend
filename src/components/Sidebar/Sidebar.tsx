@@ -91,7 +91,7 @@ export default function Sidebar({ role }: { role: string }) {
       case "mentor":
         return (
           <>
-            {/* Admin specific list items */}
+            {/* mentor specific list items */}
             <ListItem>
               <ListItemButton
                 selected={selectedItem.includes("/mentor/home")}
@@ -138,6 +138,17 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
+                selected={selectedItem.includes("/mentor/report")}
+                onClick={() => handleItemClick("report")}
+              >
+                <AssessmentIcon />
+                <ListItemContent>
+                  <Typography level="title-sm">Report</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton
                 selected={selectedItem.includes("/mentor/chat")}
                 onClick={() => handleItemClick("chat")}
               >
@@ -147,14 +158,14 @@ export default function Sidebar({ role }: { role: string }) {
                 </ListItemContent>
               </ListItemButton>
             </ListItem>
-            {/* Add more admin specific list items here */}
+            {/* Add more mentor specific list items here */}
           </>
         );
 
       case "mentee":
         return (
           <>
-            {/* Admin specific list items */}
+            {/* mentee specific list items */}
             <ListItem>
               <ListItemButton
                 selected={selectedItem.includes("/mentee/home")}

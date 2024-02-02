@@ -1,29 +1,20 @@
 import { Box, Typography } from "@mui/joy";
 import { Grid, Button } from "@mui/joy";
 import React from "react";
-import MentorMenteeTable from "../../../components/MentorMenteeTable/MentorMenteeTable";
-import ReportMeetingsTable from "../../../components/ReportTables/ReportMeetingsTable";
-import ReportTaskTable from "../../../components/ReportTables/ReportTaskTable";
-import SelectMenteeDropDown from "../../../components/SelectMenteeDropDown/SelectMenteeDropDown";
-import SortByMentorMenteeTable from "../../../components/Sort/SortByMentorMenteeTable";
-import SortByReportMeetingsTable from "../../../components/Sort/SortByReportMeetingsTable";
-import SortByReportTaskTable from "../../../components/Sort/SortByReportTaskTable";
-import MentorReportGraph from "../../../components/MentorReportGraph/MentorReportGraph";
-import MenteeProgramTable from "../../../components/MenteeProgramTable/MenteeProgramTable";
+import MentorMenteeTable from "../MentorMenteeTable/MentorMenteeTable";
+import ReportMeetingsTable from "../ReportTables/ReportMeetingsTable";
+import ReportTaskTable from "../ReportTables/ReportTaskTable";
+import SelectMenteeDropDown from "../SelectMenteeDropDown/SelectMenteeDropDown";
+import SortByMentorMenteeTable from "../Sort/SortByMentorMenteeTable";
+import SortByReportMeetingsTable from "../Sort/SortByReportMeetingsTable";
+import SortByReportTaskTable from "../Sort/SortByReportTaskTable";
+import MentorReportGraph from "../MentorReportGraph/MentorReportGraph";
+import MenteeProgramTable from "../MenteeProgramTable/MenteeProgramTable";
 
 const MentorReport = () => {
   return (
     <div>
       <Box>
-        <Grid container sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Grid xs={12} lg={9}>
-            <Typography level={"h2"}>Report</Typography>
-          </Grid>
-
-          <Grid xs={12} lg={3}>
-            <Button size="md">Download</Button>
-          </Grid>
-        </Grid>
         <Grid container sx={{ display: "flex", alignItems: "center" }}>
           <Grid lg={6}>
             <Grid
@@ -31,13 +22,13 @@ const MentorReport = () => {
               lg={6}
               columnGap={1}
               container
-              sx={{ display: "flex" }}
+              sx={{ display: "flex", alignItems: "center" }}
             >
               <Grid>
                 <Typography level={"h3"}>Programs</Typography>
               </Grid>
 
-              <Grid>
+              <Grid lg={5}>
                 <SortByMentorMenteeTable />
               </Grid>
             </Grid>
