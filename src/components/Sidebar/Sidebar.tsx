@@ -53,7 +53,7 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "users"}
+                selected={selectedItem.includes("/admin/users")}
                 onClick={() => handleItemClick("users")}
               >
                 <AdminPanelSettingsIcon />
@@ -75,7 +75,7 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "report"}
+                selected={selectedItem.includes("/admin/report")}
                 onClick={() => handleItemClick("report")}
               >
                 <AssessmentIcon />
@@ -116,7 +116,7 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "mentees"}
+                selected={selectedItem.includes("/mentor/mentees")}
                 onClick={() => handleItemClick("mentees")}
               >
                 <PeopleIcon />
@@ -127,7 +127,7 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "tasks"}
+                selected={selectedItem.includes("/mentor/tasks")}
                 onClick={() => handleItemClick("tasks")}
               >
                 <TaskIcon />
@@ -138,7 +138,7 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "report"}
+                selected={selectedItem.includes("/mentor/report")}
                 onClick={() => handleItemClick("report")}
               >
                 <AssessmentIcon />
@@ -149,7 +149,7 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "chat"}
+                selected={selectedItem.includes("/mentor/chat")}
                 onClick={() => handleItemClick("chat")}
               >
                 <ChatIcon />
@@ -191,7 +191,7 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "tasks"}
+                selected={selectedItem.includes("/mentee/tasks")}
                 onClick={() => handleItemClick("tasks")}
               >
                 <TaskIcon />
@@ -202,8 +202,8 @@ export default function Sidebar({ role }: { role: string }) {
             </ListItem>
             <ListItem>
               <ListItemButton
-                selected={selectedItem === "chat"}
-                onClick={() => handleItemClick("cshat")}
+                selected={selectedItem.includes("/mentee/chat")}
+                onClick={() => handleItemClick("chat")}
               >
                 <ChatIcon />
                 <ListItemContent>

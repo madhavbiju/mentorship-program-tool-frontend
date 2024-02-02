@@ -1,0 +1,56 @@
+@import "react-big-calendar/lib/css/react-big-calendar.css";
+.calendarStyle {
+  height: 90vh;
+  background-color: transparent;
+}
+
+.rbc-off-range-bg {
+  background-color: rgba(132, 132, 132, 0.361);
+}
+
+.rbc-today {
+  background-color: rgba(79, 153, 250, 0.491);
+}
+
+.rbc-toolbar button {
+  color: initial;
+}
+
+button.rbc-active {
+  color: black;
+  -webkit-box-shadow: initial;
+  box-shadow: initial;
+}
+
+.rbc-month-row + .rbc-month-row {
+  border: initial;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.rbc-day-bg + .rbc-day-bg {
+  border-left: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.rbc-header + .rbc-header {
+  border-left: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.rbc-header {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.rbc-toolbar button {
+  border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.rbc-month-view {
+  border-radius: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.rbc-time-view {
+  border-radius: 5px;
+}
+.rbc-agenda-view {
+  border-radius: 5px;
+}
