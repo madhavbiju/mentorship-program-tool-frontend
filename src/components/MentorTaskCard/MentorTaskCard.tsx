@@ -8,7 +8,7 @@ import {
   Stack,
   Typography,
 } from "@mui/joy";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/joy/Grid";
 import React from "react";
 
 const MentorTaskCard = () => {
@@ -29,33 +29,65 @@ const MentorTaskCard = () => {
           // }
         }}
       >
+        <Stack>
+          <Typography
+            sx={{ display: "flex", justifyContent: "center" }}
+            level="body-sm"
+            style={{ fontSize: "10px" }}
+          >
+            Mentee
+          </Typography>
+          <ListItem>
+            <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+              Mahfooz Ahamed
+            </Typography>
+          </ListItem>
+        </Stack>
 
-        <Stack >
-            <Typography sx={{display:"flex", justifyContent:"center"}} level="body-sm" style={{ fontSize: "10px"}}>Mentee</Typography>
-            <ListItem sx={{  paddingTop:1.5 }}>Mahfooz Ahamed</ListItem>
-            </Stack>
-          
-          <ListDivider inset="gutter" />
-            <Stack >
-              <Typography level="body-sm" sx={{display:"flex", justifyContent:"center"}}
-              style={{ fontSize: "10px"}}
-              >Task name</Typography>
-              <ListItem sx={{  paddingTop:1.5 }}>Task name </ListItem> 
-            </Stack>
-            
-            <ListDivider inset="gutter" />
+        <ListDivider inset="gutter" />
+        <Stack>
+          <Typography
+            level="body-sm"
+            sx={{ display: "flex", justifyContent: "center" }}
+            style={{ fontSize: "10px" }}
+          >
+            Task name
+          </Typography>
+          <ListItem>
+          <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+            Task name </Typography>
+            </ListItem>
+        </Stack>
 
-            <Stack >
-            <Typography sx={{display:"flex", justifyContent:"center",color: "red"}}  level="body-sm" style={{ fontSize: "10px"}} >Due Date</Typography>
-            <ListItem sx={{   paddingTop:1.5 }}>12/02/2024</ListItem>
-            </Stack>
+        <ListDivider inset="gutter" />
 
-            <ListDivider inset="gutter" />
+        <Stack>
+          <Typography
+            sx={{ display: "flex", justifyContent: "center", color: "red" }}
+            level="body-sm"
+            style={{ fontSize: "10px" }}
+          >
+            Due Date
+          </Typography>
+          <ListItem>
+          <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+          12/02/2024</Typography>
+            </ListItem>
+        </Stack>
 
-            <Stack >
-            <Typography sx={{display:"flex", justifyContent:"center"}} level="body-sm" style={{ fontSize: "10px"}}>Status</Typography>
-            <ListItem sx={{  paddingTop:1.5 ,color: "blue" }}>InProgress</ListItem>
-            </Stack>
+        <ListDivider inset="gutter" />
+
+        <Stack>
+          <Typography
+            sx={{ display: "flex", justifyContent: "center" }}
+            level="body-sm"
+            style={{ fontSize: "10px" }}
+          >
+            Status
+          </Typography>
+          <ListItem sx={{ color: "blue" }}>
+            InProgress</ListItem>
+        </Stack>
       </List>
     </Grid>
   );

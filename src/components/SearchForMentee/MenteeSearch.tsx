@@ -24,7 +24,7 @@ const MenteeSearch = () => {
   ];
 
   const [layout, setLayout] = React.useState<
-    ModalDialogProps["layout"] | undefined
+    ModalDialogProps["layout"] | undefined //layout initial value is undefined
   >(undefined);
   const [selectedMentee, setSelectedMentee] = React.useState<string>();
 
@@ -35,21 +35,22 @@ const MenteeSearch = () => {
           <Grid>Mentee :</Grid>
           <Grid>
             <Stack direction="row">
-            <Button
-  variant="outlined"
-  color="neutral"
-  sx={{ width: "-webkit-fill-available" }}
-  onClick={() => {
-    setLayout("center");
-    setSelectedMentee(""); // Reset selectedMentee state
-  }}
->
-  {selectedMentee || "--SELECT MENTEE--"}
-</Button>
-
+              <Button
+                variant="outlined"
+                color="neutral"
+                sx={{ width: "-webkit-fill-available" }}
+                onClick={() => {
+                  setLayout("center"); //layout value becomes center
+                  setSelectedMentee(""); // Reset selectedMentee state
+                }}
+              >
+                {selectedMentee || "--SELECT MENTEE--"}
+              </Button>
             </Stack>
 
             <Modal open={!!layout} onClose={() => setLayout(undefined)}>
+              {/* !!layout equals true,because layout=center is a true value.so modal opens*/}
+
               <ModalOverflow>
                 <ModalDialog
                   aria-labelledby="modal-dialog-overflow"
@@ -65,24 +66,24 @@ const MenteeSearch = () => {
                       bgcolor: "background.level2",
                       p: 1,
                       borderRadius: "sm",
-                      
                     }}
                   >
                     <FormControl>
-                    <Autocomplete
-  placeholder="Search here"
-  type="search"
-  disableClearable
-  options={mentees.map((option) => option.name)}
-  value={selectedMentee}
-  onChange={(event, newValue) => setSelectedMentee(newValue)}
-  onInputChange={(event, newInputValue) => {
-    if (newInputValue.trim() !== '') {
-      setLayout(undefined); // Close the modal
-    }
-  }}
-/>
-
+                      <Autocomplete
+                        placeholder="Search here"
+                        type="search"
+                        disableClearable
+                        options={mentees.map((option) => option.name)}
+                        value={selectedMentee}
+                        onChange={(event, newValue) =>
+                          setSelectedMentee(newValue)
+                        }
+                        onInputChange={(event, newInputValue) => {
+                          if (newInputValue.trim() !== "") {
+                            setLayout(undefined); // Close the modal,after choosing a value
+                          }
+                        }}
+                      />
                     </FormControl>
                   </FormControl>
                 </ModalDialog>

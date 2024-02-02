@@ -43,7 +43,7 @@ const MenteesListCard = () => {
               <ListItem sx={{  paddingTop:1.5 }}>Boyd Burt </ListItem> 
             </Stack>
             
-            <ListDivider inset="gutter" />
+            <ListDivider inset="gutter" />  
 
             <Stack >
             <Typography sx={{display:"flex", justifyContent:"center"}}  level="body-sm" style={{ fontSize: "10px"}} >Program</Typography>
