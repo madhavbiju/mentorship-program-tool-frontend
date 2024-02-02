@@ -14,15 +14,16 @@ import React from "react";
 const MenteeInfoBar = () => {
   return (
     <div>
-      <Grid
-        container
-        columnGap={1}
-        sx={{ display: "flex", alignContent: "center" }}
-      >
+      <Grid container sx={{ display: "flex", alignContent: "center" }}>
         <List orientation="horizontal">
           <ListItem role="none">
-            <Typography level="body-xs"> Mentee:</Typography>
+            <Typography level="body-xs"> Mentor:</Typography>
             <Typography level="title-sm"> Shiyas</Typography>
+          </ListItem>
+          <ListDivider />
+          <ListItem role="none">
+            <Typography level="body-xs"> Mentee:</Typography>
+            <Typography level="title-sm"> Madhav</Typography>
           </ListItem>
           <ListDivider />
           <ListItem role="none">
