@@ -74,7 +74,7 @@ const MentorSearch = () => {
                         type="search"
                         disableClearable
                         options={mentors.map((option) => option.name)}
-                        value={selectedMentor}
+                        // value={selectedMentor}
                         onChange={(event, newValue) =>
                           setSelectedMentor(newValue)
                         }

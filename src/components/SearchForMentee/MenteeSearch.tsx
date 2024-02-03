@@ -74,7 +74,7 @@ const MenteeSearch = () => {
                         type="search"
                         disableClearable
                         options={mentees.map((option) => option.name)}
-                        value={selectedMentee}
+                        // value={selectedMentee}
                         onChange={(event, newValue) =>
                           setSelectedMentee(newValue)
                         }
