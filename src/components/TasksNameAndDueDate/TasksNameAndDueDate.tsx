@@ -21,7 +21,7 @@ const TasksNameAndDueDate = ({
         variant="soft"
         sx={{
           // "--ListItemDecorator-size": "48px",
-          "--ListItem-paddingY": "1rem",
+          // "--ListItem-paddingY": "1rem",
           // "--ListItem-paddingX": "1rem",
           borderRadius: "sm",
           justifyContent: "center",
