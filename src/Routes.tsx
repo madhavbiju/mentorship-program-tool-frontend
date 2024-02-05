@@ -17,12 +17,14 @@ import CreatePairCard from "./pages/admin/createPair/CreatePairCard";
 import PairReport from "./components/pairreport/PairReport";
 import AdminReportPage from "./pages/admin/report/AdminReportPage";
 import MentorReportPage from "./pages/mentor/report/MentorReportPage";
+import CreateTasks from "./pages/mentor/createtask/CreateTasks";
+import AdminDashboardHandler from "./pages/admin/dashboard/AdminDashboardHandle";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/admin" element={<App role="admin" />}>
-        <Route path="home" element={<AdminDashboard />} />
+        <Route path="home" element={<AdminDashboardHandler />} />
         <Route path="pairs" element={<OrderTable />} />
         <Route path="report" element={<AdminReportPage />} />
         <Route path="report/overall" element={<AdminReport />} />
@@ -41,6 +43,8 @@ const AppRoutes = () => {
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="mentees" element={<MenteesList />} />
         <Route path="tasks" element={<MentorTask />} />
+        <Route path="tasks/create" element={<CreateTasks />} />
+
         <Route path="report" element={<MentorReportPage />} />
       </Route>
     </Routes>
