@@ -26,7 +26,7 @@ const CreatePairCard = () => {
           display: "flex",
           justifyContent: "flex-start",
           ml: "0",
-        //   border: "2px red solid",
+          //   border: "2px red solid",
         }}
       >
         <Breadcrumbs
@@ -111,9 +111,6 @@ const CreatePairCard = () => {
         </Grid>
         <Grid xs={12}>
           <Grid container justifyContent="center">
-            {/* <Button size="md" variant="solid" startDecorator={<AddIcon />}> 
-            + Create Pair
-          </Button> */}
             <Button variant="solid" startDecorator={<AddIcon />} size="sm">
               Create Pair
             </Button>

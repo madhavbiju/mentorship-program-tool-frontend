@@ -17,8 +17,10 @@ import CountCard from "../../../components/CountCard/CountCard";
 import DashboardTable from "../../../components/DashboardTable/DashboardTable";
 import GreetCard from "../../../components/GreetCard/GreetCard";
 import RequestBox from "../../../components/RequestBox/RequestBox";
+import { AdminDashboardProps } from "./Types";
 
-const AdminDashboard = () => {
+const AdminDashboard = ({ data }: AdminDashboardProps) => {
+  console.log(data);
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -50,7 +52,7 @@ const AdminDashboard = () => {
           {" "}
           <CountCard
             title={"Active Mentor Count"}
-            count={9}
+            count={data.mentorCount}
             sx={(theme) => ({
               width: 1,
             })}
@@ -59,7 +61,7 @@ const AdminDashboard = () => {
         <Grid xs={6} lg={4}>
           <CountCard
             title={"Active Mentee Count"}
-            count={10}
+            count={data.menteeCount}
             sx={(theme) => ({
               width: 1,
             })}
@@ -68,7 +70,7 @@ const AdminDashboard = () => {
         <Grid xs={12} lg={4}>
           <CountCard
             title={"Active Pair Count"}
-            count={11}
+            count={data.activePairCount}
             sx={(theme) => ({
               width: 1,
             })}

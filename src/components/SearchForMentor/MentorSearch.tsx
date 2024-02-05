@@ -25,7 +25,7 @@ const MentorSearch = () => {
   ];
 
   const [layout, setLayout] = React.useState<
-    ModalDialogProps["layout"] | undefined
+    ModalDialogProps["layout"] | undefined //layout initial value is undefined
   >(undefined);
   const [selectedMentor, setSelectedMentor] = React.useState<string>();
 
@@ -36,20 +36,21 @@ const MentorSearch = () => {
           <Grid>Mentor :</Grid>
           <Grid>
             <Stack direction="row" spacing={1}>
-            <Button
-  variant="outlined"
-  color="neutral"
-  sx={{ width: "-webkit-fill-available" }}
-  onClick={() => {
-    setLayout("center");
-    setSelectedMentor(""); // Reset selectedMentor state
-  }}
->
-  {selectedMentor || "--SELECT MENTEE--"}
-</Button>
-
+              <Button
+                variant="outlined"
+                color="neutral"
+                sx={{ width: "-webkit-fill-available" }}
+                onClick={() => {
+                  setLayout("center"); //layout value becomes center
+                  setSelectedMentor(""); // Reset selectedMentor state
+                }}
+              >
+                {selectedMentor || "--SELECT MENTEE--"}
+              </Button>
             </Stack>
             <Modal open={!!layout} onClose={() => setLayout(undefined)}>
+              {/* !!layout equals true,because layout=center is a true value.so modal opens*/}
+
               <ModalOverflow>
                 <ModalDialog
                   aria-labelledby="modal-dialog-overflow"
@@ -68,19 +69,21 @@ const MentorSearch = () => {
                     }}
                   >
                     <FormControl>
-                    <Autocomplete
-  placeholder="Search here"
-  type="search"
-  disableClearable
-  options={mentors.map((option) => option.name)}
-  value={selectedMentor}
-  onChange={(event, newValue) => setSelectedMentor(newValue)}
-  onInputChange={(event, newInputValue) => {
-    if (newInputValue.trim() !== '') {
-      setLayout(undefined); // Close the modal
-    }
-  }}
-/>
+                      <Autocomplete
+                        placeholder="Search here"
+                        type="search"
+                        disableClearable
+                        options={mentors.map((option) => option.name)}
+                        // value={selectedMentor}
+                        onChange={(event, newValue) =>
+                          setSelectedMentor(newValue)
+                        }
+                        onInputChange={(event, newInputValue) => {
+                          if (newInputValue.trim() !== "") {
+                            setLayout(undefined); // Close the modal,after choosing a value
+                          }
+                        }}
+                      />
                     </FormControl>
                   </FormControl>
                 </ModalDialog>
