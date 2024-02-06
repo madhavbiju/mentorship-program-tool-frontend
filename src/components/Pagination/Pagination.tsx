@@ -5,8 +5,6 @@ function PaginationButtons({ count, setPageApi }: CustomPaginationProps) {
   return (
     <>
       <Pagination
-        variant="outlined"
-        shape="rounded"
         count={count}
         onChange={(e: any, value: number) => setPageApi(value)}
       />
