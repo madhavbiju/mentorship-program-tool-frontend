@@ -17,7 +17,7 @@ import CreatePairCard from "./pages/admin/createPair/CreatePairCard";
 import PairReport from "./pages/common/pairReport/PairReport";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
-import { msalConfig } from "./pages/common/loginpage/Authentication/authConfig";
+import { msalConfig } from "./Authentication/authConfig";
 import { UserRoleProvider } from "./pages/common/loginpage/Context/UserRoleContext";
 import ProtectedRoute from "./pages/common/loginpage/ProtectedRoute";
 import LoginPage from "./pages/common/loginpage/LoginPage";

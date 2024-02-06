@@ -1,7 +1,7 @@
 import { useMsal } from "@azure/msal-react";
 import { useNavigate } from "react-router-dom";
 import { useUserRole } from "./Context/UserRoleContext";
-import { loginRequest } from "./Authentication/authConfig";
+import { loginRequest } from "../../../Authentication/authConfig";
 import GetLogin from "./api/GetLogin";
 
 const useLoginHandler = (onLoginSuccess: () => void) => {
