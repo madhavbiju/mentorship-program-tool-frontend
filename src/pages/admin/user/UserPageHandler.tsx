@@ -34,7 +34,6 @@ const UserPageHandler: React.FC = () => {
           padding: "20px",
         }}
       >
-        <br />
         <PaginationButtons count={totalCount} setPageApi={setPageApi} />
       </Stack>
     </>
