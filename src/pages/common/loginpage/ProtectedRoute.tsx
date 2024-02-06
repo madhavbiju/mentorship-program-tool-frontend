@@ -1,7 +1,5 @@
-// ProtectedRoute.tsx
 import React from "react";
 import UnauthorizedPage from "../../../components/UnauthorizedPage/UnauthorizedPage";
-// import UnauthorizedPage from "./UnauthorizedPage";
 
 interface ProtectedRouteProps {
   allowedRoles: string[];

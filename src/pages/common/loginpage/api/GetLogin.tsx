@@ -8,7 +8,10 @@ const GetLogin = async (token: string): Promise<string[]> => {
       },
     });
     const data = await response.json();
+    console.log(data);
     const roles = data.roles || [];
+    console.log("Roles");
+    console.log(roles);
     return roles.map((role: any) => role.roleName.toLowerCase());
   } catch (error) {
     console.error("Error sending token to server:", error);

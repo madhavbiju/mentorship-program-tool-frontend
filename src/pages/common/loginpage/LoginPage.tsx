@@ -6,17 +6,13 @@ import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
-
-// import MicrosoftIcon from "./MicrosoftIcon"; // Ensure you have this component
-import ColorSchemeToggle from "./ColorSchemeToggle"; // Assuming you separate ColorSchemeToggle as well
-import { useLoginHandler } from "./LoginHandler";
+import ColorSchemeToggle from "./ColorSchemeToggle";
+import useLoginHandler from "./LoginHandler";
 import { Stack, formLabelClasses } from "@mui/joy";
-// import ColorSchemeToggle from "../../../components/ColorSchemeToggle/ColorSchemeToggle";
 import MicrosoftIcon from "../../../components/MicrosoftIcon/MicrosoftIcon";
 
 export default function LoginPage() {
   const { handleLogin } = useLoginHandler(() => {
-    // Additional logic after successful login, if needed
     console.log("Logged in successfully");
   });
 
