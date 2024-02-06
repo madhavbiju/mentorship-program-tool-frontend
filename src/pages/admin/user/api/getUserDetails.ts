@@ -9,6 +9,11 @@ interface User {
   userStatus: string;
 }
 
+interface UserDataFetched {
+  userList: User[];
+  totalCount: number;
+}
+
 function getUserInitials(userName: string): string {
   const names = userName.split(" ");
   if (names.length > 1) {
@@ -18,12 +23,17 @@ function getUserInitials(userName: string): string {
   return userName[0].toUpperCase();
 }
 
-export async function getUserDetails(): Promise<User[]> {
+// Modify getUserDetails to accept a page parameter
+export async function getUserDetails(
+  page: number = 1
+): Promise<UserDataFetched> {
   try {
+    // Use the page parameter in the request URL
     const response = await axios.get(
-      "https://localhost:7259/api/admin/ByRole/all?pageNumber=1&pageSize=10"
+      `https://localhost:7259/api/admin/ByRole/all?pageNumber=${page}&pageSize=10`
     );
     const usersData = response.data.users;
+    const totalCount = response.data.totalCount; // Assuming totalCount is directly accessible from response.data
 
     const usersMap: { [key: string]: User } = {};
 
@@ -43,9 +53,14 @@ export async function getUserDetails(): Promise<User[]> {
       }
     });
 
-    const users: User[] = Object.values(usersMap);
+    const userList: User[] = Object.values(usersMap);
 
-    return users;
+    const userDataFetched: UserDataFetched = {
+      userList,
+      totalCount,
+    };
+
+    return userDataFetched;
   } catch (error) {
     throw new Error(`Error fetching user details: ${error}`);
   }

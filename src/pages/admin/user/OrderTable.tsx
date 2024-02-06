@@ -37,15 +37,10 @@ import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import { getUserDetails } from "./api/getUserDetails";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"; // Assuming this as a choice for 'inactive'
-
-interface User {
-  id: string;
-  userName: string;
-  userInitials?: string; // Optional field to store user initials
-  userRoles: string[];
-  userJob: string;
-  userStatus: string;
-}
+import PaginationButtons from "../../../components/Pagination/Pagination";
+import { UserDetailsResponse, User } from "./types";
+import UserPageHandler from "./UserPageHandler";
+import PairTableHandler from "../../../components/PairTable/PairTableHandler";
 
 function RowMenu() {
   return (
@@ -70,11 +65,14 @@ function RowMenu() {
 export default function OrderTable() {
   const [open, setOpen] = React.useState(false);
   const [users, setUsers] = React.useState<User[]>([]);
+  const [totalCount, setTotalCount] = React.useState(0);
   React.useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const userDetails = await getUserDetails();
-        setUsers(userDetails); // userDetails should match User[]
+        // Adjusted to match the expected structure
+        const userDetailsResponse: UserDetailsResponse = await getUserDetails();
+        setUsers(userDetailsResponse.userList);
+        setTotalCount(userDetailsResponse.totalCount); // Set totalCount from the response
       } catch (error) {
         console.error("Failed to fetch user details:", error);
       }
@@ -181,7 +179,7 @@ export default function OrderTable() {
         className="OrderTableContainer"
         variant="outlined"
         sx={{
-          display: { xs: "none", sm: "initial" },
+          display: { sm: "initial" },
           width: "100%",
           borderRadius: "sm",
           flexShrink: 1,
@@ -265,49 +263,8 @@ export default function OrderTable() {
           </tbody>
         </Table>
       </Sheet>
-      <Box
-        className="Pagination-laptopUp"
-        sx={{
-          pt: 2,
-          gap: 1,
-          [`& .${iconButtonClasses.root}`]: { borderRadius: "50%" },
-          display: {
-            xs: "none",
-            md: "flex",
-          },
-        }}
-      >
-        <Button
-          size="sm"
-          variant="outlined"
-          color="neutral"
-          startDecorator={<KeyboardArrowLeftIcon />}
-        >
-          Previous
-        </Button>
-
-        <Box sx={{ flex: 1 }} />
-        {["1", "2", "3", "…", "8", "9", "10"].map((page) => (
-          <IconButton
-            key={page}
-            size="sm"
-            variant={Number(page) ? "outlined" : "plain"}
-            color="neutral"
-          >
-            {page}
-          </IconButton>
-        ))}
-        <Box sx={{ flex: 1 }} />
-
-        <Button
-          size="sm"
-          variant="outlined"
-          color="neutral"
-          endDecorator={<KeyboardArrowRightIcon />}
-        >
-          Next
-        </Button>
-      </Box>
+      {/* <UserPageHandler /> */}
+      <PairTableHandler />
     </React.Fragment>
   );
 }
