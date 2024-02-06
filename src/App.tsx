@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Header from "./components/Header/Header";
 import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
 import { useState } from "react";
-import OrderTable from "./pages/admin/pairs/OrderTable";
+import OrderTable from "./pages/admin/pairs/Pairs";
 import { Outlet } from "react-router";
 import {
   experimental_extendTheme as materialExtendTheme,
@@ -19,7 +19,7 @@ const materialTheme = materialExtendTheme();
 type UserRole = 1 | 2 | 3;
 export default function JoyOrderDashboardTemplate({ role }: { role: string }) {
   const [userRole, setUserRole] = useState<UserRole | null>(null);
- 
+
   const handleLogin = (role: UserRole) => {
     setUserRole(role);
   };

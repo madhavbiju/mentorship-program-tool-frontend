@@ -18,6 +18,8 @@ import DashboardTable from "../../../components/DashboardTable/DashboardTable";
 import GreetCard from "../../../components/GreetCard/GreetCard";
 import RequestBox from "../../../components/RequestBox/RequestBox";
 import { AdminDashboardProps } from "./Types";
+import DashboardTableHandler from "../../../components/DashboardTable/DashboardTableHandler";
+import RequestBoxHandler from "../../../components/RequestBox/RequestBoxHandler";
 
 const AdminDashboard = ({ data }: AdminDashboardProps) => {
   console.log(data);
@@ -84,10 +86,10 @@ const AdminDashboard = ({ data }: AdminDashboardProps) => {
         sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
       >
         <Grid xs={12} lg={8}>
-          <DashboardTable />
+          <DashboardTableHandler />
         </Grid>
         <Grid xs={12} lg={4}>
-          <RequestBox />
+          <RequestBoxHandler />
         </Grid>
       </Grid>
     </Box>

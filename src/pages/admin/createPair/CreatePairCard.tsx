@@ -16,7 +16,7 @@ import { Box } from "@mui/system";
 // import { Link } from "react-router-dom";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import OrderTable from "../pairs/OrderTable";
+import OrderTable from "../pairs/Pairs";
 
 const CreatePairCard = () => {
   return (
