@@ -42,7 +42,7 @@ const AdminDashboard = ({ data }: AdminDashboardProps) => {
           </Link>
         </Breadcrumbs>
       </Box>
-      <GreetCard />
+      <GreetCard name={"Admin"} />
       <Divider />
       <Grid
         container
