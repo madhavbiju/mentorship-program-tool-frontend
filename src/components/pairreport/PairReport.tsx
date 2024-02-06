@@ -4,6 +4,7 @@ import ReportTaskTable from "../ReportTables/ReportTaskTable";
 import MenteeTaskGraph from "../MenteeTaskGraph/MenteeTaskGraph";
 import ReportMeetingsTable from "../ReportTables/ReportMeetingsTable";
 import MenteeInfoBar from "../menteeInfoBar/MenteeInfoBar";
+import MenteeTasksTable from "../ReportTables/MenteeTasksTable";
 
 const PairReport = () => {
   return (
@@ -17,7 +18,7 @@ const PairReport = () => {
         <Grid container sx={{ display: "flex", alignItems: "center" }}>
           <Grid xs={12} lg={6}>
             <Typography level="h4">Tasks</Typography>
-            <ReportTaskTable />
+            <MenteeTasksTable />
             <br />
             <Typography level="h4">Meetings</Typography>
             <ReportMeetingsTable />

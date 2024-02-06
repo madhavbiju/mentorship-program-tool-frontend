@@ -111,9 +111,6 @@ const CreatePairCard = () => {
         </Grid>
         <Grid xs={12}>
           <Grid container justifyContent="center">
-            {/* <Button size="md" variant="solid" startDecorator={<AddIcon />}> 
-            + Create Pair
-          </Button> */}
             <Button variant="solid" startDecorator={<AddIcon />} size="sm">
               Create Pair
             </Button>
