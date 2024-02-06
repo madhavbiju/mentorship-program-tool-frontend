@@ -5,7 +5,7 @@ import JoySignInSideTemplate from "./pages/common/login/Login";
 import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
 import MenteeDashboard from "./pages/mentee/dashboard/MenteeDashboard";
 import MentorDashboard from "./pages/mentor/dashboard/MentorDashboard";
-import OrderTable from "./pages/admin/pairs/OrderTable";
+import OrderTable from "./pages/admin/pairs/Pairs";
 import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
 import MentorReport from "./components/mentorreport/MentorReport";

@@ -16,7 +16,7 @@ import { Box } from "@mui/system";
 // import { Link } from "react-router-dom";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import OrderTable from "../pairs/OrderTable";
+import OrderTable from "../pairs/Pairs";
 
 const CreatePairCard = () => {
   return (
@@ -26,7 +26,7 @@ const CreatePairCard = () => {
           display: "flex",
           justifyContent: "flex-start",
           ml: "0",
-        //   border: "2px red solid",
+          //   border: "2px red solid",
         }}
       >
         <Breadcrumbs

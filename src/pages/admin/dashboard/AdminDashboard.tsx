@@ -17,6 +17,8 @@ import CountCard from "../../../components/CountCard/CountCard";
 import DashboardTable from "../../../components/DashboardTable/DashboardTable";
 import GreetCard from "../../../components/GreetCard/GreetCard";
 import RequestBox from "../../../components/RequestBox/RequestBox";
+import DashboardTableHandler from "../../../components/DashboardTable/DashboardTableHandler";
+import RequestBoxHandler from "../../../components/RequestBox/RequestBoxHandler";
 
 const AdminDashboard = () => {
   return (
@@ -82,10 +84,10 @@ const AdminDashboard = () => {
         sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
       >
         <Grid xs={12} lg={8}>
-          <DashboardTable />
+          <DashboardTableHandler />
         </Grid>
         <Grid xs={12} lg={4}>
-          <RequestBox />
+          <RequestBoxHandler />
         </Grid>
       </Grid>
     </Box>
