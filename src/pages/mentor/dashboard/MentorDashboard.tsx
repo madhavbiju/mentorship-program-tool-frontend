@@ -39,12 +39,12 @@ const MentorDashboard = () => {
             <Grid item xs={12}>
               <MeetingCard />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <MeetingCard />
             </Grid>
             <Grid item xs={12}>
               <MeetingCard />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
         <Grid item xs={12} lg={6} sx={{ marginBottom: "2%" }}>
@@ -55,9 +55,9 @@ const MentorDashboard = () => {
             <Grid item xs={12}>
               <SubmittedTask />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <SubmittedTask />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </Grid>

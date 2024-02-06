@@ -1,20 +1,21 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import PrivateRoutes from "./PrivateRoutes";
-import JoySignInSideTemplate from "./pages/common/login/Login";
-import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
 import MenteeDashboard from "./pages/mentee/dashboard/MenteeDashboard";
 import MentorDashboard from "./pages/mentor/dashboard/MentorDashboard";
-import OrderTable from "./pages/admin/pairs/OrderTable";
+import OrderTable from "./pages/admin/pairs/Pairs";
 import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
-import MentorReport from "./pages/mentor/report/MentorReport";
+import MentorReport from "./components/mentorreport/MentorReport";
 import MenteesList from "./pages/mentor/menteesList/MenteesList";
 import MentorTask from "./pages/mentor/mentorTask/MentorTask";
-import AdminReport from "./pages/admin/report/AdminReport";
-import MenteeReport from "./pages/common/pairReport/PairReport";
+import AdminReport from "./components/adminreport/AdminReport";
+import MenteeReport from "./components/pairreport/PairReport";
 import CreatePairCard from "./pages/admin/createPair/CreatePairCard";
-import PairReport from "./pages/common/pairReport/PairReport";
+import PairReport from "./components/pairreport/PairReport";
+import AdminReportPage from "./pages/admin/report/AdminReportPage";
+import MentorReportPage from "./pages/mentor/report/MentorReportPage";
+import MentorSelectedTask from "./pages/mentor/mentorselectedtask/MentorSelectedTask";
+import CreateTasks from "./pages/mentor/createtask/CreateTasks";
+import AdminDashboardHandler from "./pages/admin/dashboard/AdminDashboardHandle";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from "./Authentication/authConfig";
@@ -38,8 +39,9 @@ const AppRoutes = () => {
               </ProtectedRoute>
             }
           >
-            <Route path="home" element={<AdminDashboard />} />
+            <Route path="home" element={<AdminDashboardHandler />} />
             <Route path="pairs" element={<OrderTable />} />
+            <Route path="report" element={<AdminReportPage />} />
             <Route path="report/overall" element={<AdminReport />} />
             <Route path="report/mentor" element={<MentorReport />} />
             <Route path="report/pair" element={<PairReport />} />
@@ -70,8 +72,9 @@ const AppRoutes = () => {
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="mentees" element={<MenteesList />} />
             <Route path="tasks" element={<MentorTask />} />
-            <Route path="report/pair" element={<PairReport />} />
-            <Route path="report/mentor" element={<MentorReport />} />
+            <Route path="tasks/selected" element={<MentorSelectedTask />} />
+            <Route path="tasks/create" element={<CreateTasks />} />
+            <Route path="report" element={<MentorReportPage />} />
           </Route>
         </Routes>
       </UserRoleProvider>

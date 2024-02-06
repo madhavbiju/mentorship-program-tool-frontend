@@ -1,75 +1,40 @@
-import * as React from 'react';
-import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
-import List from '@mui/joy/List';
-import ListDivider from '@mui/joy/ListDivider';
-import ListItem from '@mui/joy/ListItem';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import Typography from '@mui/joy/Typography';
-import { ListItemContent } from '@mui/joy';
+import * as React from "react";
+import Avatar from "@mui/joy/Avatar";
+import Box from "@mui/joy/Box";
+import List from "@mui/joy/List";
+import ListDivider from "@mui/joy/ListDivider";
+import ListItem from "@mui/joy/ListItem";
+import ListItemDecorator from "@mui/joy/ListItemDecorator";
+import Typography from "@mui/joy/Typography";
+import { ListItemContent } from "@mui/joy";
 
-export default function RequestBox() {
+export default function RequestBox({ users }: RequestBoxProps) {
   return (
     <Box>
       <div>
-        <Typography level="body-lg" mb={2}>
-          Requests
-        </Typography>
         <List
           variant="outlined"
           sx={{
             minWidth: 240,
-            borderRadius: 'sm',
+            borderRadius: "sm",
           }}
         >
-          <ListItem>
-          <ListItemDecorator>
-            <Avatar size='sm' src="/static/images/avatar/1.jpg" />
-          </ListItemDecorator>
-          <ListItemContent>
-            <Typography level="title-sm">Program Extension</Typography>
-            <Typography level="body-sm" noWrap>
-             Topics Pending
-            </Typography>
-          </ListItemContent>
-        </ListItem>
-          <ListDivider inset="gutter" />
-          <ListItem>
-          <ListItemDecorator>
-            <Avatar size='sm' src="/static/images/avatar/2.jpg" />
-          </ListItemDecorator>
-          <ListItemContent>
-            <Typography level="title-sm">Mentor Change</Typography>
-            <Typography level="body-sm" noWrap>
-              Current mentor busy
-            </Typography>
-          </ListItemContent>
-        </ListItem>
-        <ListDivider inset="gutter" />
-        <ListItem>
-          <ListItemDecorator>
-            <Avatar size='sm' src="/static/images/avatar/1.jpg" />
-          </ListItemDecorator>
-          <ListItemContent>
-            <Typography level="title-sm">Program Extension</Typography>
-            <Typography level="body-sm" noWrap>
-             Topics Pending
-            </Typography>
-          </ListItemContent>
-        </ListItem>
-          <ListDivider inset="gutter" />
-          <ListItem>
-          <ListItemDecorator>
-            <Avatar size='sm' src="/static/images/avatar/1.jpg" />
-          </ListItemDecorator>
-          <ListItemContent>
-            <Typography level="title-sm">Program Extension</Typography>
-            <Typography level="body-sm" noWrap>
-             Topics Pending
-            </Typography>
-          </ListItemContent>
-        </ListItem>
-          
+          {users.map((user, index) => (
+            <React.Fragment key={index}>
+              <ListItem>
+                <ListItemDecorator>
+                  <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+                </ListItemDecorator>
+                <ListItemContent>
+                  <Typography level="title-sm">{user.firstName}</Typography>
+                  <Typography level="body-sm" noWrap>
+                    {user.lastName}
+                  </Typography>
+                </ListItemContent>
+              </ListItem>
+              {index < users.length - 1 && <ListDivider inset="gutter" />}
+            </React.Fragment>
+          ))}
         </List>
       </div>
     </Box>
