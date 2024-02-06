@@ -11,6 +11,7 @@ import {
   Stack,
 } from "@mui/joy";
 import React from "react";
+import { MenteesProps } from "./Types";
 
 const menteesData = [
   {
@@ -25,24 +26,12 @@ const menteesData = [
     programName: "Program2",
     endDate: "13/11/2024",
   },
-  {
-    image: "/static/images/avatar/1.jpg",
-    menteeName: "Mentee3",
-    programName: "Program3",
-    endDate: "14/11/2024",
-  },
-  {
-    image: "/static/images/avatar/1.jpg",
-    menteeName: "Mentee4",
-    programName: "Program4",
-    endDate: "02/11/2024",
-  },
 ];
 
-const MenteesListCard = () => {
+const MenteesListCard = ({ mentees }: MenteesProps) => {
   return (
     <Grid xs={12}>
-      {menteesData.map((data) => (
+      {mentees.map((Mentee) => (
         <List
           orientation="horizontal"
           variant="soft"
@@ -53,12 +42,12 @@ const MenteesListCard = () => {
             py: "2%",
             display: "flex",
             justifyContent: "space-around",
-            mb:"1rem"
+            mb: "1rem",
           }}
         >
           <ListItem sx={{ pt: "18px", pb: "12px" }}>
             <ListItemDecorator>
-              <Avatar src={data.image} />
+              <Avatar src={menteesData[1].image} />
             </ListItemDecorator>
           </ListItem>
 
@@ -71,7 +60,10 @@ const MenteesListCard = () => {
             >
               Mentee
             </Typography>
-            <ListItem sx={{ paddingTop: 1.5 }}>{data.menteeName} </ListItem>
+            <ListItem sx={{ paddingTop: 1.5 }}>
+              <Typography>{Mentee.firstName}</Typography>
+              <Typography>{Mentee.lastName}</Typography>
+            </ListItem>
           </Stack>
 
           <ListDivider inset="gutter" />
@@ -84,7 +76,7 @@ const MenteesListCard = () => {
             >
               Program
             </Typography>
-            <ListItem sx={{ paddingTop: 1.5 }}>{data.programName}</ListItem>
+            <ListItem sx={{ paddingTop: 1.5 }}>{Mentee.programName}</ListItem>
           </Stack>
 
           <ListDivider inset="gutter" />
@@ -97,7 +89,9 @@ const MenteesListCard = () => {
             >
               End date
             </Typography>
-            <ListItem sx={{ paddingTop: 1.5 }}>{data.endDate}</ListItem>
+            <ListItem sx={{ paddingTop: 1.5 }}>
+              {Mentee.endDate as any}
+            </ListItem>
           </Stack>
         </List>
       ))}

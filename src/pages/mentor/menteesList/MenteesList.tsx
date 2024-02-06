@@ -15,6 +15,9 @@ import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
 import Grid from "@mui/material/Grid";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import MenteesListHandler from "../../../components/MenteesList/MenteesListHandler";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
 
 const MenteesList = () => {
   return (
@@ -66,7 +69,7 @@ const MenteesList = () => {
       </Box>
       <Grid container spacing={1} sx={{ my: "5%" }}>
         <Grid item xs={12} sm={12} md={12}>
-          <MenteesListCard />
+          <MenteesListHandler />
         </Grid>
         {/* <Grid item xs={12} sm={12} md={12}>
           <MenteesListCard />
