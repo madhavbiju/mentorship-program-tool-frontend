@@ -7,6 +7,15 @@ import { useNavigate } from "react-router-dom";
 import CalendarCC from "../../../components/Calendar/CalendarCC";
 
 const CalendarPage = () => {
+  const [isMentor, setIsMentor] = React.useState(false);
+
+  React.useEffect(() => {
+    if (location.pathname.includes("/mentor/calendar")) {
+      setIsMentor(true);
+    } else {
+      setIsMentor(false);
+    }
+  }, [location.pathname]);
   const history = useNavigate();
   const handleClick = () => {
     history("#");
@@ -47,14 +56,16 @@ const CalendarPage = () => {
         <Typography level="h2" component="h1">
           Calendar
         </Typography>
-        <Button
-          color="primary"
-          startDecorator={<AddIcon />}
-          size="sm"
-          onClick={handleClick}
-        >
-          Schedule Meeting
-        </Button>
+        {isMentor && (
+          <Button
+            color="primary"
+            startDecorator={<AddIcon />}
+            size="sm"
+            onClick={handleClick}
+          >
+            Schedule Meeting
+          </Button>
+        )}
       </Box>
       <CalendarCC />
     </>
