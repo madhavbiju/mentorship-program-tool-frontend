@@ -5,8 +5,9 @@ import CountCard from "../../../components/CountCard/CountCard";
 import MeetingCard from "../../../components/MeetingCard/MeetingCard";
 import SubmittedTask from "../../../components/SubmittedTasks/SubmittedTask";
 import { Grid } from "@mui/material";
+import { ActiveMenteeCountData } from "./Types";
 
-const MentorDashboard = () => {
+const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
   return (
     <Box sx={{ width: "100%" }}>
       <Grid
@@ -22,10 +23,10 @@ const MentorDashboard = () => {
         }}
       >
         <Grid xs={12} md={4}>
-          <GreetCard />
+          <GreetCard name={"Mentor"} />
         </Grid>
         <Grid xs={12} md={3} sx={{ mr: { sx: 0, md: "150px" } }}>
-          <CountCard title={"mentee Count"} count={5}></CountCard>
+          <CountCard title={"Active Mentees"} count={menteeCount}></CountCard>
         </Grid>
       </Grid>
       <Divider />

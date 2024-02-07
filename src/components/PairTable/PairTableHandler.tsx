@@ -4,6 +4,7 @@ import { Stack, Typography } from "@mui/joy";
 import PaginationButtons from "../Pagination/Pagination";
 import PairTable from "./PairTable";
 import { fetchPairData } from "./Api/getPairData";
+import PairTableSkeleton from "./PairTableSkeleton";
 
 const PairTableHandler: React.FC = () => {
   const [pairData, setPairData] = useState<{
@@ -14,10 +15,13 @@ const PairTableHandler: React.FC = () => {
     total: 0,
   });
   const [pageApi, setPageApi] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getPairData = async () => {
+    setIsLoading(true);
     let response = await fetchPairData(pageApi);
     setPairData(response);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -34,9 +38,18 @@ const PairTableHandler: React.FC = () => {
           alignItems: "center",
         }}
       >
-        <PairTable users={pairData.users} />
+        {isLoading ? ( // Render skeleton if loading
+          <PairTableSkeleton />
+        ) : (
+          <PairTable users={pairData.users} />
+        )}
+
         <br />
-        <PaginationButtons count={pairData.total} setPageApi={setPageApi} />
+        <PaginationButtons
+          total={pairData.total}
+          perPage={6}
+          setPageApi={setPageApi}
+        />
       </Stack>
     </>
   );

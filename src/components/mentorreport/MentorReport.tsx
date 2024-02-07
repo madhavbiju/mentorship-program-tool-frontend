@@ -3,7 +3,7 @@ import { Grid, Button } from "@mui/joy";
 import React from "react";
 import MentorMenteeTable from "../MentorMenteeTable/MentorMenteeTable";
 import ReportMeetingsTable from "../ReportTables/ReportMeetingsTable";
-import ReportTaskTable from "../ReportTables/ReportTaskTable";
+import ReportTaskTable from "../ReportTables/ReportTaskTable/ReportTaskTable";
 import SelectMenteeDropDown from "../SelectMenteeDropDown/SelectMenteeDropDown";
 import SortByMentorMenteeTable from "../Sort/SortByMentorMenteeTable";
 import SortByReportMeetingsTable from "../Sort/SortByReportMeetingsTable";
@@ -61,7 +61,7 @@ const MentorReport = () => {
 
           <Grid>
             <Grid xs={12} lg={11}>
-              <ReportTaskTable />
+              <ReportTaskTable task={[]} totalCount={0} />
             </Grid>
           </Grid>
         </Grid>

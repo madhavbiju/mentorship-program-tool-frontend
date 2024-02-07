@@ -17,8 +17,7 @@ export default function LoginPage() {
   });
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <GlobalStyles
         styles={{
           ":root": {
@@ -72,7 +71,6 @@ export default function LoginPage() {
               </IconButton>
               <Typography level="title-lg">LIME</Typography>
             </Box>
-            <ColorSchemeToggle />
           </Box>
           <Box
             component="main"
@@ -142,6 +140,6 @@ export default function LoginPage() {
           },
         })}
       />
-    </CssVarsProvider>
+    </>
   );
 }

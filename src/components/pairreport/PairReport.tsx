@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/joy";
 import { Grid, Button } from "@mui/joy";
-import ReportTaskTable from "../ReportTables/ReportTaskTable";
+import ReportTaskTable from "../ReportTables/ReportTaskTable/ReportTaskTable";
 import MenteeTaskGraph from "../MenteeTaskGraph/MenteeTaskGraph";
 import ReportMeetingsTable from "../ReportTables/ReportMeetingsTable";
 import MenteeInfoBar from "../menteeInfoBar/MenteeInfoBar";

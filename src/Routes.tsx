@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MenteeDashboard from "./pages/mentee/dashboard/MenteeDashboard";
-import MentorDashboard from "./pages/mentor/dashboard/MentorDashboard";
 import OrderTable from "./pages/admin/pairs/Pairs";
 import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
@@ -24,6 +23,8 @@ import ProtectedRoute from "./pages/common/loginpage/ProtectedRoute";
 import LoginPage from "./pages/common/loginpage/LoginPage";
 
 const msalInstance = new PublicClientApplication(msalConfig);
+import MentorDashboradHandler from "./pages/mentor/dashboard/MentorDashboardHandler";
+import MenteesListHandler from "./components/MenteesList/MenteesListHandler";
 
 const AppRoutes = () => {
   return (
@@ -68,7 +69,7 @@ const AppRoutes = () => {
               </ProtectedRoute>
             }
           >
-            <Route path="home" element={<MentorDashboard />} />
+            <Route path="home" element={<MentorDashboradHandler />} />
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="mentees" element={<MenteesList />} />
             <Route path="tasks" element={<MentorTask />} />

@@ -16,7 +16,7 @@ import MenuItem from "@mui/joy/MenuItem";
 import ListDivider from "@mui/joy/ListDivider";
 
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import BookRoundedIcon from "@mui/icons-material/BookRounded";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
@@ -44,12 +44,13 @@ export default function Header() {
         case 3:
           history("/mentee/home");
           break;
+        default:
+          break;
       }
     }
   };
   const { instance } = useMsal();
   const logOut = () => {
-    localStorage.removeItem("roleID");
     sessionStorage.clear();
     instance.logoutPopup({
       postLogoutRedirectUri: "/",
@@ -106,7 +107,7 @@ export default function Header() {
           spacing={1}
           sx={{ display: { xs: "none", sm: "flex" } }}
         >
-          <h2>Lime</h2>
+          <h2>mpt</h2>
         </Stack>
         <Box>
           <Input
@@ -115,15 +116,26 @@ export default function Header() {
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton
-                variant="outlined"
-                color="neutral"
-                sx={{ bgcolor: "background.level1" }}
-              >
-                <Typography level="title-sm" textColor="text.icon">
-                  ⌘ K
-                </Typography>
-              </IconButton>
+              <>
+                <IconButton
+                  variant="outlined"
+                  color="neutral"
+                  sx={{ bgcolor: "background.level1", mr: 0.5 }}
+                >
+                  <Typography level="title-sm" textColor="text.icon">
+                    CTRL
+                  </Typography>
+                </IconButton>
+                <IconButton
+                  variant="outlined"
+                  color="neutral"
+                  sx={{ bgcolor: "background.level1" }}
+                >
+                  <Typography level="title-sm" textColor="text.icon">
+                    K
+                  </Typography>
+                </IconButton>
+              </>
             }
             sx={{
               alignSelf: "center",
@@ -153,24 +165,28 @@ export default function Header() {
           >
             <SearchRoundedIcon />
           </IconButton>
-          <Tooltip title="Joy UI overview" variant="outlined">
+          <Tooltip title="Notifications" variant="outlined">
             <IconButton
               size="sm"
-              variant="plain"
+              variant="outlined"
               color="neutral"
               component="a"
               href="/blog/first-look-at-joy/"
               sx={{ alignSelf: "center" }}
             >
-              <BookRoundedIcon />
+              <NotificationsIcon />
             </IconButton>
           </Tooltip>
           <ColorSchemeToggle sx={{ ml: "auto" }} />
           <Dropdown>
-            <MenuButton startDecorator={<Apps />}>Admin</MenuButton>
+            <MenuButton startDecorator={<Apps />}>
+              {selectedIndex === 1 && "Admin"}
+              {selectedIndex === 2 && "Mentor"}
+              {selectedIndex === 3 && "Mentee"}
+            </MenuButton>
             <Menu>
               <MenuItem
-                {...(selectedIndex === 0 && {
+                {...(selectedIndex === 1 && {
                   selected: true,
                   variant: "soft",
                 })}
@@ -244,18 +260,6 @@ export default function Header() {
               <MenuItem>
                 <SettingsRoundedIcon />
                 Settings
-              </MenuItem>
-              <ListDivider />
-              <MenuItem component="a" href="/blog/first-look-at-joy/">
-                First look at Joy UI
-                <OpenInNewRoundedIcon />
-              </MenuItem>
-              <MenuItem
-                component="a"
-                href="https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/email"
-              >
-                Sourcecode
-                <OpenInNewRoundedIcon />
               </MenuItem>
               <ListDivider />
               <MenuItem onClick={logOut}>

@@ -4,6 +4,7 @@ import { Stack, Typography } from "@mui/joy";
 import PaginationIcons from "../Pagination/PaginationIcons";
 import RequestBox from "./RequestBox";
 import { fetchRequestData } from "./Api/GetRequestData";
+import RequestBoxSkeleton from "./RequestBoxSkeleton";
 
 const RequestBoxHandler: React.FC = () => {
   const [requestData, setRequestData] = useState<{
@@ -14,10 +15,12 @@ const RequestBoxHandler: React.FC = () => {
     total: 0,
   });
   const [pageApi, setPageApi] = useState<number>(1);
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const getRequestData = async () => {
+    setIsLoading(true);
     let response = await fetchRequestData(pageApi);
     setRequestData(response);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -46,7 +49,11 @@ const RequestBoxHandler: React.FC = () => {
         </Typography>
         <PaginationIcons count={requestData.total} setPageApi={setPageApi} />
       </Stack>
-      <RequestBox users={requestData.users} />
+      {isLoading ? ( // Render skeleton if loading
+        <RequestBoxSkeleton />
+      ) : (
+        <RequestBox users={requestData.users} />
+      )}
     </>
   );
 };

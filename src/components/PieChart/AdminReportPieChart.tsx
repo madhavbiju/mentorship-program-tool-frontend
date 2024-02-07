@@ -1,15 +1,24 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import React from "react";
+import { AdminReportPieChartProps } from ".";
 
-const AdminReportPieChart = () => {
+const AdminReportPieChart: React.FC<AdminReportPieChartProps> = ({
+  menteeCount,
+  mentorCount,
+  totalEmployeeCount,
+}) => {
   return (
     <PieChart
       series={[
         {
           data: [
-            { id: 0, value: 10, label: "Mentors" },
-            { id: 1, value: 15, label: "Mentees " },
-            { id: 2, value: 3, label: "Unallocated" },
+            { id: 0, value: menteeCount, label: "Mentees" },
+            { id: 1, value: mentorCount, label: "Mentors" },
+            {
+              id: 2,
+              value: totalEmployeeCount - (menteeCount + mentorCount),
+              label: "Unallocated",
+            },
           ],
         },
       ]}
