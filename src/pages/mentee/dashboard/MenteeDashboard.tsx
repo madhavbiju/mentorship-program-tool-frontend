@@ -29,14 +29,14 @@ const MenteeDashboard = () => {
           <Typography>Tasks</Typography>
           <div style={{ marginBottom: "10px" }}>
             <TasksNameAndDueDate
-              taskName={"Assignment 1"}
-              submissionDate={"2024-04-23"}
+              taskName={"React Hooks Assignment"}
+              submissionDate={"23/04/2024"}
             />
           </div>
           <div style={{ marginBottom: "10px" }}>
             <TasksNameAndDueDate
-              taskName={"Assignment 2"}
-              submissionDate={"2024-04-23"}
+              taskName={".Net API Creation"}
+              submissionDate={"25/06/24"}
             />
           </div>
         </Grid>
@@ -44,14 +44,14 @@ const MenteeDashboard = () => {
           <Typography>Meetings</Typography>
           <div style={{ marginBottom: "10px" }}>
             <TasksNameAndDueDate
-              taskName={"Meeting 1"}
-              submissionDate={"2024-04-23"}
+              taskName={"Interim Review Discussion"}
+              submissionDate={"03/04/2024"}
             />
           </div>
           <div style={{ marginBottom: "10px" }}>
             <TasksNameAndDueDate
-              taskName={"Meeting 2"}
-              submissionDate={"2024-04-23"}
+              taskName={"Buddy Meeting"}
+              submissionDate={"29/04/2024"}
             />
           </div>
         </Grid>
