@@ -10,6 +10,7 @@ import SortByReportMeetingsTable from "../Sort/SortByReportMeetingsTable";
 import SortByReportTaskTable from "../Sort/SortByReportTaskTable";
 import MentorReportGraph from "../MentorReportGraph/MentorReportGraph";
 import MenteeProgramTable from "../MenteeProgramTable/MenteeProgramTable";
+import PairReportTasksTable from "../PairReportTaskTable/PairReportTaskTable";
 
 const MentorReport = () => {
   return (
@@ -61,7 +62,7 @@ const MentorReport = () => {
 
           <Grid>
             <Grid xs={12} lg={11}>
-              <ReportTaskTable task={[]} totalCount={0} />
+              <PairReportTasksTable />
             </Grid>
           </Grid>
         </Grid>
