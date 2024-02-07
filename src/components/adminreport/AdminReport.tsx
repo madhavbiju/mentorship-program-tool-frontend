@@ -16,6 +16,7 @@ import ReportMeetingsTable from "../ReportTables/ReportMeetingsTable";
 import AdminReportPieChart from "../PieChart/AdminReportPieChart";
 import MentorMenteeTableHandler from "../MentorMenteeTable/MentorMenteeTableHandler";
 import ReportTaskTableHandler from "../ReportTables/ReportTaskTable/ReportTaskTableHandler";
+import AdminReportPieChartHandler from "../PieChart/AdminReportPieChartHandler";
 
 const AdminReport = () => {
   return (
@@ -42,7 +43,7 @@ const AdminReport = () => {
               <MentorMenteeTableHandler />
             </Grid>
             <Grid xs={12} lg={5}>
-              <AdminReportPieChart />
+              <AdminReportPieChartHandler />
             </Grid>
           </Grid>
         </Grid>
