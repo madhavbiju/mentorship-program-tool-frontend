@@ -1,10 +1,7 @@
-import * as React from "react";
 import Box from "@mui/joy/Box";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Header from "./components/Header/Header";
-import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
 import { useState } from "react";
-import OrderTable from "./pages/admin/pairs/Pairs";
 import { Outlet } from "react-router";
 import {
   experimental_extendTheme as materialExtendTheme,

@@ -49,7 +49,11 @@ const DashboardTableHandler: React.FC = () => {
         >
           Programs
         </Typography>
-        <PaginationIcons count={programData.total} setPageApi={setPageApi} />
+        <PaginationIcons
+          total={programData.total}
+          perPage={5}
+          setPageApi={setPageApi}
+        />
       </Stack>
       {isLoading ? ( // Render skeleton if loading
         <DashboardTableSkeleton />

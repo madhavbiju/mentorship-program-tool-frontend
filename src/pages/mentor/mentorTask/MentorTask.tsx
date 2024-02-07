@@ -2,21 +2,29 @@ import {
   Box,
   Dropdown,
   MenuButton,
-  Breadcrumbs,
   Menu,
   MenuItem,
   MenuList,
-  Typography,
+  Button,
+  Breadcrumbs,
   Link,
+  Typography,
 } from "@mui/joy";
 import React from "react";
 import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
 import MentorTaskCard from "../../../components/MentorTaskCard/MentorTaskCard";
-import Grid from "@mui/material/Grid";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import AddIcon from "@mui/icons-material/Add";
+import Grid from "@mui/material/Grid";
+import { useNavigate } from "react-router-dom";
 
 const MentorTask = () => {
+  const history = useNavigate();
+
+  const handleClick = () => {
+    history("/mentor/tasks/create");
+  };
   return (
     <Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -35,9 +43,32 @@ const MentorTask = () => {
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>
-            Tasks
+            Pairs
           </Typography>
         </Breadcrumbs>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          mb: 1,
+          gap: 1,
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: { xs: "start", sm: "center" },
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography level="h2" component="h1">
+          Pairs
+        </Typography>
+        <Button
+          color="primary"
+          startDecorator={<AddIcon />}
+          size="sm"
+          onClick={handleClick}
+        >
+          Create Task
+        </Button>
       </Box>
       <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
         <Dropdown>
