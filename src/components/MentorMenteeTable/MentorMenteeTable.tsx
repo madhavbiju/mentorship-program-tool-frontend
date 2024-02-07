@@ -1,0 +1,44 @@
+import * as React from "react";
+import Table from "@mui/joy/Table";
+import { Sheet, Typography } from "@mui/joy";
+import PaginationButtons from "../Pagination/Pagination";
+import { Stack } from "@mui/material";
+import { MentorMenteeProps } from ".";
+export default function MentorMenteeTable({ program }: MentorMenteeProps) {
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month indexes are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+  return (
+    <>
+      <Sheet
+        variant="outlined"
+        sx={{ width: "100%", boxShadow: "sm", borderRadius: "sm" }}
+      >
+        <Table hoverRow>
+          <thead>
+            <tr>
+              <th style={{ width: "40%" }}>Program Name</th>
+              <th>Mentor</th>
+              <th>Mentee</th>
+              <th>End Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {program.map((row) => (
+              <tr key={row.programID}>
+                <td>{row.programName}</td>
+                <td>{row.mentorFirstName}</td>
+                <td>{row.menteeFirstName}</td>
+                <td>{formatDate(row.endDate)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Sheet>
+    </>
+  );
+}
