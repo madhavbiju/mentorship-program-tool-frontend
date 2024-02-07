@@ -10,3 +10,7 @@ export interface UserDetailsResponse {
   userList: User[];
   totalCount: number;
 }
+
+export interface UserTableProps {
+  userList: User[];
+}

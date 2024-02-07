@@ -1,12 +1,9 @@
-import { CssVarsProvider } from "@mui/joy/styles";
-import CssBaseline from "@mui/joy/CssBaseline";
 import GlobalStyles from "@mui/joy/GlobalStyles";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
-import ColorSchemeToggle from "../../../components/ColorSchemeToggleLogin/ColorSchemeToggle";
 import useLoginHandler from "./LoginHandler";
 import { Stack, formLabelClasses } from "@mui/joy";
 import MicrosoftIcon from "../../../components/MicrosoftIcon/MicrosoftIcon";
