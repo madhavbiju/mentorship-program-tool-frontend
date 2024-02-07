@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from "react";
-import { ColorPaletteProp } from "@mui/joy/styles";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
@@ -8,7 +7,6 @@ import Chip from "@mui/joy/Chip";
 import Divider from "@mui/joy/Divider";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
-import Link from "@mui/joy/Link";
 import Input from "@mui/joy/Input";
 import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
@@ -17,62 +15,28 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Table from "@mui/joy/Table";
 import Sheet from "@mui/joy/Sheet";
-import Checkbox from "@mui/joy/Checkbox";
-import IconButton, { iconButtonClasses } from "@mui/joy/IconButton";
+import IconButton from "@mui/joy/IconButton";
 import Typography from "@mui/joy/Typography";
-import Menu from "@mui/joy/Menu";
-import MenuButton from "@mui/joy/MenuButton";
-import MenuItem from "@mui/joy/MenuItem";
-import Dropdown from "@mui/joy/Dropdown";
 
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SearchIcon from "@mui/icons-material/Search";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import BlockIcon from "@mui/icons-material/Block";
-import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { getUserDetails } from "./api/getUserDetails";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"; // Assuming this as a choice for 'inactive'
-import PaginationButtons from "../../../components/Pagination/Pagination";
+
 import { UserDetailsResponse, User } from "./types";
 import UserPageHandler from "./UserPageHandler";
-import PairTableHandler from "../../../components/PairTable/PairTableHandler";
-
-function RowMenu() {
-  return (
-    <Dropdown>
-      <MenuButton
-        slots={{ root: IconButton }}
-        slotProps={{ root: { variant: "plain", color: "neutral", size: "sm" } }}
-      >
-        <MoreHorizRoundedIcon />
-      </MenuButton>
-      <Menu size="sm" sx={{ minWidth: 140 }}>
-        <MenuItem>Edit</MenuItem>
-        <MenuItem>Rename</MenuItem>
-        <MenuItem>Move</MenuItem>
-        <Divider />
-        <MenuItem color="danger">Delete</MenuItem>
-      </Menu>
-    </Dropdown>
-  );
-}
 
 export default function OrderTable() {
   const [open, setOpen] = React.useState(false);
   const [users, setUsers] = React.useState<User[]>([]);
-  const [totalCount, setTotalCount] = React.useState(0);
   React.useEffect(() => {
     const fetchUsers = async () => {
       try {
         // Adjusted to match the expected structure
         const userDetailsResponse: UserDetailsResponse = await getUserDetails();
         setUsers(userDetailsResponse.userList);
-        setTotalCount(userDetailsResponse.totalCount); // Set totalCount from the response
       } catch (error) {
         console.error("Failed to fetch user details:", error);
       }
@@ -207,7 +171,6 @@ export default function OrderTable() {
               <th style={{ width: 240, padding: "12px 6px" }}>Customer</th>
               <th style={{ width: 140, padding: "12px 6px" }}>Date</th>
               <th style={{ width: 140, padding: "12px 6px" }}>Status</th>
-
               <th style={{ width: 140, padding: "12px 6px" }}> </th>
             </tr>
           </thead>
@@ -219,19 +182,12 @@ export default function OrderTable() {
                 </td>
                 <td>
                   <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                    {/* Assuming you have a way to get the initial from the userName or another field */}
                     <Avatar size="sm">{user.userInitials}</Avatar>
-                    <Typography level="body-xs">
-                      {user.userName}{" "}
-                      {/* Adjust this if you have a separate name field */}
-                    </Typography>
-                    {/* Assuming you have an email field or similar in your user object */}
+                    <Typography level="body-xs">{user.userName} </Typography>
                   </Box>
                 </td>
                 <td>
-                  {/* Assuming you have a date field in your user object */}
                   <Typography level="body-xs">{user.userJob}</Typography>{" "}
-                  {/* Adjust as needed */}
                 </td>
                 <td>
                   <Chip
@@ -251,22 +207,19 @@ export default function OrderTable() {
                   </Chip>
                 </td>
                 <td>
-                  <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                    <Link level="body-xs" component="button">
-                      Download
-                    </Link>
-                    <RowMenu />
-                  </Box>
+                  <Button
+                    variant="outlined"
+                    startDecorator={<AddCircleOutlineIcon />}
+                  >
+                    Assign Roles
+                  </Button>
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
       </Sheet>
-
       <UserPageHandler />
-
-      {/* <PairTableHandler /> */}
     </React.Fragment>
   );
 }
