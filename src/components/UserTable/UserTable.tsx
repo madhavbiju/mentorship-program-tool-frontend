@@ -47,10 +47,10 @@ export default function UserTable({ userList }: UserTableProps) {
           </tr>
         </thead>
         <tbody>
-          {userList.map((user) => (
+          {userList.map((user, index) => (
             <tr key={user.id}>
               <td>
-                <Typography level="body-xs">{user.id}</Typography>
+                <Typography level="body-xs">{index + 1}</Typography>
               </td>
               <td>
                 <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>

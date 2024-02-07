@@ -4,6 +4,20 @@ import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 
 const UnauthorizedPage = () => {
+  const handleGoHomeClick = () => {
+    const userRoles = sessionStorage.getItem("UserRoles");
+    console.log("UserRoles:", userRoles); // Debug log
+    if (userRoles) {
+      const roles = JSON.parse(userRoles);
+      console.log("Parsed Roles:", roles); // Debug log
+      if (roles.length > 0) {
+        window.location.href = `/${roles[0]}/home`;
+        return;
+      }
+    }
+    window.location.href = "/";
+  };
+
   return (
     <Box
       sx={{
@@ -25,9 +39,9 @@ const UnauthorizedPage = () => {
       <Typography sx={{ mb: 4 }}>
         Sorry, you do not have permission to view this page.
       </Typography>
-      <Button variant="solid" onClick={() => (window.location.href = "/")}>
+      {/* <Button variant="solid" onClick={handleGoHomeClick}>
         Go to Home
-      </Button>
+      </Button> */}
     </Box>
   );
 };
