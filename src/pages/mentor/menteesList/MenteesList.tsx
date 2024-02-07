@@ -42,6 +42,22 @@ const MenteesList = () => {
           </Typography>
         </Breadcrumbs>
       </Box>
+      <Box
+        sx={{
+          display: "flex",
+          mb: 1,
+          gap: 1,
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: { xs: "start", sm: "center" },
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography level="h2" component="h1">
+          Mentees
+        </Typography>
+        
+      </Box>
       <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
         <Dropdown>
           <MenuButton color="primary" sx={{ borderRadius: 10, px: "3%" }}>

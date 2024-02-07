@@ -43,7 +43,7 @@ const MentorTask = () => {
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>
-            Pairs
+            Tasks
           </Typography>
         </Breadcrumbs>
       </Box>
@@ -59,7 +59,7 @@ const MentorTask = () => {
         }}
       >
         <Typography level="h2" component="h1">
-          Pairs
+          Tasks
         </Typography>
         <Button
           color="primary"
