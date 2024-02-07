@@ -1,7 +1,7 @@
 import { Box, Breadcrumbs, Link, Typography } from "@mui/joy";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-import OrderTable from "./OrderTable";
+import OrderTable from "./UserTable";
 
 const ViewUsers = () => {
   return (

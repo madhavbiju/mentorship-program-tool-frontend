@@ -28,7 +28,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff"; // Assuming thi
 import { UserDetailsResponse, User } from "./types";
 import UserPageHandler from "./UserPageHandler";
 
-export default function OrderTable() {
+export default function UserTable() {
   const [open, setOpen] = React.useState(false);
   const [users, setUsers] = React.useState<User[]>([]);
   React.useEffect(() => {
