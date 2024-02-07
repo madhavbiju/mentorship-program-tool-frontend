@@ -61,7 +61,7 @@ const MentorReport = () => {
 
           <Grid>
             <Grid xs={12} lg={11}>
-              <ReportTaskTable />
+              <ReportTaskTable task={[]} totalCount={0} />
             </Grid>
           </Grid>
         </Grid>
