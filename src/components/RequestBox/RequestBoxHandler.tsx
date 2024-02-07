@@ -47,7 +47,11 @@ const RequestBoxHandler: React.FC = () => {
         >
           Requests
         </Typography>
-        <PaginationIcons count={requestData.total} setPageApi={setPageApi} />
+        <PaginationIcons
+          total={requestData.total}
+          perPage={4}
+          setPageApi={setPageApi}
+        />
       </Stack>
       {isLoading ? ( // Render skeleton if loading
         <RequestBoxSkeleton />
