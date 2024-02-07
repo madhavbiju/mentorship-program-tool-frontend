@@ -38,7 +38,7 @@ const CreatePairCard = () => {
           <Link
             underline="none"
             color="neutral"
-            href="/admin/home"
+            href="#some-link"
             aria-label="Home"
           >
             <HomeRoundedIcon />
@@ -48,7 +48,7 @@ const CreatePairCard = () => {
             fontWeight={500}
             underline="none"
             color="neutral"
-            href="/admin/pairs"
+            href="#some-link"
           >
             Pairs
           </Link>

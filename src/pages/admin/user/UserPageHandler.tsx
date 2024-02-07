@@ -7,7 +7,7 @@ import PaginationButtons from "../../../components/Pagination/Pagination";
 
 const UserPageHandler: React.FC = () => {
   const [totalCount, setTotalCount] = useState<number>(0);
-  const [pageApi, setPageApi] = useState<number>(0);
+  const [pageApi, setPageApi] = useState<number>(1);
 
   const getUserData = async () => {
     try {
@@ -34,7 +34,7 @@ const UserPageHandler: React.FC = () => {
           padding: "20px",
         }}
       >
-        <PaginationButtons count={totalCount} setPageApi={setPageApi} />
+        <PaginationIcons count={totalCount} setPageApi={setPageApi} />
       </Stack>
     </>
   );

@@ -263,8 +263,10 @@ export default function OrderTable() {
           </tbody>
         </Table>
       </Sheet>
-      {/* <UserPageHandler /> */}
-      <PairTableHandler />
+
+      <UserPageHandler />
+
+      {/* <PairTableHandler /> */}
     </React.Fragment>
   );
 }
