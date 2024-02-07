@@ -9,10 +9,10 @@ const MenteesListHandler = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [menteeData, setMenteeData] = useState<{
     mentees: Mentee[];
-    total: number;
+    totalCount: number;
   }>({
     mentees: [],
-    total: 0,
+    totalCount: 0,
   });
   const [pageApi, setPageApi] = useState<number>(1);
 
@@ -20,7 +20,6 @@ const MenteesListHandler = () => {
     setIsLoading(true); // Set loading state to true while fetching data
     let response = await fetchMenteeData(pageApi);
     setMenteeData(response);
-    console.log(menteeData.total)
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
@@ -30,14 +29,21 @@ const MenteesListHandler = () => {
 
   return (
     <>
-    {isLoading ? ( // Render skeleton if loading
+      {isLoading ? ( // Render skeleton if loading
         <MentorDashboardSkeleton />
       ) : (
-        <MenteesListCard mentees={menteeData.mentees}  totalCount={menteeData.total} />
+        <MenteesListCard
+          mentees={menteeData.mentees}
+          totalCount={menteeData.totalCount}
+        />
       )}
-      
+
       <br />
-      <PaginationButtons count={menteeData.total} setPageApi={setPageApi} />
+      <PaginationButtons
+        total={menteeData.totalCount}
+        setPageApi={setPageApi}
+        perPage={5}
+      />
     </>
   );
 };
