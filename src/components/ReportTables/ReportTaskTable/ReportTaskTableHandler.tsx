@@ -39,7 +39,11 @@ const ReportTaskTableHandler: React.FC = () => {
           mb: 1,
         }}
       >
-        <PaginationIcons count={taskData.totalCount} setPageApi={setPageApi} />
+        <PaginationIcons
+          total={taskData.totalCount}
+          perPage={5}
+          setPageApi={setPageApi}
+        />
       </Stack>
       {isLoading ? ( // Render skeleton if loading
         <ReportTaskTableSkeleton />
