@@ -14,7 +14,6 @@ import { UserTableProps } from "./types";
 export default function UserTable({ userList }: UserTableProps) {
   return (
     <Sheet
-      className="OrderTableContainer"
       variant="outlined"
       sx={{
         display: { sm: "initial" },
