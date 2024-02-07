@@ -22,6 +22,7 @@ import CreateTasks from "./pages/mentor/createtask/CreateTasks";
 import AdminDashboardHandler from "./pages/admin/dashboard/AdminDashboardHandle";
 import MentorDashboradHandler from "./pages/mentor/dashboard/MentorDashboardHandler";
 import MenteesListHandler from "./components/MenteesList/MenteesListHandler";
+import Notification from "./components/Notification/Notification";
 
 const AppRoutes = () => {
   return (
@@ -57,7 +58,9 @@ const AppRoutes = () => {
 const AppRouter = () => {
   return (
     <Router>
+      <Notification>
       <AppRoutes />
+      </Notification>
     </Router>
   );
 };
