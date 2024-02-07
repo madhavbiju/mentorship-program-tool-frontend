@@ -42,7 +42,8 @@ const MentorMenteeTableHandler: React.FC = () => {
         }}
       >
         <PaginationIcons
-          count={programData.totalCount}
+          total={programData.totalCount}
+          perPage={5}
           setPageApi={setPageApi}
         />
       </Stack>

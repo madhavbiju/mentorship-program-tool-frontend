@@ -26,6 +26,7 @@ import { toggleSidebar } from "../../utils/utils";
 import ColorSchemeToggle from "../ColorSchemeToggle/ColorSchemeToggle";
 import { Apps } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { useMsal } from "@azure/msal-react";
 
 export default function Header() {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
@@ -43,13 +44,18 @@ export default function Header() {
         case 3:
           history("/mentee/home");
           break;
+        default:
+          break;
       }
     }
   };
-
+  const { instance } = useMsal();
   const logOut = () => {
-    localStorage.removeItem("roleID");
-    return history("/");
+    sessionStorage.clear();
+    instance.logoutPopup({
+      postLogoutRedirectUri: "/",
+      mainWindowRedirectUri: "/",
+    });
   };
   return (
     <Sheet
@@ -173,10 +179,14 @@ export default function Header() {
           </Tooltip>
           <ColorSchemeToggle sx={{ ml: "auto" }} />
           <Dropdown>
-            <MenuButton startDecorator={<Apps />}>Admin</MenuButton>
+            <MenuButton startDecorator={<Apps />}>
+              {selectedIndex === 1 && "Admin"}
+              {selectedIndex === 2 && "Mentor"}
+              {selectedIndex === 3 && "Mentee"}
+            </MenuButton>
             <Menu>
               <MenuItem
-                {...(selectedIndex === 0 && {
+                {...(selectedIndex === 1 && {
                   selected: true,
                   variant: "soft",
                 })}
@@ -250,18 +260,6 @@ export default function Header() {
               <MenuItem>
                 <SettingsRoundedIcon />
                 Settings
-              </MenuItem>
-              <ListDivider />
-              <MenuItem component="a" href="/blog/first-look-at-joy/">
-                First look at Joy UI
-                <OpenInNewRoundedIcon />
-              </MenuItem>
-              <MenuItem
-                component="a"
-                href="https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/email"
-              >
-                Sourcecode
-                <OpenInNewRoundedIcon />
               </MenuItem>
               <ListDivider />
               <MenuItem onClick={logOut}>

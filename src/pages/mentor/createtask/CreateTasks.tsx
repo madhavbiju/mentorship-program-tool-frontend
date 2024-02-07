@@ -21,7 +21,7 @@ const CreateTasks = () => {
           <Typography level="h4">Title</Typography>
         </Grid>
         <Grid>
-          <Textarea variant="outlined" sx={{ width: "40%" }} />
+          <Textarea variant="outlined" sx={{ width: "60%" }} />
         </Grid>
       </Grid>
       <Grid>
