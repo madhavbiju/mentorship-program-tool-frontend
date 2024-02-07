@@ -20,6 +20,7 @@ import MentorReportPage from "./pages/mentor/report/MentorReportPage";
 import MentorSelectedTask from "./pages/mentor/mentorselectedtask/MentorSelectedTask";
 import CreateTasks from "./pages/mentor/createtask/CreateTasks";
 import AdminDashboardHandler from "./pages/admin/dashboard/AdminDashboardHandle";
+import MentorDashboradHandler from "./pages/mentor/dashboard/MentorDashboardHandler";
 
 const AppRoutes = () => {
   return (
@@ -40,7 +41,7 @@ const AppRoutes = () => {
         <Route path="report" element={<MenteeReport />} />
       </Route>
       <Route path="/mentor" element={<App role="mentor" />}>
-        <Route path="home" element={<MentorDashboard />} />
+        <Route path="home" element={<MentorDashboradHandler />} />
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="mentees" element={<MenteesList />} />
         <Route path="tasks" element={<MentorTask />} />

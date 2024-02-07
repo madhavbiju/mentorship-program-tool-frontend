@@ -45,7 +45,11 @@ const PairTableHandler: React.FC = () => {
         )}
 
         <br />
-        <PaginationButtons count={pairData.total} setPageApi={setPageApi} />
+        <PaginationButtons
+          total={pairData.total}
+          perPage={6}
+          setPageApi={setPageApi}
+        />
       </Stack>
     </>
   );
