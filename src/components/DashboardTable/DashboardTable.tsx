@@ -3,6 +3,7 @@ import Table from "@mui/joy/Table";
 import { Sheet, Typography } from "@mui/joy";
 import PaginationButtons from "../Pagination/Pagination";
 import { Stack } from "@mui/material";
+import { DashboardTableProps } from "./Types";
 
 export default function DashboardTable({ users }: DashboardTableProps) {
   return (
