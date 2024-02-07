@@ -1,20 +1,18 @@
-import { CssVarsProvider } from "@mui/joy/styles";
-import CssBaseline from "@mui/joy/CssBaseline";
 import GlobalStyles from "@mui/joy/GlobalStyles";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
-import ColorSchemeToggle from "../../../components/ColorSchemeToggleLogin/ColorSchemeToggle";
 import useLoginHandler from "./LoginHandler";
 import { Stack, formLabelClasses } from "@mui/joy";
 import MicrosoftIcon from "../../../components/MicrosoftIcon/MicrosoftIcon";
+import Loader from "./Loader";
 
 export default function LoginPage() {
-  const { handleLogin } = useLoginHandler(() => {
-    console.log("Logged in successfully");
-  });
+  const { handleLogin, loading } = useLoginHandler(() =>
+    console.log("Login Successful")
+  );
 
   return (
     <>
@@ -66,10 +64,7 @@ export default function LoginPage() {
             }}
           >
             <Box sx={{ gap: 2, display: "flex", alignItems: "center" }}>
-              <IconButton variant="soft" color="primary" size="sm">
-                <BadgeRoundedIcon />
-              </IconButton>
-              <Typography level="title-lg">LIME</Typography>
+              <Typography level="title-lg">MPT</Typography>
             </Box>
           </Box>
           <Box
@@ -99,12 +94,14 @@ export default function LoginPage() {
               <Stack gap={1}>
                 <Typography level="h3">Sign in</Typography>
               </Stack>
+              {loading && <Loader />} {/* Loader displayed here */}
               <Button
                 variant="soft"
                 color="neutral"
                 fullWidth
                 startDecorator={<MicrosoftIcon />}
                 onClick={() => handleLogin("popup")}
+                disabled={loading}
               >
                 Continue with Microsoft
               </Button>
@@ -133,7 +130,7 @@ export default function LoginPage() {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundImage:
-            "url(https://images.unsplash.com/photo-1581340752304-a781f821e8ce?q=80&w=1872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+            "url(https://images.unsplash.com/photo-1527181152855-fc03fc7949c8?auto=format&w=1000&dpr=2)",
           [theme.getColorSchemeSelector("dark")]: {
             backgroundImage:
               "url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831?auto=format&w=1000&dpr=2)",
