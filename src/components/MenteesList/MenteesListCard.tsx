@@ -28,7 +28,7 @@ const menteesData = [
   },
 ];
 
-const MenteesListCard = ({ mentees }: MenteesProps) => {
+const MenteesListCard = ({ mentees,totalCount }: MenteesProps) => {
   return (
     <Grid xs={12}>
       {mentees.map((Mentee) => (

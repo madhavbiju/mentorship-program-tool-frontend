@@ -20,6 +20,7 @@ const MenteesListHandler = () => {
     setIsLoading(true); // Set loading state to true while fetching data
     let response = await fetchMenteeData(pageApi);
     setMenteeData(response);
+    console.log(menteeData.total)
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
@@ -32,7 +33,7 @@ const MenteesListHandler = () => {
     {isLoading ? ( // Render skeleton if loading
         <MentorDashboardSkeleton />
       ) : (
-        <MenteesListCard mentees={menteeData.mentees} />
+        <MenteesListCard mentees={menteeData.mentees}  totalCount={menteeData.total} />
       )}
       
       <br />

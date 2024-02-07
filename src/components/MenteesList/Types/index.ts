@@ -8,4 +8,5 @@ export interface Mentee {
 }
 export interface MenteesProps {
   mentees: Mentee[];
+  totalCount: number;
 }
