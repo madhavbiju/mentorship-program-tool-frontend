@@ -7,11 +7,12 @@ import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
 import useLoginHandler from "./LoginHandler";
 import { Stack, formLabelClasses } from "@mui/joy";
 import MicrosoftIcon from "../../../components/MicrosoftIcon/MicrosoftIcon";
+import Loader from "./Loader";
 
 export default function LoginPage() {
-  const { handleLogin } = useLoginHandler(() => {
-    console.log("Logged in successfully");
-  });
+  const { handleLogin, loading } = useLoginHandler(() =>
+    console.log("Login Successful")
+  );
 
   return (
     <>
@@ -93,12 +94,14 @@ export default function LoginPage() {
               <Stack gap={1}>
                 <Typography level="h3">Sign in</Typography>
               </Stack>
+              {loading && <Loader />} {/* Loader displayed here */}
               <Button
                 variant="soft"
                 color="neutral"
                 fullWidth
                 startDecorator={<MicrosoftIcon />}
                 onClick={() => handleLogin("popup")}
+                disabled={loading}
               >
                 Continue with Microsoft
               </Button>
