@@ -38,7 +38,7 @@ const UserPageHandler: React.FC = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: "20px",
+          mb: 1,
         }}
       >
         {isLoading ? ( // Render skeleton if loading
@@ -46,9 +46,10 @@ const UserPageHandler: React.FC = () => {
         ) : (
           <UserTable userList={users} />
         )}
+        <br />
         <PaginationButtons
           total={totalCount}
-          perPage={10}
+          perPage={5}
           setPageApi={setPageApi}
         />
       </Stack>

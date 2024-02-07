@@ -3,7 +3,7 @@ import axios from "axios";
  export const fetchPairData = async (pageApi: number) => {
     try {
       const response = await axios.get(
-        `https://dummyjson.com/users?skip=${pageApi}&limit=6`
+        `https://localhost:7259/api/program/All?page=${pageApi}`
       );
       return(response.data);
     } catch (error) {
