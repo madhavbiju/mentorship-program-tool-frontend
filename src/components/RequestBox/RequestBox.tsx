@@ -7,8 +7,9 @@ import ListItem from "@mui/joy/ListItem";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import Typography from "@mui/joy/Typography";
 import { ListItemContent } from "@mui/joy";
+import { RequestBoxProps } from "./Types";
 
-export default function RequestBox({ users }: RequestBoxProps) {
+export default function RequestBox({ request, totalCount }: RequestBoxProps) {
   return (
     <Box>
       <div>
@@ -16,23 +17,27 @@ export default function RequestBox({ users }: RequestBoxProps) {
           variant="outlined"
           sx={{
             minWidth: 240,
+            minHeight: 200,
             borderRadius: "sm",
+            display: "flex",
           }}
         >
-          {users.map((user, index) => (
+          {request.map((request, index) => (
             <React.Fragment key={index}>
               <ListItem>
                 <ListItemDecorator>
                   <Avatar size="sm" src="/static/images/avatar/1.jpg" />
                 </ListItemDecorator>
                 <ListItemContent>
-                  <Typography level="title-sm">{user.firstName}</Typography>
+                  <Typography level="title-sm">
+                    Program Id: {request.programID}
+                  </Typography>
                   <Typography level="body-sm" noWrap>
-                    {user.lastName}
+                    {request.reason}
                   </Typography>
                 </ListItemContent>
               </ListItem>
-              {index < users.length - 1 && <ListDivider inset="gutter" />}
+              {index < 2 && <ListDivider inset="gutter" />}
             </React.Fragment>
           ))}
         </List>

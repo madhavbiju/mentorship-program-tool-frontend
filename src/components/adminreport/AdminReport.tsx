@@ -3,7 +3,7 @@ import { Box, flexbox } from "@mui/system";
 import React from "react";
 import MentorMenteeTable from "../MentorMenteeTable/MentorMenteeTable";
 import MentorReportPieChart from "../PieChart/AdminReportPieChart";
-import ReportTaskTable from "../ReportTables/ReportTaskTable";
+import ReportTaskTable from "../ReportTables/ReportTaskTable/ReportTaskTable";
 import MeetingsTable from "../ReportTables/ReportMeetingsTable";
 import { end } from "@popperjs/core";
 import BandHighlight from "../PieChart/AdminReportPieChart";
@@ -14,6 +14,9 @@ import SelectMenteeDropDown from "../SelectMenteeDropDown/SelectMenteeDropDown";
 import SortByReportMeetingsTable from "../Sort/SortByReportMeetingsTable";
 import ReportMeetingsTable from "../ReportTables/ReportMeetingsTable";
 import AdminReportPieChart from "../PieChart/AdminReportPieChart";
+import MentorMenteeTableHandler from "../MentorMenteeTable/MentorMenteeTableHandler";
+import ReportTaskTableHandler from "../ReportTables/ReportTaskTable/ReportTaskTableHandler";
+import AdminReportPieChartHandler from "../PieChart/AdminReportPieChartHandler";
 
 const AdminReport = () => {
   return (
@@ -37,10 +40,10 @@ const AdminReport = () => {
 
           <Grid container>
             <Grid xs={12} lg={7}>
-              <MentorMenteeTable />
+              <MentorMenteeTableHandler />
             </Grid>
             <Grid xs={12} lg={5}>
-              <AdminReportPieChart />
+              <AdminReportPieChartHandler />
             </Grid>
           </Grid>
         </Grid>
@@ -64,7 +67,7 @@ const AdminReport = () => {
 
           <Grid>
             <Grid xs={12} lg={11}>
-              <ReportTaskTable />
+              <ReportTaskTableHandler />
             </Grid>
           </Grid>
         </Grid>

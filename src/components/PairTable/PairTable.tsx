@@ -7,12 +7,19 @@ import Table from "@mui/joy/Table";
 import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import BlockIcon from "@mui/icons-material/Block";
-import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import { PairTableProps } from "./Types";
 // import CreatePair from "../createPair/CreatePair";
 // import { Navigate } from "react-router";
 
-const PairTable = ({ users }: PairTableProps) => {
+const PairTable = ({ program, totalCount }: PairTableProps) => {
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month indexes are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
   return (
     <Sheet
       variant="outlined"
@@ -39,49 +46,58 @@ const PairTable = ({ users }: PairTableProps) => {
       >
         <thead>
           <tr>
-            <th style={{ width: 170, padding: "12px 6px" }}>Program Name</th>
+            <th style={{ width: 240, padding: "12px 6px" }}>Program Name</th>
             <th style={{ width: 240, padding: "12px 6px" }}>Mentor</th>
-            <th style={{ width: 240, padding: "12px 6px" }}>Mentee</th>
+            <th style={{ width: 140, padding: "12px 6px" }}>Mentee</th>
             <th style={{ width: 140, padding: "12px 6px" }}>End Date</th>
             <th style={{ width: 140, padding: "12px 6px" }}>Status</th>
-            <th style={{ width: 140, padding: "12px 6px" }}> </th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
+          {program.map((program) => (
+            <tr key={program.programID}>
               <td>
-                <Typography level="body-xs">{user.id}</Typography>
+                <Typography level="body-xs">{program.programName}</Typography>
               </td>
               <td>
                 <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                  <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+                  <Avatar size="sm">{program.mentorFirstName.charAt(0)}</Avatar>
                   <div>
-                    <Typography level="body-xs">{user.firstName}</Typography>
-                    <Typography level="body-xs">{user.lastName}</Typography>
+                    <Typography level="body-xs">
+                      {program.mentorFirstName}
+                    </Typography>
                   </div>
                 </Box>
               </td>
               <td>
                 <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                  <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+                  <Avatar size="sm">{program.menteeFirstName.charAt(0)}</Avatar>
                   <div>
-                    <Typography level="body-xs">{user.firstName}</Typography>
-                    <Typography level="body-xs">{user.lastName}</Typography>
+                    <Typography level="body-xs">
+                      {program.menteeFirstName}
+                    </Typography>
                   </div>
                 </Box>
               </td>
               <td>
-                <Typography level="body-xs">{user.age}</Typography>
+                <Typography level="body-xs">
+                  {formatDate(program.endDate)}
+                </Typography>
               </td>
               <td>
                 <Chip
                   variant="soft"
                   size="sm"
-                  startDecorator={<CheckRoundedIcon />}
-                  color="success"
+                  color={program.programStatus === 1 ? "success" : "neutral"}
+                  startDecorator={
+                    program.programStatus === 1 ? (
+                      <RotateRightIcon />
+                    ) : (
+                      <CheckRoundedIcon />
+                    )
+                  }
                 >
-                  Completed
+                  {program.programStatus === 1 ? "Ongoing" : "Completed"}
                 </Chip>
               </td>
             </tr>

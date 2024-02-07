@@ -1,45 +1,44 @@
 import * as React from "react";
-import FormControl from "@mui/joy/FormControl";
-import FormLabel from "@mui/joy/FormLabel";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
-import Table, { TableProps } from "@mui/joy/Table";
-
-const MentorMenteeTable = () => {
-  function createData(mentorName: string, menteeName: string, endDate: string) {
-    return { mentorName, menteeName, endDate };
-  }
-
-  const rows = [
-    createData("Shiyas", "Tushar", "12/05/2024"),
-    createData("Madhav", "TopG", "15/05/2024"),
-    createData("Aadarsh", "Aljo", "25/05/2024"),
-    createData("Mehanoor", "Fidha", "05/05/2024"),
-  ];
-
+import Table from "@mui/joy/Table";
+import { Sheet, Typography } from "@mui/joy";
+import PaginationButtons from "../Pagination/Pagination";
+import { Stack } from "@mui/material";
+import { MentorMenteeProps } from ".";
+export default function MentorMenteeTable({ program }: MentorMenteeProps) {
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month indexes are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
   return (
-    <div>
-      <FormControl orientation="horizontal"></FormControl>
-      <Table>
-        <thead>
-          <tr>
-            <th>Mentor Name</th>
-            <th>Mentee Name</th>
-            <th>End Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row.mentorName}>
-              <td>{row.mentorName}</td>
-              <td>{row.menteeName}</td>
-              <td>{row.endDate}</td>
+    <>
+      <Sheet
+        variant="outlined"
+        sx={{ width: "100%", boxShadow: "sm", borderRadius: "sm" }}
+      >
+        <Table hoverRow>
+          <thead>
+            <tr>
+              <th style={{ width: "40%" }}>Program Name</th>
+              <th>Mentor</th>
+              <th>Mentee</th>
+              <th>End Date</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    </div>
+          </thead>
+          <tbody>
+            {program.map((row) => (
+              <tr key={row.programID}>
+                <td>{row.programName}</td>
+                <td>{row.mentorFirstName}</td>
+                <td>{row.menteeFirstName}</td>
+                <td>{formatDate(row.endDate)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Sheet>
+    </>
   );
-};
-
-export default MentorMenteeTable;
+}

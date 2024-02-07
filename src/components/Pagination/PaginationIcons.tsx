@@ -4,10 +4,14 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import React, { useState } from "react";
 import { CustomPaginationProps } from "./types";
 
-const PaginationIcons = ({ count, setPageApi }: CustomPaginationProps) => {
+const PaginationIcons = ({
+  total,
+  perPage,
+  setPageApi,
+}: CustomPaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(count / 5); // Assuming 10 items per page
+  const totalPages = Math.ceil(total / perPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {

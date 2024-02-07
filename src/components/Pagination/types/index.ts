@@ -1,4 +1,5 @@
 export interface CustomPaginationProps {
-  count: number;
+  total: number;
+  perPage: number;
   setPageApi: (value: number) => void;
   }

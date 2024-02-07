@@ -3,39 +3,20 @@ import React, { useEffect, useState } from "react";
 import GreetCard from "../../../components/GreetCard/GreetCard";
 import MentorAndProgramCard from "../../../components/MentorAndProgramCard/MentorAndProgramCard";
 import TasksNameAndDueDate from "../../../components/TasksNameAndDueDate/TasksNameAndDueDate";
-import { MentorNameAndProgramNameAPI } from "./API/MentorNameAndProgramNameAPI/MentorNameAndProgramNameAPI";
 import { Grid } from "@mui/material";
 import ProgramProgressBar from "../../../components/ProgramProgressBar/ProgramProgressBar";
 
 const MenteeDashboard = () => {
-  const [mentorName, setMentorName] = useState<string>("");
-  const [programName, setProgramName] = useState<string>("");
-
-  useEffect(() => {
-    const fetchMentorAndProgramDetails = async () => {
-      try {
-        const menteeDetails = await MentorNameAndProgramNameAPI(3); // 3 is the Mentee id
-        setMentorName(menteeDetails.mentorFirstName);
-        setProgramName(menteeDetails.programName);
-        console.log("Hello world");
-      } catch (error) {
-        console.error("Error fetching mentee details:", error);
-      }
-    };
-
-    fetchMentorAndProgramDetails();
-  }, []);
-
   return (
     <Box>
       <Grid sx={{ display: "flex", alignItems: "center" }}>
         <Grid xs={12} lg={6}>
-          <GreetCard />
+          <GreetCard name={"Mentee"} />
         </Grid>
         <Grid xs={12} lg={6}>
           <MentorAndProgramCard
-            mentorName={mentorName}
-            programName={programName}
+            mentorName={"Shiyas"}
+            programName={"React Js"}
           />
         </Grid>
       </Grid>

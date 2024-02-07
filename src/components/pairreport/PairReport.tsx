@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/joy";
 import { Grid, Button } from "@mui/joy";
-import ReportTaskTable from "../ReportTables/ReportTaskTable";
+import ReportTaskTable from "../ReportTables/ReportTaskTable/ReportTaskTable";
 import MenteeTaskGraph from "../MenteeTaskGraph/MenteeTaskGraph";
 import ReportMeetingsTable from "../ReportTables/ReportMeetingsTable";
 import MenteeInfoBar from "../menteeInfoBar/MenteeInfoBar";
 import MenteeTasksTable from "../ReportTables/MenteeTasksTable";
+import PairReportTasksTable from "../PairReportTaskTable/PairReportTaskTable";
 
 const PairReport = () => {
   return (
@@ -18,7 +19,7 @@ const PairReport = () => {
         <Grid container sx={{ display: "flex", alignItems: "center" }}>
           <Grid xs={12} lg={6}>
             <Typography level="h4">Tasks</Typography>
-            <MenteeTasksTable />
+            <PairReportTasksTable />
             <br />
             <Typography level="h4">Meetings</Typography>
             <ReportMeetingsTable />

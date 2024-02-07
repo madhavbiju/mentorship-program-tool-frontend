@@ -1,11 +1,8 @@
 import * as React from "react";
 import FormControl from "@mui/joy/FormControl";
-import FormLabel from "@mui/joy/FormLabel";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
 import Table, { TableProps } from "@mui/joy/Table";
 
-const ReportTaskTable = () => {
+const PairReportTasksTable = () => {
   function createData(
     menteeName: string,
     taskTitle: string,
@@ -17,10 +14,28 @@ const ReportTaskTable = () => {
   }
 
   const rows = [
-    createData("Shiyas", "Task1", "12/05/2024", "25/05/2024", "Active"),
-    createData("Aadarsh", "Task2", "25/05/2024", "05/05/2024", "Inactive"),
-    createData("Mehanoor", "Task3", "05/05/2024", "25/05/2024", "Active"),
-    createData("Madhav", "Task4", "12/05/2024", "05/05/2024", "Submitted"),
+    createData("Shiyas", "React Hooks", "12/05/2024", "25/05/2024", "Active"),
+    createData(
+      "Madhav",
+      "React Components",
+      "25/05/2024",
+      "05/05/2024",
+      "Active"
+    ),
+    createData(
+      "Mehanoor",
+      "API Creation",
+      "05/05/2024",
+      "25/05/2024",
+      "Submitted"
+    ),
+    createData(
+      "Aadarsh",
+      "API Testing",
+      "12/05/2024",
+      "05/05/2024",
+      "Submitted"
+    ),
   ];
 
   return (
@@ -37,8 +52,8 @@ const ReportTaskTable = () => {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) => (
-            <tr key={row.menteeName}>
+          {rows.map((row, index) => (
+            <tr key={index}>
               <td>{row.menteeName}</td>
               <td>{row.taskTitle}</td>
               <td>{row.assignedDate}</td>
@@ -52,4 +67,4 @@ const ReportTaskTable = () => {
   );
 };
 
-export default ReportTaskTable;
+export default PairReportTasksTable;
