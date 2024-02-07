@@ -8,6 +8,6 @@ export const fetchMenteeData = async (pageApi: number) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching active count:", error);
+    console.error("Error fetching mentees list", error);
   }
 };
