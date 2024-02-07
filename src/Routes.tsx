@@ -21,6 +21,7 @@ import MentorSelectedTask from "./pages/mentor/mentorselectedtask/MentorSelected
 import CreateTasks from "./pages/mentor/createtask/CreateTasks";
 import AdminDashboardHandler from "./pages/admin/dashboard/AdminDashboardHandle";
 import MentorDashboradHandler from "./pages/mentor/dashboard/MentorDashboardHandler";
+import MenteesListHandler from "./components/MenteesList/MenteesListHandler";
 
 const AppRoutes = () => {
   return (
