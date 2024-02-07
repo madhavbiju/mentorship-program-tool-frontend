@@ -1,39 +1,23 @@
 import axios from "axios";
-
-interface User {
-  id: string;
-  userName: string;
-  userInitials?: string; // Optional field to store user initials
-  userRoles: string[];
-  userJob: string;
-  userStatus: string;
-}
-
-interface UserDataFetched {
-  userList: User[];
-  totalCount: number;
-}
+import { User, UserDetailsResponse } from "../types"; // Assuming your types are exported from a 'types.ts' file
 
 function getUserInitials(userName: string): string {
   const names = userName.split(" ");
   if (names.length > 1) {
     return `${names[0][0]}${names[names.length - 1][0]}`.toUpperCase();
   }
-  // Fallback to just the first letter of the userName if it doesn't have a space
-  return userName[0].toUpperCase();
+  return userName[0].toUpperCase(); // Fallback to just the first letter
 }
 
-// Modify getUserDetails to accept a page parameter
 export async function getUserDetails(
   page: number = 1
-): Promise<UserDataFetched> {
+): Promise<UserDetailsResponse> {
   try {
-    // Use the page parameter in the request URL
-    const response = await axios.get(
+    const response = await axios.get<{ users: any[]; totalCount: number }>(
       `https://localhost:7259/api/admin/ByRole/all?pageNumber=${page}&pageSize=10`
     );
-    const usersData = response.data.users;
-    const totalCount = response.data.totalCount; // Assuming totalCount is directly accessible from response.data
+
+    const { users: usersData, totalCount } = response.data;
 
     const usersMap: { [key: string]: User } = {};
 
@@ -45,7 +29,7 @@ export async function getUserDetails(
         usersMap[id] = {
           id,
           userName: user.userName,
-          userInitials: getUserInitials(user.userName), // Use the helper function to get initials
+          userInitials: getUserInitials(user.userName),
           userRoles: [user.userRole],
           userJob: user.userJob,
           userStatus: user.userStatus,
@@ -55,13 +39,16 @@ export async function getUserDetails(
 
     const userList: User[] = Object.values(usersMap);
 
-    const userDataFetched: UserDataFetched = {
+    return {
       userList,
       totalCount,
     };
-
-    return userDataFetched;
   } catch (error) {
-    throw new Error(`Error fetching user details: ${error}`);
+    // Improved error handling
+    if (axios.isAxiosError(error)) {
+      throw new Error(`Axios error fetching user details: ${error.message}`);
+    } else {
+      throw new Error(`Unexpected error fetching user details: ${error}`);
+    }
   }
 }

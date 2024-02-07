@@ -1,6 +1,4 @@
 import { Box, Sheet, Skeleton, Table } from "@mui/joy";
-import React from "react";
-
 const UserPageSkeleton = () => {
   return (
     <Sheet
@@ -45,6 +43,31 @@ const UserPageSkeleton = () => {
                 <Skeleton variant="circular" width={30} height={30} />
                 <Box sx={{ minWidth: 100 }}>
                   <Skeleton level="body-xs" variant="text" width="92%" />
+                </Box>
+              </Box>
+            </td>
+            <td>
+              <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                <Box sx={{ minWidth: 100 }}>
+                  <Skeleton level="body-xs" variant="text" width="92%" />
+                </Box>
+              </Box>
+            </td>
+            <td>
+              <Skeleton level="body-xs" variant="text" width="92%" />
+            </td>
+            <td>
+              <Skeleton level="body-xs" variant="text" width="92%" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Skeleton level="body-xs" variant="text" width="92%" />
+            </td>
+            <td>
+              <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                <Skeleton variant="circular" width={30} height={30} />
+                <Box sx={{ minWidth: 100 }}>
                   <Skeleton level="body-xs" variant="text" width="92%" />
                 </Box>
               </Box>
@@ -72,19 +95,12 @@ const UserPageSkeleton = () => {
                 <Skeleton variant="circular" width={30} height={30} />
                 <Box sx={{ minWidth: 100 }}>
                   <Skeleton level="body-xs" variant="text" width="92%" />
-                  <Skeleton level="body-xs" variant="text" width="92%" />
                 </Box>
               </Box>
             </td>
             <td>
               <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                <Skeleton variant="circular" width={30} height={30} />
                 <Box sx={{ minWidth: 100 }}>
-                  <Skeleton
-                    level="body-xs"
-                    variant="text"
-                    width="92%"
-                  ></Skeleton>
                   <Skeleton level="body-xs" variant="text" width="92%" />
                 </Box>
               </Box>
@@ -105,19 +121,12 @@ const UserPageSkeleton = () => {
                 <Skeleton variant="circular" width={30} height={30} />
                 <Box sx={{ minWidth: 100 }}>
                   <Skeleton level="body-xs" variant="text" width="92%" />
-                  <Skeleton level="body-xs" variant="text" width="92%" />
                 </Box>
               </Box>
             </td>
             <td>
               <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                <Skeleton variant="circular" width={30} height={30} />
                 <Box sx={{ minWidth: 100 }}>
-                  <Skeleton
-                    level="body-xs"
-                    variant="text"
-                    width="92%"
-                  ></Skeleton>
                   <Skeleton level="body-xs" variant="text" width="92%" />
                 </Box>
               </Box>
@@ -138,19 +147,12 @@ const UserPageSkeleton = () => {
                 <Skeleton variant="circular" width={30} height={30} />
                 <Box sx={{ minWidth: 100 }}>
                   <Skeleton level="body-xs" variant="text" width="92%" />
-                  <Skeleton level="body-xs" variant="text" width="92%" />
                 </Box>
               </Box>
             </td>
             <td>
               <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                <Skeleton variant="circular" width={30} height={30} />
                 <Box sx={{ minWidth: 100 }}>
-                  <Skeleton
-                    level="body-xs"
-                    variant="text"
-                    width="92%"
-                  ></Skeleton>
                   <Skeleton level="body-xs" variant="text" width="92%" />
                 </Box>
               </Box>
@@ -171,52 +173,12 @@ const UserPageSkeleton = () => {
                 <Skeleton variant="circular" width={30} height={30} />
                 <Box sx={{ minWidth: 100 }}>
                   <Skeleton level="body-xs" variant="text" width="92%" />
-                  <Skeleton level="body-xs" variant="text" width="92%" />
                 </Box>
               </Box>
             </td>
             <td>
               <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                <Skeleton variant="circular" width={30} height={30} />
                 <Box sx={{ minWidth: 100 }}>
-                  <Skeleton
-                    level="body-xs"
-                    variant="text"
-                    width="92%"
-                  ></Skeleton>
-                  <Skeleton level="body-xs" variant="text" width="92%" />
-                </Box>
-              </Box>
-            </td>
-            <td>
-              <Skeleton level="body-xs" variant="text" width="92%" />
-            </td>
-            <td>
-              <Skeleton level="body-xs" variant="text" width="92%" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <Skeleton level="body-xs" variant="text" width="92%" />
-            </td>
-            <td>
-              <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                <Skeleton variant="circular" width={30} height={30} />
-                <Box sx={{ minWidth: 100 }}>
-                  <Skeleton level="body-xs" variant="text" width="92%" />
-                  <Skeleton level="body-xs" variant="text" width="92%" />
-                </Box>
-              </Box>
-            </td>
-            <td>
-              <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                <Skeleton variant="circular" width={30} height={30} />
-                <Box sx={{ minWidth: 100 }}>
-                  <Skeleton
-                    level="body-xs"
-                    variant="text"
-                    width="92%"
-                  ></Skeleton>
                   <Skeleton level="body-xs" variant="text" width="92%" />
                 </Box>
               </Box>
