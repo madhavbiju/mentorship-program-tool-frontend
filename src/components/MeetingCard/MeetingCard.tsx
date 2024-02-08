@@ -1,11 +1,15 @@
 import { Box, List, ListItem, ListDivider } from "@mui/joy";
 
 const meetingListData = [
-  { meetingName: "Meeting1", time: "12:10", date: "12/02/2024" },
-  { meetingName: "Meeting2", time: "11:10", date: "13/02/2024" },
-  { meetingName: "Meeting3", time: "10:10", date: "14/02/2024" },
-  { meetingName: "Meeting4", time: "11:10", date: "13/02/2024" },
-  { meetingName: "Meeting5", time: "10:10", date: "14/02/2024" },
+  { meetingName: "Interm Meeting", time: "12:10pm", date: "12/02/2024" },
+  { meetingName: "Buddy Meeting", time: "11:10am", date: "13/02/2024" },
+  { meetingName: "Buddy Meeting", time: "10:10am", date: "14/02/2024" },
+  {
+    meetingName: "Sprint plannning Meeting",
+    time: "11:10am",
+    date: "13/02/2024",
+  },
+  { meetingName: "Interm Meeting", time: "10:10am", date: "14/02/2024" },
   // { meetingName: "Meeting6", time: "11:10", date: "13/02/2024" },
   // { meetingName: "Meeting7", time: "10:10", date: "14/02/2024" },
 ];
