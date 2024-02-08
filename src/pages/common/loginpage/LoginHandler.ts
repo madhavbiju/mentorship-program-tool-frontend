@@ -1,3 +1,4 @@
+import React, { useState } from "react"; // Import useState
 import { useMsal } from "@azure/msal-react";
 import { useNavigate } from "react-router-dom";
 import { useUserRole } from "./Context/UserRoleContext";
@@ -8,8 +9,10 @@ const useLoginHandler = (onLoginSuccess: () => void) => {
   const navigate = useNavigate();
   const { instance } = useMsal();
   const { setUserRoles } = useUserRole();
+  const [loading, setLoading] = useState(false); // Loading state
 
   const handleLogin = async (loginType: string) => {
+    setLoading(true); // Enable loading
     if (loginType === "popup") {
       try {
         const response = await instance.loginPopup(loginRequest);
@@ -23,11 +26,13 @@ const useLoginHandler = (onLoginSuccess: () => void) => {
         onLoginSuccess();
       } catch (e) {
         console.error(e);
+      } finally {
+        setLoading(false); // Disable loading regardless of outcome
       }
     }
   };
 
-  return { handleLogin };
+  return { handleLogin, loading }; // Return loading state
 };
 
 export default useLoginHandler;

@@ -5,14 +5,15 @@ import PaginationIcons from "../Pagination/PaginationIcons";
 import RequestBox from "./RequestBox";
 import { fetchRequestData } from "./Api/GetRequestData";
 import RequestBoxSkeleton from "./RequestBoxSkeleton";
+import { requests } from "./Types";
 
 const RequestBoxHandler: React.FC = () => {
   const [requestData, setRequestData] = useState<{
-    users: User[];
-    total: number;
+    requests: requests[];
+    totalCount: number;
   }>({
-    users: [],
-    total: 0,
+    requests: [],
+    totalCount: 0,
   });
   const [pageApi, setPageApi] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -48,15 +49,18 @@ const RequestBoxHandler: React.FC = () => {
           Requests
         </Typography>
         <PaginationIcons
-          total={requestData.total}
-          perPage={4}
+          total={requestData.totalCount}
+          perPage={3}
           setPageApi={setPageApi}
         />
       </Stack>
       {isLoading ? ( // Render skeleton if loading
         <RequestBoxSkeleton />
       ) : (
-        <RequestBox users={requestData.users} />
+        <RequestBox
+          request={requestData.requests}
+          totalCount={requestData.totalCount}
+        />
       )}
     </>
   );

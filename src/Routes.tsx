@@ -19,12 +19,12 @@ import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from "./Authentication/authConfig";
 import { UserRoleProvider } from "./pages/common/loginpage/Context/UserRoleContext";
-import ProtectedRoute from "./pages/common/loginpage/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import LoginPage from "./pages/common/loginpage/LoginPage";
 
 const msalInstance = new PublicClientApplication(msalConfig);
 import MentorDashboradHandler from "./pages/mentor/dashboard/MentorDashboardHandler";
-import MenteesListHandler from "./components/MenteesList/MenteesListHandler";
+import ViewUsers from "./pages/admin/user/ViewUsers";
 
 const AppRoutes = () => {
   return (
@@ -42,6 +42,7 @@ const AppRoutes = () => {
           >
             <Route path="home" element={<AdminDashboardHandler />} />
             <Route path="pairs" element={<OrderTable />} />
+            <Route path="users" element={<ViewUsers />} />
             <Route path="report" element={<AdminReportPage />} />
             <Route path="report/overall" element={<AdminReport />} />
             <Route path="report/mentor" element={<MentorReport />} />
