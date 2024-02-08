@@ -1,7 +1,7 @@
 import { Box, List, ListItem, ListDivider } from "@mui/joy";
 
 const meetingListData = [
-  { meetingName: "Interm Meeting", time: "12:10pm", date: "12/02/2024" },
+  { meetingName: "Interim Meeting", time: "12:10pm", date: "12/02/2024" },
   { meetingName: "Buddy Meeting", time: "11:10am", date: "13/02/2024" },
   { meetingName: "Buddy Meeting", time: "10:10am", date: "14/02/2024" },
   {
