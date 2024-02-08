@@ -1,34 +1,33 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
-import PaginationButtons from "../Pagination/Pagination";
-import DashboardTable from "./DashboardTable"; // assuming you have this component
-import { fetchProgramData } from "./Api/GetProgramData";
 import PaginationIcons from "../Pagination/PaginationIcons";
 import DashboardTableSkeleton from "./DashboardTableSkeleton";
+import DashboardTable from "./DashboardTable";
+import { programs } from "./Types";
+import { fetchProgramData } from "./Api/GetProgramData";
 
 const DashboardTableHandler: React.FC = () => {
-  const [programData, setProgramData] = useState<{
-    users: User[];
-    total: number;
+  const [programData, settaskData] = useState<{
+    programs: programs[];
+    totalCount: number;
   }>({
-    users: [],
-    total: 0,
+    programs: [],
+    totalCount: 0,
   });
   const [pageApi, setPageApi] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const getProgramData = async () => {
+  const getprogramdata = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
     let response = await fetchProgramData(pageApi);
-    setProgramData(response);
+    settaskData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
-    getProgramData();
+    getprogramdata();
   }, [pageApi]);
-
   return (
     <>
       <Stack
@@ -50,7 +49,7 @@ const DashboardTableHandler: React.FC = () => {
           Programs
         </Typography>
         <PaginationIcons
-          total={programData.total}
+          total={programData.totalCount}
           perPage={5}
           setPageApi={setPageApi}
         />
@@ -58,7 +57,7 @@ const DashboardTableHandler: React.FC = () => {
       {isLoading ? ( // Render skeleton if loading
         <DashboardTableSkeleton />
       ) : (
-        <DashboardTable users={programData.users} />
+        <DashboardTable program={programData.programs} totalCount={pageApi} />
       )}
     </>
   );

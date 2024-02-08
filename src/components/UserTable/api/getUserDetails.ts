@@ -14,7 +14,7 @@ export async function getUserDetails(
 ): Promise<UserDetailsResponse> {
   try {
     const response = await axios.get<{ users: any[]; totalCount: number }>(
-      `https://localhost:7259/api/admin/ByRole/all?pageNumber=${page}&pageSize=10`
+      `https://localhost:7259/api/admin/ByRole/all?pageNumber=${page}&pageSize=5`
     );
 
     const { users: usersData, totalCount } = response.data;
