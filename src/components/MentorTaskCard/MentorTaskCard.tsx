@@ -13,34 +13,16 @@ import React from "react";
 
 const taskData = [
   {
-    menteeName: "Mentee1",
+    menteeName: "Binoy",
     taskName: "task1",
-    dueDate: "12/11/2024",
+    dueDate: "12/02/2024",
     status: "In progress",
   },
   {
-    menteeName: "Mentee2",
+    menteeName: "Joyal",
     taskName: "task2",
-    dueDate: "13/11/2024",
+    dueDate: "13/02/2024",
     status: "In progress",
-  },
-  {
-    menteeName: "Mentee3",
-    taskName: "task3",
-    dueDate: "14/11/2024",
-    status: "In progress",
-  },
-  {
-    menteeName: "Mentee4",
-    taskName: "task4",
-    dueDate: "02/11/2024",
-    status: "Completed",
-  },
-  {
-    menteeName: "Mentee5",
-    taskName: "task5",
-    dueDate: "02/11/2024",
-    status: "Completed",
   },
 ];
 
