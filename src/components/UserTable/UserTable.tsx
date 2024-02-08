@@ -40,7 +40,7 @@ export default function UserTable({ userList }: UserTableProps) {
           <tr>
             <th style={{ width: 240, padding: "12px 6px" }}>Sl No.</th>
             <th style={{ width: 240, padding: "12px 6px" }}>Customer</th>
-            <th style={{ width: 140, padding: "12px 6px" }}>Date</th>
+            <th style={{ width: 140, padding: "12px 6px" }}>Job </th>
             <th style={{ width: 140, padding: "12px 6px" }}>Status</th>
             <th style={{ width: 140, padding: "12px 6px" }}> </th>
           </tr>
