@@ -5,7 +5,7 @@ const meetingListData = [
   { meetingName: "Buddy Meeting", time: "11:10am", date: "13/02/2024" },
   { meetingName: "Buddy Meeting", time: "10:10am", date: "14/02/2024" },
   {
-    meetingName: "Sprint plannning Meeting",
+    meetingName: "Scrum Meeting",
     time: "11:10am",
     date: "13/02/2024",
   },
