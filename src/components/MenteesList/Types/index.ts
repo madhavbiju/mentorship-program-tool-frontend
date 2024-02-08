@@ -3,7 +3,7 @@ export interface Mentee {
   firstName: string;
   lastName: string;
   programName: string;
-  endDate: Date;
+  endDate: string;
   // Add other fields as needed
 }
 export interface MenteesProps {
