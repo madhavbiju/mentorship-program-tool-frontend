@@ -28,7 +28,14 @@ const menteesData = [
   },
 ];
 
-const MenteesListCard = ({ mentees,totalCount }: MenteesProps) => {
+const MenteesListCard = ({ mentees, totalCount }: MenteesProps) => {
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month indexes are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
   return (
     <Grid xs={12}>
       {mentees.map((Mentee) => (
@@ -90,7 +97,7 @@ const MenteesListCard = ({ mentees,totalCount }: MenteesProps) => {
               End date
             </Typography>
             <ListItem sx={{ paddingTop: 1.5 }}>
-              {Mentee.endDate as any}
+              {formatDate(Mentee.endDate)}
             </ListItem>
           </Stack>
         </List>

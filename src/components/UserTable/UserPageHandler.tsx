@@ -49,7 +49,7 @@ const UserPageHandler: React.FC = () => {
         <br />
         <PaginationButtons
           total={totalCount}
-          perPage={5}
+          perPage={13}
           setPageApi={setPageApi}
         />
       </Stack>
