@@ -120,8 +120,8 @@ const MentorTask = () => {
           placeholder="Filter by"
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
-          <Option value="ProgramName">Asc Prgm</Option>
-          <Option value="ProgramName_desc">Des Prgm</Option>
+          <Option value="Inprogress">In progress</Option>
+          <Option value="Completed">Completed</Option>
         </Select>
       </Box>
 
