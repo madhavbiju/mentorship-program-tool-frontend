@@ -8,7 +8,7 @@ export const fetchTaskData = async (
   try {
     const response = await axios.get(
       // `https://localhost:7259/api/task/Mentor/2,0?page=${pageApi}`a
-      ` https://localhost:7259/api/task/Mentor/2,0?page=${pageApi}&sortBy=${selectedSortOption}`
+      ` https://localhost:7259/api/task/Mentor/2,${selectedFilterOption}?page=${pageApi}&sortBy=${selectedSortOption}`
     );
     return response.data;
   } catch (error) {

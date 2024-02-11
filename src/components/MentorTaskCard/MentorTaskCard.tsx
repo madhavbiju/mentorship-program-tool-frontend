@@ -98,7 +98,9 @@ const MentorTaskCard = ({ tasks }: TaskProps) => {
             >
               Status
             </Typography>
-            <ListItem sx={{ color: "blue" }}>In progress</ListItem>
+            <ListItem sx={{ color: "blue" }}>
+            {Tasks.taskStatus === 1 ? "In Progress" : Tasks.taskStatus === 6 ? "Completed" : ""}
+              </ListItem>
           </Stack>
         </List>
       ))}
