@@ -10,6 +10,7 @@ import {
 } from "@mui/joy";
 import Grid from "@mui/joy/Grid";
 import React from "react";
+import { TaskProps } from "./Types";
 
 const taskData = [
   {
@@ -26,10 +27,17 @@ const taskData = [
   },
 ];
 
-const MentorTaskCard = () => {
+const MentorTaskCard = ({ tasks, totalCount }: TaskProps) => {
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month indexes are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
   return (
     <Grid xs={12} md={12}>
-      {taskData.map((data) => (
+      {tasks.map((Tasks) => (
         <List
           orientation="horizontal"
           variant="soft"
@@ -38,7 +46,7 @@ const MentorTaskCard = () => {
             "--ListItem-paddingY": "1rem",
             borderRadius: "sm",
             py: "2%",
-            mb:"1rem",
+            mb: "1rem",
             display: "flex",
             justifyContent: "space-around",
             // "&:hover": {
@@ -56,12 +64,13 @@ const MentorTaskCard = () => {
             </Typography>
             <ListItem>
               <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                {data.menteeName}
+                <Typography>{Tasks.menteeFirstName}</Typography>
+                <Typography>{Tasks.menteeLastName}</Typography>
               </Typography>
             </ListItem>
           </Stack>
 
-          <ListDivider inset="gutter" />
+          {/* <ListDivider inset="gutter" /> */}
           <Stack>
             <Typography
               level="body-sm"
@@ -72,12 +81,12 @@ const MentorTaskCard = () => {
             </Typography>
             <ListItem>
               <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                {data.taskName}
+                {Tasks.taskName}
               </Typography>
             </ListItem>
           </Stack>
 
-          <ListDivider inset="gutter" />
+          {/* <ListDivider inset="gutter" /> */}
 
           <Stack>
             <Typography
@@ -89,12 +98,12 @@ const MentorTaskCard = () => {
             </Typography>
             <ListItem>
               <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                {data.dueDate}
+                {formatDate(Tasks.endDate)}
               </Typography>
             </ListItem>
           </Stack>
 
-          <ListDivider inset="gutter" />
+          {/* <ListDivider inset="gutter" /> */}
 
           <Stack>
             <Typography
@@ -104,7 +113,7 @@ const MentorTaskCard = () => {
             >
               Status
             </Typography>
-            <ListItem sx={{ color: "blue" }}>{data.status}</ListItem>
+            <ListItem sx={{ color: "blue" }}>In progress</ListItem>
           </Stack>
         </List>
       ))}
