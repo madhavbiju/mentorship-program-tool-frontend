@@ -90,7 +90,7 @@ const MenteesListCard = ({ mentees, totalCount }: MenteesProps) => {
 
           <Stack>
             <Typography
-              sx={{ display: "flex", justifyContent: "center" }}
+              sx={{ display: "flex", justifyContent: "center",color: "red"  }}
               level="body-sm"
               style={{ fontSize: "10px" }}
             >
