@@ -19,6 +19,7 @@ import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import MenteeDropDownHandler from "../../../components/SelectMenteeDropDown/SelectMenteeDropDownHandler";
+import "moment/locale/en-gb";
 
 interface CreateMeetingProps {
   onSchedule: () => void;
@@ -30,9 +31,34 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
   onChange,
 }) => {
   const [programID, setProgramID] = useState(0);
+  const [meetingDetails, setMeetingDetails] = useState({
+    title: "",
+    scheduleDate: null,
+    startTime: null,
+    endTime: null,
+    agenda: "",
+  });
+
   useEffect(() => {
     onChange("programID", programID);
   }, [programID]);
+
+  // Check if all fields are filled
+  const isAllFieldsFilled = () => {
+    return Object.values(meetingDetails).every(
+      (value) => Boolean(value) || value === 0
+    );
+  };
+
+  // Handle changes to the meeting details
+  const handleMeetingDetailsChange = (key: string, value: any) => {
+    setMeetingDetails((prevDetails) => ({
+      ...prevDetails,
+      [key]: value,
+    }));
+    onChange(key, value);
+  };
+
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -78,11 +104,16 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
           <Typography level="h4">Title</Typography>
           <Textarea
             variant="outlined"
-            onChange={(e) => onChange("title", e.target.value)}
+            onChange={(e) =>
+              handleMeetingDetailsChange("title", e.target.value)
+            }
           />
         </Stack>
         <Grid container columnGap={1}>
-          <LocalizationProvider dateAdapter={AdapterMoment}>
+          <LocalizationProvider
+            dateAdapter={AdapterMoment}
+            adapterLocale="en-gb"
+          >
             <Stack>
               <Typography level="h4">Date</Typography>
               <DatePicker
@@ -92,7 +123,9 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
                     borderColor: "transparent",
                   },
                 }}
-                onChange={(value) => onChange("date", value)}
+                onChange={(value) =>
+                  handleMeetingDetailsChange("scheduleDate", value)
+                }
               />
             </Stack>
             <Stack>
@@ -111,7 +144,9 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
                       borderColor: "transparent",
                     },
                   }}
-                  onChange={(value) => onChange("startTime", value)}
+                  onChange={(value) =>
+                    handleMeetingDetailsChange("startTime", value)
+                  }
                 />
                 <TimePicker
                   label="End Time"
@@ -121,7 +156,9 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
                       borderColor: "transparent",
                     },
                   }}
-                  onChange={(value) => onChange("endTime", value)}
+                  onChange={(value) =>
+                    handleMeetingDetailsChange("endTime", value)
+                  }
                 />
               </Grid>
             </Stack>
@@ -133,11 +170,15 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
             variant="outlined"
             minRows={4}
             sx={{ width: "60%" }}
-            onChange={(e) => onChange("agenda", e.target.value)}
+            onChange={(e) =>
+              handleMeetingDetailsChange("agenda", e.target.value)
+            }
           />
         </Stack>
         <Stack>
-          <Button onClick={onSchedule}>Schedule</Button>
+          <Button disabled={!isAllFieldsFilled()} onClick={onSchedule}>
+            Schedule
+          </Button>
         </Stack>
       </Grid>
     </>

@@ -31,9 +31,14 @@ const CalendarHandler: React.FC = () => {
     setEventData(response);
     // Map eventData to ExtendedEvent format
     const formattedData = response.map((eventList: eventList) => {
-      const scheduleDateMoment = moment(eventList.scheduleDate);
-      const startTimeMoment = moment(eventList.startTime);
-      const endTimeMoment = moment(eventList.endTime);
+      const scheduleDateMoment = moment.utc(eventList.scheduleDate); // Parse UTC date
+      const startTimeMoment = moment.utc(eventList.startTime); // Parse UTC start time
+      const endTimeMoment = moment.utc(eventList.endTime); // Parse UTC end time
+
+      // Convert UTC dates to local time zone
+      scheduleDateMoment.local();
+      startTimeMoment.local();
+      endTimeMoment.local();
 
       // Extract date, start time, and end time
       const date = scheduleDateMoment.format("YYYY-MM-DD");
