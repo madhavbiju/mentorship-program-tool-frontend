@@ -12,22 +12,7 @@ import Grid from "@mui/joy/Grid";
 import React from "react";
 import { TaskProps } from "./Types";
 
-const taskData = [
-  {
-    menteeName: "Binoy",
-    taskName: "task1",
-    dueDate: "12/02/2024",
-    status: "In progress",
-  },
-  {
-    menteeName: "Joyal",
-    taskName: "task2",
-    dueDate: "13/02/2024",
-    status: "In progress",
-  },
-];
-
-const MentorTaskCard = ({ tasks, totalCount }: TaskProps) => {
+const MentorTaskCard = ({ tasks }: TaskProps) => {
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const day = date.getDate();

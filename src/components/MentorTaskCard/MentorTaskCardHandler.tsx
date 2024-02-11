@@ -5,7 +5,7 @@ import MentorDashboardSkeleton from "../../pages/mentor/dashboard/MentorDashboar
 import { fetchTaskData } from "./Api/getTaskData";
 import PaginationButtons from "../Pagination/Pagination";
 
-const MentorTaskCardHandler = () => {
+const MentorTaskCardHandler = ({selectedSortOption,selectedFilterOption}:any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [menteeTaskData, setMenteeTaskData] = useState<{
     tasks: Tasks[];
@@ -18,14 +18,14 @@ const MentorTaskCardHandler = () => {
 
   const getTaskData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchTaskData(pageApi);
+    let response = await fetchTaskData(pageApi,selectedSortOption,selectedFilterOption);
     setMenteeTaskData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
     getTaskData();
-  }, [pageApi]);
+  }, [pageApi,selectedSortOption,selectedFilterOption]);
 
   return (
     <>
