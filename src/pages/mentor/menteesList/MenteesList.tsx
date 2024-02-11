@@ -3,6 +3,7 @@ import {
   Breadcrumbs,
   Button,
   Dropdown,
+  FormLabel,
   Link,
   Menu,
   MenuButton,
@@ -56,43 +57,32 @@ const MenteesList = () => {
         <Typography level="h2" component="h1">
           Mentees
         </Typography>
-        
       </Box>
+
       <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
-        <Dropdown>
-          <MenuButton color="primary" sx={{ borderRadius: 10, px: "3%" }}>
-            Sort
-          </MenuButton>
-          <Menu>
-            <MenuItem>Choose item</MenuItem>
-            <MenuList>Add item</MenuList>
-            <MenuList>Add item</MenuList>
-          </Menu>
-        </Dropdown>
-        <Dropdown>
-          <MenuButton
-            color="primary"
-            sx={{ borderRadius: 10, mx: "3%", px: "3%" }}
-          >
-            Filter
-          </MenuButton>
-          <Menu>
-            <MenuItem>Choose item</MenuItem>
-            <MenuList>Add item</MenuList>
-            <MenuList>Add item</MenuList>
-          </Menu>
-        </Dropdown>
+        <FormLabel>Sort By</FormLabel>
+        <Select
+          size="sm"
+          placeholder="Sort by"
+          slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
+        >
+          <Option value="ascendingProgram">Asc Prgm</Option>
+          <Option value="descendingProgram">Des Prgm</Option>
+          <Option value="ascendingEndDate">Asc Date</Option>
+          <Option value="descendingEndDate">Desc Date</Option>
+        </Select>
+
+        <FormLabel sx={{ ml: 1 }}>Filter</FormLabel>
+        <Select size="sm" placeholder="Filter by ">
+          <Option value="program">Program</Option>
+          <Option value="endDate">EndDate</Option>
+        </Select>
       </Box>
+
       <Grid container spacing={1} sx={{ my: "5%" }}>
         <Grid item xs={12} sm={12} md={12}>
           <MenteesListHandler />
         </Grid>
-        {/* <Grid item xs={12} sm={12} md={12}>
-          <MenteesListCard />
-        </Grid>
-        <Grid item xs={12} sm={12} md={12}>
-          <MenteesListCard />
-        </Grid> */}
       </Grid>
     </Box>
   );
