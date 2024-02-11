@@ -5,7 +5,9 @@ import { fetchMenteeData } from "./Api/getMenteeData";
 import PaginationButtons from "../Pagination/Pagination";
 import MentorDashboardSkeleton from "../../pages/mentor/dashboard/MentorDashboardSkeleton";
 
-const MenteesListHandler = () => {
+const MenteesListHandler = ({selectedSortOption,selectedFilterOption}:any) => {
+
+  console.log(selectedSortOption)
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [menteeData, setMenteeData] = useState<{
     mentees: Mentee[];
@@ -18,14 +20,14 @@ const MenteesListHandler = () => {
 
   const getMenteeData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchMenteeData(pageApi);
+    let response = await fetchMenteeData(pageApi,selectedSortOption,selectedFilterOption);
     setMenteeData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
     getMenteeData();
-  }, [pageApi]);
+  }, [pageApi, selectedSortOption, selectedFilterOption]);
 
   return (
     <>

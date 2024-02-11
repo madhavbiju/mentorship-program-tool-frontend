@@ -11,7 +11,7 @@ import {
   MenuList,
   Typography,
 } from "@mui/joy";
-import React from "react";
+import React, { useState } from "react";
 import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
 import Grid from "@mui/material/Grid";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
@@ -21,6 +21,19 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 
 const MenteesList = () => {
+  const [selectedSortOption, setSelectedSortOption] = useState("");
+  const [selectedFilterOption, setFilterSortOption] = useState("");
+
+  const handleSort = (selectedOption: string) => {
+    setSelectedSortOption(selectedOption);
+    console.log(selectedOption);
+  };
+
+  const handleFilter = (e: any) => {
+    const selectedOption = e.target.value;
+    setFilterSortOption(selectedOption);
+  };
+
   return (
     <Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -64,24 +77,44 @@ const MenteesList = () => {
         <Select
           size="sm"
           placeholder="Sort by"
+          // onChange={handleSort}
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
-          <Option value="ascendingProgram">Asc Prgm</Option>
-          <Option value="descendingProgram">Des Prgm</Option>
-          <Option value="ascendingEndDate">Asc Date</Option>
-          <Option value="descendingEndDate">Desc Date</Option>
+          <Option
+            value="ProgramName"
+            onClick={() => handleSort("ProgramName")}
+          >
+            Asc Prgm
+          </Option>
+          <Option
+            value="ProgramName_desc"
+            onClick={() => handleSort("ProgramName_desc")}
+          >
+            Des Prgm
+          </Option>
+          <Option value="endDate" onClick={() => handleSort("endDate")}>
+            Asc Date
+          </Option>
+          <Option
+            value="endDate_desc"
+            onClick={() => handleSort("endDate_desc")}
+          >
+            Desc Date
+          </Option>
         </Select>
 
         <FormLabel sx={{ ml: 1 }}>Filter</FormLabel>
-        <Select size="sm" placeholder="Filter by ">
+        <Select size="sm" placeholder="Filter by " onChange={handleFilter}>
           <Option value="program">Program</Option>
-          <Option value="endDate">EndDate</Option>
         </Select>
       </Box>
 
       <Grid container spacing={1} sx={{ my: "5%" }}>
         <Grid item xs={12} sm={12} md={12}>
-          <MenteesListHandler />
+          <MenteesListHandler
+            selectedSortOption={selectedSortOption}
+            selectedFilterOption={selectedFilterOption}
+          />
         </Grid>
       </Grid>
     </Box>
