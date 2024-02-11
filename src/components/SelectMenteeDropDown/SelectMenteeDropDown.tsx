@@ -1,17 +1,26 @@
+// SelectMenteeDropDown.tsx
 import React from "react";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
 
-const SelectMenteeDropDown = () => {
+interface Props {
+  isLoading: boolean;
+  menteesData: { mentees: any[] };
+}
+
+const SelectMenteeDropDown: React.FC<Props> = ({ isLoading, menteesData }) => {
   return (
     <div>
-      <Select placeholder="Mentee" size="sm">
-        <Option value="John">John</Option>
-        <Option value="Alice">Alice</Option>
-        <Option value="Bob">Bob</Option>
-        <Option value="Eve">Eve</Option>
-        <Option value="Charlie">Charlie</Option>
-      </Select>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <select>
+          <option value="">Select Mentee</option>
+          {menteesData.mentees.map((mentee) => (
+            <option key={mentee.employeeID} value={mentee.employeeID}>
+              {mentee.firstName} {mentee.lastName}
+            </option>
+          ))}
+        </select>
+      )}
     </div>
   );
 };

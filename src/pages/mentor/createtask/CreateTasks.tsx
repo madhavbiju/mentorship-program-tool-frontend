@@ -4,6 +4,7 @@ import SelectMenteeDropDown from "../../../components/SelectMenteeDropDown/Selec
 import SetEndDate from "../../../components/CourseSetDate/SetEndDate";
 import FileUploadButton from "../../../components/FileUploadButton.tsx/FileUploadButton";
 import { DatePicker } from "@mui/x-date-pickers";
+import SelectMenteeDropDownHandler from "../../../components/SelectMenteeDropDown/SelectMenteeDropDownAPIHandler";
 
 const CreateTasks = () => {
   return (
@@ -13,7 +14,7 @@ const CreateTasks = () => {
       </Grid>
       <Grid xs={12} lg={12}>
         <br />
-        <SelectMenteeDropDown />
+        <SelectMenteeDropDownHandler />
       </Grid>
       <br />
       <Grid lg={10} xs={12}>
