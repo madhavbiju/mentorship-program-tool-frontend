@@ -80,10 +80,7 @@ const MenteesList = () => {
           // onChange={handleSort}
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
-          <Option
-            value="ProgramName"
-            onClick={() => handleSort("ProgramName")}
-          >
+          <Option value="ProgramName" onClick={() => handleSort("ProgramName")}>
             Asc Prgm
           </Option>
           <Option
@@ -102,11 +99,6 @@ const MenteesList = () => {
             Desc Date
           </Option>
         </Select>
-
-        {/* <FormLabel sx={{ ml: 1 }}>Filter</FormLabel>
-        <Select size="sm" placeholder="Filter by " onChange={handleFilter}>
-          <Option value="program">Program</Option>
-        </Select> */}
       </Box>
 
       <Grid container spacing={1} sx={{ my: "5%" }}>

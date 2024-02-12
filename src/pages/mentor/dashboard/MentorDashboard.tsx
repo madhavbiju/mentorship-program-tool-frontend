@@ -6,6 +6,7 @@ import MeetingCard from "../../../components/MeetingCard/MeetingCard";
 import SubmittedTask from "../../../components/SubmittedTasks/SubmittedTask";
 import { Grid } from "@mui/material";
 import { ActiveMenteeCountData } from "./Types";
+import MeetingCardHandler from "../../../components/MeetingCard/MeetingCardHandler";
 
 const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
   return (
@@ -38,14 +39,8 @@ const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
           </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <MeetingCard />
+              <MeetingCardHandler />
             </Grid>
-            {/* <Grid item xs={12}>
-              <MeetingCard />
-            </Grid>
-            <Grid item xs={12}>
-              <MeetingCard />
-            </Grid> */}
           </Grid>
         </Grid>
         <Grid item xs={12} lg={6} sx={{ marginBottom: "2%" }}>
