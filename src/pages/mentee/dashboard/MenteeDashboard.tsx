@@ -11,7 +11,7 @@ const MenteeDashboard = () => {
     <Box>
       <Grid sx={{ display: "flex", alignItems: "center" }}>
         <Grid xs={12} lg={6}>
-          <GreetCard name={"Mentee"} />
+          <GreetCard />
         </Grid>
         <Grid xs={12} lg={6}>
           <MentorAndProgramCard

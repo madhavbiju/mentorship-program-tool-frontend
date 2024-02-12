@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AspectRatio, Box, Stack, Typography } from "@mui/joy";
+import { decodeToken } from "../../apiHandler/Decoder";
 
-interface GreetCardProps {
-  name: string;
-}
+const GreetCard = () => {
+  const [name, setName] = useState("");
 
-const GreetCard = ({ name }: GreetCardProps) => {
+  useEffect(() => {
+    const token = sessionStorage.getItem("jwtToken");
+    if (token) {
+      const decoded = decodeToken(token);
+      if (decoded && decoded.name) {
+        setName(decoded.name);
+      }
+    }
+  }, []);
   return (
     <Box
       sx={{
