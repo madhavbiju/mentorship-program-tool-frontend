@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import MenteeSearch from "../SearchForMentee/MenteeSearch";
 import { fetchMentorData } from "./Api/getMenteeData";
-import { Mentors } from "./Types";
+import { MentorIdProps, Mentors } from "./Types";
 import MentorSearch from "./MentorSearch";
 
-const MenteeSearchHandler = () => {
+const MentorSearchHandler = ({ setMentorID }: MentorIdProps) => {
   const [mentorData, setMentorData] = useState<{
     mentors: Mentors[];
   }>({
@@ -27,11 +27,9 @@ const MenteeSearchHandler = () => {
   }, []);
   return (
     <>
-      <MentorSearch mentors={mentorData.mentors} />
-      {console.log("hello")}
-      {console.log(mentorData.mentors)}
+      <MentorSearch mentors={mentorData.mentors} setMentorID={setMentorID} />
     </>
   );
 };
 
-export default MenteeSearchHandler;
+export default MentorSearchHandler;

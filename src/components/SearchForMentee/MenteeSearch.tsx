@@ -12,11 +12,25 @@ import Stack from "@mui/joy/Stack";
 import { useState } from "react";
 import { MenteesProps } from "./Types";
 
-const MenteeSearch = ({ mentees }: MenteesProps) => {
+const MenteeSearch = ({ mentees, setMenteeID }: MenteesProps) => {
   const [layout, setLayout] = React.useState<
     ModalDialogProps["layout"] | undefined //layout initial value is undefined
   >(undefined);
-  const [selectedMentee, setSelectedMentee] = useState<string>();
+  const [selectedMentee, setSelectedMentee] = useState<string>("");
+
+  const handleMenteeSelect = (value: string) => {
+    setSelectedMentee(value);
+    setLayout(undefined); // Close the modal
+    // Here, you should set the employee ID based on the selected mentor
+    // You need to find the corresponding mentor object first
+    const selectedMentorObject = mentees.find(
+      (mentee) => `${mentee.firstName} ${mentee.lastName}` === value
+    );
+    if (selectedMentorObject) {
+      setMenteeID(selectedMentorObject.employeeID);
+    }
+  };
+
   return (
     <Grid container justifyContent="center">
       <Grid xs={12} sm={10}>
@@ -65,7 +79,9 @@ const MenteeSearch = ({ mentees }: MenteesProps) => {
                           (option) => `${option.firstName} ${option.lastName}`
                         )}
                         onChange={(event, value) => {
-                          setSelectedMentee(value), setLayout(undefined);
+                          if (value) {
+                            handleMenteeSelect(value); // value.label contains the selected mentee's name
+                          }
                         }}
                       />
                     </FormControl>

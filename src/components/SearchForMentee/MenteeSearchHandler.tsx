@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MenteeSearch from "../SearchForMentee/MenteeSearch";
 import { fetchMenteeData } from "./Api/getMenteeData";
-import { Mentees } from "./Types";
+import { MenteeIdProps, Mentees } from "./Types";
 
-const MenteeSearchHandler = () => {
+const MenteeSearchHandler = ({ setMenteeID }: MenteeIdProps) => {
   const [menteeData, setMenteeData] = useState<{
     mentees: Mentees[];
   }>({
@@ -22,7 +22,7 @@ const MenteeSearchHandler = () => {
   }, []);
   return (
     <>
-      <MenteeSearch mentees={menteeData.mentees} />
+      <MenteeSearch mentees={menteeData.mentees} setMenteeID={setMenteeID} />
       {console.log(menteeData.mentees)}
     </>
   );

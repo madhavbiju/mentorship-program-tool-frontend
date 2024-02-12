@@ -19,8 +19,21 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import OrderTable from "../pairs/Pairs";
 import MentorSearchHandler from "../../../components/SearchForMentor/MentorSearchHandler";
 import MenteeSearchHandler from "../../../components/SearchForMentee/MenteeSearchHandler";
+import { useEffect, useState } from "react";
 
 const CreatePairCard = () => {
+  const [mentorID, setMentorID] = useState(0);
+  const [menteeID, setMenteeID] = useState(0);
+  {
+    useEffect(() => {
+      console.log("Updated mentoridd:", mentorID);
+    }, [mentorID]);
+
+    useEffect(() => {
+      console.log("Updated menteeidd:", menteeID);
+    }, [menteeID]);
+  }
+
   return (
     <React.Fragment>
       <Box
@@ -28,7 +41,6 @@ const CreatePairCard = () => {
           display: "flex",
           justifyContent: "flex-start",
           ml: "0",
-          //   border: "2px red solid",
         }}
       >
         <Breadcrumbs
@@ -82,7 +94,7 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <MentorSearchHandler />
+                <MentorSearchHandler setMentorID={setMentorID} />
               </CardContent>
             </Card>
           </Grid>
@@ -90,7 +102,7 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <MenteeSearchHandler />
+                <MenteeSearchHandler setMenteeID={setMenteeID} />
               </CardContent>
             </Card>
           </Grid>

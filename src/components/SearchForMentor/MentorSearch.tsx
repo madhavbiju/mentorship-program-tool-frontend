@@ -9,14 +9,24 @@ import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
 import ModalOverflow from "@mui/joy/ModalOverflow";
 import Stack from "@mui/joy/Stack";
-import { positions } from "@mui/system";
 import { MentorsProps } from "./Types";
 
-const MentorSearch = ({ mentors }: MentorsProps) => {
-  const [layout, setLayout] = React.useState<
-    ModalDialogProps["layout"] | undefined //layout initial value is undefined
-  >(undefined);
-  const [selectedMentor, setSelectedMentor] = React.useState<string>();
+const MentorSearch = ({ mentors, setMentorID }: MentorsProps) => {
+  const [layout, setLayout] = React.useState<ModalDialogProps["layout"] | undefined>(undefined);
+  const [selectedMentor, setSelectedMentor] = React.useState<string>("");
+
+  const handleMentorSelect = (value: string) => {
+    setSelectedMentor(value);
+    setLayout(undefined); // Close the modal
+    // Here, you should set the employee ID based on the selected mentor
+    // You need to find the corresponding mentor object first
+    const selectedMentorObject = mentors.find(
+      (mentor) => `${mentor.firstName} ${mentor.lastName}` === value
+    );
+    if (selectedMentorObject) {
+      setMentorID(selectedMentorObject.employeeID);
+    }
+  };
 
   return (
     <Grid container justifyContent="center">
@@ -30,16 +40,14 @@ const MentorSearch = ({ mentors }: MentorsProps) => {
                 color="neutral"
                 sx={{ width: "-webkit-fill-available" }}
                 onClick={() => {
-                  setLayout("center"); //layout value becomes center
-                  setSelectedMentor(""); // Reset selectedMentor state
+                  setLayout("center");
+                  setSelectedMentor("");
                 }}
               >
                 {selectedMentor || "--SELECT MENTOR--"}
               </Button>
             </Stack>
             <Modal open={!!layout} onClose={() => setLayout(undefined)}>
-              {/* !!layout equals true,because layout=center is a true value.so modal opens*/}
-
               <ModalOverflow>
                 <ModalDialog
                   aria-labelledby="modal-dialog-overflow"
@@ -65,7 +73,9 @@ const MentorSearch = ({ mentors }: MentorsProps) => {
                           (option) => `${option.firstName} ${option.lastName}`
                         )}
                         onChange={(event, value) => {
-                          setSelectedMentor(value), setLayout(undefined);
+                          if (value) {
+                            handleMentorSelect(value);
+                          }
                         }}
                       />
                     </FormControl>
