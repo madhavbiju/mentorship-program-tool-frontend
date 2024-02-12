@@ -1,20 +1,22 @@
+import axios from "axios";
+
 interface Role {
   roleName: string;
 }
 
 const GetLogin = async (token: string): Promise<string[]> => {
   try {
-    const response = await fetch(
+    const response = await axios.post(
       "https://localhost:7259/api/Login/CreateUser",
+      {},
       {
-        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       }
     );
-    const data = await response.json();
+    const data = response.data;
     console.log(data);
     const roles: Role[] = data.roles || [];
     console.log("Roles");
