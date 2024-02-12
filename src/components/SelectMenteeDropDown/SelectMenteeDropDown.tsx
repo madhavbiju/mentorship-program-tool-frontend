@@ -1,26 +1,50 @@
-// SelectMenteeDropDown.tsx
-import React from "react";
+import React, { useEffect } from "react";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import { menteeList } from "./Types";
+
+import { SelectChangeEvent } from "@mui/material/Select";
 
 interface Props {
-  isLoading: boolean;
-  menteesData: { mentees: any[] };
+  menteeListData: menteeList[];
+  setProgramID: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SelectMenteeDropDown: React.FC<Props> = ({ isLoading, menteesData }) => {
+const SelectMenteeDropDown: React.FC<Props> = ({
+  menteeListData,
+  setProgramID,
+}) => {
+  const [value, setValue] = React.useState<string | null>("");
+  useEffect(() => {
+    const selectedMenteeName = value;
+
+    // Find the corresponding mentee object
+    const selectedMentee = menteeListData.find(
+      (mentee) =>
+        `${mentee.firstName} ${mentee.lastName}` === selectedMenteeName
+    );
+
+    // If a matching mentee is found, set the programID
+    if (selectedMentee) {
+      setProgramID(selectedMentee.programID);
+    }
+  }, [value]);
   return (
     <div>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <select>
-          <option value="">Select Mentee</option>
-          {menteesData.mentees.map((mentee) => (
-            <option key={mentee.employeeID} value={mentee.employeeID}>
-              {mentee.firstName} {mentee.lastName}
-            </option>
-          ))}
-        </select>
-      )}
+      <Select
+        placeholder="Mentee"
+        size="sm"
+        onChange={(e, newValue) => setValue(newValue)}
+      >
+        {menteeListData.map((mentee) => (
+          <Option
+            key={mentee.programID}
+            value={`${mentee.firstName} ${mentee.lastName}`}
+          >
+            {`${mentee.firstName} ${mentee.lastName}`}
+          </Option>
+        ))}
+      </Select>
     </div>
   );
 };

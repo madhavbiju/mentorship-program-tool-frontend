@@ -25,6 +25,11 @@ import LoginPage from "./pages/common/loginpage/LoginPage";
 const msalInstance = new PublicClientApplication(msalConfig);
 import MentorDashboradHandler from "./pages/mentor/dashboard/MentorDashboardHandler";
 import ViewUsers from "./pages/admin/user/ViewUsers";
+import CreateMeeting from "./pages/mentor/createMeeting/CreateMeeting";
+import CreateMeetingHandler from "./pages/mentor/createMeeting/CreateMeetingHandler";
+import EventPage from "./pages/common/event/EventPage";
+import EventPageHandler from "./pages/common/event/EventPageHandler";
+import CreatetaskHandler from "./pages/mentor/createtask/CreateTasksHandler";
 
 const AppRoutes = () => {
   return (
@@ -75,7 +80,12 @@ const AppRoutes = () => {
             <Route path="mentees" element={<MenteesList />} />
             <Route path="tasks" element={<MentorTask />} />
             <Route path="tasks/selected" element={<MentorSelectedTask />} />
-            <Route path="tasks/create" element={<CreateTasks />} />
+            <Route path="tasks/create" element={<CreatetaskHandler />} />
+            <Route path="calendar/create" element={<CreateMeetingHandler />} />
+            <Route
+              path="calendar/event/:meetingId"
+              element={<EventPageHandler />}
+            />
             <Route path="report" element={<MentorReportPage />} />
           </Route>
         </Routes>
