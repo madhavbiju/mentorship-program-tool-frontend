@@ -5,15 +5,17 @@ import { programType } from "./Types";
 import { postProgramData } from "./Api/postProgram";
 
 const CreatePairCardHandler = () => {
-
+  const now = new Date();
+  const formattedDate = now.toISOString();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [programData, setProgramData] = useState({
-    mentorID: null,
-    menteeID: null,
+    mentorID: 0,
+    menteeID: 0,
     createdBy: 1,
-    startDate: null,
-    endDate: null,
+    startDate: "",
+    endDate: "",
+    createdTime: "",
     programName: "",
     programStatus: 1,
   });
@@ -22,11 +24,12 @@ const CreatePairCardHandler = () => {
     return {
       mentorID: input.mentorID,
       menteeID: input.menteeID,
-      startDate: input.scheduleDate.toISOString(),
-      endDate: input.scheduleDate.toISOString(),
+      startDate: input.startDate.toISOString(),
+      endDate: input.endDate.toISOString(),
       createdBy: input.createdBy,
       programStatus: input.programStatus,
       programName: input.programName,
+      createdTime: input.createdTime,
     };
   }
 
@@ -35,7 +38,7 @@ const CreatePairCardHandler = () => {
     let response = await postProgramData(formatedProgramData);
     setIsLoading(false);
     // Use SweetAlert2 to show success or error message based on response
-    if (response?.status == 201) {
+    if (response?.status == 201 || 200) {
       Swal.fire("Success", "Program created successfully!", "success");
     } else {
       Swal.fire("Error", "Failed to create program", "error");
@@ -43,14 +46,14 @@ const CreatePairCardHandler = () => {
   };
 
   const handleSubmit = async () => {
+    setProgramData((prevData) => ({
+      ...prevData,
+      ["createdTime"]: formattedDate,
+    }));
     // Convert program data to programType
     const formatedProgramData: programType = convertToProgramType(programData);
-
-    console.log(programData);
-    console.log(formatedProgramData);
-
     sendProgramData(formatedProgramData);
-    // // Call sendProgramData after conversion is completed
+    // Call sendProgramData after conversion is completed
   };
 
   const handleInputChange = (key: string, value: any) => {

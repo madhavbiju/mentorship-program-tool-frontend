@@ -23,52 +23,24 @@ interface CreateProgramProps {
   onChange: (key: string, value: any) => void;
 }
 
-const CreatePairCard: React.FC<CreateProgramProps> = ({
-  onSubmit,
-  onChange,
-}) => {
+const CreatePairCard = ({ onSubmit, onChange }: CreateProgramProps) => {
   const [mentorID, setMentorID] = useState(0);
   const [menteeID, setMenteeID] = useState(0);
-  {
-    useEffect(() => {
-      console.log("Updated mentoridd:", mentorID);
-    }, [mentorID]);
-
-    useEffect(() => {
-      console.log("Updated menteeidd:", menteeID);
-    }, [menteeID]);
-  }
-
   const [startDate, setStartDate] = React.useState(null);
+
   const handleStartDateChange = (date: React.SetStateAction<null>) => {
     setStartDate(date); //set the start date to the date that got from setStartDate component
-    console.log(startDate)
+    console.log(startDate);
   };
-  const [programDetails, setProgramDetails] = useState({
-    mentorID: null,
-    menteeID: null,
-    createdBy: 1,
-    startDate: null,
-    endDate: null,
-    programName: "",
-    programStatus: 1,
-  });
-
-  // Handle changes to the program details
-  const handleProgramDetailsChange = (key: string, value: any) => {
-    setProgramDetails((prevDetails) => ({
-      ...prevDetails,
-      [key]: value,
-    }));
-    onChange(key, value);
-  };
-
-  // Check if all fields are filled
-  const isAllFieldsFilled = () => {
-    return Object.values(programDetails).every(
-      (value) => Boolean(value) || value === 0
-    );
-  };
+  useEffect(() => {
+    onChange("mentorID", mentorID);
+  }, [mentorID]);
+  useEffect(() => {
+    onChange("menteeID", menteeID);
+  }, [menteeID]);
+  useEffect(() => {
+    onChange("startDate", startDate);
+  }, [startDate]);
 
   return (
     <React.Fragment>
@@ -122,9 +94,7 @@ const CreatePairCard: React.FC<CreateProgramProps> = ({
             <Input
               placeholder="                                             Program Name.."
               sx={{ border: "none", bgcolor: "transparent" }}
-              onChange={(e) =>
-                handleProgramDetailsChange("programName", e.target.value)
-              }
+              onChange={(e) => onChange("programName", e.target.value)}
             />
           </Card>
         </Grid>
@@ -152,9 +122,6 @@ const CreatePairCard: React.FC<CreateProgramProps> = ({
                 <SetStartDate
                   /* pass the handleStartDateChange function to set start date */
                   onStartDateChange={handleStartDateChange}
-                  onChange={(startDate: React.SetStateAction<null>) =>
-                    handleProgramDetailsChange("startDate", startDate)
-                  }
                 />
               </CardContent>
             </Card>
@@ -166,7 +133,7 @@ const CreatePairCard: React.FC<CreateProgramProps> = ({
                 <SetEndDate
                   startDate={startDate}
                   onChange={(date: React.SetStateAction<null>) =>
-                    handleProgramDetailsChange("endDate", date)
+                    onChange("endDate", date)
                   }
                 />
                 {/* pass the starting date to setEndDate component */}
@@ -176,15 +143,7 @@ const CreatePairCard: React.FC<CreateProgramProps> = ({
         </Grid>
         <Grid xs={12}>
           <Grid container justifyContent="center">
-            <Button
-              variant="solid"
-              startDecorator={<AddIcon />}
-              size="sm"
-              onClick={onSubmit}
-              disabled={!isAllFieldsFilled()} 
-            >
-              Create Pair
-            </Button>
+            <Button onClick={onSubmit}>Create</Button>
           </Grid>
         </Grid>
       </Grid>

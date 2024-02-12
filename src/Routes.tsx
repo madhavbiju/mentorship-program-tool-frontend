@@ -29,6 +29,7 @@ import CreateMeeting from "./pages/mentor/createMeeting/CreateMeeting";
 import CreateMeetingHandler from "./pages/mentor/createMeeting/CreateMeetingHandler";
 import EventPage from "./pages/common/event/EventPage";
 import EventPageHandler from "./pages/common/event/EventPageHandler";
+import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandler";
 
 const AppRoutes = () => {
   return (
@@ -52,7 +53,7 @@ const AppRoutes = () => {
             <Route path="report/mentor" element={<MentorReport />} />
             <Route path="report/pair" element={<PairReport />} />
 
-            <Route path="pairs/create" element={<CreatePairCard />} />
+            <Route path="pairs/create" element={<CreatePairCardHandler />} />
           </Route>
           <Route
             path="/mentee"
