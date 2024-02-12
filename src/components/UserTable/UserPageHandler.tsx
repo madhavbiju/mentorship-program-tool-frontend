@@ -21,6 +21,7 @@ const UserPageHandler: React.FC = () => {
       setIsLoading(false);
 
       console.log(response.totalCount);
+      console.log(response.userList);
     } catch (error) {
       console.error("Failed to fetch user details:", error);
     }
@@ -49,7 +50,7 @@ const UserPageHandler: React.FC = () => {
         <br />
         <PaginationButtons
           total={totalCount}
-          perPage={13}
+          perPage={6}
           setPageApi={setPageApi}
         />
       </Stack>

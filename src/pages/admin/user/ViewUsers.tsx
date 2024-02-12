@@ -43,6 +43,8 @@ export default function ViewUsers() {
         <FormLabel>Role</FormLabel>
         <Select size="sm" placeholder="Select Role">
           <Option value="all">All</Option>
+          <Option value="assigned">Assigned</Option>
+          <Option value="unassigned">Unassigned</Option>
           <Option value="admin">Admin</Option>
           <Option value="mentor">Mentor</Option>
           <Option value="mentee">Mentee</Option>

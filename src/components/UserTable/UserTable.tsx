@@ -40,7 +40,7 @@ export default function UserTable({ userList }: UserTableProps) {
           <tr>
             <th style={{ width: 240, padding: "12px 6px" }}>Sl No.</th>
             <th style={{ width: 240, padding: "12px 6px" }}>Customer</th>
-            <th style={{ width: 140, padding: "12px 6px" }}>Job </th>
+            <th style={{ width: 140, padding: "12px 6px" }}>Roles </th>
             <th style={{ width: 140, padding: "12px 6px" }}>Status</th>
             <th style={{ width: 140, padding: "12px 6px" }}> </th>
           </tr>
@@ -58,8 +58,17 @@ export default function UserTable({ userList }: UserTableProps) {
                 </Box>
               </td>
               <td>
-                <Typography level="body-xs">{user.userJob}</Typography>{" "}
+                {user.userRoles.map((role, roleIndex) => (
+                  <Typography
+                    key={roleIndex}
+                    level="body-xs"
+                    sx={{ display: "block" }}
+                  >
+                    {role.charAt(0).toUpperCase() + role.slice(1)}
+                  </Typography>
+                ))}
               </td>
+
               <td>
                 <Chip
                   variant="soft"
