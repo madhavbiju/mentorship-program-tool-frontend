@@ -52,9 +52,8 @@ export default function Header() {
   const { instance } = useMsal();
   const logOut = () => {
     sessionStorage.clear();
-    instance.logoutPopup({
+    instance.logoutRedirect({
       postLogoutRedirectUri: "/",
-      mainWindowRedirectUri: "/",
     });
   };
   return (
