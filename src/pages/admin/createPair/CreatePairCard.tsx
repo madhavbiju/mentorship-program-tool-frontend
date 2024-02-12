@@ -17,6 +17,8 @@ import { Box } from "@mui/system";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import OrderTable from "../pairs/Pairs";
+import MentorSearchHandler from "../../../components/SearchForMentor/MentorSearchHandler";
+import MenteeSearchHandler from "../../../components/SearchForMentee/MenteeSearchHandler";
 
 const CreatePairCard = () => {
   return (
@@ -80,7 +82,7 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <MentorSearch />
+                <MentorSearchHandler />
               </CardContent>
             </Card>
           </Grid>
@@ -88,7 +90,7 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <MenteeSearch />
+                <MenteeSearchHandler />
               </CardContent>
             </Card>
           </Grid>

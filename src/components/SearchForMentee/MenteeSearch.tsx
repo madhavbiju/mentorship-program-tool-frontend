@@ -9,25 +9,14 @@ import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
 import ModalOverflow from "@mui/joy/ModalOverflow";
 import Stack from "@mui/joy/Stack";
+import { useState } from "react";
+import { MenteesProps } from "./Types";
 
-const MenteeSearch = () => {
-  const mentees = [
-    { name: "Ashiq Tharkoski" },
-    { name: "Anish" },
-    { name: "aadarsh" },
-    { name: "hari" },
-    { name: "madhav" },
-    { name: "shiyas" },
-    { name: "ashna" },
-    { name: "aljo" },
-    { name: "gopika" },
-  ];
-
+const MenteeSearch = ({ mentees }: MenteesProps) => {
   const [layout, setLayout] = React.useState<
     ModalDialogProps["layout"] | undefined //layout initial value is undefined
   >(undefined);
-  const [selectedMentee, setSelectedMentee] = React.useState<string>();
-
+  const [selectedMentee, setSelectedMentee] = useState<string>();
   return (
     <Grid container justifyContent="center">
       <Grid xs={12} sm={10}>
@@ -71,17 +60,12 @@ const MenteeSearch = () => {
                     <FormControl>
                       <Autocomplete
                         placeholder="Search here"
-                        type="search"
                         disableClearable
-                        options={mentees.map((option) => option.name)}
-                        // value={selectedMentee}
-                        onChange={(event, newValue) =>
-                          setSelectedMentee(newValue)
-                        }
-                        onInputChange={(event, newInputValue) => {
-                          if (newInputValue.trim() !== "") {
-                            setLayout(undefined); // Close the modal,after choosing a value
-                          }
+                        options={mentees.map(
+                          (option) => `${option.firstName} ${option.lastName}`
+                        )}
+                        onChange={(event, value) => {
+                          setSelectedMentee(value), setLayout(undefined);
                         }}
                       />
                     </FormControl>

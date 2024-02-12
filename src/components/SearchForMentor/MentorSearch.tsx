@@ -10,20 +10,9 @@ import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
 import ModalOverflow from "@mui/joy/ModalOverflow";
 import Stack from "@mui/joy/Stack";
 import { positions } from "@mui/system";
+import { MentorsProps } from "./Types";
 
-const MentorSearch = () => {
-  const mentors = [
-    { name: "Ashiq Tharkoski" },
-    { name: "Anish" },
-    { name: "aadarsh" },
-    { name: "hari" },
-    { name: "madhav" },
-    { name: "shiyas" },
-    { name: "ashna" },
-    { name: "aljo" },
-    { name: "gopika" },
-  ];
-
+const MentorSearch = ({ mentors }: MentorsProps) => {
   const [layout, setLayout] = React.useState<
     ModalDialogProps["layout"] | undefined //layout initial value is undefined
   >(undefined);
@@ -45,7 +34,7 @@ const MentorSearch = () => {
                   setSelectedMentor(""); // Reset selectedMentor state
                 }}
               >
-                {selectedMentor || "--SELECT MENTEE--"}
+                {selectedMentor || "--SELECT MENTOR--"}
               </Button>
             </Stack>
             <Modal open={!!layout} onClose={() => setLayout(undefined)}>
@@ -71,17 +60,12 @@ const MentorSearch = () => {
                     <FormControl>
                       <Autocomplete
                         placeholder="Search here"
-                        type="search"
                         disableClearable
-                        options={mentors.map((option) => option.name)}
-                        // value={selectedMentor}
-                        onChange={(event, newValue) =>
-                          setSelectedMentor(newValue)
-                        }
-                        onInputChange={(event, newInputValue) => {
-                          if (newInputValue.trim() !== "") {
-                            setLayout(undefined); // Close the modal,after choosing a value
-                          }
+                        options={mentors.map(
+                          (option) => `${option.firstName} ${option.lastName}`
+                        )}
+                        onChange={(event, value) => {
+                          setSelectedMentor(value), setLayout(undefined);
                         }}
                       />
                     </FormControl>

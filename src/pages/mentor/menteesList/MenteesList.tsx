@@ -103,10 +103,10 @@ const MenteesList = () => {
           </Option>
         </Select>
 
-        <FormLabel sx={{ ml: 1 }}>Filter</FormLabel>
+        {/* <FormLabel sx={{ ml: 1 }}>Filter</FormLabel>
         <Select size="sm" placeholder="Filter by " onChange={handleFilter}>
           <Option value="program">Program</Option>
-        </Select>
+        </Select> */}
       </Box>
 
       <Grid container spacing={1} sx={{ my: "5%" }}>
