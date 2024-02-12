@@ -81,22 +81,22 @@ const MenteesList = () => {
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
           <Option value="ProgramName" onClick={() => handleSort("ProgramName")}>
-            Asc Prgm
+            A-Z Prgm
           </Option>
           <Option
             value="ProgramName_desc"
             onClick={() => handleSort("ProgramName_desc")}
           >
-            Des Prgm
+            Z-A Prgm
           </Option>
           <Option value="endDate" onClick={() => handleSort("endDate")}>
-            Asc Date
+            A-Z Date
           </Option>
           <Option
             value="endDate_desc"
             onClick={() => handleSort("endDate_desc")}
           >
-            Desc Date
+            Z-A Date
           </Option>
         </Select>
       </Box>
