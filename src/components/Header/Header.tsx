@@ -28,6 +28,7 @@ import { Apps } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
 import ToggleRoleButton from "../toggleRoleButton/ToggleRoleButton";
+import SearchInput from "../SearchInput/SearchInput";
 
 export default function Header() {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
@@ -110,7 +111,7 @@ export default function Header() {
           <h2>mpt</h2>
         </Stack>
         <Box>
-          <Input
+          {/* <Input
             size="sm"
             variant="outlined"
             placeholder="Search anything…"
@@ -144,7 +145,8 @@ export default function Header() {
                 sm: "flex",
               },
             }}
-          />
+          /> */}
+          <SearchInput />
         </Box>
         <Box
           sx={{

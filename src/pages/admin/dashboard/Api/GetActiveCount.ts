@@ -1,9 +1,11 @@
 import axios from "axios";
 import { ActiveCountData } from "../Types";
+import axiosInstance from "../../../../config/configAxios";
+import { baseUrl } from "../../../../config/configUrl";
 
 export const fetchActiveCount = async () => {
-  return await axios
-    .get(`https://localhost:7259/api/admin/active-count`)
+  return await axiosInstance
+    .get(`${baseUrl.admin}/active-count`)
     .then((data) => data.data)
     .catch((err) => console.error("Error fetching active count:", err));
 };

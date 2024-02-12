@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CreateMeeting from "./CreateMeeting";
-import moment from "moment";
 import { postMeetingData } from "./Api/postMeeting";
 import { meetingType } from "./Types";
 import Swal from "sweetalert2";
@@ -57,8 +56,10 @@ const CreateMeetingHandler = () => {
     // Convert meeting data to meetingType
     const formatedMeetingData: meetingType = convertToMeetingType(meetingData);
 
-    // Call sendMeetingData after conversion is completed
-    await sendMeetingData(formatedMeetingData);
+    console.log(meetingData);
+    console.log(formatedMeetingData);
+    // // Call sendMeetingData after conversion is completed
+    // await sendMeetingData(formatedMeetingData);
   };
 
   const handleInputChange = (key: string, value: any) => {
