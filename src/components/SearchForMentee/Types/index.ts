@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 export interface Mentees {
   employeeID: SetStateAction<number>;
   firstName: string;

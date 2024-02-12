@@ -34,6 +34,10 @@ const CreatePairCard = () => {
     }, [menteeID]);
   }
 
+  const [startDate, setStartDate] = React.useState(null);
+  const handleStartDateChange = (date: React.SetStateAction<null>) => {
+    setStartDate(date); //set the start date to the date that got from setStartDate component
+  };
   return (
     <React.Fragment>
       <Box
@@ -110,7 +114,8 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <SetStartDate />
+                <SetStartDate onStartDateChange={handleStartDateChange}/> 
+                {/* pass the handleStartDateChange function to set start date */}
               </CardContent>
             </Card>
           </Grid>
@@ -118,7 +123,8 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <SetEndDate />
+                <SetEndDate startDate={startDate}/>
+                {/* pass the starting date to setEndDate component */}
               </CardContent>
             </Card>
           </Grid>
