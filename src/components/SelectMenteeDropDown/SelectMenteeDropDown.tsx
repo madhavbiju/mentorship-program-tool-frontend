@@ -1,16 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import { menteeList } from "./Types";
 
-const SelectMenteeDropDown = () => {
+import { SelectChangeEvent } from "@mui/material/Select";
+
+interface Props {
+  menteeListData: menteeList[];
+  setProgramID: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const SelectMenteeDropDown: React.FC<Props> = ({
+  menteeListData,
+  setProgramID,
+}) => {
+  const [value, setValue] = React.useState<string | null>("");
+  useEffect(() => {
+    const selectedMenteeName = value;
+
+    // Find the corresponding mentee object
+    const selectedMentee = menteeListData.find(
+      (mentee) =>
+        `${mentee.firstName} ${mentee.lastName}` === selectedMenteeName
+    );
+
+    // If a matching mentee is found, set the programID
+    if (selectedMentee) {
+      setProgramID(selectedMentee.programID);
+    }
+  }, [value]);
   return (
     <div>
-      <Select placeholder="Mentee" size="sm">
-        <Option value="John">John</Option>
-        <Option value="Alice">Alice</Option>
-        <Option value="Bob">Bob</Option>
-        <Option value="Eve">Eve</Option>
-        <Option value="Charlie">Charlie</Option>
+      <Select
+        placeholder="Mentee"
+        size="sm"
+        onChange={(e, newValue) => setValue(newValue)}
+      >
+        {menteeListData.map((mentee) => (
+          <Option
+            key={mentee.programID}
+            value={`${mentee.firstName} ${mentee.lastName}`}
+          >
+            {`${mentee.firstName} ${mentee.lastName}`}
+          </Option>
+        ))}
       </Select>
     </div>
   );
