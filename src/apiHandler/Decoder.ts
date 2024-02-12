@@ -9,6 +9,7 @@ interface JWTPayload {
   exp: number;
   iss: string;
   aud: string;
+  name: string;
   // Add any other properties as needed
 }
 

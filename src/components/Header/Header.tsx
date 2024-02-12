@@ -27,6 +27,7 @@ import ColorSchemeToggle from "../ColorSchemeToggle/ColorSchemeToggle";
 import { Apps } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
+import ToggleRoleButton from "../toggleRoleButton/ToggleRoleButton";
 
 export default function Header() {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
@@ -177,7 +178,7 @@ export default function Header() {
             </IconButton>
           </Tooltip>
           <ColorSchemeToggle sx={{ ml: "auto" }} />
-          <Dropdown>
+          {/* <Dropdown>
             <MenuButton startDecorator={<Apps />}>
               {selectedIndex === 1 && "Admin"}
               {selectedIndex === 2 && "Mentor"}
@@ -206,7 +207,8 @@ export default function Header() {
                 Mentee
               </MenuItem>
             </Menu>
-          </Dropdown>
+          </Dropdown> */}
+          <ToggleRoleButton />
           <Dropdown>
             <MenuButton
               variant="plain"
