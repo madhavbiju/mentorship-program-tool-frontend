@@ -1,10 +1,10 @@
 import axiosInstance from "../../../config/configAxios";
 import { baseUrl } from "../../../config/configUrl";
 
-export const getMeetingData = async () => {
+export const getMeetingData = async (EmployeeId: string) => {
   try {
     const response = await axiosInstance.get(
-      `${baseUrl.meeting}/employee/2?role=2`
+      `${baseUrl.meeting}/employee/upcoming/meetings/${EmployeeId}`
     );
     return response.data;
   } catch (error) {

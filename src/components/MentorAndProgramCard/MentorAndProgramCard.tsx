@@ -1,22 +1,35 @@
-import { Box, Card, Typography } from "@mui/joy";
+import { Box, Card, CardContent, Typography } from "@mui/joy";
 import React from "react";
-import { MentorAndProgramCardPropType } from "./MentorAndProgramCardPropType";
+import { Mentee } from "./Types";
+import { Grid } from "@mui/material";
 
-const MentorAndProgramCard = ({
-  mentorName,
-  programName,
-}: MentorAndProgramCardPropType) => {
+const MentorAndProgramCard = ({ mentorFirstName, programName }: Mentee) => {
   return (
-    <div>
-      <Card variant="soft" sx={{ width: 1 }}>
+    <>
+      <Card variant="soft">
         <div>
-          <Typography level="body-sm">Mentor Name</Typography>
-          <Typography level="title-lg">{mentorName}</Typography>
-          <Typography level="body-sm">Program Name</Typography>
-          <Typography level="title-lg">{programName}</Typography>
+          <Typography sx={{ mb: -1 }} level="body-sm">
+            Mentor Name
+          </Typography>
         </div>
+        <CardContent sx={{ mb: -1 }} orientation="horizontal">
+          <div>
+            <Typography level="title-lg">{mentorFirstName}</Typography>
+          </div>
+        </CardContent>
+
+        <div>
+          <Typography sx={{ mb: -1 }} level="body-sm">
+            Program Name
+          </Typography>
+        </div>
+        <CardContent sx={{ mb: -1 }} orientation="horizontal">
+          <div>
+            <Typography level="title-lg">{programName}</Typography>
+          </div>
+        </CardContent>
       </Card>
-    </div>
+    </>
   );
 };
 

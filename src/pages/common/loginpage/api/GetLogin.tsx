@@ -19,7 +19,7 @@ const GetLogin = async (token: string): Promise<string[]> => {
       }
     );
     const data = await response.json();
-
+    sessionStorage.setItem("EmployeeId", "2");
     if (!data.token) {
       console.error("JWT not found in response");
       return [];
