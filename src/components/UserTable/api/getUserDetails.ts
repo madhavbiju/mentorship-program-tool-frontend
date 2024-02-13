@@ -9,12 +9,15 @@ function getUserInitials(userName: string): string {
   return userName[0].toUpperCase(); // Fallback to just the first letter
 }
 
+// Added 'toggleChoice' parameter with default value 'all'
 export async function getUserDetails(
-  page: number = 1
+  page: number = 1,
+  toggleChoice: string = "all" // Default value is 'all'
 ): Promise<UserDetailsResponse> {
   try {
+    // Replace 'all' with `${toggleChoice}` in the URL
     const response = await axios.get<{ users: any[]; totalCount: number }>(
-      `https://localhost:7259/api/admin/ByRole/all?pageNumber=${page}&pageSize=6`
+      `https://localhost:7259/api/admin/ByRole/${toggleChoice}?pageNumber=${page}&pageSize=6`
     );
 
     const { users: usersData, totalCount } = response.data;
@@ -25,7 +28,7 @@ export async function getUserDetails(
         user.userRoles.length > 0 ? user.userRoles : ["Unassigned"];
 
       return {
-        id: `${user.userID}`,
+        id: user.userID,
         userName: user.userName,
         userInitials: getUserInitials(user.userName),
         userRoles: userRoles, // Use the modified userRoles with the check for "Unassigned"
