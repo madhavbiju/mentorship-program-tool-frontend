@@ -4,6 +4,8 @@ import MentorDashboardSkeleton from "../../pages/mentor/dashboard/MentorDashboar
 import { Task } from "./Types";
 import { fetchTaskData } from "./Api/getSubmittedTaskData";
 import PaginationButtons from "../Pagination/Pagination";
+import { Stack, Typography } from "@mui/joy";
+import PaginationIcons from "../Pagination/PaginationIcons";
 
 const SubmittedTaskHandler = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,6 +30,30 @@ const SubmittedTaskHandler = () => {
   }, [pageApi]);
   return (
     <>
+    <Stack
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        //   alignItems: "center",
+          mb: 1,
+        }}
+      >
+        <Typography
+          level="h3"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          Submitted Tasks
+        </Typography>
+        <PaginationIcons
+          total={taskData.totalCount}
+          setPageApi={setPageApi}
+          perPage={5}
+        />
+      </Stack>
       {isLoading ? ( // Render skeleton if loading
         <MentorDashboardSkeleton />
       ) : (
@@ -36,12 +62,6 @@ const SubmittedTaskHandler = () => {
           totalCount={taskData.totalCount}
         />
       )}
-      <br />
-      <PaginationButtons
-        total={taskData.totalCount}
-        setPageApi={setPageApi}
-        perPage={5}
-      />
     </>
   );
 };

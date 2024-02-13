@@ -35,9 +35,9 @@ const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
 
       <Grid container spacing={2} sx={{ marginTop: ".5%" }}>
         <Grid item xs={12} lg={6} sx={{ marginBottom: "2%" }}>
-          <Typography level="h3" sx={{ marginBottom: "1rem" }}>
+          {/* <Typography level="h3" sx={{ marginBottom: "1rem" }}>
             Meetings
-          </Typography>
+          </Typography> */}
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <MeetingCardHandler />
@@ -45,9 +45,9 @@ const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
           </Grid>
         </Grid>
         <Grid item xs={12} lg={6} sx={{ marginBottom: "2%" }}>
-          <Typography level="h3" sx={{ marginBottom: "1rem" }}>
+          {/* <Typography level="h3" sx={{ marginBottom: "1rem" }}>
             Submitted Task
-          </Typography>
+          </Typography> */}
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <SubmittedTaskHandler />

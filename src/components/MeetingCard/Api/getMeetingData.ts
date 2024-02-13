@@ -4,7 +4,7 @@ import { baseUrl } from "../../../config/configUrl";
 export const getMeetingData = async () => {
   try {
     const response = await axiosInstance.get(
-      `${baseUrl.meeting}/employee/2?role=2`
+      `${baseUrl.meeting}/employee/upcoming/meetings/2?role=2`
     );
     return response.data;
   } catch (error) {
