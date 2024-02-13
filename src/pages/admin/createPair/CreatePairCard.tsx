@@ -143,7 +143,7 @@ const CreatePairCard = ({ onSubmit, onChange }: CreateProgramProps) => {
         </Grid>
         <Grid xs={12}>
           <Grid container justifyContent="center">
-            <Button onClick={onSubmit}>Create</Button>
+            <Button onClick={onSubmit}>Create Pair</Button>
           </Grid>
         </Grid>
       </Grid>
