@@ -30,6 +30,7 @@ import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandle
 import Chat from "./pages/mentor/chat/Chat";
 import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 import Pairs from "./pages/admin/pairs/Pairs";
+import WaitingForApprovalPage from "./components/ApprovalPage/ApprovalPage";
 
 const AppRoutes = () => {
   return (
@@ -37,6 +38,7 @@ const AppRoutes = () => {
       <UserRoleProvider>
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path="/waiting" element={<WaitingForApprovalPage />} />
           <Route
             path="/admin"
             element={
