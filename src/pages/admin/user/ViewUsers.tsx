@@ -1,27 +1,19 @@
-// React and MUI imports
 import React, { useState } from "react";
 import Box from "@mui/joy/Box";
 import Breadcrumbs from "@mui/joy/Breadcrumbs";
-// import FormControl from "@mui/joy/FormControl";
-// import FormLabel from "@mui/joy/FormLabel";
 import {
   FormControl,
   InputLabel,
   Select,
   MenuItem,
-  FormLabel,
   SelectChangeEvent,
 } from "@mui/material";
 import Input from "@mui/joy/Input";
 import Link from "@mui/joy/Link";
-import Option from "@mui/joy/Option";
-// import Select from "@mui/joy/Select";
 import Typography from "@mui/joy/Typography";
-// Icons
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import SearchIcon from "@mui/icons-material/Search";
-// Custom components
 import UserPageHandler from "../../../components/UserTable/UserPageHandler";
 
 export default function ViewUsers() {
