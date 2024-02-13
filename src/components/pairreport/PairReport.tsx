@@ -8,11 +8,17 @@ import { Box, Select, Typography } from "@mui/joy";
 import { Grid } from "@mui/material";
 import { Option } from "@mui/joy";
 import PairReportTaskTableHandler from "../PairReportTaskTable/PairReportTaskTableHandler";
+import PairReportMeetingTableHandler from "../PairReportMeetingTable/PairReportMeetingTableHandler";
 
 const PairReport = () => {
   const [selectedSortOption, setSelectedSortOption] = useState("TaskName");
+  const [selectedmeetingSortOption, setSelectedMeetingSortOption] =
+    useState("MeetingName");
 
   const handleSort = (selectedOption: string) => {
+    setSelectedSortOption(selectedOption);
+  };
+  const handleMeetingSort = (selectedOption: string) => {
     setSelectedSortOption(selectedOption);
   };
   const [programID, setProgramID] = useState<number>(3);
@@ -78,8 +84,46 @@ const PairReport = () => {
               programid={programID}
             />
             <br />
+            <Grid>
+              <Select
+                size="sm"
+                placeholder="Sort by"
+                slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
+              >
+                <Option
+                  value="TaskName"
+                  onClick={() => handleMeetingSort("TaskName")}
+                >
+                  Title A-Z
+                </Option>
+                <Option
+                  value="TaskName_desc"
+                  onClick={() => handleMeetingSort("TaskName_desc")}
+                >
+                  Title Z-A
+                </Option>
+                <Option
+                  value="endDate"
+                  onClick={() => handleMeetingSort("endDate")}
+                >
+                  Due Date Asc
+                </Option>
+                <Option
+                  value="endDate_desc"
+                  onClick={() => handleMeetingSort("endDate_desc")}
+                >
+                  Due Date Des
+                </Option>
+              </Select>
+            </Grid>
+          </Grid>
+          <Grid>
             <Typography level="h4">Meetings</Typography>
-            <ReportMeetingsTable />
+            <PairReportMeetingTableHandler
+              key={refreshKey}
+              sort={selectedmeetingSortOption}
+              programid={programID}
+            />
           </Grid>
           <Grid xs={12} lg={6}>
             <MenteeTaskGraph />

@@ -2,11 +2,11 @@ import * as React from "react";
 import Table from "@mui/joy/Table";
 import { Sheet } from "@mui/joy"; // Assuming Typography and Stack are not used
 import { useState } from "react";
-import { PairReportTaskTableProps } from "./Types/Index";
+import { PairReportMeetingTableProps } from "./Types";
 
-export default function PairReportTaskTable({
-  task,
-}: PairReportTaskTableProps) {
+export default function PairReportMeetingTable({
+  meeting,
+}: PairReportMeetingTableProps) {
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, "0");
@@ -15,8 +15,8 @@ export default function PairReportTaskTable({
     return `${day}/${month}/${year}`;
   };
 
-  const statusvalue = (taskStatus: number) => {
-    switch (taskStatus) {
+  const statusvalue = (status: number) => {
+    switch (status) {
       case 1:
         return "Active";
       case 2:
@@ -38,20 +38,20 @@ export default function PairReportTaskTable({
           <thead>
             <tr>
               <th>Mentee Name</th>
-              <th>Task Title</th>
-              <th>Assigned Date</th>
-              <th>Submission Date</th>
+              <th>Meeting Title</th>
+              <th>Scheduled Date</th>
+              <th>Scheduled Time</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {task.map((row) => (
-              <tr key={row.taskId}>
-                <td>{row.menteeFirstName}</td>
-                <td>{row.taskName}</td>
-                <td>{formatDate(row.startDate)}</td>
-                <td>{formatDate(row.endDate)}</td>
-                <td>{statusvalue(row.taskStatus)}</td>
+            {meeting.map((row) => (
+              <tr key={row.meetingId}>
+                <td>{row.menteeName}</td>
+                <td>{row.meetingName}</td>
+                <td>{formatDate(row.scheduledDate)}</td>
+                <td>{row.scheduledTime}</td>
+                <td>{statusvalue(row.status)}</td>
               </tr>
             ))}
           </tbody>
