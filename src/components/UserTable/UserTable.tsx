@@ -142,7 +142,10 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff"; // Adjust the i
 import { User, UserTableProps } from "./types";
 import RoleAssignmentModal from "../AssignRole/AssignRole";
 
-const UserTable: React.FC<UserTableProps> = ({ userList }) => {
+const UserTable: React.FC<UserTableProps> = ({
+  userList,
+  setSubmitButtonPressed,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
@@ -158,6 +161,8 @@ const UserTable: React.FC<UserTableProps> = ({ userList }) => {
 
   const handleRoleSubmit = (selectedRoles: string[]) => {
     console.log("Role Submitted:", selectedRoles);
+    setSubmitButtonPressed((current) => !current);
+
     handleCloseModal();
   };
 

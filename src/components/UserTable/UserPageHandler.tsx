@@ -78,6 +78,8 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({ selectedRole }) => {
   const [users, setUsers] = useState<User[]>([]);
   const [pageApi, setPageApi] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [submitButtonPressed, setSubmitButtonPressed] =
+    useState<boolean>(false);
   console.log(selectedRole);
 
   const getUserData = async () => {
@@ -102,7 +104,7 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({ selectedRole }) => {
 
   useEffect(() => {
     getUserData();
-  }, [pageApi, selectedRole]); // Include selectedRole in the dependency array
+  }, [pageApi, selectedRole, submitButtonPressed]); // Include selectedRole in the dependency array
 
   return (
     <>
@@ -115,7 +117,14 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({ selectedRole }) => {
           mb: 1,
         }}
       >
-        {isLoading ? <UserPageSkeleton /> : <UserTable userList={users} />}
+        {isLoading ? (
+          <UserPageSkeleton />
+        ) : (
+          <UserTable
+            userList={users}
+            setSubmitButtonPressed={setSubmitButtonPressed}
+          />
+        )}
         <br />
         <PaginationButtons
           total={totalCount}
