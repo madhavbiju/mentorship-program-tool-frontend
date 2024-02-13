@@ -3,13 +3,14 @@ import { baseUrl } from "../../../config/configUrl";
 import axiosInstance from "../../../config/configAxios";
 
 export const fetchTaskData = async (
+  EmployeeID: string,
   pageApi: number,
   selectedSortOption: string,
   selectedFilterOption: string
 ) => {
   try {
     const response = await axiosInstance.get(
-      `${baseUrl.task}/Mentee/2,${selectedFilterOption}?page=${pageApi}&sortBy=${selectedSortOption}`
+      `${baseUrl.task}/Mentee/${EmployeeID},${selectedFilterOption}?page=${pageApi}&sortBy=${selectedSortOption}`
     );
     return response.data;
   } catch (error) {

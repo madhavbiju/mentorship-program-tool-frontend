@@ -1,14 +1,16 @@
 import axios from "axios";
+import { baseUrl } from "../../../config/configUrl";
+import axiosInstance from "../../../config/configAxios";
 
 export const fetchTaskData = async (
+  EmployeeID: string,
   pageApi: number,
   selectedSortOption: string,
   selectedFilterOption: string
 ) => {
   try {
-    const response = await axios.get(
-      // `https://localhost:7259/api/task/Mentor/2,0?page=${pageApi}`a
-      ` https://localhost:7259/api/task/Mentor/2,${selectedFilterOption}?page=${pageApi}&sortBy=${selectedSortOption}`
+    const response = await axiosInstance.get(
+      `${baseUrl.task}/Mentor/${EmployeeID},${selectedFilterOption}?page=${pageApi}&sortBy=${selectedSortOption}`
     );
     return response.data;
   } catch (error) {
