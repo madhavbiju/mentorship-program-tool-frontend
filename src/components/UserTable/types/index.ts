@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface User {
   id: string;
   userName: string;
@@ -13,4 +15,5 @@ export interface UserDetailsResponse {
 
 export interface UserTableProps {
   userList: User[];
+  setSubmitButtonPressed: Dispatch<SetStateAction<boolean>>;
 }

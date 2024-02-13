@@ -39,9 +39,6 @@ const UnauthorizedPage = () => {
       <Typography sx={{ mb: 4 }}>
         Sorry, you do not have permission to view this page.
       </Typography>
-      {/* <Button variant="solid" onClick={handleGoHomeClick}>
-        Go to Home
-      </Button> */}
     </Box>
   );
 };

@@ -1,6 +1,5 @@
-interface Role {
-  roleName: string;
-}
+import { jwtDecode } from "jwt-decode";
+import { JWTPayload } from "../../../../apiHandler/types";
 
 const GetLogin = async (token: string): Promise<string[]> => {
   try {
@@ -16,10 +15,25 @@ const GetLogin = async (token: string): Promise<string[]> => {
     );
     const data = await response.json();
     console.log(data);
-    const roles: Role[] = data.roles || [];
-    console.log("Roles");
-    console.log(roles);
-    return roles.map((role: Role) => role.roleName.toLowerCase());
+    if (!data.token) {
+      console.error("JWT not found in response");
+      return [];
+    }
+
+    // Decode JWT to get JSON payload
+    const decoded: JWTPayload = jwtDecode(data.token);
+    sessionStorage.setItem("EmployeeId", decoded.nameid);
+    // Access roles using the full claim URI
+    const rolesClaim =
+      decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+    // Ensure rolesClaim is always an array for consistent handling
+    const roles = Array.isArray(rolesClaim) ? rolesClaim : [rolesClaim];
+    console.log("Roles", roles);
+
+    sessionStorage.setItem("jwtToken", JSON.stringify(data.token));
+
+    return roles.map((role) => role.toLowerCase());
   } catch (error) {
     console.error("Error sending token to server:", error);
     return [];

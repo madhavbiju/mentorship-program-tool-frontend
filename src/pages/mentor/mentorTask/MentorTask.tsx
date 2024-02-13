@@ -9,8 +9,9 @@ import {
   Breadcrumbs,
   Link,
   Typography,
+  FormLabel,
 } from "@mui/joy";
-import React from "react";
+import React, { useState } from "react";
 import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
 import MentorTaskCard from "../../../components/MentorTaskCard/MentorTaskCard";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
@@ -18,6 +19,9 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddIcon from "@mui/icons-material/Add";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import MentorTaskCardHandler from "../../../components/MentorTaskCard/MentorTaskCardHandler";
 
 const MentorTask = () => {
   const history = useNavigate();
@@ -25,6 +29,19 @@ const MentorTask = () => {
   const handleClick = () => {
     history("/mentor/tasks/create");
   };
+
+  const [selectedSortOption, setSelectedSortOption] = useState("");
+  const [selectedFilterOption, setFilterSortOption] = useState("0");
+
+  const handleSort = (selectedOption: string) => {
+    setSelectedSortOption(selectedOption);
+    console.log(selectedOption);
+  };
+
+  const handleFilter = (selectedOption: string) => {
+    setFilterSortOption(selectedOption);
+  };
+
   return (
     <Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -71,41 +88,50 @@ const MentorTask = () => {
         </Button>
       </Box>
       <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
-        <Dropdown>
-          <MenuButton color="primary" sx={{ borderRadius: 10, px: "3%" }}>
-            Sort
-          </MenuButton>
-          <Menu>
-            <MenuItem>Choose item</MenuItem>
-            <MenuList>Add item</MenuList>
-            <MenuList>Add item</MenuList>
-          </Menu>
-        </Dropdown>
-        <Dropdown>
-          <MenuButton
-            color="primary"
-            sx={{ borderRadius: 10, mx: "3%", px: "3%" }}
+        <FormLabel>Sort By</FormLabel>
+        <Select
+          size="sm"
+          placeholder="Sort by"
+          slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
+        >
+          <Option value="TaskName" onClick={() => handleSort("TaskName")}>
+            A-Z Task
+          </Option>
+          <Option
+            value="TaskName_desc"
+            onClick={() => handleSort("TaskName_desc")}
           >
-            Filter
-          </MenuButton>
-          <Menu>
-            <MenuItem>Choose item</MenuItem>
-            <MenuList>Add item</MenuList>
-            <MenuList>Add item</MenuList>
-          </Menu>
-        </Dropdown>
+            Z-A Task
+          </Option>
+          <Option value="endDate" onClick={() => handleSort("endDate")}>
+            A-Z Date
+          </Option>
+          <Option
+            value="endDate_desc"
+            onClick={() => handleSort("endDate_desc")}
+          >
+            Z-A Date
+          </Option>
+        </Select>
+        <FormLabel sx={{ ml: 1 }}>Filter By</FormLabel>
+        <Select
+          size="sm"
+          placeholder="Filter by"
+          slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
+        >
+          <Option value="0" onClick={() => handleFilter("0")}>Show All</Option>
+          <Option value="1" onClick={() => handleFilter("1")}>In progress</Option>
+          <Option value="6" onClick={() => handleFilter("6")}>Completed</Option>
+        </Select>
       </Box>
 
       <Grid container spacing={1} sx={{ my: "5%" }}>
         <Grid item xs={12} sm={12} md={12}>
-          <MentorTaskCard />
+          <MentorTaskCardHandler
+            selectedSortOption={selectedSortOption}
+            selectedFilterOption={selectedFilterOption}
+          />
         </Grid>
-        {/* <Grid item xs={12} sm={12} md={12}>
-          <MentorTaskCard />
-        </Grid>
-        <Grid item xs={12} sm={12} md={12}>
-          <MentorTaskCard />
-        </Grid> */}
       </Grid>
     </Box>
   );

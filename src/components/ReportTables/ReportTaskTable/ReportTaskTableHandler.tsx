@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
-import { tasks } from ".";
+import { Sort, tasks } from ".";
 import PaginationIcons from "../../Pagination/PaginationIcons";
 import { fetchtaskData } from "./API/GetReportData";
 import ReportTaskTable from "./ReportTaskTable";
 import ReportTaskTableSkeleton from "./ReportTaskTableSkeleton";
 
-const ReportTaskTableHandler: React.FC = () => {
+const ReportTaskTableHandler = ({ sort }: Sort) => {
   const [taskData, settaskData] = useState<{
     tasks: tasks[];
     totalCount: number;
@@ -20,14 +20,16 @@ const ReportTaskTableHandler: React.FC = () => {
 
   const gettaskData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchtaskData(pageApi);
+    let response = await fetchtaskData(pageApi, sort);
     settaskData(response);
+    console.log(response);
+
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
     gettaskData();
-  }, [pageApi]);
+  }, [pageApi, sort]);
   return (
     <>
       <Stack

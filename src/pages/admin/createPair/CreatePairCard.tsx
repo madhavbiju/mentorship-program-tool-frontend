@@ -4,8 +4,6 @@ import CardContent from "@mui/joy/CardContent";
 import Grid from "@mui/joy/Grid";
 import Button from "@mui/joy/Button";
 import Link from "@mui/joy/Link";
-import MentorSearch from "../../../components/SearchForMentor/MentorSearch";
-import MenteeSearch from "../../../components/SearchForMentee/MenteeSearch";
 import SetStartDate from "../../../components/CourseSetDate/SetStartDate";
 import SetEndDate from "../../../components/CourseSetDate/SetEndDate";
 import Input from "@mui/joy/Input";
@@ -16,9 +14,34 @@ import { Box } from "@mui/system";
 // import { Link } from "react-router-dom";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import OrderTable from "../pairs/Pairs";
+import MentorSearchHandler from "../../../components/SearchForMentor/MentorSearchHandler";
+import MenteeSearchHandler from "../../../components/SearchForMentee/MenteeSearchHandler";
+import { useEffect, useState } from "react";
 
-const CreatePairCard = () => {
+interface CreateProgramProps {
+  onSubmit: () => void;
+  onChange: (key: string, value: any) => void;
+}
+
+const CreatePairCard = ({ onSubmit, onChange }: CreateProgramProps) => {
+  const [mentorID, setMentorID] = useState(0);
+  const [menteeID, setMenteeID] = useState(0);
+  const [startDate, setStartDate] = React.useState(null);
+
+  const handleStartDateChange = (date: React.SetStateAction<null>) => {
+    setStartDate(date); //set the start date to the date that got from setStartDate component
+    console.log(startDate);
+  };
+  useEffect(() => {
+    onChange("mentorID", mentorID);
+  }, [mentorID]);
+  useEffect(() => {
+    onChange("menteeID", menteeID);
+  }, [menteeID]);
+  useEffect(() => {
+    onChange("startDate", startDate);
+  }, [startDate]);
+
   return (
     <React.Fragment>
       <Box
@@ -26,7 +49,6 @@ const CreatePairCard = () => {
           display: "flex",
           justifyContent: "flex-start",
           ml: "0",
-          //   border: "2px red solid",
         }}
       >
         <Breadcrumbs
@@ -72,6 +94,7 @@ const CreatePairCard = () => {
             <Input
               placeholder="                                             Program Name.."
               sx={{ border: "none", bgcolor: "transparent" }}
+              onChange={(e) => onChange("programName", e.target.value)}
             />
           </Card>
         </Grid>
@@ -80,7 +103,7 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <MentorSearch />
+                <MentorSearchHandler setMentorID={setMentorID} />
               </CardContent>
             </Card>
           </Grid>
@@ -88,7 +111,7 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <MenteeSearch />
+                <MenteeSearchHandler setMenteeID={setMenteeID} />
               </CardContent>
             </Card>
           </Grid>
@@ -96,7 +119,10 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <SetStartDate />
+                <SetStartDate
+                  /* pass the handleStartDateChange function to set start date */
+                  onStartDateChange={handleStartDateChange}
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -104,16 +130,20 @@ const CreatePairCard = () => {
           <Grid xs={12} sm={8}>
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
-                <SetEndDate />
+                <SetEndDate
+                  startDate={startDate}
+                  onChange={(date: React.SetStateAction<null>) =>
+                    onChange("endDate", date)
+                  }
+                />
+                {/* pass the starting date to setEndDate component */}
               </CardContent>
             </Card>
           </Grid>
         </Grid>
         <Grid xs={12}>
           <Grid container justifyContent="center">
-            <Button variant="solid" startDecorator={<AddIcon />} size="sm">
-              Create Pair
-            </Button>
+            <Button onClick={onSubmit}>Create Pair</Button>
           </Grid>
         </Grid>
       </Grid>

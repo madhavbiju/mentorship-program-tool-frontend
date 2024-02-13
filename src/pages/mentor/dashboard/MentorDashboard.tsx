@@ -6,6 +6,8 @@ import MeetingCard from "../../../components/MeetingCard/MeetingCard";
 import SubmittedTask from "../../../components/SubmittedTasks/SubmittedTask";
 import { Grid } from "@mui/material";
 import { ActiveMenteeCountData } from "./Types";
+import MeetingCardHandler from "../../../components/MeetingCard/MeetingCardHandler";
+import SubmittedTaskHandler from "../../../components/SubmittedTasks/SubmittedTaskHandler";
 
 const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
   return (
@@ -23,7 +25,7 @@ const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
         }}
       >
         <Grid xs={12} md={4}>
-          <GreetCard name={"Mentor"} />
+          <GreetCard />
         </Grid>
         <Grid xs={12} md={3} sx={{ mr: { sx: 0, md: "150px" } }}>
           <CountCard title={"Active Mentees"} count={menteeCount}></CountCard>
@@ -33,32 +35,17 @@ const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
 
       <Grid container spacing={2} sx={{ marginTop: ".5%" }}>
         <Grid item xs={12} lg={6} sx={{ marginBottom: "2%" }}>
-          <Typography level="h3" sx={{ marginBottom: "1rem" }}>
-            Meetings
-          </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <MeetingCard />
+              <MeetingCardHandler />
             </Grid>
-            {/* <Grid item xs={12}>
-              <MeetingCard />
-            </Grid>
-            <Grid item xs={12}>
-              <MeetingCard />
-            </Grid> */}
           </Grid>
         </Grid>
         <Grid item xs={12} lg={6} sx={{ marginBottom: "2%" }}>
-          <Typography level="h3" sx={{ marginBottom: "1rem" }}>
-            Submitted Task
-          </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <SubmittedTask />
+              <SubmittedTaskHandler />
             </Grid>
-            {/* <Grid item xs={12}>
-              <SubmittedTask />
-            </Grid> */}
           </Grid>
         </Grid>
       </Grid>

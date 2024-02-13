@@ -2,58 +2,46 @@ import { Box, Divider, Typography } from "@mui/joy";
 import React, { useEffect, useState } from "react";
 import GreetCard from "../../../components/GreetCard/GreetCard";
 import MentorAndProgramCard from "../../../components/MentorAndProgramCard/MentorAndProgramCard";
-import TasksNameAndDueDate from "../../../components/TasksNameAndDueDate/TasksNameAndDueDate";
 import { Grid } from "@mui/material";
 import ProgramProgressBar from "../../../components/ProgramProgressBar/ProgramProgressBar";
+import MeetingCardHandler from "../../../components/MeetingCard/MeetingCardHandler";
+import PendingTaskHandler from "../../../components/PendingTasks/PendingTaskHandler";
+import ProgramProgressBarHandler from "../../../components/ProgramProgressBar/ProgramProgressBarHandler";
+import MentorAndProgramCardHandler from "../../../components/MentorAndProgramCard/MentorAndProgramCardHandler";
 
 const MenteeDashboard = () => {
   return (
     <Box>
-      <Grid sx={{ display: "flex", alignItems: "center" }}>
-        <Grid xs={12} lg={6}>
-          <GreetCard name={"Mentee"} />
+      <Grid
+        container
+        rowSpacing={1}
+        columnSpacing={{ xs: 1, sm: 2, md: 1 }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          // gap: '20px'
+        }}
+      >
+        <Grid xs={12} md={4}>
+          <GreetCard />
         </Grid>
-        <Grid xs={12} lg={6}>
-          <MentorAndProgramCard
-            mentorName={"Shiyas"}
-            programName={"React Js"}
-          />
+        <Grid xs={12} md={3} sx={{ mr: { sx: 0, md: "150px" } }}>
+          <MentorAndProgramCardHandler />
         </Grid>
       </Grid>
+
       <Divider />
       <br />
-      <ProgramProgressBar />
+      <ProgramProgressBarHandler />
       <br />
       <Grid columnGap={2} sx={{ display: "flex" }} container>
-        <Grid xs={12} lg={5}>
-          <Typography>Tasks</Typography>
-          <div style={{ marginBottom: "10px" }}>
-            <TasksNameAndDueDate
-              taskName={"React Hooks Assignment"}
-              submissionDate={"23/04/2024"}
-            />
-          </div>
-          <div style={{ marginBottom: "10px" }}>
-            <TasksNameAndDueDate
-              taskName={".Net API Creation"}
-              submissionDate={"25/06/24"}
-            />
-          </div>
+        <Grid xs={12} lg={6}>
+          <PendingTaskHandler />
         </Grid>
         <Grid xs={12} lg={5}>
-          <Typography>Meetings</Typography>
-          <div style={{ marginBottom: "10px" }}>
-            <TasksNameAndDueDate
-              taskName={"Interim Review Discussion"}
-              submissionDate={"03/04/2024"}
-            />
-          </div>
-          <div style={{ marginBottom: "10px" }}>
-            <TasksNameAndDueDate
-              taskName={"Buddy Meeting"}
-              submissionDate={"29/04/2024"}
-            />
-          </div>
+          <MeetingCardHandler />
         </Grid>
       </Grid>
     </Box>

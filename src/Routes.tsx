@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MenteeDashboard from "./pages/mentee/dashboard/MenteeDashboard";
-import OrderTable from "./pages/admin/pairs/Pairs";
 import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
 import MentorReport from "./components/mentorreport/MentorReport";
@@ -25,10 +24,13 @@ import LoginPage from "./pages/common/loginpage/LoginPage";
 const msalInstance = new PublicClientApplication(msalConfig);
 import MentorDashboradHandler from "./pages/mentor/dashboard/MentorDashboardHandler";
 import ViewUsers from "./pages/admin/user/ViewUsers";
-import CreateMeeting from "./pages/mentor/createMeeting/CreateMeeting";
 import CreateMeetingHandler from "./pages/mentor/createMeeting/CreateMeetingHandler";
-import EventPage from "./pages/common/event/EventPage";
 import EventPageHandler from "./pages/common/event/EventPageHandler";
+import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandler";
+import Chat from "./pages/mentor/chat/Chat";
+import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
+import Pairs from "./pages/admin/pairs/Pairs";
+import WaitingForApprovalPage from "./components/ApprovalPage/ApprovalPage";
 import CreatetaskHandler from "./pages/mentor/createtask/CreateTasksHandler";
 
 const AppRoutes = () => {
@@ -37,6 +39,7 @@ const AppRoutes = () => {
       <UserRoleProvider>
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path="/waiting" element={<WaitingForApprovalPage />} />
           <Route
             path="/admin"
             element={
@@ -46,14 +49,14 @@ const AppRoutes = () => {
             }
           >
             <Route path="home" element={<AdminDashboardHandler />} />
-            <Route path="pairs" element={<OrderTable />} />
+            <Route path="pairs" element={<Pairs />} />
             <Route path="users" element={<ViewUsers />} />
             <Route path="report" element={<AdminReportPage />} />
             <Route path="report/overall" element={<AdminReport />} />
             <Route path="report/mentor" element={<MentorReport />} />
             <Route path="report/pair" element={<PairReport />} />
 
-            <Route path="pairs/create" element={<CreatePairCard />} />
+            <Route path="pairs/create" element={<CreatePairCardHandler />} />
           </Route>
           <Route
             path="/mentee"
@@ -66,6 +69,7 @@ const AppRoutes = () => {
             <Route path="home" element={<MenteeDashboard />} />
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="report" element={<MenteeReport />} />
+            <Route path="tasks" element={<MenteeTask />} />
           </Route>
           <Route
             path="/mentor"
@@ -86,6 +90,7 @@ const AppRoutes = () => {
               path="calendar/event/:meetingId"
               element={<EventPageHandler />}
             />
+            <Route path="chat" element={<Chat />} />
             <Route path="report" element={<MentorReportPage />} />
           </Route>
         </Routes>

@@ -17,11 +17,15 @@ const useLoginHandler = (onLoginSuccess: () => void) => {
       try {
         const response = await instance.loginPopup(loginRequest);
         const roles = await GetLogin(response.accessToken);
+
         if (roles.length > 0) {
           setUserRoles(roles);
           sessionStorage.setItem("userRoles", JSON.stringify(roles));
           // Navigate based on the primary role
           navigate(`/${roles[0]}/home`);
+        }
+        if (roles.length === 0) {
+          navigate(`/waiting`);
         }
         onLoginSuccess();
       } catch (e) {
