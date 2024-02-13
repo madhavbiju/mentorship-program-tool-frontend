@@ -1,10 +1,10 @@
 export interface meetings {
-  menteeName: string;
+  menteeFirstName: string;
   meetingID: number;
-  meetingName: string;
-  scheduledDate: string;
-  scheduledTime: string;
-  status: string;
+  title: string;
+  scheduleDate: string;
+  startTime: string;
+  meetingStatus: number;
 
   // Add other fields as needed
 }

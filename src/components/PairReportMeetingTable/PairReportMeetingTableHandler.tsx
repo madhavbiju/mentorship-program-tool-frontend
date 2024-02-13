@@ -21,6 +21,7 @@ const PairReportMeetingTableHandler = ({
     meetings: [],
     totalCount: 0,
   });
+  console.log(meetingData);
   const [pageApi, setPageApi] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -28,15 +29,14 @@ const PairReportMeetingTableHandler = ({
     setIsLoading(true); // Set loading state to true while fetching data
     let response = await getPairReportMeetingsData(programid, pageApi, sort);
     setmeetingData(response);
-    console.log("meetingData.meetings");
-    console.log(meetingData);
-
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
+    console.log("here");
     getmeetingData();
   }, [pageApi, sort]);
+
   return (
     <>
       <Stack

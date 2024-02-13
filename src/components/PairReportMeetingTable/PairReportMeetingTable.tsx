@@ -5,7 +5,7 @@ import { useState } from "react";
 import { PairReportMeetingTableProps } from "./Types";
 
 export default function PairReportMeetingTable({
-  meeting,
+  meetings,
 }: PairReportMeetingTableProps) {
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
@@ -14,15 +14,20 @@ export default function PairReportMeetingTable({
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
+  function extractTime(dateString: string | number | Date) {
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
+  }
 
   const statusvalue = (status: number) => {
     switch (status) {
-      case 1:
-        return "Active";
-      case 2:
-        return "Inactive";
-      case 6:
-        return "Submitted";
+      case 7:
+        return "Scheduled";
+      case 8:
+        return "Completed";
       default:
         return "Unknown";
     }
@@ -45,13 +50,13 @@ export default function PairReportMeetingTable({
             </tr>
           </thead>
           <tbody>
-            {meeting.map((row) => (
-              <tr key={row.meetingId}>
-                <td>{row.menteeName}</td>
-                <td>{row.meetingName}</td>
-                <td>{formatDate(row.scheduledDate)}</td>
-                <td>{row.scheduledTime}</td>
-                <td>{statusvalue(row.status)}</td>
+            {meetings.map((row) => (
+              <tr key={row.meetingID}>
+                <td>{row.menteeFirstName}</td>
+                <td>{row.title}</td>
+                <td>{formatDate(row.scheduleDate)}</td>
+                <td>{extractTime(row.startTime)}</td>
+                <td>{statusvalue(row.meetingStatus)}</td>
               </tr>
             ))}
           </tbody>

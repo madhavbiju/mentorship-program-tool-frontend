@@ -6,10 +6,10 @@ export const getPairReportMeetingsData = async (
   sort: string
 ) => {
   try {
-    console.log(sort);
     const response = await axios.get(
       `https://localhost:7259/api/meeting/meetings/programid/${programId}?page=${pageApi}&sortBy=${sort}`
     );
+
     return response.data;
   } catch (error) {
     console.error("Error fetching active count:", error);
