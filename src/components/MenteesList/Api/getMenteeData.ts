@@ -8,8 +8,6 @@ export const fetchMenteeData = async (
 ) => {
   try {
     const response = await axios.get(
-      
-      // `https://localhost:7259/api/mentee/mentor/2?pageNumber=${pageApi}&pageSize=5`
       `https://localhost:7259/api/mentee/mentor/2?pageNumber=${pageApi}&pageSize=5&sortBy=${selectedSortOption}&filterBy=${selectedFilterOption}`
     );
     return response.data;
