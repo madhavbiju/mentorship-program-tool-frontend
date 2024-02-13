@@ -21,3 +21,7 @@ export interface eventList {
   export interface eventProps {
     eventFormattedList: ExtendedEvent[];
   }
+
+  export interface roleProp{
+    roleID: number
+  }

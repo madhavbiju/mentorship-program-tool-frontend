@@ -12,6 +12,8 @@ import {
   FormLabel,
 } from "@mui/joy";
 import React, { useState } from "react";
+import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
+import MentorTaskCard from "../../../components/MentorTaskCard/MentorTaskCard";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddIcon from "@mui/icons-material/Add";
@@ -19,10 +21,14 @@ import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
-import MenteeTaskCardHandler from "../../../components/MenteeTaskCard/MenteeTaskCardHandler";
+import MentorTaskCardHandler from "../../../components/MentorTaskCard/MentorTaskCardHandler";
 
-const MenteeTask = () => {
+const MentorTask = () => {
   const history = useNavigate();
+
+  const handleClick = () => {
+    history("/mentor/tasks/create");
+  };
 
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [selectedFilterOption, setFilterSortOption] = useState("0");
@@ -72,6 +78,14 @@ const MenteeTask = () => {
         <Typography level="h2" component="h1">
           Tasks
         </Typography>
+        <Button
+          color="primary"
+          startDecorator={<AddIcon />}
+          size="sm"
+          onClick={handleClick}
+        >
+          Create Task
+        </Button>
       </Box>
       <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
         <FormLabel>Sort By</FormLabel>
@@ -119,7 +133,7 @@ const MenteeTask = () => {
 
       <Grid container spacing={1} sx={{ my: "5%" }}>
         <Grid item xs={12} sm={12} md={12}>
-          <MenteeTaskCardHandler
+          <MentorTaskCardHandler
             selectedSortOption={selectedSortOption}
             selectedFilterOption={selectedFilterOption}
           />
@@ -129,4 +143,4 @@ const MenteeTask = () => {
   );
 };
 
-export default MenteeTask;
+export default MentorTask;

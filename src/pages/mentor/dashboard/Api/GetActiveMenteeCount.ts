@@ -1,8 +1,10 @@
 import axios from "axios";
+import { baseUrl } from "../../../../config/configUrl";
+import axiosInstance from "../../../../config/configAxios";
 
-export const fetchActiveMenteeCount = async () => {
-  return await axios
-    .get(`https://localhost:7259/api/mentee/mentees-count-under-mentor/2`)
+export const fetchActiveMenteeCount = async (EmployeeID:String) => {
+  return await axiosInstance
+    .get(`${baseUrl.mentee}/mentees-count-under-mentor/${EmployeeID}`)
     .then((data) => data.data)
     .catch((err) => console.error("Error fetching active count:", err));
 };
