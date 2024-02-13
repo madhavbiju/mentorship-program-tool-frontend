@@ -8,4 +8,5 @@ export interface meetingType{
     startTime: string,
     endTime: string,
     agenda: string
+    meetingStatus: number
 }
