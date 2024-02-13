@@ -66,7 +66,7 @@ const AdminReportPage = () => {
           <Grid lg={12}>
             {reportType === "Mentee Report" ? (
               <>
-                <SelectMenteeDropDown />
+                {/* <SelectMenteeDropDown /> */}
                 <Grid lg={12}>
                   <PairReport />
                 </Grid>

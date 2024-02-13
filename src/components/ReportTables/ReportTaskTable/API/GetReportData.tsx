@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export const fetchtaskData = async (pageApi: number) => {
+export const fetchtaskData = async (pageApi: number, sort: string) => {
   try {
+    console.log(sort);
     const response = await axios.get(
-      `https://localhost:7259/api/task/Mentor/0,0?page=${pageApi}`
+      `https://localhost:7259/api/task/Mentor/0,0?page=${pageApi}&sortBy=${sort}`
     );
     return response.data;
   } catch (error) {

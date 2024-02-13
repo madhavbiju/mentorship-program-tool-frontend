@@ -1,10 +1,18 @@
-import * as React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { ColorPaletteProp } from "@mui/joy/styles";
+import Avatar from "@mui/joy/Avatar";
+import Box from "@mui/joy/Box";
+import Chip from "@mui/joy/Chip";
 import Table from "@mui/joy/Table";
-import { Sheet, Typography } from "@mui/joy";
-import PaginationButtons from "../Pagination/Pagination";
-import { Stack } from "@mui/material";
-import { MentorMenteeProps } from ".";
-export default function MentorMenteeTable({ program }: MentorMenteeProps) {
+import Sheet from "@mui/joy/Sheet";
+import Typography from "@mui/joy/Typography";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import { MentorMenteeTableProps } from ".";
+// import CreatePair from "../createPair/CreatePair";
+// import { Navigate } from "react-router";
+
+const MentorMenteeTable = ({ program, totalCount }: MentorMenteeTableProps) => {
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const day = date.getDate();
@@ -13,32 +21,68 @@ export default function MentorMenteeTable({ program }: MentorMenteeProps) {
     return `${day}/${month}/${year}`;
   };
   return (
-    <>
-      <Sheet
-        variant="outlined"
-        sx={{ width: "100%", boxShadow: "sm", borderRadius: "sm" }}
+    <Sheet
+      variant="outlined"
+      sx={{
+        display: { sm: "initial" },
+        width: "100%",
+        borderRadius: "sm",
+        flexShrink: 1,
+        overflow: "auto",
+        minHeight: 0,
+      }}
+    >
+      <Table
+        aria-labelledby="tableTitle"
+        stickyHeader
+        hoverRow
+        sx={{
+          "--TableCell-headBackground": "var(--joy-palette-background-level1)",
+          "--Table-headerUnderlineThickness": "1px",
+          "--TableRow-hoverBackground": "var(--joy-palette-background-level1)",
+          "--TableCell-paddingY": "4px",
+          "--TableCell-paddingX": "8px",
+        }}
       >
-        <Table hoverRow>
-          <thead>
-            <tr>
-              <th style={{ width: "40%" }}>Program Name</th>
-              <th>Mentor</th>
-              <th>Mentee</th>
-              <th>End Date</th>
+        <thead>
+          <tr>
+            <th style={{ width: 240, padding: "12px 6px" }}>Mentor</th>
+            <th style={{ width: 140, padding: "12px 6px" }}>Mentee</th>
+            <th style={{ width: 140, padding: "12px 6px" }}>End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {program.map((program) => (
+            <tr key={program.programID}>
+              <td>
+                <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                  <div>
+                    <Typography level="body-xs">
+                      {program.mentorFirstName}
+                    </Typography>
+                  </div>
+                </Box>
+              </td>
+              <td>
+                <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                  <div>
+                    <Typography level="body-xs">
+                      {program.menteeFirstName}
+                    </Typography>
+                  </div>
+                </Box>
+              </td>
+              <td>
+                <Typography level="body-xs">
+                  {formatDate(program.endDate)}
+                </Typography>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {program.map((row) => (
-              <tr key={row.programID}>
-                <td>{row.programName}</td>
-                <td>{row.mentorFirstName}</td>
-                <td>{row.menteeFirstName}</td>
-                <td>{formatDate(row.endDate)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Sheet>
-    </>
+          ))}
+        </tbody>
+      </Table>
+    </Sheet>
   );
-}
+};
+
+export default MentorMenteeTable;
