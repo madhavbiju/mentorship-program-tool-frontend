@@ -28,8 +28,8 @@ import CreateMeetingHandler from "./pages/mentor/createMeeting/CreateMeetingHand
 import EventPageHandler from "./pages/common/event/EventPageHandler";
 import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandler";
 import Chat from "./pages/mentor/chat/Chat";
-import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 import Pairs from "./pages/admin/pairs/Pairs";
+import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 
 const AppRoutes = () => {
   return (

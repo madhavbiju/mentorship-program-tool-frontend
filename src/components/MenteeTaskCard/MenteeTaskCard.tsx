@@ -10,9 +10,9 @@ import {
 } from "@mui/joy";
 import Grid from "@mui/joy/Grid";
 import React from "react";
-import { TaskProps } from "./Types/Index";
+import { TaskProps } from "./Types";
 
-const MentorTaskCard = ({ tasks }: TaskProps) => {
+const MenteeTaskCard = ({ tasks }: TaskProps) => {
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const day = date.getDate();
@@ -96,4 +96,4 @@ const MentorTaskCard = ({ tasks }: TaskProps) => {
   );
 };
 
-export default MentorTaskCard;
+export default MenteeTaskCard;
