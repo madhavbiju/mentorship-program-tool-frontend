@@ -4,7 +4,7 @@ import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
 import MentorReport from "./components/mentorreport/MentorReport";
 import MenteesList from "./pages/mentor/menteesList/MenteesList";
-import MentorTask from "./pages/mentor/mentorTask/MentorTask";
+import MentorTask from "./pages/mentee/menteeTask/MenteeTask";
 import AdminReport from "./components/adminreport/AdminReport";
 import MenteeReport from "./components/pairreport/PairReport";
 import CreatePairCard from "./pages/admin/createPair/CreatePairCard";
@@ -68,6 +68,7 @@ const AppRoutes = () => {
           >
             <Route path="home" element={<MenteeDashboard />} />
             <Route path="calendar" element={<CalendarPage />} />
+            <Route path="tasks" element={<MenteeTask />} />
             <Route path="report" element={<MenteeReport />} />
             <Route path="tasks" element={<MenteeTask />} />
           </Route>

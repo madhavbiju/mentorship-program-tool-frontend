@@ -23,7 +23,7 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import MentorTaskCardHandler from "../../../components/MentorTaskCard/MentorTaskCardHandler";
 
-const MentorTask = () => {
+const MenteeTask = () => {
   const history = useNavigate();
 
   const handleClick = () => {
@@ -78,6 +78,14 @@ const MentorTask = () => {
         <Typography level="h2" component="h1">
           Tasks
         </Typography>
+        <Button
+          color="primary"
+          startDecorator={<AddIcon />}
+          size="sm"
+          onClick={handleClick}
+        >
+          Create Task
+        </Button>
       </Box>
       <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
         <FormLabel>Sort By</FormLabel>
@@ -87,22 +95,22 @@ const MentorTask = () => {
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
           <Option value="TaskName" onClick={() => handleSort("TaskName")}>
-            Asc Task
+            A-Z Task
           </Option>
           <Option
             value="TaskName_desc"
             onClick={() => handleSort("TaskName_desc")}
           >
-            Desc Task
+            Z-A Task
           </Option>
           <Option value="endDate" onClick={() => handleSort("endDate")}>
-            Asc Date
+            A-Z Date
           </Option>
           <Option
             value="endDate_desc"
             onClick={() => handleSort("endDate_desc")}
           >
-            Desc Date
+            Z-A Date
           </Option>
         </Select>
         <FormLabel sx={{ ml: 1 }}>Filter By</FormLabel>
@@ -135,4 +143,4 @@ const MentorTask = () => {
   );
 };
 
-export default MentorTask;
+export default MenteeTask;

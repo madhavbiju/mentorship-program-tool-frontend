@@ -1,6 +1,6 @@
 import axios from "axios";
 
- export const fetchEventData = async (employeeID: number, roleID:number) => {
+ export const fetchEventData = async (employeeID: string, roleID:number) => {
     try {
       const response = await axios.get(
         `https://localhost:7259/api/meeting/employee/${employeeID}?role=${roleID}`
