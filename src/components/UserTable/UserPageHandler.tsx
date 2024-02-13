@@ -104,10 +104,6 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({
       setUsers(response.userList);
       setTotalCount(response.totalCount);
       setIsLoading(false);
-
-      console.log(response.totalCount);
-      console.log("response.userList");
-      console.log(response.userList);
     } catch (error) {
       console.error("Failed to fetch user details:", error);
     }

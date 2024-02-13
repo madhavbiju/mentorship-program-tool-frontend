@@ -35,8 +35,11 @@ export default function ViewUsers() {
   const handleSortChange = (event: SelectChangeEvent<string>) => {
     setSort(event.target.value);
   };
-  const handleSearchChange = (event: SelectChangeEvent<string>) => {
-    setSearch(event.target.value);
+  const handleSearchChange = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const value = formData.get("searchParam") as string;
+    setSearch(value ?? "");
   };
   const handleStatusChange = (event: SelectChangeEvent<string>) => {
     setStatus(event.target.value);
@@ -134,14 +137,17 @@ export default function ViewUsers() {
           },
         }}
       >
-        <FormControl sx={{ flex: 1 }} size="small">
-          {/* <FormLabel>Search</FormLabel> */}
-          <Input
-            size="sm"
-            placeholder="Search"
-            startDecorator={<SearchIcon />}
-          />
-        </FormControl>
+        <Box component="form" onSubmit={handleSearchChange} sx={{ flex: 1 }}>
+          <FormControl size="small">
+            {/* <FormLabel>Search</FormLabel> */}
+            <Input
+              size="sm"
+              placeholder="Search"
+              name="searchParam"
+              startDecorator={<SearchIcon />}
+            />
+          </FormControl>
+        </Box>
         {renderFilters()}
       </Box>
       <UserPageHandler
