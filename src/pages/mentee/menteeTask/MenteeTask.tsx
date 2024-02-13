@@ -76,6 +76,14 @@ const MenteeTask = () => {
         <Typography level="h2" component="h1">
           Tasks
         </Typography>
+        <Button
+          color="primary"
+          startDecorator={<AddIcon />}
+          size="sm"
+          onClick={handleClick}
+        >
+          Create Task
+        </Button>
       </Box>
       <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
         <FormLabel>Sort By</FormLabel>

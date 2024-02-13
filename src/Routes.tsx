@@ -3,7 +3,7 @@ import MenteeDashboard from "./pages/mentee/dashboard/MenteeDashboard";
 import App from "./App";
 import MentorReport from "./components/mentorreport/MentorReport";
 import MenteesList from "./pages/mentor/menteesList/MenteesList";
-import MentorTask from "./pages/mentor/mentorTask/MentorTask";
+import MentorTask from "./pages/mentee/menteeTask/MenteeTask";
 import AdminReport from "./components/adminreport/AdminReport";
 import MenteeReport from "./components/pairreport/PairReport";
 import CreatePairCard from "./pages/admin/createPair/CreatePairCard";
@@ -89,6 +89,7 @@ const AppRoutes = () => {
             <Route path="mentees" element={<MenteesList />} />
             <Route path="tasks" element={<MentorTask />} />
             <Route path="tasks/selected" element={<MentorSelectedTask />} />
+            <Route path="tasks/create" element={<CreatetaskHandler />} />
             <Route path="tasks/create" element={<CreatetaskHandler />} />
             <Route path="calendar/create" element={<CreateMeetingHandler />} />
             <Route
