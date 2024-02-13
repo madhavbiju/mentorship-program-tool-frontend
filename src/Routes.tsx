@@ -7,7 +7,6 @@ import MenteesList from "./pages/mentor/menteesList/MenteesList";
 import MentorTask from "./pages/mentor/mentorTask/MentorTask";
 import AdminReport from "./components/adminreport/AdminReport";
 import MenteeReport from "./components/pairreport/PairReport";
-import CreatePairCard from "./pages/admin/createPair/CreatePairCard";
 import PairReport from "./components/pairreport/PairReport";
 import AdminReportPage from "./pages/admin/report/AdminReportPage";
 import MentorReportPage from "./pages/mentor/report/MentorReportPage";

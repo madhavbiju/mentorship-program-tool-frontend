@@ -1,9 +1,6 @@
 import { Box, Divider, Typography } from "@mui/joy";
-import React, { useEffect, useState } from "react";
 import GreetCard from "../../../components/GreetCard/GreetCard";
-import MentorAndProgramCard from "../../../components/MentorAndProgramCard/MentorAndProgramCard";
 import { Grid } from "@mui/material";
-import ProgramProgressBar from "../../../components/ProgramProgressBar/ProgramProgressBar";
 import MeetingCardHandler from "../../../components/MeetingCard/MeetingCardHandler";
 import PendingTaskHandler from "../../../components/PendingTasks/PendingTaskHandler";
 import ProgramProgressBarHandler from "../../../components/ProgramProgressBar/ProgramProgressBarHandler";
