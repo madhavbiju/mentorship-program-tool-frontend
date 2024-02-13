@@ -1,5 +1,7 @@
 import axios from "axios";
 import { User, UserDetailsResponse } from "../types"; // Assuming your types are exported from a 'types.ts' file
+import axiosInstance from "../../../config/configAxios";
+import { baseUrl } from "../../../config/configUrl";
 
 function getUserInitials(userName: string): string {
   const names = userName.split(" ");
@@ -19,8 +21,11 @@ export async function getUserDetails(
 ): Promise<UserDetailsResponse> {
   try {
     // Replace 'all' with `${toggleChoice}` in the URL
-    const response = await axios.get<{ users: any[]; totalCount: number }>(
-      `https://localhost:7259/api/admin/byrole?role=${toggleChoice}&pageNumber=${page}&pageSize=6&sortParameter=UserName&sortType=${toggleSortType}&status=${toggleStatus}&searchQuery=${searchQuery}`
+    const response = await axiosInstance.get<{
+      users: any[];
+      totalCount: number;
+    }>(
+      `${baseUrl.admin}/byrole?role=${toggleChoice}&pageNumber=${page}&pageSize=6&sortParameter=UserName&sortType=${toggleSortType}&status=${toggleStatus}&searchQuery=${searchQuery}`
     );
 
     const { users: usersData, totalCount } = response.data;
