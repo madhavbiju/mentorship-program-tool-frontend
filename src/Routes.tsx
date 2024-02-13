@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MenteeDashboard from "./pages/mentee/dashboard/MenteeDashboard";
-import OrderTable from "./pages/admin/pairs/Pairs";
 import App from "./App";
 import CalendarPage from "./pages/common/calendar/CalendarPage";
 import MentorReport from "./components/mentorreport/MentorReport";
@@ -29,6 +28,7 @@ import CreateMeetingHandler from "./pages/mentor/createMeeting/CreateMeetingHand
 import EventPageHandler from "./pages/common/event/EventPageHandler";
 import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandler";
 import Chat from "./pages/mentor/chat/Chat";
+import Pairs from "./pages/admin/pairs/Pairs";
 
 const AppRoutes = () => {
   return (
@@ -45,7 +45,7 @@ const AppRoutes = () => {
             }
           >
             <Route path="home" element={<AdminDashboardHandler />} />
-            <Route path="pairs" element={<OrderTable />} />
+            <Route path="pairs" element={<Pairs />} />
             <Route path="users" element={<ViewUsers />} />
             <Route path="report" element={<AdminReportPage />} />
             <Route path="report/overall" element={<AdminReport />} />
