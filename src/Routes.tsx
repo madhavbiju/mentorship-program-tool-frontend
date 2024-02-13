@@ -98,9 +98,7 @@ const AppRoutes = () => {
 const AppRouter = () => {
   return (
     <Router>
-      <Notification>
       <AppRoutes />
-      </Notification>
     </Router>
   );
 };

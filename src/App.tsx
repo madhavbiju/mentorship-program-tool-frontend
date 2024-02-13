@@ -10,6 +10,7 @@ import {
 } from "@mui/material/styles";
 import { CssVarsProvider as JoyCssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
+import NotificationComponent from "../src/components/Notification/Notification";
 
 const materialTheme = materialExtendTheme();
 
@@ -27,7 +28,14 @@ export default function JoyOrderDashboardTemplate({ role }: { role: string }) {
         <Box
           sx={{ display: "flex", flexDirection: "column", minHeight: "100dvh" }}
         >
-          <Header />
+          <NotificationComponent>
+            {(notifications: any) => (
+              <>
+                <Header notifications={notifications} />
+              </>
+            )}
+          </NotificationComponent>
+
           <Sidebar role={role} />
           <Box
             component="main"

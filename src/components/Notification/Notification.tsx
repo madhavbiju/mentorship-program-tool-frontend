@@ -1,15 +1,21 @@
-import React, { FC, ReactNode, useEffect } from "react";
+import React, { FC, ReactNode, useEffect, useState } from "react";
 import { HubConnectionBuilder } from "@microsoft/signalr";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const NotificationComponent = ({ children }: { children: ReactNode }) => {
+const NotificationComponent: FC<{
+  children: (notifications: string[]) => ReactNode;
+}> = ({ children }) => {
+  const [notifications, setNotifications] = useState<string[]>([]);
+
   useEffect(() => {
     // Create SignalR connection
-    const connection = new HubConnectionBuilder()
+    const hubConnection = new HubConnectionBuilder()
       .withUrl("https://localhost:7259/notificationHub")
       .build();
 
     // Start the connection
-    connection
+    hubConnection
       .start()
       .then(() => console.log("SignalR Connected"))
       .catch((error: any) =>
@@ -17,27 +23,55 @@ const NotificationComponent = ({ children }: { children: ReactNode }) => {
       );
 
     // Receive notifications
-    connection.on("ReceiveMessage", (message: string, id: string) => {
-      // to handle the received message and ID
+    hubConnection.on("ReceiveMessage", (message: string, id: string) => {
+      // Handle received message and ID
       console.log("Received Message: ", message);
       console.log("Received ID: ", id);
+
+      // Update notifications state with received message
+      setNotifications((prevNotifications) => [...prevNotifications, message]);
+    });
+
+    hubConnection.on("PairCreated", (mentorUser, menteeUser) => {
+      // Handle pair creation notification
+      console.log(
+        "Pair created for mentor:",
+        mentorUser,
+        "and mentee:",
+        menteeUser
+      );
+      // Show the pair creation message as a notification
+      toast.info("PairCreated");
+    });
+
+    // Handle ExtensionRequestNotification
+    hubConnection.on("ExtensionRequestNotification", (adminUser: string) => {
+      // Handle extension request notification
+      console.log(
+        "Received Extension Request Notification for admin user: ",
+        adminUser
+      );
+      // You can add logic here to handle the extension request notification
     });
 
     // Handle connection errors
-    connection.onclose((error: any) => {
+    hubConnection.onclose((error: any) => {
       console.log("SignalR Connection Closed: ", error);
     });
 
     // Clean up on component unmount
     return () => {
-      connection.off("ReceiveMessage"); // Unsubscribe from the "ReceiveMessage" event
-      connection.stop(); // Stop the SignalR connection
+      hubConnection.off("ReceiveMessage"); // Unsubscribe from the "ReceiveMessage" event
+      hubConnection.stop(); // Stop the SignalR connection
     };
   }, []);
 
   return (
-    // Your component JSX
-    <div>{children}</div>
+    // Pass notifications state to children
+    <div>
+      <ToastContainer style={{ marginTop: 40 }} />
+      {children(notifications)}
+    </div>
   );
 };
 

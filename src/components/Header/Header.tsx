@@ -26,7 +26,8 @@ import ToggleRoleButton from "../toggleRoleButton/ToggleRoleButton";
 import SearchInput from "../SearchInput/SearchInput";
 import { Card, CardCover, Modal, ModalClose, useTheme } from "@mui/joy";
 
-export default function Header() {
+export default function Header({notifications}:any) {
+  console.log(notifications);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
   const history = useNavigate();
   const createHandleClose = (index: number) => () => {
