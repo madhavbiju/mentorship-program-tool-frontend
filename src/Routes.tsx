@@ -28,6 +28,7 @@ import ViewUsers from "./pages/admin/user/ViewUsers";
 import CreateMeetingHandler from "./pages/mentor/createMeeting/CreateMeetingHandler";
 import EventPageHandler from "./pages/common/event/EventPageHandler";
 import Chat from "./pages/mentor/chat/Chat";
+import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 
 const AppRoutes = () => {
   return (
@@ -64,6 +65,7 @@ const AppRoutes = () => {
             <Route path="home" element={<MenteeDashboard />} />
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="report" element={<MenteeReport />} />
+            <Route path="tasks" element={<MenteeTask />} />
           </Route>
           <Route
             path="/mentor"
