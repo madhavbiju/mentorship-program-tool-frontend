@@ -9,35 +9,36 @@ function getUserInitials(userName: string): string {
   return userName[0].toUpperCase(); // Fallback to just the first letter
 }
 
+// Added 'toggleChoice' parameter with default value 'all'
 export async function getUserDetails(
-  page: number = 1
+  page: number = 1,
+  toggleChoice: string = "all",
+  toggleSortType: string = "Asc",
+  toggleStatus: string = "all",
+  searchQuery: string = ""
 ): Promise<UserDetailsResponse> {
   try {
+    // Replace 'all' with `${toggleChoice}` in the URL
     const response = await axios.get<{ users: any[]; totalCount: number }>(
-      `https://localhost:7259/api/admin/ByRole/all?pageNumber=${page}&pageSize=13`
+      `https://localhost:7259/api/admin/byrole?role=${toggleChoice}&pageNumber=${page}&pageSize=6&sortParameter=UserName&sortType=${toggleSortType}&status=${toggleStatus}&searchQuery=${searchQuery}`
     );
 
     const { users: usersData, totalCount } = response.data;
 
-    const usersMap: { [key: string]: User } = {};
+    const userList: User[] = usersData.map((user: any) => {
+      // Check if userRoles is not empty, else set it to ["Unassigned"]
+      const userRoles =
+        user.userRoles.length > 0 ? user.userRoles : ["Unassigned"];
 
-    usersData.forEach((user: any) => {
-      const id = `${user.userID}`;
-      if (usersMap[id]) {
-        usersMap[id].userRoles.push(user.userRole);
-      } else {
-        usersMap[id] = {
-          id,
-          userName: user.userName,
-          userInitials: getUserInitials(user.userName),
-          userRoles: [user.userRole],
-          userJob: user.userJob,
-          userStatus: user.userStatus,
-        };
-      }
+      return {
+        id: user.userID,
+        userName: user.userName,
+        userInitials: getUserInitials(user.userName),
+        userRoles: userRoles, // Use the modified userRoles with the check for "Unassigned"
+        userJob: user.userJob,
+        userStatus: user.userStatus,
+      };
     });
-
-    const userList: User[] = Object.values(usersMap);
 
     return {
       userList,
