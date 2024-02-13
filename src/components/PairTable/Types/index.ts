@@ -11,3 +11,9 @@ export interface PairTableProps {
   program: programs[];
   totalCount: number;
 }
+
+export interface FilterProps {
+  status: string;
+  sort: string;
+  search: string;
+}
