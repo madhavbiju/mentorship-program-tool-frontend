@@ -27,6 +27,7 @@ import ColorSchemeToggle from "../ColorSchemeToggle/ColorSchemeToggle";
 import { Apps } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
+import ToggleRoleButton from "../toggleRoleButton/ToggleRoleButton";
 import SearchInput from "../SearchInput/SearchInput";
 
 export default function Header() {
@@ -53,9 +54,8 @@ export default function Header() {
   const { instance } = useMsal();
   const logOut = () => {
     sessionStorage.clear();
-    instance.logoutPopup({
+    instance.logoutRedirect({
       postLogoutRedirectUri: "/",
-      mainWindowRedirectUri: "/",
     });
   };
   return (
@@ -180,7 +180,7 @@ export default function Header() {
             </IconButton>
           </Tooltip>
           <ColorSchemeToggle sx={{ ml: "auto" }} />
-          <Dropdown>
+          {/* <Dropdown>
             <MenuButton startDecorator={<Apps />}>
               {selectedIndex === 1 && "Admin"}
               {selectedIndex === 2 && "Mentor"}
@@ -209,7 +209,8 @@ export default function Header() {
                 Mentee
               </MenuItem>
             </Menu>
-          </Dropdown>
+          </Dropdown> */}
+          <ToggleRoleButton />
           <Dropdown>
             <MenuButton
               variant="plain"

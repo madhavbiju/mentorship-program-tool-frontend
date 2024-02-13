@@ -25,7 +25,7 @@ const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
         }}
       >
         <Grid xs={12} md={4}>
-          <GreetCard name={"Mentor"} />
+          <GreetCard />
         </Grid>
         <Grid xs={12} md={3} sx={{ mr: { sx: 0, md: "150px" } }}>
           <CountCard title={"Active Mentees"} count={menteeCount}></CountCard>
