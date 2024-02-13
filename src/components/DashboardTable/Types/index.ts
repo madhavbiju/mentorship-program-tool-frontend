@@ -1,12 +1,13 @@
-export interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  maidenName: string;
-  age: number;
+export interface programs {
+  programID: number;
+  mentorFirstName: string;
+  menteeFirstName: string;
+  programName: string;
+  endDate: string;
   // Add other fields as needed
 }
 
 export interface DashboardTableProps {
-  users: User[];
+  program: programs[];
+  totalCount: number;
 }

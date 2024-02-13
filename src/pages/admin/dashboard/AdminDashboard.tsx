@@ -1,22 +1,8 @@
-import {
-  AspectRatio,
-  Box,
-  Breadcrumbs,
-  Card,
-  CardContent,
-  Divider,
-  Grid,
-  Link,
-  Stack,
-  Typography,
-} from "@mui/joy";
-import React from "react";
+import { Box, Breadcrumbs, Divider, Grid, Link } from "@mui/joy";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import CountCard from "../../../components/CountCard/CountCard";
-import DashboardTable from "../../../components/DashboardTable/DashboardTable";
 import GreetCard from "../../../components/GreetCard/GreetCard";
-import RequestBox from "../../../components/RequestBox/RequestBox";
 import { AdminDashboardProps } from "./Types";
 import DashboardTableHandler from "../../../components/DashboardTable/DashboardTableHandler";
 import RequestBoxHandler from "../../../components/RequestBox/RequestBoxHandler";
@@ -42,7 +28,7 @@ const AdminDashboard = ({ data }: AdminDashboardProps) => {
           </Link>
         </Breadcrumbs>
       </Box>
-      <GreetCard name={"Admin"} />
+      <GreetCard />
       <Divider />
       <Grid
         container

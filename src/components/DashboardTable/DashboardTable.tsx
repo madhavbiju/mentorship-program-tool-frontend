@@ -4,8 +4,14 @@ import { Sheet, Typography } from "@mui/joy";
 import PaginationButtons from "../Pagination/Pagination";
 import { Stack } from "@mui/material";
 import { DashboardTableProps } from "./Types";
-
-export default function DashboardTable({ users }: DashboardTableProps) {
+const formatDate = (dateString: string | number | Date) => {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.getMonth() + 1; // Month indexes are 0-based
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+export default function DashboardTable({ program }: DashboardTableProps) {
   return (
     <>
       <Sheet
@@ -22,12 +28,12 @@ export default function DashboardTable({ users }: DashboardTableProps) {
             </tr>
           </thead>
           <tbody>
-            {users.map((row) => (
-              <tr key={row.id}>
-                <td>{row.firstName}</td>
-                <td>{row.lastName}</td>
-                <td>{row.maidenName}</td>
-                <td>{row.age}</td>
+            {program.map((row) => (
+              <tr key={row.programName}>
+                <td>{row.programName}</td>
+                <td>{row.mentorFirstName}</td>
+                <td>{row.menteeFirstName}</td>
+                <td>{formatDate(row.endDate)}</td>
               </tr>
             ))}
           </tbody>

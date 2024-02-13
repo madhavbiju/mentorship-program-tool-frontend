@@ -3,7 +3,7 @@ import axios from "axios";
  export const fetchRequestData = async (pageApi: number) => {
     try {
       const response = await axios.get(
-        `https://dummyjson.com/users?skip=${pageApi}&limit=4`
+        `https://localhost:7259/api/request/all?status=4&pageNumber=${pageApi}&pageSize=3`
       );
       return(response.data);
     } catch (error) {

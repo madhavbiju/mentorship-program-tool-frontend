@@ -1,12 +1,19 @@
-interface User {
-    id: number;
-    firstName: string;
-    lastName: string;
-    maidenName: string;
-    age: number;
-    // Add other fields as needed
-  }
-  
-  interface PairTableProps {
-    users: User[];
-  }
+export interface programs {
+  programID: number;
+  mentorFirstName: string;
+  menteeFirstName: string;
+  programName: string;
+  endDate: string;
+  programStatus: number;
+}
+
+export interface PairTableProps {
+  program: programs[];
+  totalCount: number;
+}
+
+export interface FilterProps {
+  status: string;
+  sort: string;
+  search: string;
+}

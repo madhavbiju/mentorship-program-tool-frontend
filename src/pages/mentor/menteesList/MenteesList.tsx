@@ -3,6 +3,7 @@ import {
   Breadcrumbs,
   Button,
   Dropdown,
+  FormLabel,
   Link,
   Menu,
   MenuButton,
@@ -10,7 +11,7 @@ import {
   MenuList,
   Typography,
 } from "@mui/joy";
-import React from "react";
+import React, { useState } from "react";
 import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
 import Grid from "@mui/material/Grid";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
@@ -20,6 +21,19 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 
 const MenteesList = () => {
+  const [selectedSortOption, setSelectedSortOption] = useState("");
+  const [selectedFilterOption, setFilterSortOption] = useState("");
+
+  const handleSort = (selectedOption: string) => {
+    setSelectedSortOption(selectedOption);
+    console.log(selectedOption);
+  };
+
+  const handleFilter = (e: any) => {
+    const selectedOption = e.target.value;
+    setFilterSortOption(selectedOption);
+  };
+
   return (
     <Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -42,41 +56,58 @@ const MenteesList = () => {
           </Typography>
         </Breadcrumbs>
       </Box>
-      <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
-        <Dropdown>
-          <MenuButton color="primary" sx={{ borderRadius: 10, px: "3%" }}>
-            Sort
-          </MenuButton>
-          <Menu>
-            <MenuItem>Choose item</MenuItem>
-            <MenuList>Add item</MenuList>
-            <MenuList>Add item</MenuList>
-          </Menu>
-        </Dropdown>
-        <Dropdown>
-          <MenuButton
-            color="primary"
-            sx={{ borderRadius: 10, mx: "3%", px: "3%" }}
-          >
-            Filter
-          </MenuButton>
-          <Menu>
-            <MenuItem>Choose item</MenuItem>
-            <MenuList>Add item</MenuList>
-            <MenuList>Add item</MenuList>
-          </Menu>
-        </Dropdown>
+      <Box
+        sx={{
+          display: "flex",
+          mb: 1,
+          gap: 1,
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: { xs: "start", sm: "center" },
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography level="h2" component="h1">
+          Mentees
+        </Typography>
       </Box>
+
+      <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
+        <FormLabel>Sort By</FormLabel>
+        <Select
+          size="sm"
+          placeholder="Sort by"
+          // onChange={handleSort}
+          slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
+        >
+          <Option value="ProgramName" onClick={() => handleSort("ProgramName")}>
+            A-Z Prgm
+          </Option>
+          <Option
+            value="ProgramName_desc"
+            onClick={() => handleSort("ProgramName_desc")}
+          >
+            Z-A Prgm
+          </Option>
+          <Option value="endDate" onClick={() => handleSort("endDate")}>
+            A-Z Date
+          </Option>
+          <Option
+            value="endDate_desc"
+            onClick={() => handleSort("endDate_desc")}
+          >
+            Z-A Date
+          </Option>
+        </Select>
+      </Box>
+
       <Grid container spacing={1} sx={{ my: "5%" }}>
         <Grid item xs={12} sm={12} md={12}>
-          <MenteesListHandler />
+          <MenteesListHandler
+            selectedSortOption={selectedSortOption}
+            selectedFilterOption={selectedFilterOption}
+          />
         </Grid>
-        {/* <Grid item xs={12} sm={12} md={12}>
-          <MenteesListCard />
-        </Grid>
-        <Grid item xs={12} sm={12} md={12}>
-          <MenteesListCard />
-        </Grid> */}
       </Grid>
     </Box>
   );

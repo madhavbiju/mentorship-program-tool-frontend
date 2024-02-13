@@ -1,41 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import { menteeList } from "./Types";
 
-interface Mentee {
-  employeeID: number;
-  firstName: string;
-  lastName: string;
-  programName: string;
-  startDate: string;
-  endDate: string;
+import { SelectChangeEvent } from "@mui/material/Select";
+
+interface Props {
+  menteeListData: menteeList[];
+  setProgramID: React.Dispatch<React.SetStateAction<number>>;
 }
-const SelectMenteeDropDown = () => {
-  const [mentees, setMentees] = useState([]);
 
+const SelectMenteeDropDown: React.FC<Props> = ({
+  menteeListData,
+  setProgramID,
+}) => {
+  const [value, setValue] = React.useState<string | null>("");
   useEffect(() => {
-    // Fetch mentee data from the API
-    fetch("https://localhost:7259/api/mentee/mentor/2")
-      .then((response) => response.json())
-      .then((data) => {
-        // Extract mentee names from the response and set them in state
-        const menteeNames = data.map(
-          (mentee: { firstName: any }) => mentee.firstName
-        );
-        setMentees(menteeNames);
-      })
-      .catch((error) => {
-        console.error("Error fetching mentees:", error);
-      });
-  }, []);
+    const selectedMenteeName = value;
 
+    // Find the corresponding mentee object
+    const selectedMentee = menteeListData.find(
+      (mentee) =>
+        `${mentee.firstName} ${mentee.lastName}` === selectedMenteeName
+    );
+
+    // If a matching mentee is found, set the programID
+    if (selectedMentee) {
+      setProgramID(selectedMentee.programID);
+    }
+  }, [value]);
   return (
     <div>
-      <Select placeholder="Mentee" size="sm">
-        {/* Render options based on the fetched mentees */}
-        {mentees.map((menteeName, index) => (
-          <Option key={index} value={menteeName}>
-            {menteeName}
+      <Select
+        placeholder="Mentee"
+        size="sm"
+        onChange={(e, newValue) => setValue(newValue)}
+      >
+        {menteeListData.map((mentee) => (
+          <Option
+            key={mentee.programID}
+            value={`${mentee.firstName} ${mentee.lastName}`}
+          >
+            {`${mentee.firstName} ${mentee.lastName}`}
           </Option>
         ))}
       </Select>

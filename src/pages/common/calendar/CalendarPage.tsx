@@ -5,11 +5,21 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import CalendarCC from "../../../components/Calendar/CalendarCC";
+import CalendarHandler from "../../../components/Calendar/CalendarHandler";
 
 const CalendarPage = () => {
+  const [isMentor, setIsMentor] = React.useState(false);
+
+  React.useEffect(() => {
+    if (location.pathname.includes("/mentor/calendar")) {
+      setIsMentor(true);
+    } else {
+      setIsMentor(false);
+    }
+  }, [location.pathname]);
   const history = useNavigate();
   const handleClick = () => {
-    history("#");
+    history("create");
   };
   return (
     <>
@@ -47,16 +57,18 @@ const CalendarPage = () => {
         <Typography level="h2" component="h1">
           Calendar
         </Typography>
-        <Button
-          color="primary"
-          startDecorator={<AddIcon />}
-          size="sm"
-          onClick={handleClick}
-        >
-          Schedule Meeting
-        </Button>
+        {isMentor && (
+          <Button
+            color="primary"
+            startDecorator={<AddIcon />}
+            size="sm"
+            onClick={handleClick}
+          >
+            Schedule Meeting
+          </Button>
+        )}
       </Box>
-      <CalendarCC />
+      <CalendarHandler />
     </>
   );
 };

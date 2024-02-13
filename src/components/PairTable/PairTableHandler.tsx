@@ -1,52 +1,55 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Stack, Typography } from "@mui/joy";
-import PaginationButtons from "../Pagination/Pagination";
-import PairTable from "./PairTable";
+import { Stack } from "@mui/joy";
+import { FilterProps, programs } from "./Types";
 import { fetchPairData } from "./Api/getPairData";
 import PairTableSkeleton from "./PairTableSkeleton";
+import PairTable from "./PairTable";
+import PaginationButtons from "../Pagination/Pagination";
 
-const PairTableHandler: React.FC = () => {
-  const [pairData, setPairData] = useState<{
-    users: User[];
-    total: number;
+const PairTableHandler = ({ status, sort, search }: FilterProps) => {
+  const [programData, settaskData] = useState<{
+    programs: programs[];
+    totalCount: number;
   }>({
-    users: [],
-    total: 0,
+    programs: [],
+    totalCount: 0,
   });
-  const [pageApi, setPageApi] = useState<number>(0);
+  const [pageApi, setPageApi] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const getPairData = async () => {
-    setIsLoading(true);
-    let response = await fetchPairData(pageApi);
-    setPairData(response);
-    setIsLoading(false);
+  const getprogramdata = async () => {
+    setIsLoading(true); // Set loading state to true while fetching data
+    let response = await fetchPairData(pageApi, status, sort, search);
+    settaskData(response);
+    setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
-    getPairData();
-  }, [pageApi]);
-
+    getprogramdata();
+  }, [pageApi, status, sort, search]);
   return (
     <>
       <Stack
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
           alignItems: "center",
+          mb: 1,
         }}
       >
         {isLoading ? ( // Render skeleton if loading
           <PairTableSkeleton />
         ) : (
-          <PairTable users={pairData.users} />
+          <PairTable
+            program={programData.programs}
+            totalCount={programData.totalCount}
+          />
         )}
 
         <br />
         <PaginationButtons
-          total={pairData.total}
+          total={programData.totalCount}
           perPage={6}
           setPageApi={setPageApi}
         />

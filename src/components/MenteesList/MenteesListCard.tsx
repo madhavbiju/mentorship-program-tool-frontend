@@ -28,7 +28,14 @@ const menteesData = [
   },
 ];
 
-const MenteesListCard = ({ mentees,totalCount }: MenteesProps) => {
+const MenteesListCard = ({ mentees, totalCount }: MenteesProps) => {
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month indexes are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
   return (
     <Grid xs={12}>
       {mentees.map((Mentee) => (
@@ -51,7 +58,7 @@ const MenteesListCard = ({ mentees,totalCount }: MenteesProps) => {
             </ListItemDecorator>
           </ListItem>
 
-          <ListDivider inset="gutter" />
+          {/* <ListDivider inset="gutter" /> */}
           <Stack>
             <Typography
               level="body-sm"
@@ -66,7 +73,7 @@ const MenteesListCard = ({ mentees,totalCount }: MenteesProps) => {
             </ListItem>
           </Stack>
 
-          <ListDivider inset="gutter" />
+          {/* <ListDivider inset="gutter" /> */}
 
           <Stack>
             <Typography
@@ -79,18 +86,18 @@ const MenteesListCard = ({ mentees,totalCount }: MenteesProps) => {
             <ListItem sx={{ paddingTop: 1.5 }}>{Mentee.programName}</ListItem>
           </Stack>
 
-          <ListDivider inset="gutter" />
+          {/* <ListDivider inset="gutter" /> */}
 
           <Stack>
             <Typography
-              sx={{ display: "flex", justifyContent: "center" }}
+              sx={{ display: "flex", justifyContent: "center",color: "red"  }}
               level="body-sm"
               style={{ fontSize: "10px" }}
             >
               End date
             </Typography>
             <ListItem sx={{ paddingTop: 1.5 }}>
-              {Mentee.endDate as any}
+              {formatDate(Mentee.endDate)}
             </ListItem>
           </Stack>
         </List>

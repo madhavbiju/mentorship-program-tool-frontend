@@ -7,25 +7,24 @@ import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
 import Avatar from "@mui/joy/Avatar";
-import Input from "@mui/joy/Input";
 import Tooltip from "@mui/joy/Tooltip";
 import Dropdown from "@mui/joy/Dropdown";
 import Menu from "@mui/joy/Menu";
 import MenuButton from "@mui/joy/MenuButton";
 import MenuItem from "@mui/joy/MenuItem";
 import ListDivider from "@mui/joy/ListDivider";
-
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
-import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-
 import { toggleSidebar } from "../../utils/utils";
 import ColorSchemeToggle from "../ColorSchemeToggle/ColorSchemeToggle";
-import { Apps } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { useMsal } from "@azure/msal-react";
+import ToggleRoleButton from "../toggleRoleButton/ToggleRoleButton";
+import SearchInput from "../SearchInput/SearchInput";
+import { Card, CardCover, Modal, ModalClose, useTheme } from "@mui/joy";
 
 export default function Header() {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
@@ -48,11 +47,17 @@ export default function Header() {
       }
     }
   };
-
+  const { instance } = useMsal();
   const logOut = () => {
-    localStorage.removeItem("roleID");
-    return history("/");
+    sessionStorage.clear();
+    instance.logoutRedirect({
+      postLogoutRedirectUri: "/",
+    });
   };
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
+  const [open, setOpen] = React.useState<boolean>(false);
+
   return (
     <Sheet
       sx={{
@@ -103,44 +108,36 @@ export default function Header() {
           spacing={1}
           sx={{ display: { xs: "none", sm: "flex" } }}
         >
-          <h2>mpt</h2>
+          <Card
+            variant="plain"
+            sx={{ minWidth: 150, minHeight: 30, flexGrow: 1 }}
+          >
+            <CardCover>
+              {isDarkMode ? (
+                <img
+                  src="/Assets/TL1.png" // Specify your dark mode image path
+                  srcSet="/Assets/TL1.png"
+                  loading="lazy"
+                  alt=""
+                />
+              ) : (
+                <img
+                  src="/Assets/TD1.png" // Specify your default image path
+                  srcSet="/Assets/TD1.png"
+                  loading="lazy"
+                  alt=""
+                />
+              )}
+            </CardCover>
+          </Card>
         </Stack>
-        <Box>
-          <Input
-            size="sm"
-            variant="outlined"
-            placeholder="Search anything…"
-            startDecorator={<SearchRoundedIcon color="primary" />}
-            endDecorator={
-              <>
-                <IconButton
-                  variant="outlined"
-                  color="neutral"
-                  sx={{ bgcolor: "background.level1", mr: 0.5 }}
-                >
-                  <Typography level="title-sm" textColor="text.icon">
-                    CTRL
-                  </Typography>
-                </IconButton>
-                <IconButton
-                  variant="outlined"
-                  color="neutral"
-                  sx={{ bgcolor: "background.level1" }}
-                >
-                  <Typography level="title-sm" textColor="text.icon">
-                    K
-                  </Typography>
-                </IconButton>
-              </>
-            }
-            sx={{
-              alignSelf: "center",
-              display: {
-                xs: "none",
-                sm: "flex",
-              },
-            }}
-          />
+        <Box
+          sx={{
+            display: { xs: "none", lg: "inline-flex" },
+            alignSelf: "center",
+          }}
+        >
+          <SearchInput />
         </Box>
         <Box
           sx={{
@@ -151,16 +148,40 @@ export default function Header() {
           }}
         >
           <IconButton
-            size="sm"
             variant="outlined"
             color="neutral"
             sx={{
-              display: { xs: "inline-flex", sm: "none" },
+              display: { md: "inline-flex", lg: "none" },
               alignSelf: "center",
             }}
+            onClick={() => setOpen(true)}
           >
             <SearchRoundedIcon />
           </IconButton>
+          <Modal
+            aria-labelledby="modal-title"
+            aria-describedby="modal-desc"
+            open={open}
+            onClose={() => setOpen(false)}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Sheet
+              variant="outlined"
+              sx={{
+                maxWidth: 600,
+                borderRadius: "md",
+                p: 6,
+                boxShadow: "lg",
+              }}
+            >
+              <ModalClose variant="plain" sx={{ m: 1 }} />
+              <SearchInput />
+            </Sheet>
+          </Modal>
           <Tooltip title="Notifications" variant="outlined">
             <IconButton
               size="sm"
@@ -174,7 +195,7 @@ export default function Header() {
             </IconButton>
           </Tooltip>
           <ColorSchemeToggle sx={{ ml: "auto" }} />
-          <Dropdown>
+          {/* <Dropdown>
             <MenuButton startDecorator={<Apps />}>
               {selectedIndex === 1 && "Admin"}
               {selectedIndex === 2 && "Mentor"}
@@ -203,7 +224,8 @@ export default function Header() {
                 Mentee
               </MenuItem>
             </Menu>
-          </Dropdown>
+          </Dropdown> */}
+          <ToggleRoleButton />
           <Dropdown>
             <MenuButton
               variant="plain"

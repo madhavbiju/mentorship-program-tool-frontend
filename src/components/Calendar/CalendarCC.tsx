@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer, Event } from "react-big-calendar";
 import moment from "moment";
 import "./CalendarStyle.css";
-import { height } from "@mui/system";
+import { ExtendedEvent, eventProps } from "./Types";
+import { useNavigate } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
-const CalendarCC = () => {
-  const [events, setEvents] = useState([
-    {
-      start: moment().toDate(),
-      end: moment().add(1, "days").toDate(),
-      title: "DevLink Meeting",
-    },
-  ]);
+const CalendarCC = ({ eventFormattedList }: eventProps) => {
+  const history = useNavigate();
+  const [events, setEvents] = useState<ExtendedEvent[]>(eventFormattedList);
+
+  const handleSelectEvent = (event: ExtendedEvent) => {
+    console.log(event.id);
+    history(`event/${event.id}`);
+  };
+
   return (
     <>
       <Calendar
@@ -22,6 +24,7 @@ const CalendarCC = () => {
         defaultView="month"
         events={events}
         style={{ height: "90vh" }}
+        onSelectEvent={handleSelectEvent}
       />
     </>
   );

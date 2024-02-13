@@ -9,24 +9,27 @@ import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
 import ModalOverflow from "@mui/joy/ModalOverflow";
 import Stack from "@mui/joy/Stack";
+import { useState } from "react";
+import { MenteesProps } from "./Types";
 
-const MenteeSearch = () => {
-  const mentees = [
-    { name: "Ashiq Tharkoski" },
-    { name: "Anish" },
-    { name: "aadarsh" },
-    { name: "hari" },
-    { name: "madhav" },
-    { name: "shiyas" },
-    { name: "ashna" },
-    { name: "aljo" },
-    { name: "gopika" },
-  ];
-
+const MenteeSearch = ({ mentees, setMenteeID }: MenteesProps) => {
   const [layout, setLayout] = React.useState<
     ModalDialogProps["layout"] | undefined //layout initial value is undefined
   >(undefined);
-  const [selectedMentee, setSelectedMentee] = React.useState<string>();
+  const [selectedMentee, setSelectedMentee] = useState<string>("");
+
+  const handleMenteeSelect = (value: string) => {
+    setSelectedMentee(value);
+    setLayout(undefined); // Close the modal
+    // Here, you should set the employee ID based on the selected mentor
+    // You need to find the corresponding mentor object first
+    const selectedMentorObject = mentees.find(
+      (mentee) => `${mentee.firstName} ${mentee.lastName}` === value
+    );
+    if (selectedMentorObject) {
+      setMenteeID(selectedMentorObject.employeeID);
+    }
+  };
 
   return (
     <Grid container justifyContent="center">
@@ -71,16 +74,13 @@ const MenteeSearch = () => {
                     <FormControl>
                       <Autocomplete
                         placeholder="Search here"
-                        type="search"
                         disableClearable
-                        options={mentees.map((option) => option.name)}
-                        // value={selectedMentee}
-                        onChange={(event, newValue) =>
-                          setSelectedMentee(newValue)
-                        }
-                        onInputChange={(event, newInputValue) => {
-                          if (newInputValue.trim() !== "") {
-                            setLayout(undefined); // Close the modal,after choosing a value
+                        options={mentees.map(
+                          (option) => `${option.firstName} ${option.lastName}`
+                        )}
+                        onChange={(event, value) => {
+                          if (value) {
+                            handleMenteeSelect(value); // value.label contains the selected mentee's name
                           }
                         }}
                       />

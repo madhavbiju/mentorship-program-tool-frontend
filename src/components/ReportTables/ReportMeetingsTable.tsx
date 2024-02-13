@@ -17,10 +17,34 @@ const ReportMeetingsTable = () => {
   }
 
   const rows = [
-    createData("Shiyas", "Meeting1", "12/05/2024", "25/05/2024", "Scheduled"),
-    createData("Madhav", "Meeting2", "25/05/2024", "05/05/2024", "Scheduled"),
-    createData("Mehanoor", "Meeting3", "05/05/2024", "25/05/2024", "Completed"),
-    createData("Aadarsh", "Meeting4", "12/05/2024", "05/05/2024", "Completed"),
+    createData(
+      "Shiyas",
+      "Sprint 5 Planning ",
+      "12/05/2024",
+      "12:00 pm",
+      "Scheduled"
+    ),
+    createData(
+      "Madhav",
+      "Interim Review",
+      "25/05/2024",
+      "02:00 pm",
+      "Scheduled"
+    ),
+    createData(
+      "Mehanoor",
+      "Sprint 5 Walkthrough",
+      "05/02/2024",
+      "08:00 am",
+      "Completed"
+    ),
+    createData(
+      "Aadarsh",
+      "Domain Discussion",
+      "12/01/2024",
+      "11:00 am",
+      "Completed"
+    ),
   ];
 
   return (

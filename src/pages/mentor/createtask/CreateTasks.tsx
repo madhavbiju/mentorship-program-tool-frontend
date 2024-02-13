@@ -1,11 +1,13 @@
 import { Button, Grid, Textarea, Typography } from "@mui/joy";
-import React from "react";
+import React, { useState } from "react";
 import SelectMenteeDropDown from "../../../components/SelectMenteeDropDown/SelectMenteeDropDown";
 import SetEndDate from "../../../components/CourseSetDate/SetEndDate";
 import FileUploadButton from "../../../components/FileUploadButton.tsx/FileUploadButton";
 import { DatePicker } from "@mui/x-date-pickers";
+import MenteeDropDownHandler from "../../../components/SelectMenteeDropDown/SelectMenteeDropDownHandler";
 
 const CreateTasks = () => {
+  const [programID, setProgramID] = useState(0);
   return (
     <div>
       <Grid>
@@ -13,7 +15,7 @@ const CreateTasks = () => {
       </Grid>
       <Grid xs={12} lg={12}>
         <br />
-        <SelectMenteeDropDown />
+        <MenteeDropDownHandler setProgramID={setProgramID} />
       </Grid>
       <br />
       <Grid lg={10} xs={12}>
