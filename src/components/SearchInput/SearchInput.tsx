@@ -41,6 +41,7 @@ const SearchInput: React.FC<SearchInputProps> = () => {
   return (
     <FormControl id="free-solo-2-demo">
       <Autocomplete
+        sx={{ minWidth: "500px" }}
         startDecorator={<SearchRoundedIcon color="primary" />}
         placeholder="Search anything"
         type="search"
