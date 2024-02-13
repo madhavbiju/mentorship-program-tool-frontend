@@ -1,7 +1,7 @@
 import { CircularProgress, LinearProgress, Typography } from "@mui/joy";
 import React from "react";
 
-const ProgramProgressBar = () => {
+const ProgramProgressBar = ({ daysLeft, percentageCompletion }: any) => {
   return (
     <div>
       <LinearProgress
@@ -9,7 +9,7 @@ const ProgramProgressBar = () => {
         variant="solid"
         size="sm"
         thickness={32}
-        value={60}
+        value={percentageCompletion}
         sx={{
           "--LinearProgress-radius": "20px",
           "--LinearProgress-progressThickness": "24px",
@@ -18,12 +18,12 @@ const ProgramProgressBar = () => {
         }}
       >
         <Typography
-          level="body-xs"
+          level="h4"
           fontWeight="xl"
           textColor="black"
           sx={{ mixBlendMode: "hard-light" }}
         >
-          10 days to go{" "}
+          {daysLeft} days to Go
         </Typography>
       </LinearProgress>
     </div>
