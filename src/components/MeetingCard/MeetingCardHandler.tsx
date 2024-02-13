@@ -16,8 +16,15 @@ const MeetingCardHandler = () => {
 
   const fetchMeetingData = async () => {
     try {
-      const response = await getMeetingData();
-      setMeetingData({ meeting: response }); // Update meetingData with fetched data
+      // Get employee id from session storage
+      const EmployeeId = sessionStorage.getItem("EmployeeId");
+
+      if (EmployeeId) {
+        const response = await getMeetingData(EmployeeId);
+        setMeetingData({ meeting: response }); // Update meetingData with fetched data
+      } else {
+        throw new Error("employee id not found in session storage");
+      }
     } catch (error) {
       console.error("Error fetching meeting data:", error);
     } finally {
