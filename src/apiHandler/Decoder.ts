@@ -1,17 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-
-interface JWTPayload {
-  sub: string;
-  email: string;
-  "http://schemas.microsoft.com/ws/2008/06/identity/claims/role":
-    | string
-    | string[];
-  exp: number;
-  iss: string;
-  aud: string;
-  name: string;
-  // Add any other properties as needed
-}
+import { JWTPayload } from "./types";
 
 export const decodeToken = (token: string): JWTPayload | null => {
   try {
