@@ -78,18 +78,23 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({ selectedRole }) => {
   const [users, setUsers] = useState<User[]>([]);
   const [pageApi, setPageApi] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [refreshFlag, setRefreshFlag] = useState(false); // Added for refresh mechanism
+  console.log(selectedRole);
 
   const getUserData = async () => {
     try {
       setIsLoading(true);
+      // Pass selectedRole to getUserDetails
       const response: UserDetailsResponse = await getUserDetails(
         pageApi,
         selectedRole
-      );
+      ); // Adjust this line based on the actual function signature of getUserDetails
       setUsers(response.userList);
       setTotalCount(response.totalCount);
       setIsLoading(false);
+
+      console.log(response.totalCount);
+      console.log("response.userList");
+      console.log(response.userList);
     } catch (error) {
       console.error("Failed to fetch user details:", error);
     }
@@ -97,7 +102,7 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({ selectedRole }) => {
 
   useEffect(() => {
     getUserData();
-  }, [pageApi, selectedRole, refreshFlag]); // Listening to refreshFlag changes
+  }, [pageApi, selectedRole]); // Include selectedRole in the dependency array
 
   return (
     <>
@@ -110,14 +115,7 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({ selectedRole }) => {
           mb: 1,
         }}
       >
-        {isLoading ? (
-          <UserPageSkeleton />
-        ) : (
-          <UserTable
-            userList={users}
-            onRolesUpdate={() => setRefreshFlag((prev) => !prev)} // Callback for role updates
-          />
-        )}
+        {isLoading ? <UserPageSkeleton /> : <UserTable userList={users} />}
         <br />
         <PaginationButtons
           total={totalCount}
