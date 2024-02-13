@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
-import { Sort, tasks } from ".";
-import PaginationIcons from "../../Pagination/PaginationIcons";
-import { fetchtaskData } from "./API/GetReportData";
-import ReportTaskTable from "./ReportTaskTable";
-import ReportTaskTableSkeleton from "./ReportTaskTableSkeleton";
+import PaginationIcons from "../Pagination/PaginationIcons";
+import { Sort, tasks } from "../ReportTables/ReportTaskTable";
+import { fetchtaskData } from "./API/getPairReportData";
+import PairReportTaskTable from "./PairReportTaskTable";
+import PairReportTaskTableSkeleton from "./PairReportTaskTableSkeleton";
 
-const ReportTaskTableHandler = ({ sort }: Sort) => {
+const PairReportTaskTableHandler = ({
+  sort,
+  programid,
+}: {
+  sort: string;
+  programid: number;
+}) => {
   const [taskData, settaskData] = useState<{
     tasks: tasks[];
     totalCount: number;
@@ -20,10 +26,10 @@ const ReportTaskTableHandler = ({ sort }: Sort) => {
 
   const gettaskData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchtaskData(pageApi, sort);
+    let response = await fetchtaskData(programid, pageApi, sort);
     settaskData(response);
-    console.log(" in admin report ");
-    console.log(response);
+    console.log("taskData.tasks");
+    console.log(taskData);
 
     setIsLoading(false); // Set loading state to false after fetching data
   };
@@ -49,12 +55,12 @@ const ReportTaskTableHandler = ({ sort }: Sort) => {
         />
       </Stack>
       {isLoading ? ( // Render skeleton if loading
-        <ReportTaskTableSkeleton />
+        <PairReportTaskTableSkeleton />
       ) : (
-        <ReportTaskTable task={taskData.tasks} totalCount={pageApi} />
+        <PairReportTaskTable task={taskData.tasks} totalCount={pageApi} />
       )}
     </>
   );
 };
 
-export default ReportTaskTableHandler;
+export default PairReportTaskTableHandler;
