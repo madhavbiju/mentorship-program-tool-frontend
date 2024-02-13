@@ -71,9 +71,17 @@ import UserTable from "./UserTable";
 // Define the props type, including the selectedRole prop
 interface UserPageHandlerProps {
   selectedRole: string;
+  status: string;
+  sort: string;
+  search: string;
 }
 
-const UserPageHandler: React.FC<UserPageHandlerProps> = ({ selectedRole }) => {
+const UserPageHandler: React.FC<UserPageHandlerProps> = ({
+  selectedRole,
+  status,
+  sort,
+  search,
+}) => {
   const [totalCount, setTotalCount] = useState<number>(0);
   const [users, setUsers] = useState<User[]>([]);
   const [pageApi, setPageApi] = useState<number>(1);
@@ -88,7 +96,10 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({ selectedRole }) => {
       // Pass selectedRole to getUserDetails
       const response: UserDetailsResponse = await getUserDetails(
         pageApi,
-        selectedRole
+        selectedRole,
+        sort,
+        status,
+        search
       ); // Adjust this line based on the actual function signature of getUserDetails
       setUsers(response.userList);
       setTotalCount(response.totalCount);
@@ -104,7 +115,7 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({ selectedRole }) => {
 
   useEffect(() => {
     getUserData();
-  }, [pageApi, selectedRole, submitButtonPressed]); // Include selectedRole in the dependency array
+  }, [pageApi, selectedRole, submitButtonPressed, sort, status, search]); // Include selectedRole in the dependency array
 
   return (
     <>

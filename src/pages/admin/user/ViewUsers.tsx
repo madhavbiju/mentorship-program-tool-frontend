@@ -26,52 +26,50 @@ import UserPageHandler from "../../../components/UserTable/UserPageHandler";
 
 export default function ViewUsers() {
   const [selectedRole, setSelectedRole] = useState("all");
-
+  const [status, setStatus] = useState("all");
+  const [sort, setSort] = useState("Asc");
+  const [search, setSearch] = useState("");
   const handleRoleChange = (event: SelectChangeEvent<string>) => {
     setSelectedRole(event.target.value);
   };
+  const handleSortChange = (event: SelectChangeEvent<string>) => {
+    setSort(event.target.value);
+  };
+  const handleSearchChange = (event: SelectChangeEvent<string>) => {
+    setSearch(event.target.value);
+  };
+  const handleStatusChange = (event: SelectChangeEvent<string>) => {
+    setStatus(event.target.value);
+  };
+
   const renderFilters = () => (
     <React.Fragment>
       <FormControl size="small">
-        <FormLabel>Sort By</FormLabel>
+        <InputLabel>Sort</InputLabel>
         <Select
+          label="Filter"
+          value={sort}
+          onChange={handleSortChange}
           displayEmpty
-          inputProps={{ "aria-label": "Without label" }}
-          sx={{
-            ".MuiSelect-select": {
-              whiteSpace: "nowrap",
-            },
-          }}
         >
-          <MenuItem value="ascending">Ascending</MenuItem>
-          <MenuItem value="descending">Descending</MenuItem>
+          <MenuItem value="Asc">Ascending</MenuItem>
+          <MenuItem value="Desc">Descending</MenuItem>
         </Select>
       </FormControl>
 
       <FormControl size="small">
-        <FormLabel>Filter</FormLabel>
-        <Select displayEmpty inputProps={{ "aria-label": "Without label" }}>
+        <InputLabel>Filter</InputLabel>
+        <Select
+          label="Filter"
+          value={status}
+          onChange={handleStatusChange}
+          displayEmpty
+        >
           <MenuItem value="all">All</MenuItem>
           <MenuItem value="active">Active</MenuItem>
-          <MenuItem value="purchase">Inactive</MenuItem>
+          <MenuItem value="inactive">Inactive</MenuItem>
         </Select>
       </FormControl>
-      {/* <FormControl size="sm">
-        <FormLabel>Role</FormLabel>
-        <Select
-          size="sm"
-          placeholder="Select Role"
-          value={selectedRole}
-          onChange={handleRoleChange} // Set the selected role on change
-        >
-          <Option value="all">All</Option>
-          <Option value="assigned">Assigned</Option>
-          <Option value="unassigned">Unassigned</Option>
-          <Option value="admin">Admin</Option>
-          <Option value="mentor">Mentor</Option>
-          <Option value="mentee">Mentee</Option>
-        </Select>
-      </FormControl> */}
       <FormControl size="small" variant="outlined" fullWidth>
         <InputLabel>Role</InputLabel>
         <Select
@@ -137,7 +135,7 @@ export default function ViewUsers() {
         }}
       >
         <FormControl sx={{ flex: 1 }} size="small">
-          <FormLabel>Search for users</FormLabel>
+          {/* <FormLabel>Search</FormLabel> */}
           <Input
             size="sm"
             placeholder="Search"
@@ -146,7 +144,12 @@ export default function ViewUsers() {
         </FormControl>
         {renderFilters()}
       </Box>
-      <UserPageHandler selectedRole={selectedRole} />
+      <UserPageHandler
+        selectedRole={selectedRole}
+        status={status}
+        sort={sort}
+        search={search}
+      />
     </React.Fragment>
   );
 }

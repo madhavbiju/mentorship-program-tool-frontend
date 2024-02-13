@@ -12,12 +12,15 @@ function getUserInitials(userName: string): string {
 // Added 'toggleChoice' parameter with default value 'all'
 export async function getUserDetails(
   page: number = 1,
-  toggleChoice: string = "all" // Default value is 'all'
+  toggleChoice: string = "all",
+  toggleSortType: string = "Asc",
+  toggleStatus: string = "all",
+  searchQuery: string = ""
 ): Promise<UserDetailsResponse> {
   try {
     // Replace 'all' with `${toggleChoice}` in the URL
     const response = await axios.get<{ users: any[]; totalCount: number }>(
-      `https://localhost:7259/api/admin/ByRole/${toggleChoice}?pageNumber=${page}&pageSize=6`
+      `https://localhost:7259/api/admin/byrole?role=${toggleChoice}&pageNumber=${page}&pageSize=6&sortParameter=UserName&sortType=${toggleSortType}&status=${toggleStatus}&searchQuery=${searchQuery}`
     );
 
     const { users: usersData, totalCount } = response.data;
