@@ -30,6 +30,8 @@ import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandle
 import Chat from "./pages/mentor/chat/Chat";
 import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 import Pairs from "./pages/admin/pairs/Pairs";
+import WaitingForApprovalPage from "./components/ApprovalPage/ApprovalPage";
+import CreatetaskHandler from "./pages/mentor/createtask/CreateTasksHandler";
 
 const AppRoutes = () => {
   return (
@@ -37,6 +39,7 @@ const AppRoutes = () => {
       <UserRoleProvider>
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path="/waiting" element={<WaitingForApprovalPage />} />
           <Route
             path="/admin"
             element={
@@ -82,7 +85,7 @@ const AppRoutes = () => {
             <Route path="mentees" element={<MenteesList />} />
             <Route path="tasks" element={<MentorTask />} />
             <Route path="tasks/selected" element={<MentorSelectedTask />} />
-            <Route path="tasks/create" element={<CreateTasks />} />
+            <Route path="tasks/create" element={<CreatetaskHandler />} />
             <Route path="calendar/create" element={<CreateMeetingHandler />} />
             <Route
               path="calendar/event/:meetingId"
