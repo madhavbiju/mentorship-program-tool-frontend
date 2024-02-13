@@ -6,7 +6,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
-import Avatar from "@mui/joy/Avatar";
 import Tooltip from "@mui/joy/Tooltip";
 import Dropdown from "@mui/joy/Dropdown";
 import Menu from "@mui/joy/Menu";
@@ -24,29 +23,49 @@ import { useNavigate } from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
 import ToggleRoleButton from "../toggleRoleButton/ToggleRoleButton";
 import SearchInput from "../SearchInput/SearchInput";
-import { Card, CardCover, Modal, ModalClose, useTheme } from "@mui/joy";
+import {
+  Avatar,
+  AvatarGroup,
+  Card,
+  CardCover,
+  Modal,
+  ModalClose,
+  useTheme,
+} from "@mui/joy";
+import { decodeToken } from "../../apiHandler/Decoder";
 
 export default function Header() {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
   const history = useNavigate();
-  const createHandleClose = (index: number) => () => {
-    if (typeof index === "number") {
-      setSelectedIndex(index);
-      switch (index) {
-        case 1:
-          history("/admin/home");
-          break;
-        case 2:
-          history("/mentor/home");
-          break;
-        case 3:
-          history("/mentee/home");
-          break;
-        default:
-          break;
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [initials, setInitials] = React.useState("");
+  function getInitials(name: string) {
+    // Split the name into parts
+    const parts = name.split(" ");
+    // Filter out empty strings in case there are extra spaces
+    const filteredParts = parts.filter((part) => part !== "");
+    // Map each part to its first character and join them together
+    const initials = filteredParts
+      .map((part) => part[0].toUpperCase())
+      .join("");
+    return initials;
+  }
+  React.useEffect(() => {
+    const token = sessionStorage.getItem("jwtToken");
+    if (token) {
+      const decoded = decodeToken(token);
+      if (decoded && decoded.name) {
+        // Convert the name to uppercase before setting it
+        const upperName = decoded.name.toUpperCase();
+        const email = decoded.email;
+        setName(upperName);
+        setEmail(email);
+        // Set initials
+        setInitials(getInitials(upperName));
       }
     }
-  };
+  }, []);
   const { instance } = useMsal();
   const logOut = () => {
     sessionStorage.clear();
@@ -195,36 +214,6 @@ export default function Header() {
             </IconButton>
           </Tooltip>
           <ColorSchemeToggle sx={{ ml: "auto" }} />
-          {/* <Dropdown>
-            <MenuButton startDecorator={<Apps />}>
-              {selectedIndex === 1 && "Admin"}
-              {selectedIndex === 2 && "Mentor"}
-              {selectedIndex === 3 && "Mentee"}
-            </MenuButton>
-            <Menu>
-              <MenuItem
-                {...(selectedIndex === 1 && {
-                  selected: true,
-                  variant: "soft",
-                })}
-                onClick={createHandleClose(1)}
-              >
-                Admin
-              </MenuItem>
-              <MenuItem
-                selected={selectedIndex === 2}
-                onClick={createHandleClose(2)}
-              >
-                Mentor
-              </MenuItem>
-              <MenuItem
-                selected={selectedIndex === 3}
-                onClick={createHandleClose(3)}
-              >
-                Mentee
-              </MenuItem>
-            </Menu>
-          </Dropdown> */}
           <ToggleRoleButton />
           <Dropdown>
             <MenuButton
@@ -259,25 +248,18 @@ export default function Header() {
                     alignItems: "center",
                   }}
                 >
-                  <Avatar src="" srcSet="" sx={{ borderRadius: "50%" }} />
+                  <Avatar src="" srcSet="" sx={{ borderRadius: "50%" }}>
+                    {initials}
+                  </Avatar>
                   <Box sx={{ ml: 1.5 }}>
                     <Typography level="title-sm" textColor="text.primary">
-                      Madhav Biju
+                      {name}
                     </Typography>
                     <Typography level="body-xs" textColor="text.tertiary">
-                      madhav@email.com
+                      {email}
                     </Typography>
                   </Box>
                 </Box>
-              </MenuItem>
-              <ListDivider />
-              <MenuItem>
-                <HelpRoundedIcon />
-                Help
-              </MenuItem>
-              <MenuItem>
-                <SettingsRoundedIcon />
-                Settings
               </MenuItem>
               <ListDivider />
               <MenuItem onClick={logOut}>

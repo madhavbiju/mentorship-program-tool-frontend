@@ -57,8 +57,8 @@ const GreetCard = () => {
         </Avatar>
       </AspectRatio>
       <Stack sx={{ ml: 2 }}>
-        <Typography level="title-lg">Hi,</Typography>
-        <Typography level="h2">{name}</Typography>
+        <Typography level="h2">Hi,</Typography>
+        <Typography level="title-lg">{name}</Typography>
       </Stack>
     </Box>
   );
