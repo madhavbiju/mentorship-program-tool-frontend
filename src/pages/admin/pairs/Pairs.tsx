@@ -9,24 +9,37 @@ import Input from "@mui/joy/Input";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Typography from "@mui/joy/Typography";
-import SearchIcon from "@mui/icons-material/Search";
 import Breadcrumbs from "@mui/joy/Breadcrumbs";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddIcon from "@mui/icons-material/Add";
-// import CreatePair from "../createPair/CreatePair";
-// import { Navigate } from "react-router";
 import { useNavigate } from "react-router-dom";
-import PairTable from "../../../components/PairTable/PairTable";
 import PairTableHandler from "../../../components/PairTable/PairTableHandler";
+import { useEffect, useState } from "react";
 
-export default function OrderTable() {
+export default function Pairs() {
   const history = useNavigate();
 
   const handleClick = () => {
     history("/admin/pairs/create");
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const value = formData.get("searchParam") as string; // Type assertion
+    setSearch(value ?? "");
+  };
+
+  const [status, setStatus] = useState("");
+  const [sort, setSort] = useState("");
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    console.log(search);
+    console.log(sort);
+    console.log(status);
+  }, [search, sort, status]);
   const renderFilters = () => (
     <React.Fragment>
       <FormControl size="sm">
@@ -35,17 +48,26 @@ export default function OrderTable() {
           size="sm"
           placeholder="Filter by status"
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
+          value={status}
+          onChange={(e, newValue) => setStatus(newValue!)}
         >
-          <Option value="paid">Ongoing</Option>
-          <Option value="pending">Completed</Option>
-          <Option value="refunded">All</Option>
+          <Option value="">All</Option>
+          <Option value="1">Ongoing</Option>
+          <Option value="8">Completed</Option>
         </Select>
       </FormControl>
       <FormControl size="sm">
         <FormLabel>Sort By</FormLabel>
-        <Select size="sm" placeholder="All">
-          <Option value="all">Program Name</Option>
-          <Option value="refund">End Date</Option>
+        <Select
+          size="sm"
+          placeholder="Program Name"
+          value={sort}
+          onChange={(e, newValue) => setSort(newValue!)}
+        >
+          <Option value="programName">Program Name (A-Z)</Option>
+          <Option value="programName_desc">Program Name (Z-A)</Option>
+          <Option value="endDate">End Date (Latest)</Option>
+          <Option value="endDate_desc">End Date (Farthest)</Option>
         </Select>
       </FormControl>
     </React.Fragment>
@@ -108,17 +130,15 @@ export default function OrderTable() {
           },
         }}
       >
-        <FormControl sx={{ flex: 1 }} size="sm">
-          <FormLabel>Search for pairs</FormLabel>
-          <Input
-            size="sm"
-            placeholder="Search"
-            startDecorator={<SearchIcon />}
-          />
-        </FormControl>
+        <form onSubmit={handleSubmit}>
+          <FormControl sx={{ flex: 1 }} size="sm">
+            <FormLabel>Search for pairs</FormLabel>
+            <Input name="searchParam" placeholder="Search" />
+          </FormControl>
+        </form>
         {renderFilters()}
       </Box>
-      <PairTableHandler />
+      <PairTableHandler status={status} sort={sort} search={search} />
     </React.Fragment>
   );
 }
