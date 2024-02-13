@@ -28,8 +28,8 @@ import CreateMeetingHandler from "./pages/mentor/createMeeting/CreateMeetingHand
 import EventPageHandler from "./pages/common/event/EventPageHandler";
 import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandler";
 import Chat from "./pages/mentor/chat/Chat";
-import Pairs from "./pages/admin/pairs/Pairs";
 import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
+import Pairs from "./pages/admin/pairs/Pairs";
 
 const AppRoutes = () => {
   return (
@@ -67,6 +67,7 @@ const AppRoutes = () => {
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="tasks" element={<MenteeTask />} />
             <Route path="report" element={<MenteeReport />} />
+            <Route path="tasks" element={<MenteeTask />} />
           </Route>
           <Route
             path="/mentor"

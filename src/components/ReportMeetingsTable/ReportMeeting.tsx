@@ -1,10 +1,12 @@
 import * as React from "react";
 import Table from "@mui/joy/Table";
 import { Sheet } from "@mui/joy"; // Assuming Typography and Stack are not used
-import { ReportTaskTableProps } from ".";
 import { useState } from "react";
+import { ReportMeetingTableProps } from "./Types/Index";
 
-export default function ReportTaskTable({ task }: ReportTaskTableProps) {
+export default function ReportMeetingTable({
+  meetings,
+}: ReportMeetingTableProps) {
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, "0");
@@ -12,20 +14,12 @@ export default function ReportTaskTable({ task }: ReportTaskTableProps) {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
-
-  const statusvalue = (taskStatus: number) => {
-    switch (taskStatus) {
-      case 1:
-        return "Active";
-      case 2:
-        return "Inactive";
-      case 6:
-        return "Submitted";
-      default:
-        return "Unknown";
-    }
+  const formatTime = (timeString: string | number | Date) => {
+    const time = new Date(timeString);
+    const hours = time.getHours().toString().padStart(2, "0");
+    const minutes = time.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
   };
-
   return (
     <>
       <Sheet
@@ -36,20 +30,20 @@ export default function ReportTaskTable({ task }: ReportTaskTableProps) {
           <thead>
             <tr>
               <th>Mentee Name</th>
-              <th>Task Title</th>
-              <th>Assigned Date</th>
-              <th>Submission Date</th>
+              <th>Meeting Name</th>
+              <th>Scheduled Date</th>
+              <th>Scheduled Time</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {task.map((row) => (
-              <tr key={row.taskId}>
-                <td>{row.menteeFirstName}</td>
-                <td>{row.taskName}</td>
-                <td>{formatDate(row.startDate)}</td>
-                <td>{formatDate(row.endDate)}</td>
-                <td>{statusvalue(row.taskStatus)}</td>
+            {meetings.map((row) => (
+              <tr key={row.meetingID}>
+                <td>{row.menteeName}</td>
+                <td>{row.meetingName}</td>
+                <td>{formatDate(row.scheduledDate)}</td>
+                <td>{formatTime(row.scheduledTime)}</td>
+                <td>{row.status}</td>
               </tr>
             ))}
           </tbody>
