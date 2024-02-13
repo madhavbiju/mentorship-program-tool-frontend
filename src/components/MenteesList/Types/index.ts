@@ -1,8 +1,9 @@
 export interface Mentee {
-  id: number;
+  employeeID: number;
   firstName: string;
   lastName: string;
   programName: string;
+  programID: number;
   endDate: string;
   // Add other fields as needed
 }

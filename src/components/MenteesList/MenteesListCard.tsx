@@ -9,9 +9,13 @@ import {
   Typography,
   Grid,
   Stack,
+  Button,
+  ListItemButton, // Import Button from MUI
 } from "@mui/joy";
-import React from "react";
-import { MenteesProps } from "./Types";
+import React, { useState } from "react";
+import { Mentee, MenteesProps } from "./Types";
+import CreateRequestModal from "../CreateRequestModal/CreateRequestModal";
+import CreateRequestModalHandler from "../CreateRequestModal/CreateRequestModalHandler";
 
 const menteesData = [
   {
@@ -36,73 +40,107 @@ const MenteesListCard = ({ mentees, totalCount }: MenteesProps) => {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
+
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [menteeData, setMenteeData] = useState<Mentee>({
+    employeeID: 0,
+    firstName: "",
+    lastName: "",
+    programName: "",
+    programID: 0,
+    endDate: "",
+  });
+
+  const handleClick = (mentee: Mentee) => {
+    setOpen(true);
+    setMenteeData(mentee);
+  };
+
   return (
-    <Grid xs={12}>
-      {mentees.map((Mentee) => (
-        <List
-          orientation="horizontal"
-          variant="soft"
-          sx={{
-            "--ListItemDecorator-size": "48px",
-            "--ListItem-paddingY": "1rem",
-            borderRadius: "sm",
-            py: "2%",
-            display: "flex",
-            justifyContent: "space-around",
-            mb: "1rem",
-          }}
-        >
-          <ListItem sx={{ pt: "18px", pb: "12px" }}>
-            <ListItemDecorator>
-              <Avatar src={menteesData[1].image} />
-            </ListItemDecorator>
-          </ListItem>
-
-          {/* <ListDivider inset="gutter" /> */}
-          <Stack>
-            <Typography
-              level="body-sm"
-              sx={{ display: "flex", justifyContent: "center" }}
-              style={{ fontSize: "10px" }}
+    <>
+      <CreateRequestModalHandler
+        open={open}
+        setOpen={setOpen}
+        menteeData={menteeData}
+      />
+      <Grid xs={12}>
+        {mentees.map((Mentee, index) => (
+          <List
+            orientation="horizontal"
+            variant="soft"
+            sx={{
+              "--ListItemDecorator-size": "48px",
+              "--ListItem-paddingY": "1rem",
+              borderRadius: "sm",
+              display: "flex",
+              justifyContent: "space-around",
+              mb: 1,
+            }}
+          >
+            <ListItemButton
+              onClick={() => handleClick(Mentee)}
+              color="neutral"
+              sx={{
+                borderRadius: "sm",
+                display: "flex",
+                justifyContent: "space-around",
+                width: "100%",
+              }}
             >
-              Mentee
-            </Typography>
-            <ListItem sx={{ paddingTop: 1.5 }}>
-              <Typography>{Mentee.firstName}</Typography>
-              <Typography>{Mentee.lastName}</Typography>
-            </ListItem>
-          </Stack>
+              <ListItem sx={{ pt: "18px", pb: "12px" }}>
+                <ListItemDecorator>
+                  <Avatar src={menteesData[1].image} />
+                </ListItemDecorator>
+              </ListItem>
 
-          {/* <ListDivider inset="gutter" /> */}
+              <Stack>
+                <Typography
+                  level="body-sm"
+                  sx={{ display: "flex", justifyContent: "center" }}
+                  style={{ fontSize: "10px" }}
+                >
+                  Mentee
+                </Typography>
+                <ListItem sx={{ paddingTop: 1.5 }}>
+                  <Typography>{Mentee.firstName}</Typography>
+                  <Typography>{Mentee.lastName}</Typography>
+                </ListItem>
+              </Stack>
 
-          <Stack>
-            <Typography
-              sx={{ display: "flex", justifyContent: "center" }}
-              level="body-sm"
-              style={{ fontSize: "10px" }}
-            >
-              Program
-            </Typography>
-            <ListItem sx={{ paddingTop: 1.5 }}>{Mentee.programName}</ListItem>
-          </Stack>
+              <Stack>
+                <Typography
+                  sx={{ display: "flex", justifyContent: "center" }}
+                  level="body-sm"
+                  style={{ fontSize: "10px" }}
+                >
+                  Program
+                </Typography>
+                <ListItem sx={{ paddingTop: 1.5 }}>
+                  {Mentee.programName}
+                </ListItem>
+              </Stack>
 
-          {/* <ListDivider inset="gutter" /> */}
-
-          <Stack>
-            <Typography
-              sx={{ display: "flex", justifyContent: "center",color: "red"  }}
-              level="body-sm"
-              style={{ fontSize: "10px" }}
-            >
-              End date
-            </Typography>
-            <ListItem sx={{ paddingTop: 1.5 }}>
-              {formatDate(Mentee.endDate)}
-            </ListItem>
-          </Stack>
-        </List>
-      ))}
-    </Grid>
+              <Stack>
+                <Typography
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    color: "red",
+                  }}
+                  level="body-sm"
+                  style={{ fontSize: "10px" }}
+                >
+                  End date
+                </Typography>
+                <ListItem sx={{ paddingTop: 1.5 }}>
+                  {formatDate(Mentee.endDate)}
+                </ListItem>
+              </Stack>
+            </ListItemButton>
+          </List>
+        ))}
+      </Grid>
+    </>
   );
 };
 
