@@ -1,18 +1,11 @@
 import { Box, List, ListItem, ListDivider } from "@mui/joy";
 import React from "react";
+import { TasksProps } from "./Types";
 
-const submittedTaskData = [
-  { menteeName: "Binoy", programName: "Program1", taskName: "Task1" },
-  { menteeName: "Joyal", programName: "Program2", taskName: "Task2" },
-  // { menteeName: "Mentee5", programName: "Program5", taskName: "Task5" },
-  // { meetingName: "Meeting6", time: "11:10", date: "13/02/2024" },
-  // { meetingName: "Meeting7", time: "10:10", date: "14/02/2024" },
-];
-
-const SubmittedTask = () => {
+const SubmittedTask = ({ tasks, totalCount }: TasksProps) => {
   return (
     <Box sx={{ paddingTop: "2%" }}>
-      {submittedTaskData.map((data) => (
+      {tasks.map((data) => (
         <List
           orientation="horizontal"
           variant="soft"
@@ -26,11 +19,11 @@ const SubmittedTask = () => {
             justifyContent: "space-around",
           }}
         >
-          <ListItem>{data.menteeName}</ListItem>
-          <ListDivider inset="gutter" />
-          <ListItem>{data.programName}</ListItem>
-          <ListDivider inset="gutter" />
+          <ListItem>{data.menteeFirstName}</ListItem>
+          {/* <ListDivider inset="gutter" /> */}
           <ListItem>{data.taskName}</ListItem>
+          {/* <ListDivider inset="gutter" /> */}
+          <ListItem>Done</ListItem>
         </List>
       ))}
     </Box>

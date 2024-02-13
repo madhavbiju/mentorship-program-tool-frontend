@@ -1,23 +1,30 @@
 import { Box, List, ListItem, ListDivider } from "@mui/joy";
+import { MeetingProps } from "./Types";
 
-const meetingListData = [
-  { meetingName: "Interim Meeting", time: "12:10pm", date: "12/02/2024" },
-  { meetingName: "Buddy Meeting", time: "11:10am", date: "13/02/2024" },
-  { meetingName: "Buddy Meeting", time: "10:10am", date: "14/02/2024" },
-  {
-    meetingName: "Scrum Meeting",
-    time: "11:10am",
-    date: "13/02/2024",
-  },
-  { meetingName: "Interm Meeting", time: "10:10am", date: "14/02/2024" },
-  // { meetingName: "Meeting6", time: "11:10", date: "13/02/2024" },
-  // { meetingName: "Meeting7", time: "10:10", date: "14/02/2024" },
-];
+const MeetingCard = ({ meeting }: MeetingProps) => {
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month indexes are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+  const formatTime = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    let hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const amOrPm = hours >= 12 ? "PM" : "AM";
 
-const MeetingCard = () => {
+    // Convert hours to 12-hour format
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+    return `${hours}:${minutes} ${amOrPm}`;
+  };
+
   return (
     <Box sx={{ paddingTop: "2%" }}>
-      {meetingListData.map((data) => (
+      {meeting.map((data) => (
         <List
           orientation="horizontal"
           variant="soft"
@@ -30,11 +37,11 @@ const MeetingCard = () => {
             mb: "1rem",
           }}
         >
-          <ListItem>{data.meetingName}</ListItem>
-          <ListDivider inset="gutter" />
-          <ListItem>{data.time}</ListItem>
-          <ListDivider inset="gutter" />
-          <ListItem>{data.date}</ListItem>
+          <ListItem>{data.title}</ListItem>
+          {/* <ListDivider inset="gutter" /> */}
+          <ListItem>{formatTime(data.startTime)}</ListItem>
+          {/* <ListDivider inset="gutter" /> */}
+          <ListItem>{formatDate(data.scheduleDate)}</ListItem>
         </List>
       ))}
     </Box>
