@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
-import { programs } from "./Types";
+import { Stack } from "@mui/joy";
+import { FilterProps, programs } from "./Types";
 import { fetchPairData } from "./Api/getPairData";
 import PairTableSkeleton from "./PairTableSkeleton";
 import PairTable from "./PairTable";
 import PaginationButtons from "../Pagination/Pagination";
 
-const PairTableHandler: React.FC = () => {
+const PairTableHandler = ({ status, sort, search }: FilterProps) => {
   const [programData, settaskData] = useState<{
     programs: programs[];
     totalCount: number;
@@ -20,14 +19,14 @@ const PairTableHandler: React.FC = () => {
 
   const getprogramdata = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchPairData(pageApi);
+    let response = await fetchPairData(pageApi, status, sort, search);
     settaskData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
     getprogramdata();
-  }, [pageApi]);
+  }, [pageApi, status, sort, search]);
   return (
     <>
       <Stack
