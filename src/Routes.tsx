@@ -27,6 +27,7 @@ import MentorDashboradHandler from "./pages/mentor/dashboard/MentorDashboardHand
 import ViewUsers from "./pages/admin/user/ViewUsers";
 import CreateMeetingHandler from "./pages/mentor/createMeeting/CreateMeetingHandler";
 import EventPageHandler from "./pages/common/event/EventPageHandler";
+import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandler";
 import Chat from "./pages/mentor/chat/Chat";
 import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 
@@ -52,7 +53,7 @@ const AppRoutes = () => {
             <Route path="report/mentor" element={<MentorReport />} />
             <Route path="report/pair" element={<PairReport />} />
 
-            <Route path="pairs/create" element={<CreatePairCard />} />
+            <Route path="pairs/create" element={<CreatePairCardHandler />} />
           </Route>
           <Route
             path="/mentee"
