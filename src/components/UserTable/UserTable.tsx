@@ -1,17 +1,42 @@
+import React, { useState } from "react";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Chip from "@mui/joy/Chip";
 import Table from "@mui/joy/Table";
 import Sheet from "@mui/joy/Sheet";
-
 import Typography from "@mui/joy/Typography";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff"; // Assuming this as a choice for 'inactive'
-import { UserTableProps } from "./types";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff"; // Adjust the import path as necessary
 
-export default function UserTable({ userList }: UserTableProps) {
+import { User, UserTableProps } from "./types";
+import RoleAssignmentModal from "../AssignRole/AssignRole";
+
+const UserTable: React.FC<UserTableProps> = ({
+  userList,
+  setSubmitButtonPressed,
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  const handleOpenModal = (user: User) => {
+    setCurrentUser(user);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setCurrentUser(null);
+  };
+
+  const handleRoleSubmit = (selectedRoles: string[]) => {
+    console.log("Role Submitted:", selectedRoles);
+    setSubmitButtonPressed((current) => !current);
+
+    handleCloseModal();
+  };
+
   return (
     <Sheet
       variant="outlined"
@@ -39,10 +64,10 @@ export default function UserTable({ userList }: UserTableProps) {
         <thead>
           <tr>
             <th style={{ width: 240, padding: "12px 6px" }}>Sl No.</th>
-            <th style={{ width: 240, padding: "12px 6px" }}>Customer</th>
-            <th style={{ width: 140, padding: "12px 6px" }}>Job </th>
+            <th style={{ width: 240, padding: "12px 6px" }}>Employees</th>
+            <th style={{ width: 140, padding: "12px 6px" }}>Roles</th>
             <th style={{ width: 140, padding: "12px 6px" }}>Status</th>
-            <th style={{ width: 140, padding: "12px 6px" }}> </th>
+            <th style={{ width: 140, padding: "12px 6px" }}></th>
           </tr>
         </thead>
         <tbody>
@@ -54,11 +79,15 @@ export default function UserTable({ userList }: UserTableProps) {
               <td>
                 <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
                   <Avatar size="sm">{user.userInitials}</Avatar>
-                  <Typography level="body-xs">{user.userName} </Typography>
+                  <Typography level="body-xs">{user.userName}</Typography>
                 </Box>
               </td>
               <td>
-                <Typography level="body-xs">{user.userJob}</Typography>{" "}
+                {user.userRoles.map((role, roleIndex) => (
+                  <Chip key={roleIndex} size="sm" variant="outlined">
+                    {role.charAt(0).toUpperCase() + role.slice(1)}
+                  </Chip>
+                ))}
               </td>
               <td>
                 <Chip
@@ -81,6 +110,7 @@ export default function UserTable({ userList }: UserTableProps) {
                 <Button
                   variant="outlined"
                   startDecorator={<AddCircleOutlineIcon />}
+                  onClick={() => handleOpenModal(user)}
                 >
                   Assign Roles
                 </Button>
@@ -89,6 +119,19 @@ export default function UserTable({ userList }: UserTableProps) {
           ))}
         </tbody>
       </Table>
+
+      {currentUser && (
+        <RoleAssignmentModal
+          open={isModalOpen}
+          onClose={handleCloseModal}
+          onSubmit={handleRoleSubmit}
+          // Ensure the RoleAssignmentModal is expecting a single user or adapt accordingly
+          userList={[currentUser]}
+          employeeId={parseInt(currentUser.id)}
+        />
+      )}
     </Sheet>
   );
-}
+};
+
+export default UserTable;
