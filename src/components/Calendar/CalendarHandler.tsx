@@ -21,13 +21,13 @@ const CalendarHandler: React.FC = () => {
   const [eventFormatedData, setEventFormatedData] = useState<ExtendedEvent[]>(
     []
   );
-  const [employeeID, setemployeeID] = useState<number>(2);
+  const employeeID = sessionStorage.getItem("EmployeeId");
   const [roleID, setroleID] = useState<number>(2);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getEventData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchEventData(employeeID, roleID);
+    let response = await fetchEventData(employeeID!, roleID);
     setEventData(response);
     // Map eventData to ExtendedEvent format
     const formattedData = response.map((eventList: eventList) => {

@@ -23,7 +23,7 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import MentorTaskCardHandler from "../../../components/MentorTaskCard/MentorTaskCardHandler";
 
-const MentorTask = () => {
+const MenteeTask = () => {
   const history = useNavigate();
 
   const handleClick = () => {
@@ -119,9 +119,15 @@ const MentorTask = () => {
           placeholder="Filter by"
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
-          <Option value="0" onClick={() => handleFilter("0")}>Show All</Option>
-          <Option value="1" onClick={() => handleFilter("1")}>In progress</Option>
-          <Option value="6" onClick={() => handleFilter("6")}>Completed</Option>
+          <Option value="0" onClick={() => handleFilter("0")}>
+            Show All
+          </Option>
+          <Option value="1" onClick={() => handleFilter("1")}>
+            In progress
+          </Option>
+          <Option value="6" onClick={() => handleFilter("6")}>
+            Completed
+          </Option>
         </Select>
       </Box>
 
@@ -137,4 +143,4 @@ const MentorTask = () => {
   );
 };
 
-export default MentorTask;
+export default MenteeTask;
