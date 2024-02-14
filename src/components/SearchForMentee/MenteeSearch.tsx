@@ -33,7 +33,7 @@ const MenteeSearch = ({ mentees, setMenteeID }: MenteesProps) => {
 
   return (
     <Grid container justifyContent="center">
-      <Grid xs={12} sm={10}>
+      <Grid xs={12} sm={12}>
         <Stack>
           <Grid>Mentee :</Grid>
           <Grid>
@@ -41,7 +41,7 @@ const MenteeSearch = ({ mentees, setMenteeID }: MenteesProps) => {
               <Button
                 variant="outlined"
                 color="neutral"
-                sx={{ width: "-webkit-fill-available" }}
+                sx={{ width: "100%" }}
                 onClick={() => {
                   setLayout("center"); //layout value becomes center
                   setSelectedMentee(""); // Reset selectedMentee state
@@ -54,10 +54,11 @@ const MenteeSearch = ({ mentees, setMenteeID }: MenteesProps) => {
             <Modal open={!!layout} onClose={() => setLayout(undefined)}>
               {/* !!layout equals true,because layout=center is a true value.so modal opens*/}
 
-              <ModalOverflow>
+              
                 <ModalDialog
                   aria-labelledby="modal-dialog-overflow"
                   layout={layout}
+                  sx={{ left: "48rem", top: "18rem" }}
                 >
                   <ModalClose />
                   <Typography id="modal-dialog-overflow" level="h2">
@@ -87,7 +88,7 @@ const MenteeSearch = ({ mentees, setMenteeID }: MenteesProps) => {
                     </FormControl>
                   </FormControl>
                 </ModalDialog>
-              </ModalOverflow>
+              
             </Modal>
           </Grid>
         </Stack>
