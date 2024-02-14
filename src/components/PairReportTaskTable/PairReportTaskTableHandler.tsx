@@ -3,9 +3,9 @@ import axios from "axios";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
 import PaginationIcons from "../Pagination/PaginationIcons";
 import { Sort, tasks } from "../ReportTables/ReportTaskTable";
-import { fetchtaskData } from "./API/getPairReportData";
 import PairReportTaskTable from "./PairReportTaskTable";
 import PairReportTaskTableSkeleton from "./PairReportTaskTableSkeleton";
+import { fetchtaskData } from "./API/fetchtaskData";
 
 const PairReportTaskTableHandler = ({
   sort,
@@ -52,10 +52,16 @@ const PairReportTaskTableHandler = ({
           setPageApi={setPageApi}
         />
       </Stack>
-      {isLoading ? ( // Render skeleton if loading
+      {isLoading ? (
         <PairReportTaskTableSkeleton />
       ) : (
-        <PairReportTaskTable task={taskData.tasks} totalCount={pageApi} />
+        <>
+          {taskData.tasks.length === 0 ? (
+            <Typography>No Task data to display</Typography>
+          ) : (
+            <PairReportTaskTable task={taskData.tasks} totalCount={pageApi} />
+          )}
+        </>
       )}
     </>
   );

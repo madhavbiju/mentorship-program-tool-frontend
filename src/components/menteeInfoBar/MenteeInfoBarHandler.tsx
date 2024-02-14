@@ -21,7 +21,7 @@ const MenteeInfoBarHandler = ({ programid }: { programid: number }) => {
   }, []);
 
   if (!programData) {
-    return <div>Loading...</div>; // You can customize the loading state
+    return <div>Select Mentee</div>; // You can customize the loading state
   }
 
   return (
