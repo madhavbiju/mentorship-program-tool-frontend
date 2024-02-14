@@ -2,8 +2,6 @@ import GlobalStyles from "@mui/joy/GlobalStyles";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
-import IconButton from "@mui/joy/IconButton";
-import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
 import useLoginHandler from "./LoginHandler";
 import { Card, CardCover, Stack, formLabelClasses } from "@mui/joy";
 import MicrosoftIcon from "../../../components/MicrosoftIcon/MicrosoftIcon";
