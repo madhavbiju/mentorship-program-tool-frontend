@@ -9,7 +9,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import Input from "@mui/joy/Input";
-import Link from "@mui/joy/Link";
+import { Link} from "react-router-dom";
 import Typography from "@mui/joy/Typography";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
@@ -93,7 +93,7 @@ export default function ViewUsers() {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link underline="none" color="neutral" href="#" aria-label="Home">
+          <Link to="/admin/home" style={{ color: "grey" }}  aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>
