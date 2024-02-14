@@ -119,9 +119,15 @@ const MentorTask = () => {
           placeholder="Filter by"
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
-          <Option value="0" onClick={() => handleFilter("0")}>Show All</Option>
-          <Option value="1" onClick={() => handleFilter("1")}>In progress</Option>
-          <Option value="6" onClick={() => handleFilter("6")}>Completed</Option>
+          <Option value="0" onClick={() => handleFilter("0")}>
+            Show All
+          </Option>
+          <Option value="1" onClick={() => handleFilter("1")}>
+            In progress
+          </Option>
+          <Option value="6" onClick={() => handleFilter("6")}>
+            Completed
+          </Option>
         </Select>
       </Box>
 

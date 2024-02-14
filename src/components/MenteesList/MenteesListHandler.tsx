@@ -5,9 +5,11 @@ import { fetchMenteeData } from "./Api/getMenteeData";
 import PaginationButtons from "../Pagination/Pagination";
 import MentorDashboardSkeleton from "../../pages/mentor/dashboard/MentorDashboardSkeleton";
 
-const MenteesListHandler = ({selectedSortOption,selectedFilterOption}:any) => {
-
-  console.log(selectedSortOption)
+const MenteesListHandler = ({
+  selectedSortOption,
+  selectedFilterOption,
+}: any) => {
+  console.log(selectedSortOption);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [menteeData, setMenteeData] = useState<{
     mentees: Mentee[];
@@ -17,10 +19,15 @@ const MenteesListHandler = ({selectedSortOption,selectedFilterOption}:any) => {
     totalCount: 0,
   });
   const [pageApi, setPageApi] = useState<number>(1);
-
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
   const getMenteeData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchMenteeData(pageApi,selectedSortOption,selectedFilterOption);
+    let response = await fetchMenteeData(
+      EmployeeID!,
+      pageApi,
+      selectedSortOption,
+      selectedFilterOption
+    );
     setMenteeData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
