@@ -42,7 +42,7 @@ export default function PairReportMeetingTable({
         <Table hoverRow>
           <thead>
             <tr>
-              <th>Mentee Name</th>
+              {/* <th>Mentee Name</th> */}
               <th>Meeting Title</th>
               <th>Scheduled Date</th>
               <th>Scheduled Time</th>
@@ -52,7 +52,7 @@ export default function PairReportMeetingTable({
           <tbody>
             {meetings.map((row) => (
               <tr key={row.meetingID}>
-                <td>{row.menteeFirstName}</td>
+                {/* <td>{row.menteeFirstName}</td> */}
                 <td>{row.title}</td>
                 <td>{formatDate(row.scheduleDate)}</td>
                 <td>{extractTime(row.startTime)}</td>

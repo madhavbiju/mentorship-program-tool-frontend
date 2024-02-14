@@ -30,6 +30,7 @@ import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandle
 import Chat from "./pages/mentor/chat/Chat";
 import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 import Pairs from "./pages/admin/pairs/Pairs";
+import AdminReportDownloadPage from "./pages/admin/ReportDownloadPage/AdminReportDownloadPage";
 
 const AppRoutes = () => {
   return (
@@ -52,6 +53,10 @@ const AppRoutes = () => {
             <Route path="report/overall" element={<AdminReport />} />
             <Route path="report/mentor" element={<MentorReport />} />
             <Route path="report/pair" element={<PairReport />} />
+            <Route
+              path="report/download"
+              element={<AdminReportDownloadPage />}
+            />
 
             <Route path="pairs/create" element={<CreatePairCardHandler />} />
           </Route>
