@@ -22,8 +22,6 @@ const ReportTaskTableHandler = ({ sort }: Sort) => {
     setIsLoading(true); // Set loading state to true while fetching data
     let response = await fetchtaskData(pageApi, sort);
     settaskData(response);
-    console.log(" in admin report ");
-    console.log(response);
 
     setIsLoading(false); // Set loading state to false after fetching data
   };

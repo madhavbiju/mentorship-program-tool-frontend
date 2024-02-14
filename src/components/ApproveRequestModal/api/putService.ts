@@ -22,7 +22,7 @@ export const approveRequest = async (data: ApproveRequestData) => {
       `https://localhost:7259/api/request/approve${data.programExtensionID}`,
       data
     );
-    console.log("posting approve");
+    
     return response.data;
   } catch (error) {
     console.error("Error approving request:", error);
@@ -35,7 +35,7 @@ export const rejectRequest = async (data: ApproveRequestData) => {
       `https://localhost:7259/api/request/approve${data.programExtensionID}`,
       data
     );
-    console.log("posting reject");
+    
     return response.data;
   } catch (error) {
     console.error("Error approving request:", error);
@@ -50,7 +50,7 @@ export const updateProgramDate = async (data: UpdateProgramDateData) => {
       "https://localhost:7259/api/program/UpdateProgramDate",
       data
     );
-    console.log("posting update");
+    
 
     return response.data;
   } catch (error) {

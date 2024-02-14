@@ -26,7 +26,6 @@ const PendingTaskHandler = () => {
 
   useEffect(() => {
     getTaskData();
-    console.log("tasksdata.tasks getTask", taskData.tasks);
   }, []);
 
   return (

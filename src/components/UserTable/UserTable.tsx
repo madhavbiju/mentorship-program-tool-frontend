@@ -31,7 +31,6 @@ const UserTable: React.FC<UserTableProps> = ({
   };
 
   const handleRoleSubmit = (selectedRoles: string[]) => {
-    console.log("Role Submitted:", selectedRoles);
     setSubmitButtonPressed((current) => !current);
 
     handleCloseModal();

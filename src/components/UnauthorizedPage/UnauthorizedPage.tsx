@@ -6,10 +6,10 @@ import Button from "@mui/joy/Button";
 const UnauthorizedPage = () => {
   const handleGoHomeClick = () => {
     const userRoles = sessionStorage.getItem("UserRoles");
-    console.log("UserRoles:", userRoles); // Debug log
+
     if (userRoles) {
       const roles = JSON.parse(userRoles);
-      console.log("Parsed Roles:", roles); // Debug log
+
       if (roles.length > 0) {
         window.location.href = `/${roles[0]}/home`;
         return;

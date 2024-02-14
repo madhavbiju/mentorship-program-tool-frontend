@@ -58,8 +58,6 @@ const CalendarHandler = ({ roleID }: roleProp) => {
 
   useEffect(() => {
     getEventData();
-    console.log(roleID);
-    console.log(eventFormatedData);
   }, [roleID]);
   return (
     <>

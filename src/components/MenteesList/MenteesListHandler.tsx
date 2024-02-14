@@ -9,7 +9,6 @@ const MenteesListHandler = ({
   selectedSortOption,
   selectedFilterOption,
 }: any) => {
-  console.log(selectedSortOption);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [menteeData, setMenteeData] = useState<{
     mentees: Mentee[];

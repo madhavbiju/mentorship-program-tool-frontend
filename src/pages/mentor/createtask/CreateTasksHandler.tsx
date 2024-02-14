@@ -36,8 +36,7 @@ const CreatetaskHandler = () => {
 
   const sendtaskData = async (formatedtaskData: taskType) => {
     setIsLoading(true);
-    console.log(taskData);
-    console.log(formatedtaskData);
+
     let response = await posttaskData(formatedtaskData);
     setIsLoading(false);
     // Use SweetAlert2 to show success or error message based on response

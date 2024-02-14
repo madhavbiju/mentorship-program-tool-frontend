@@ -35,7 +35,6 @@ const MentorTask = () => {
 
   const handleSort = (selectedOption: string) => {
     setSelectedSortOption(selectedOption);
-    console.log(selectedOption);
   };
 
   const handleFilter = (selectedOption: string) => {

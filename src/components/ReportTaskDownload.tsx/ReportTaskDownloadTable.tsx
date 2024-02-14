@@ -12,8 +12,7 @@ export default function ReportTaskTable({ task }: ReportTaskTableProps) {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
-  console.log("in task");
-  console.log(task);
+
   const statusvalue = (taskStatus: number) => {
     switch (taskStatus) {
       case 1:

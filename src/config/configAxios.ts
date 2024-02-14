@@ -19,13 +19,13 @@ axiosInstance.interceptors.request.use(
     // If the path is not excluded, add the Bearer token to the header
     if (!isExcludedPath) {
       // const authToken = sessionStorage.getItem("jwtToken");
-      // console.log("authToken: ", authToken); // Corrected to log the variable content
+      // 
 
       // // Assuming 'config' is an object that contains your request configuration
       // if (authToken) {
       //   config.headers.Authorization = `Bearer ${authToken}`;
       // } else {
-      //   console.log("No auth token found.");
+      //   
       // }
       const authTokenRaw = sessionStorage.getItem("jwtToken");
       let authToken: string | null = null; // Initialize authToken as null or as a string

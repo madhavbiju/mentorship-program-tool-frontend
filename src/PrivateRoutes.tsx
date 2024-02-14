@@ -5,7 +5,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const PrivateRoutes = () => {
   // Retrieve roleID from localStorage
   const roleID = localStorage.getItem("roleID");
-  console.log("hi");
+
   // Redirect user based on roleID
   switch (roleID) {
     case "1":

@@ -21,7 +21,7 @@ const PairReportMeetingTableHandler = ({
     meetings: [],
     totalCount: 0,
   });
-  console.log(meetingData);
+
   const [pageApi, setPageApi] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -33,7 +33,6 @@ const PairReportMeetingTableHandler = ({
   };
 
   useEffect(() => {
-    console.log("here");
     getmeetingData();
   }, [pageApi, sort]);
 

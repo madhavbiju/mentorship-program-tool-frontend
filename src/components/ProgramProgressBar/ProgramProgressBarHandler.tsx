@@ -44,12 +44,11 @@ const ProgramProgressBarHandler = () => {
       const currentDate = new Date();
       const startDate = new Date(dateData.startDate);
       const endDate = new Date(dateData.endDate);
-      console.log("currentDate:", currentDate);
-      console.log("endDate:", endDate);
+
       const differenceInTime = endDate.getTime() - currentDate.getTime();
-      console.log("differenceInTime:", differenceInTime);
+
       const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
-      console.log("differenceInDays:", differenceInDays);
+
       setDaysLeft(differenceInDays); //to find how many days left using currentDate and EndDate
 
       const totalDuration = endDate.getTime() - startDate.getTime();
