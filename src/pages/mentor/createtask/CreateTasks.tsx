@@ -56,92 +56,50 @@ const CreateTasks: React.FC<CreatetaskProps> = ({ submit, setProgramID }) => {
 
       <form onSubmit={submit}>
         <FormControl required>
-          <MenteeDropDownHandler setProgramID={setProgramID} />
-          <Input
-            type="text"
-            name="title"
-            placeholder="Task Name"
-            required
-          ></Input>
-          <TextField
-            type="date"
-            name="endDate"
-            label="Submission Date"
-            InputLabelProps={{ shrink: true }}
-            InputProps={{
-              sx: { fontSize: "0.8rem" },
-              inputProps: { min: new Date().toISOString().split("T")[0] },
-            }}
-            required
-          ></TextField>
+          <Grid
+            container
+            rowGap={3}
+            sx={{ display: "flex", flexDirection: "column", mx: 15 }}
+          >
+            <MenteeDropDownHandler setProgramID={setProgramID} />
+            <Input
+              type="text"
+              name="title"
+              placeholder="Task Name"
+              required
+              sx={{ height: 10 }}
+            ></Input>
+            <TextField
+              type="date"
+              name="endDate"
+              label="Submission Date"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+                inputProps: { min: new Date().toISOString().split("T")[0] },
+              }}
+              required
+            ></TextField>
 
-          <TextField
-            type="text"
-            size="medium"
-            name="description"
-            label="Description"
-            InputLabelProps={{ shrink: true }}
-            InputProps={{
-              sx: { fontSize: "0.8rem" },
-            }}
-            required
-          ></TextField>
-          <Button type="submit">Create</Button>
+            <TextField
+              type="text"
+              size="medium"
+              name="description"
+              label="Description"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+              }}
+              required
+            ></TextField>
+            <Grid lg={3} xs={12}>
+              <Typography level="h4">Upload Files</Typography>
+              <FileUploadButton />
+            </Grid>
+            <Button type="submit">Create</Button>
+          </Grid>
         </FormControl>
       </form>
-      {/* <Grid lg={10} xs={12}>
-        <Grid>
-          <Typography level="h4">Title</Typography>
-        </Grid>
-        <Grid>
-          <Textarea
-            variant="outlined"
-            onChange={(e) => handletaskDetailsChange("title", e.target.value)}
-          />
-        </Grid>
-      </Grid>
-      <Grid>
-        <Grid>
-          <Typography level="h4">Instructions</Typography>
-        </Grid>
-        <Grid>
-          <Textarea
-            variant="outlined"
-            minRows={4}
-            sx={{ width: "60%" }}
-            onChange={(e) =>
-              handletaskDetailsChange("taskDescription", e.target.value)
-            }
-          />
-        </Grid>
-      </Grid>
-      <br />
-      <Grid container sx={{ display: "flex" }}>
-        <Grid lg={3} xs={12}>
-          <Typography level="h4">Upload Files</Typography>
-          <FileUploadButton />
-        </Grid>
-        <Grid lg={3} xs={12}>
-          <LocalizationProvider
-            dateAdapter={AdapterMoment}
-            adapterLocale="en-gb"
-          >
-            <Typography level="h4">Due Date</Typography>
-
-            <DatePicker
-              sx={{
-                "& .MuiInputBase-root": {
-                  height: "2.5rem",
-                  borderColor: "transparent",
-                },
-              }}
-              onChange={(value) => handletaskDetailsChange("endDate", value)}
-            />
-          </LocalizationProvider>
-        </Grid>
-      </Grid>
-      <br />
-      <Button onClick={onCreate}>Create Task</Button> */}
     </div>
   );
 };
