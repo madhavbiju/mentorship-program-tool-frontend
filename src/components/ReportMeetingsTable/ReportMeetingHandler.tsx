@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
 import { Sort, meetings } from "./Types/Index";
-import { getMeetingData } from "./API/GetMeetingData";
 import PaginationIcons from "../Pagination/PaginationIcons";
 import ReportMeeting from "./ReportMeeting";
 import ReportMeetingSkeleton from "./ReportMeetingSkeleton";
+import { getMeetingData } from "./API/getMeetingData";
 
 const ReportMeetingHandler = ({ sort }: Sort) => {
   const [meetingData, setmeetingData] = useState<{
@@ -52,7 +52,16 @@ const ReportMeetingHandler = ({ sort }: Sort) => {
       {isLoading ? ( // Render skeleton if loading
         <ReportMeetingSkeleton />
       ) : (
-        <ReportMeeting meetings={meetingData.meetings} totalCount={pageApi} />
+        <>
+          {meetingData.meetings.length === 0 ? ( // Check if no meetings
+            <Typography>No Meetings to display</Typography>
+          ) : (
+            <ReportMeeting
+              meetings={meetingData.meetings}
+              totalCount={pageApi}
+            />
+          )}
+        </>
       )}
     </>
   );
