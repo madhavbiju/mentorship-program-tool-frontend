@@ -108,7 +108,7 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
               <TextField
                 type="time"
                 name="endTime"
-                label="End Date"
+                label="End Time"
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                   sx: { fontSize: "0.8rem" },
