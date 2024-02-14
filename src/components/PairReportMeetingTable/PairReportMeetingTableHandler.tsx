@@ -57,10 +57,16 @@ const PairReportMeetingTableHandler = ({
       {isLoading ? ( // Render skeleton if loading
         <PairReportMeetingTableSkeleton />
       ) : (
-        <PairReportMeetingTable
-          meetings={meetingData.meetings}
-          totalCount={pageApi}
-        />
+        <>
+          {meetingData.meetings.length === 0 ? ( // Check if no meetings
+            <Typography>No Meetings to display</Typography>
+          ) : (
+            <PairReportMeetingTable
+              meetings={meetingData.meetings}
+              totalCount={pageApi}
+            />
+          )}
+        </>
       )}
     </>
   );
