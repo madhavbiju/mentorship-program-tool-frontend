@@ -5,9 +5,10 @@ import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
 import useLoginHandler from "./LoginHandler";
-import { Stack, formLabelClasses } from "@mui/joy";
+import { Card, CardCover, Stack, formLabelClasses } from "@mui/joy";
 import MicrosoftIcon from "../../../components/MicrosoftIcon/MicrosoftIcon";
 import Loader from "./Loader";
+import loginpagesidebar from "../../../../public/Assets/loginside.jpg";
 
 export default function LoginPage() {
   const { handleLogin, loading } = useLoginHandler(() =>
@@ -63,8 +64,27 @@ export default function LoginPage() {
               justifyContent: "space-between",
             }}
           >
-            <Box sx={{ gap: 2, display: "flex", alignItems: "center" }}>
-              <Typography level="title-lg">MPT</Typography>
+            <Box
+              component="header"
+              sx={{
+                display: "flex",
+                alignItems: "left",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box sx={{ gap: 2, display: "flex", alignItems: "center" }}>
+                <Card variant="plain" sx={{ minWidth: 150, minHeight: 30 }}>
+                  <CardCover>
+                    <img
+                      src="/Assets/TD1.png" // Specify your default image path
+                      srcSet="/Assets/TD1.png"
+                      loading="lazy"
+                      alt=""
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                  </CardCover>
+                </Card>
+              </Box>
             </Box>
           </Box>
           <Box
@@ -129,12 +149,7 @@ export default function LoginPage() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1527181152855-fc03fc7949c8?auto=format&w=1000&dpr=2)",
-          [theme.getColorSchemeSelector("dark")]: {
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831?auto=format&w=1000&dpr=2)",
-          },
+          backgroundImage: `url(${loginpagesidebar})`,
         })}
       />
     </>
