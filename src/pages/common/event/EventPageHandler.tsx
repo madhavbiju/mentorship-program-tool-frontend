@@ -31,11 +31,6 @@ const EventPageHandler: React.FC = () => {
     setIsLoading(true); // Set loading state to true while fetching data
     let response = await fetchMeetingData(meetingId!);
 
-    // Convert UTC dates to local time zone
-    response.scheduleDate = moment.utc(response.scheduleDate).local().format();
-    response.startTime = moment.utc(response.startTime).local().format();
-    response.endTime = moment.utc(response.endTime).local().format();
-
     setEventData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
