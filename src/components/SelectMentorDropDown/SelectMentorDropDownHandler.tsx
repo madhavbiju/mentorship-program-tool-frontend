@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
-import { menteeList, programStateProp } from "./Types";
-import SelectMenteeDropDown from "./SelectMenteeDropDown";
-import { fetchMenteeList } from "./Api/getMenteeList";
+import { getMentorList } from "./API/getMentorList";
+import { mentorList, programStateProp } from "./Types";
+import SelectMentorDropDown from "./SelectMentorDropDown";
 
-const MenteeDropDownHandler = ({ setProgramID }: programStateProp) => {
-  const mentee: menteeList = {
+const MentorDropDownHandler = ({ setProgramID }: programStateProp) => {
+  const mentor: mentorList = {
     programID: 0,
     employeeID: 0,
     firstName: "",
     lastName: "",
   };
 
-  const [menteeListData, setMenteeListData] = useState<menteeList[]>([]);
-
-  const EmployeeID = sessionStorage.getItem("EmployeeId");
+  const [mentorListData, setMentorListData] = useState<mentorList[]>([]);
+  const [mentorID, setMentorID] = useState<number>(2);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const getMenteeListData = async () => {
+  const getMentorListData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchMenteeList(EmployeeID!);
-    setMenteeListData(response);
+    let response = await getMentorList(mentorID);
+    setMentorListData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
-    getMenteeListData();
+    getMentorListData();
   }, []);
 
   return (
@@ -42,8 +41,8 @@ const MenteeDropDownHandler = ({ setProgramID }: programStateProp) => {
         {isLoading ? (
           <Skeleton width={200} height={40} />
         ) : (
-          <SelectMenteeDropDown
-            menteeListData={menteeListData}
+          <SelectMentorDropDown
+            mentorListData={mentorListData}
             setProgramID={setProgramID}
           />
         )}
@@ -51,4 +50,4 @@ const MenteeDropDownHandler = ({ setProgramID }: programStateProp) => {
     </>
   );
 };
-export default MenteeDropDownHandler;
+export default MentorDropDownHandler;

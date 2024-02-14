@@ -73,7 +73,7 @@ const AdminReportPage = () => {
               </>
             ) : reportType === "Mentor Report" ? (
               <>
-                <SelectMentorDropDown />
+                {/* <SelectMentorDropDown /> */}
                 <Grid lg={12}>
                   <MentorReport />
                 </Grid>

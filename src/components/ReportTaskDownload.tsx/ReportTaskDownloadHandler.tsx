@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
+import { Sort, tasks } from "./Types";
+import { fetchtaskData } from "./API/GetReportData";
 import PaginationIcons from "../Pagination/PaginationIcons";
-import { Sort, tasks } from "../ReportTables/ReportTaskTable";
-import { fetchtaskData } from "./API/getPairReportData";
-import PairReportTaskTable from "./PairReportTaskTable";
-import PairReportTaskTableSkeleton from "./PairReportTaskTableSkeleton";
+import ReportTaskTable from "./ReportTaskDownloadTable";
+import ReportTaskTableSkeleton from "./ReportTaskDownloadSkeleton";
 
-const PairReportTaskTableHandler = ({
-  sort,
-  programid,
-}: {
-  sort: string;
-  programid: number;
-}) => {
+const ReportTaskTableHandler = ({ sort }: Sort) => {
   const [taskData, settaskData] = useState<{
     tasks: tasks[];
     totalCount: number;
@@ -26,15 +20,17 @@ const PairReportTaskTableHandler = ({
 
   const gettaskData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchtaskData(programid, pageApi, sort);
+    let response = await fetchtaskData(pageApi, sort);
     settaskData(response);
+    console.log(" in admin report ");
+    console.log(response);
 
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
     gettaskData();
-  }, [pageApi, sort]);
+  }, []);
   return (
     <>
       <Stack
@@ -45,20 +41,14 @@ const PairReportTaskTableHandler = ({
           alignItems: "center",
           mb: 1,
         }}
-      >
-        <PaginationIcons
-          total={taskData.totalCount}
-          perPage={5}
-          setPageApi={setPageApi}
-        />
-      </Stack>
+      ></Stack>
       {isLoading ? ( // Render skeleton if loading
-        <PairReportTaskTableSkeleton />
+        <ReportTaskTableSkeleton />
       ) : (
-        <PairReportTaskTable task={taskData.tasks} totalCount={pageApi} />
+        <ReportTaskTable task={taskData.tasks} totalCount={pageApi} />
       )}
     </>
   );
 };
 
-export default PairReportTaskTableHandler;
+export default ReportTaskTableHandler;

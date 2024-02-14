@@ -2,39 +2,41 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
 import PaginationIcons from "../Pagination/PaginationIcons";
-import { Sort, tasks } from "../ReportTables/ReportTaskTable";
-import { fetchtaskData } from "./API/getPairReportData";
-import PairReportTaskTable from "./PairReportTaskTable";
-import PairReportTaskTableSkeleton from "./PairReportTaskTableSkeleton";
+import PairReportMeetingTable from "./PairReportMeetingTable";
+import { getPairReportMeetingsData } from "./API/getPairReportMeetingsData";
+import { meetings } from "./Types";
+import PairReportMeetingTableSkeleton from "./PairReportMeetingTableSkeleton";
 
-const PairReportTaskTableHandler = ({
+const PairReportMeetingTableHandler = ({
   sort,
   programid,
 }: {
   sort: string;
   programid: number;
 }) => {
-  const [taskData, settaskData] = useState<{
-    tasks: tasks[];
+  const [meetingData, setmeetingData] = useState<{
+    meetings: meetings[];
     totalCount: number;
   }>({
-    tasks: [],
+    meetings: [],
     totalCount: 0,
   });
+  console.log(meetingData);
   const [pageApi, setPageApi] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const gettaskData = async () => {
+  const getmeetingData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchtaskData(programid, pageApi, sort);
-    settaskData(response);
-
+    let response = await getPairReportMeetingsData(programid, pageApi, sort);
+    setmeetingData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
-    gettaskData();
+    console.log("here");
+    getmeetingData();
   }, [pageApi, sort]);
+
   return (
     <>
       <Stack
@@ -47,18 +49,21 @@ const PairReportTaskTableHandler = ({
         }}
       >
         <PaginationIcons
-          total={taskData.totalCount}
+          total={meetingData.totalCount}
           perPage={5}
           setPageApi={setPageApi}
         />
       </Stack>
       {isLoading ? ( // Render skeleton if loading
-        <PairReportTaskTableSkeleton />
+        <PairReportMeetingTableSkeleton />
       ) : (
-        <PairReportTaskTable task={taskData.tasks} totalCount={pageApi} />
+        <PairReportMeetingTable
+          meetings={meetingData.meetings}
+          totalCount={pageApi}
+        />
       )}
     </>
   );
 };
 
-export default PairReportTaskTableHandler;
+export default PairReportMeetingTableHandler;
