@@ -20,17 +20,17 @@ const CreatetaskHandler = () => {
     taskStatus: 1,
     createdBy: 1,
   });
-
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
   function convertTotaskType(input: any): taskType {
     return {
       programID: input.programID,
       title: input.title,
-      taskDescription: input.taskDescription,
-      startDate: input.startDate,
-      endDate: input.endDate.toISOString(),
-      referenceMaterialFilePath: "abcdefg",
+      taskDescription: input.description,
+      startDate: new Date().toISOString(),
+      endDate: moment.utc(input.endDate).format(),
+      referenceMaterialFilePath: "filepath",
       taskStatus: 1,
-      createdBy: 1,
+      createdBy: parseInt(EmployeeID!),
     };
   }
 
@@ -68,7 +68,20 @@ const CreatetaskHandler = () => {
     }));
   };
 
-  return <CreateTasks onCreate={handleSchedule} onChange={handleInputChange} />;
+  const [programID, setProgramID] = useState(0);
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    formData.append("programID", programID.toString());
+    const formDataObject: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value as string;
+    });
+    const formatedtaskData: taskType = convertTotaskType(formDataObject);
+    await sendtaskData(formatedtaskData);
+  };
+
+  return <CreateTasks submit={submit} setProgramID={setProgramID} />;
 };
 
 export default CreatetaskHandler;
