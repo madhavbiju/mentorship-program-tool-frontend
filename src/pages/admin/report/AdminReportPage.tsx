@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs, Card, Link, Typography } from "@mui/joy";
+import { Box, Breadcrumbs, Card, Typography } from "@mui/joy";
 import { Grid, Button } from "@mui/joy";
 import React, { useState } from "react";
 import AdminReportPageButtonGroup from "../../../components/AdminReportPageButtonGroup/AdminReportPageButtonGroup";
@@ -10,6 +10,7 @@ import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AdminReport from "../../../components/adminreport/AdminReport"; // Import AdminReport component
 import { Download } from "@mui/icons-material";
+import { Link} from "react-router-dom";
 
 const AdminReportPage = () => {
   const [reportType, setReportType] = useState<string>("Overall Report");
@@ -24,9 +25,7 @@ const AdminReportPage = () => {
           sx={{ pl: 0 }}
         >
           <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
+            to="/admin/home" style={{ color: "grey" }} 
             aria-label="Home"
           >
             <HomeRoundedIcon />
@@ -73,7 +72,7 @@ const AdminReportPage = () => {
               </>
             ) : reportType === "Mentor Report" ? (
               <>
-                <SelectMentorDropDown />
+                {/* <SelectMentorDropDown /> */}
                 <Grid lg={12}>
                   <MentorReport />
                 </Grid>

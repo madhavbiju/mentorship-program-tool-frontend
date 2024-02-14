@@ -1,8 +1,15 @@
 import axios from "axios";
+import { baseUrl } from "../../../config/configUrl";
+import axiosInstance from "../../../config/configAxios";
 
-export const fetchPairData = async (pageApi: number, status: string, sort: string, search: string) => {
+export const fetchPairData = async (
+  pageApi: number,
+  status: string,
+  sort: string,
+  search: string
+) => {
   try {
-    let url = `https://localhost:7259/api/program/All?page=${pageApi}`;
+    let url = `${baseUrl.program}/All?page=${pageApi}`;
 
     // Add status query parameter if status is not empty
     if (status !== "") {
@@ -19,7 +26,7 @@ export const fetchPairData = async (pageApi: number, status: string, sort: strin
       url += `&search=${encodeURIComponent(search)}`;
     }
 
-    const response = await axios.get(url);
+    const response = await axiosInstance.get(url);
     return response.data;
   } catch (error) {
     console.error("Error fetching active count:", error);

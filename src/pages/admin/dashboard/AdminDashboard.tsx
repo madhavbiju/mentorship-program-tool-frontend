@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs, Divider, Grid, Link } from "@mui/joy";
+import { Box, Breadcrumbs, Divider, Grid } from "@mui/joy";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import CountCard from "../../../components/CountCard/CountCard";
@@ -6,6 +6,7 @@ import GreetCard from "../../../components/GreetCard/GreetCard";
 import { AdminDashboardProps } from "./Types";
 import DashboardTableHandler from "../../../components/DashboardTable/DashboardTableHandler";
 import RequestBoxHandler from "../../../components/RequestBox/RequestBoxHandler";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = ({ data }: AdminDashboardProps) => {
   console.log(data);
@@ -18,12 +19,7 @@ const AdminDashboard = ({ data }: AdminDashboardProps) => {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
-            aria-label="Home"
-          >
+          <Link to="/admin/home" style={{ color: "grey" }} aria-label="Home">
             <HomeRoundedIcon />
           </Link>
         </Breadcrumbs>
