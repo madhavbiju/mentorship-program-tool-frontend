@@ -1,5 +1,14 @@
-import { Box, Breadcrumbs, Button, Grid, Textarea, Typography } from "@mui/joy";
-import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Breadcrumbs,
+  Button,
+  FormControl,
+  Grid,
+  Input,
+  Textarea,
+  Typography,
+} from "@mui/joy";
+import React, { FormEvent, useEffect, useState } from "react";
 import SelectMenteeDropDown from "../../../components/SelectMenteeDropDown/SelectMenteeDropDown";
 import SetEndDate from "../../../components/CourseSetDate/SetEndDate";
 import { Link } from "react-router-dom";
@@ -9,33 +18,14 @@ import MenteeDropDownHandler from "../../../components/SelectMenteeDropDown/Sele
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { TextField } from "@mui/material";
 
 interface CreatetaskProps {
-  onCreate: () => void;
-  onChange: (key: string, value: any) => void;
+  submit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  setProgramID: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CreateTasks: React.FC<CreatetaskProps> = ({ onCreate, onChange }) => {
-  const [programID, setProgramID] = useState(0);
-  const [taskDetails, settaskDetails] = useState({
-    title: "",
-    description: "",
-    endDate: null,
-  });
-
-  useEffect(() => {
-    onChange("programID", programID);
-  }, [programID]);
-
-  // Handle changes to the task details
-  const handletaskDetailsChange = (key: string, value: any) => {
-    settaskDetails((prevDetails) => ({
-      ...prevDetails,
-      [key]: value,
-    }));
-    onChange(key, value);
-  };
-
+const CreateTasks: React.FC<CreatetaskProps> = ({ submit, setProgramID }) => {
   return (
     <div>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -63,12 +53,43 @@ const CreateTasks: React.FC<CreatetaskProps> = ({ onCreate, onChange }) => {
       <Grid>
         <Typography level="h3">Create Task</Typography>
       </Grid>
-      <Grid xs={12} lg={12}>
-        <br />
-        <MenteeDropDownHandler setProgramID={setProgramID} />
-      </Grid>
-      <br />
-      <Grid lg={10} xs={12}>
+
+      <form onSubmit={submit}>
+        <FormControl required>
+          <MenteeDropDownHandler setProgramID={setProgramID} />
+          <Input
+            type="text"
+            name="title"
+            placeholder="Task Name"
+            required
+          ></Input>
+          <TextField
+            type="date"
+            name="endDate"
+            label="Submission Date"
+            InputLabelProps={{ shrink: true }}
+            InputProps={{
+              sx: { fontSize: "0.8rem" },
+              inputProps: { min: new Date().toISOString().split("T")[0] },
+            }}
+            required
+          ></TextField>
+
+          <TextField
+            type="text"
+            size="medium"
+            name="description"
+            label="Description"
+            InputLabelProps={{ shrink: true }}
+            InputProps={{
+              sx: { fontSize: "0.8rem" },
+            }}
+            required
+          ></TextField>
+          <Button type="submit">Create</Button>
+        </FormControl>
+      </form>
+      {/* <Grid lg={10} xs={12}>
         <Grid>
           <Typography level="h4">Title</Typography>
         </Grid>
@@ -120,7 +141,7 @@ const CreateTasks: React.FC<CreatetaskProps> = ({ onCreate, onChange }) => {
         </Grid>
       </Grid>
       <br />
-      <Button onClick={onCreate}>Create Task</Button>
+      <Button onClick={onCreate}>Create Task</Button> */}
     </div>
   );
 };

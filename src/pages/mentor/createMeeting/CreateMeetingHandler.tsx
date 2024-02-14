@@ -4,11 +4,12 @@ import { postMeetingData } from "./Api/postMeeting";
 import { meetingType } from "./Types";
 import Swal from "sweetalert2";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 const CreateMeetingHandler = () => {
   const EmployeeID = sessionStorage.getItem("EmployeeId");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const history = useNavigate();
   function convertToMeetingType(input: any): meetingType {
     return {
       programID: parseInt(input.programID),
@@ -29,8 +30,9 @@ const CreateMeetingHandler = () => {
     let response = await postMeetingData(formatedMeetingData);
     setIsLoading(false);
     // Use SweetAlert2 to show success or error message based on response
-    if (response?.status == 200 || 201) {
+    if (response && (response.status === 200 || response.status === 201)) {
       Swal.fire("Success", "Meeting created successfully!", "success");
+      history("/mentor/tasks");
     } else {
       Swal.fire("Error", "Failed to create meeting", "error");
     }
