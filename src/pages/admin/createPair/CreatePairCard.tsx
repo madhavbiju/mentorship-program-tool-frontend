@@ -73,40 +73,50 @@ const CreatePairCard = ({
       </Box>
       <form onSubmit={submit}>
         <FormControl required>
-          <Input
-            type="text"
-            name="programName"
-            placeholder="Program Name"
-            required
-          ></Input>
-          <MentorSearchHandler setMentorID={setMentorID} />
-          <MenteeSearchHandler setMenteeID={setMenteeID} />
-          <TextField
-            type="date"
-            name="startDate"
-            label="Start Date"
-            InputLabelProps={{ shrink: true }}
-            InputProps={{
-              sx: { fontSize: "0.8rem" },
-              inputProps: { min: new Date().toISOString().split("T")[0] },
-            }}
-            value={startDate}
-            onChange={(e) => handleStartDateChange(e)}
-            required
-          ></TextField>
-          <TextField
-            type="date"
-            name="endDate"
-            label="End Date"
-            InputLabelProps={{ shrink: true }}
-            InputProps={{
-              sx: { fontSize: "0.8rem" },
-              inputProps: { min: startDate },
-            }}
-            required
-          ></TextField>
+          <Grid sx={{ mx: 7, mt: 3 }}>
+            <Input
+              type="text"
+              name="programName"
+              placeholder="Program Name"
+              required
+            ></Input>
+          </Grid>
+          <Grid sx={{ mx: 7, mt: 2 }}>
+            <MentorSearchHandler setMentorID={setMentorID} />
+            <MenteeSearchHandler setMenteeID={setMenteeID} />
+          </Grid>
+          <Grid
+            container
+            rowGap={2}
+            sx={{ mx: 7, mt: 2, display: "flex", flexDirection: "column" }}
+          >
+            <TextField
+              type="date"
+              name="startDate"
+              label="Start Date"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+                inputProps: { min: new Date().toISOString().split("T")[0] },
+              }}
+              value={startDate}
+              onChange={(e) => handleStartDateChange(e)}
+              required
+            ></TextField>
+            <TextField
+              type="date"
+              name="endDate"
+              label="End Date"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+                inputProps: { min: startDate },
+              }}
+              required
+            ></TextField>
 
-          <Button type="submit">Create</Button>
+            <Button type="submit">Create</Button>
+          </Grid>
         </FormControl>
       </form>
       {/* <Grid container spacing={2} justifyContent="center" alignItems="center">
