@@ -8,72 +8,37 @@ import SetStartDate from "../../../components/CourseSetDate/SetStartDate";
 import SetEndDate from "../../../components/CourseSetDate/SetEndDate";
 import Input from "@mui/joy/Input";
 import AddIcon from "@mui/icons-material/Add";
-import { Typography } from "@mui/joy";
+import { FormControl, Typography } from "@mui/joy";
 import Breadcrumbs from "@mui/joy/Breadcrumbs";
 import { Box } from "@mui/system";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import MentorSearchHandler from "../../../components/SearchForMentor/MentorSearchHandler";
 import MenteeSearchHandler from "../../../components/SearchForMentee/MenteeSearchHandler";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TextField } from "@mui/material";
 
 interface CreateProgramProps {
-  onSubmit: () => void;
-  onChange: (key: string, value: any) => void;
+  submit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  setMentorID: React.Dispatch<React.SetStateAction<number>>;
+  setMenteeID: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CreatePairCard = ({ onSubmit, onChange }: CreateProgramProps) => {
-  const [mentorID, setMentorID] = useState(0);
-  const [menteeID, setMenteeID] = useState(0);
-  const [startDate, setStartDate] = React.useState(null);
-  const [programName, setProgramName] = React.useState("");
-  const [endDate, setEndDate] = React.useState(null);
-  const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
+const CreatePairCard = ({
+  submit,
+  setMentorID,
+  setMenteeID,
+}: CreateProgramProps) => {
+  const [startDate, setStartDate] = useState<string>("");
+
   const history = useNavigate(); // for navigantion
 
-  // Effect to update button state based on field completion as false
-  useEffect(() => {
-    setIsButtonDisabled(
-      mentorID === 0 ||
-        menteeID === 0 ||
-        !startDate ||
-        !programName ||
-        programName.trim() === "" ||
-        !endDate // Disable button if endDate is not set
-    );
-  }, [mentorID, menteeID, startDate, programName, endDate]);
-
-  //to pass to endDate setting component
-  const handleStartDateChange = (date: React.SetStateAction<null>) => {
-    setStartDate(date);
-  };
-
-  const handleProgramNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setProgramName(value);
-  };
-
-  useEffect(() => {
-    onChange("mentorID", mentorID);
-  }, [mentorID]);
-  useEffect(() => {
-    onChange("menteeID", menteeID);
-  }, [menteeID]);
-  useEffect(() => {
-    onChange("startDate", startDate);
-  }, [startDate]);
-  useEffect(() => {
-    onChange("programName", programName);
-  }, [programName]);
-  useEffect(() => {
-    onChange("endDate", endDate);
-  }, [endDate]);
-
-  // Handle form submission
-  const handleSubmit = () => {
-    onSubmit(); //to post form
-    history("/admin/pairs"); // Navigate to pairs page upon submission
+  const handleStartDateChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const selectedStartDate = e.target.value;
+    setStartDate(selectedStartDate);
   };
 
   return (
@@ -106,8 +71,45 @@ const CreatePairCard = ({ onSubmit, onChange }: CreateProgramProps) => {
           </Typography>
         </Breadcrumbs>
       </Box>
+      <form onSubmit={submit}>
+        <FormControl required>
+          <Input
+            type="text"
+            name="programName"
+            placeholder="Program Name"
+            required
+          ></Input>
+          <MentorSearchHandler setMentorID={setMentorID} />
+          <MenteeSearchHandler setMenteeID={setMenteeID} />
+          <TextField
+            type="date"
+            name="startDate"
+            label="Start Date"
+            InputLabelProps={{ shrink: true }}
+            InputProps={{
+              sx: { fontSize: "0.8rem" },
+              inputProps: { min: new Date().toISOString().split("T")[0] },
+            }}
+            value={startDate}
+            onChange={(e) => handleStartDateChange(e)}
+            required
+          ></TextField>
+          <TextField
+            type="date"
+            name="endDate"
+            label="End Date"
+            InputLabelProps={{ shrink: true }}
+            InputProps={{
+              sx: { fontSize: "0.8rem" },
+              inputProps: { min: startDate },
+            }}
+            required
+          ></TextField>
 
-      <Grid container spacing={2} justifyContent="center" alignItems="center">
+          <Button type="submit">Create</Button>
+        </FormControl>
+      </form>
+      {/* <Grid container spacing={2} justifyContent="center" alignItems="center">
         <Grid xs={12} sm={6.5}>
           <Card
             sx={{
@@ -147,7 +149,6 @@ const CreatePairCard = ({ onSubmit, onChange }: CreateProgramProps) => {
             <Card variant="plain" sx={{ bgcolor: "transparent" }}>
               <CardContent>
                 <SetStartDate
-                  /* pass the handleStartDateChange function to set start date */
                   onStartDateChange={handleStartDateChange}
                 />
               </CardContent>
@@ -163,7 +164,6 @@ const CreatePairCard = ({ onSubmit, onChange }: CreateProgramProps) => {
                     setEndDate(date);
                   }}
                 />
-                {/* pass the starting date to setEndDate component */}
               </CardContent>
             </Card>
           </Grid>
@@ -176,7 +176,7 @@ const CreatePairCard = ({ onSubmit, onChange }: CreateProgramProps) => {
             </Button>
           </Grid>
         </Grid>
-      </Grid>
+      </Grid> */}
     </React.Fragment>
   );
 };

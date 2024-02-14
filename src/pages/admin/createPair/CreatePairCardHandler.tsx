@@ -3,33 +3,23 @@ import Swal from "sweetalert2";
 import CreatePairCard from "./CreatePairCard";
 import { programType } from "./Types";
 import { postProgramData } from "./Api/postProgram";
+import moment from "moment";
 
 const CreatePairCardHandler = () => {
-  const now = new Date();
-  const formattedDate = now.toISOString();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const [programData, setProgramData] = useState({
-    mentorID: 0,
-    menteeID: 0,
-    createdBy: 1,
-    startDate: "",
-    endDate: "",
-    createdTime: "",
-    programName: "",
-    programStatus: 1,
-  });
-
+  const [mentorID, setMentorID] = useState(0);
+  const [menteeID, setMenteeID] = useState(0);
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
   function convertToProgramType(input: any): programType {
     return {
       mentorID: input.mentorID,
       menteeID: input.menteeID,
-      startDate: input.startDate.toISOString(),
-      endDate: input.endDate.toISOString(),
-      createdBy: input.createdBy,
-      programStatus: input.programStatus,
+      startDate: moment.utc(input.startDate).format(),
+      endDate: moment.utc(input.endDate).format(),
+      createdBy: parseInt(EmployeeID!),
+      programStatus: 1,
       programName: input.programName,
-      createdTime: input.createdTime,
+      createdTime: new Date().toISOString(),
     };
   }
 
@@ -45,26 +35,26 @@ const CreatePairCardHandler = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    setProgramData((prevData) => ({
-      ...prevData,
-      ["createdTime"]: formattedDate,
-    }));
-    // Convert program data to programType
-    const formatedProgramData: programType = convertToProgramType(programData);
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    formData.append("mentorID", mentorID.toString());
+    formData.append("menteeID", menteeID.toString());
+    const formDataObject: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value as string;
+    });
+    const formatedProgramData: programType =
+      convertToProgramType(formDataObject);
     sendProgramData(formatedProgramData);
-    // Call sendProgramData after conversion is completed
-  };
-
-  const handleInputChange = (key: string, value: any) => {
-    setProgramData((prevData) => ({
-      ...prevData,
-      [key]: value,
-    }));
   };
 
   return (
-    <CreatePairCard onSubmit={handleSubmit} onChange={handleInputChange} />
+    <CreatePairCard
+      submit={submit}
+      setMentorID={setMentorID}
+      setMenteeID={setMenteeID}
+    />
   );
 };
 
