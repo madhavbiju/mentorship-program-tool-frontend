@@ -4,7 +4,7 @@ import { baseUrl } from "../../../config/configUrl";
 export const fetchPendingTaskData = async (pageApi: number,EmployeeID: string) => {
   try {
     const response = await axiosInstance.get(
-      `${baseUrl.task}/Program/${EmployeeID},1?page=${pageApi}`
+      `${baseUrl.task}/Mentee/${EmployeeID},1?page=${pageApi}`
     );
     
     return response.data;
