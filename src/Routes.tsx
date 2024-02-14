@@ -33,6 +33,7 @@ import WaitingForApprovalPage from "./components/ApprovalPage/ApprovalPage";
 import CreatetaskHandler from "./pages/mentor/createtask/CreateTasksHandler";
 import MenteeCalendarPage from "./pages/mentee/calendar/CalendarPage";
 import MentorCalendarPage from "./pages/mentor/calendar/CalendarPage";
+import MenteeChat from "./pages/mentee/chat/Chat";
 
 const AppRoutes = () => {
   return (
@@ -79,6 +80,7 @@ const AppRoutes = () => {
             />
             <Route path="report" element={<MenteeReport />} />
             <Route path="tasks" element={<MenteeTask />} />
+            <Route path="chat" element={<MenteeChat />} />
           </Route>
           <Route
             path="/mentor"
