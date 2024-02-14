@@ -45,10 +45,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({
     }
   };
   const handleApprove = async () => {
-    console.log("HandleApproveClickeds");
     if (request) {
-      console.log("Request is present");
-
       const approveData = {
         programExtensionID: request.programExtensionID,
         modifiedBy: modifiedBy,
@@ -61,8 +58,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({
         modifiedTime: new Date().toISOString(),
         endDate: request.newEndDate,
       };
-      console.log("ApproveData", approveData);
-      console.log("UpdateData", updateData);
+
       try {
         await approveRequest(approveData);
         await updateProgramDate(updateData);

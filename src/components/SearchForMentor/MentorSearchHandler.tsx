@@ -18,10 +18,6 @@ const MentorSearchHandler = ({ setMentorID }: MentorIdProps) => {
     }));
   };
 
-  // useEffect(() => {
-  //  console.log("Updated mentorData:", mentorData);
-  // }, [mentorData]);
-
   useEffect(() => {
     getMentorsData();
   }, []);

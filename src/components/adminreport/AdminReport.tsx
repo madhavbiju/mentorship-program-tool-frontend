@@ -25,7 +25,6 @@ const AdminReport = () => {
 
   const handleSort = (selectedOption: string) => {
     setSelectedSortOption(selectedOption);
-    console.log(selectedOption);
   };
   const [sort, setSort] = useState("");
   const [meetingSort, setMeetingSort] = useState("date");
@@ -35,8 +34,6 @@ const AdminReport = () => {
   const togglePieChart = () => {
     setShowPieChart(!showPieChart);
   };
-  console.log("meetingSort");
-  console.log(meetingSort);
 
   return (
     <div>

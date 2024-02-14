@@ -29,7 +29,6 @@ const MenteeTask = () => {
 
   const handleSort = (selectedOption: string) => {
     setSelectedSortOption(selectedOption);
-    console.log(selectedOption);
   };
 
   const handleFilter = (selectedOption: string) => {
@@ -45,10 +44,7 @@ const MenteeTask = () => {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link
-            to="/mentee/home" style={{ color: "grey" }} 
-            aria-label="Home"
-          >
+          <Link to="/mentee/home" style={{ color: "grey" }} aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>

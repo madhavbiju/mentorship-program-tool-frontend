@@ -53,7 +53,7 @@ const MenteesListCard = ({ mentees, totalCount }: MenteesProps) => {
 
   const handleClick = (mentee: Mentee) => {
     setOpen(true);
-    console.log(mentee.programID);
+
     setMenteeData(mentee);
   };
 

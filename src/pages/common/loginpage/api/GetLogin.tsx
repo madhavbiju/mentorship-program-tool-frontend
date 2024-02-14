@@ -14,7 +14,7 @@ const GetLogin = async (token: string): Promise<string[]> => {
       }
     );
     const data = await response.json();
-    console.log(data);
+
     if (!data.token) {
       console.error("JWT not found in response");
       return [];
@@ -29,7 +29,6 @@ const GetLogin = async (token: string): Promise<string[]> => {
 
     // Ensure rolesClaim is always an array for consistent handling
     const roles = Array.isArray(rolesClaim) ? rolesClaim : [rolesClaim];
-    console.log("Roles", roles);
 
     sessionStorage.setItem("jwtToken", JSON.stringify(data.token));
 

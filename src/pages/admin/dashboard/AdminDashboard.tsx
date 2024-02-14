@@ -9,7 +9,6 @@ import RequestBoxHandler from "../../../components/RequestBox/RequestBoxHandler"
 import { Link } from "react-router-dom";
 
 const AdminDashboard = ({ data }: AdminDashboardProps) => {
-  console.log(data);
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>

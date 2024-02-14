@@ -12,7 +12,6 @@ const CalendarCC = ({ eventFormattedList }: eventProps) => {
   const [events, setEvents] = useState<ExtendedEvent[]>(eventFormattedList);
 
   const handleSelectEvent = (event: ExtendedEvent) => {
-    console.log(event.id);
     history(`event/${event.id}`);
   };
 
