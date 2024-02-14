@@ -123,7 +123,7 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
                 label="Agenda"
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
-                  sx: { fontSize: "0.8rem" },
+                  sx: { fontSize: "0.8rem", height: 50 },
                 }}
                 required
               ></TextField>
