@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import {
   Box,
   Breadcrumbs,
@@ -8,6 +8,7 @@ import {
   Textarea,
   Button,
   Grid,
+  FormControl,
 } from "@mui/joy";
 import SelectMenteeDropDown from "../../../components/SelectMenteeDropDown/SelectMenteeDropDown";
 import {
@@ -20,45 +21,17 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import MenteeDropDownHandler from "../../../components/SelectMenteeDropDown/SelectMenteeDropDownHandler";
 import "moment/locale/en-gb";
+import { Input, TextField } from "@mui/material";
 
 interface CreateMeetingProps {
-  onSchedule: () => void;
-  onChange: (key: string, value: any) => void;
+  submit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  setProgramID: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CreateMeeting: React.FC<CreateMeetingProps> = ({
-  onSchedule,
-  onChange,
+  submit,
+  setProgramID,
 }) => {
-  const [programID, setProgramID] = useState(0);
-  const [meetingDetails, setMeetingDetails] = useState({
-    title: "",
-    scheduleDate: null,
-    startTime: null,
-    endTime: null,
-    agenda: "",
-  });
-
-  useEffect(() => {
-    onChange("programID", programID);
-  }, [programID]);
-
-  // Check if all fields are filled
-  const isAllFieldsFilled = () => {
-    return Object.values(meetingDetails).every(
-      (value) => Boolean(value) || value === 0
-    );
-  };
-
-  // Handle changes to the meeting details
-  const handleMeetingDetailsChange = (key: string, value: any) => {
-    setMeetingDetails((prevDetails) => ({
-      ...prevDetails,
-      [key]: value,
-    }));
-    onChange(key, value);
-  };
-
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -99,87 +72,60 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
         <Typography level="h2" component="h1">
           New Meeting
         </Typography>
-        <MenteeDropDownHandler setProgramID={setProgramID} />
-        <Stack>
-          <Typography level="h4">Title</Typography>
-          <Textarea
-            variant="outlined"
-            onChange={(e) =>
-              handleMeetingDetailsChange("title", e.target.value)
-            }
-          />
-        </Stack>
-        <Grid container columnGap={1}>
-          <LocalizationProvider
-            dateAdapter={AdapterMoment}
-            adapterLocale="en-gb"
-          >
-            <Stack>
-              <Typography level="h4">Date</Typography>
-              <DatePicker
-                sx={{
-                  "& .MuiInputBase-root": {
-                    height: "2.5rem",
-                    borderColor: "transparent",
-                  },
-                }}
-                onChange={(value) =>
-                  handleMeetingDetailsChange("scheduleDate", value)
-                }
-              />
-            </Stack>
-            <Stack>
-              <Typography level="h4">Time</Typography>
-              <Grid
-                container
-                rowGap={1}
-                columnGap={1}
-                sx={{ display: "flex", flexDirection: "row" }}
-              >
-                <TimePicker
-                  label="Start Time"
-                  sx={{
-                    "& .MuiInputBase-root": {
-                      height: "2.5rem",
-                      borderColor: "transparent",
-                    },
-                  }}
-                  onChange={(value) =>
-                    handleMeetingDetailsChange("startTime", value)
-                  }
-                />
-                <TimePicker
-                  label="End Time"
-                  sx={{
-                    "& .MuiInputBase-root": {
-                      height: "2.5rem",
-                      borderColor: "transparent",
-                    },
-                  }}
-                  onChange={(value) =>
-                    handleMeetingDetailsChange("endTime", value)
-                  }
-                />
-              </Grid>
-            </Stack>
-          </LocalizationProvider>
-        </Grid>
-        <Stack>
-          <Typography level="h4">Agenda</Typography>
-          <Textarea
-            variant="outlined"
-            minRows={4}
-            sx={{ width: "60%" }}
-            onChange={(e) =>
-              handleMeetingDetailsChange("agenda", e.target.value)
-            }
-          />
-        </Stack>
-        <Stack>
-          <Button disabled={!isAllFieldsFilled()} onClick={onSchedule}>
-            Schedule
-          </Button>
-        </Stack>
+        <form onSubmit={submit}>
+          <FormControl required>
+            <MenteeDropDownHandler setProgramID={setProgramID} />
+            <Input
+              type="text"
+              name="title"
+              aria-label="Meeting name"
+              required
+            ></Input>
+            <TextField
+              type="date"
+              name="scheduledDate"
+              label="Date"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+                inputProps: { min: new Date().toISOString().split("T")[0] },
+              }}
+              required
+            ></TextField>
+            <TextField
+              type="time"
+              name="startTime"
+              label="Start Time"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+              }}
+              required
+            ></TextField>
+            <TextField
+              type="time"
+              name="endTime"
+              label="End Date"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+              }}
+              required
+            ></TextField>
+            <TextField
+              type="text"
+              size="small"
+              name="agenda"
+              label="Agenda"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+              }}
+              required
+            ></TextField>
+            <Button type="submit">Schedule</Button>
+          </FormControl>
+        </form>
       </Grid>
     </>
   );

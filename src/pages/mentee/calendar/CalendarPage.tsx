@@ -1,10 +1,9 @@
-import { Box, Breadcrumbs, Button, Link, Typography } from "@mui/joy";
+import { Box, Breadcrumbs, Button, Typography } from "@mui/joy";
 import React, { useState } from "react";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
-import CalendarCC from "../../../components/Calendar/CalendarCC";
+import { Link} from "react-router-dom";
 import CalendarHandler from "../../../components/Calendar/CalendarHandler";
 
 const MenteeCalendarPage = () => {
@@ -24,9 +23,7 @@ const MenteeCalendarPage = () => {
           sx={{ pl: 0 }}
         >
           <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
+            to="/mentee/home" style={{ color: "grey" }} 
             aria-label="Home"
           >
             <HomeRoundedIcon />
