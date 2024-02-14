@@ -7,9 +7,6 @@ import { PairReportTaskTableProps } from "./Types/Index";
 export default function PairReportTaskTable({
   task,
 }: PairReportTaskTableProps) {
-  console.log("task in pairreporttasktable");
-  console.log(task);
-
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, "0");
@@ -40,7 +37,7 @@ export default function PairReportTaskTable({
         <Table hoverRow>
           <thead>
             <tr>
-              <th>Mentee Name</th>
+              {/* <th>Mentee Name</th> */}
               <th>Task Title</th>
               <th>Assigned Date</th>
               <th>Submission Date</th>
@@ -50,7 +47,7 @@ export default function PairReportTaskTable({
           <tbody>
             {task.map((row) => (
               <tr key={row.taskId}>
-                <td>{row.menteeFirstName}</td>
+                {/* <td>{row.menteeFirstName}</td> */}
                 <td>{row.taskName}</td>
                 <td>{formatDate(row.startDate)}</td>
                 <td>{formatDate(row.endDate)}</td>

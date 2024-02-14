@@ -13,12 +13,13 @@ const MenteeDropDownHandler = ({ setProgramID }: programStateProp) => {
   };
 
   const [menteeListData, setMenteeListData] = useState<menteeList[]>([]);
-  const [mentorID, setMentorID] = useState<number>(2);
+
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getMenteeListData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchMenteeList(mentorID);
+    let response = await fetchMenteeList(EmployeeID!);
     setMenteeListData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };

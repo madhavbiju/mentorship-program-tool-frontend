@@ -35,7 +35,7 @@ const MentorReportPage = () => {
         ) : (
           <>
             <br />
-            <SelectMenteeDropDown />
+            {/* <SelectMenteeDropDown /> */}
             <PairReport />
           </>
         )}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Stack } from "@mui/joy";
+import { Stack, Typography } from "@mui/joy";
 import { FilterProps, programs } from "./Types";
 import { fetchPairData } from "./Api/getPairData";
 import PairTableSkeleton from "./PairTableSkeleton";
@@ -41,10 +41,16 @@ const PairTableHandler = ({ status, sort, search }: FilterProps) => {
         {isLoading ? ( // Render skeleton if loading
           <PairTableSkeleton />
         ) : (
-          <PairTable
-            program={programData.programs}
-            totalCount={programData.totalCount}
-          />
+          <>
+            {programData.programs.length === 0 ? ( // Check if no programs
+              <Typography>No programs to display</Typography>
+            ) : (
+              <PairTable
+                program={programData.programs}
+                totalCount={programData.totalCount}
+              />
+            )}
+          </>
         )}
 
         <br />

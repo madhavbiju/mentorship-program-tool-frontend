@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface requests {
   programExtensionID: number;
   programID: number;
@@ -15,6 +17,7 @@ export interface requests {
 export interface RequestBoxProps {
   request: requests[];
   totalCount: number;
+  setIsApprovedOrNot: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ModalProps {

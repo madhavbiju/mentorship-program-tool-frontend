@@ -29,6 +29,19 @@ export const approveRequest = async (data: ApproveRequestData) => {
     throw error;
   }
 };
+export const rejectRequest = async (data: ApproveRequestData) => {
+  try {
+    const response = await axios.put(
+      `https://localhost:7259/api/request/approve${data.programExtensionID}`,
+      data
+    );
+    console.log("posting reject");
+    return response.data;
+  } catch (error) {
+    console.error("Error approving request:", error);
+    throw error;
+  }
+};
 
 // Function to update the program date
 export const updateProgramDate = async (data: UpdateProgramDateData) => {

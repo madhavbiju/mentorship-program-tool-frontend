@@ -9,7 +9,11 @@ import {
   ModalClose,
 } from "@mui/joy";
 import { requests } from "../RequestBox/Types";
-import { approveRequest, updateProgramDate } from "./api/putService";
+import {
+  approveRequest,
+  rejectRequest,
+  updateProgramDate,
+} from "./api/putService";
 
 interface RequestModalProps {
   open: boolean;
@@ -25,7 +29,21 @@ export const RequestModal: React.FC<RequestModalProps> = ({
   modifiedBy,
 }) => {
   if (!request) return null;
-
+  const handleReject = async () => {
+    if (request) {
+      const rejectData = {
+        programExtensionID: request.programExtensionID,
+        modifiedBy: modifiedBy,
+        requestStatusID: 5,
+      };
+      try {
+        await rejectRequest(rejectData);
+        onClose();
+      } catch (error) {
+        console.error("Failed to approve request:", error);
+      }
+    }
+  };
   const handleApprove = async () => {
     console.log("HandleApproveClickeds");
     if (request) {
@@ -77,7 +95,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({
         <Typography mb={2}>New End Date: {request.newEndDate}</Typography>
         <Typography mb={2}>Reason: {request.reason}</Typography>
         <Box sx={{ display: "flex", gap: 2, justifyContent: "flex-end" }}>
-          <Button variant="solid" color="danger" onClick={onClose}>
+          <Button variant="solid" color="danger" onClick={handleReject}>
             Reject
           </Button>
           <Button variant="solid" color="success" onClick={handleApprove}>

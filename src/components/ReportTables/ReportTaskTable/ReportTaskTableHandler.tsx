@@ -51,7 +51,13 @@ const ReportTaskTableHandler = ({ sort }: Sort) => {
       {isLoading ? ( // Render skeleton if loading
         <ReportTaskTableSkeleton />
       ) : (
-        <ReportTaskTable task={taskData.tasks} totalCount={pageApi} />
+        <>
+          {taskData.tasks.length === 0 ? ( // Check if no tasks
+            <Typography>No Task data to display</Typography>
+          ) : (
+            <ReportTaskTable task={taskData.tasks} totalCount={pageApi} />
+          )}
+        </>
       )}
     </>
   );

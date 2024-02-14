@@ -4,7 +4,6 @@ import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
-import Link from "@mui/joy/Link";
 import Input from "@mui/joy/Input";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
@@ -13,7 +12,7 @@ import Breadcrumbs from "@mui/joy/Breadcrumbs";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PairTableHandler from "../../../components/PairTable/PairTableHandler";
 import { useEffect, useState } from "react";
 
@@ -81,12 +80,7 @@ export default function Pairs() {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
-            aria-label="Home"
-          >
+          <Link to="/admin/home" style={{ color: "grey" }} aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>

@@ -6,7 +6,6 @@ import MenteesList from "./pages/mentor/menteesList/MenteesList";
 import MentorTask from "./pages/mentor/mentorTask/MentorTask";
 import AdminReport from "./components/adminreport/AdminReport";
 import MenteeReport from "./components/pairreport/PairReport";
-import CreatePairCard from "./pages/admin/createPair/CreatePairCard";
 import PairReport from "./components/pairreport/PairReport";
 import AdminReportPage from "./pages/admin/report/AdminReportPage";
 import MentorReportPage from "./pages/mentor/report/MentorReportPage";
@@ -28,6 +27,7 @@ import EventPageHandler from "./pages/common/event/EventPageHandler";
 import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandler";
 import Chat from "./pages/mentor/chat/Chat";
 import Pairs from "./pages/admin/pairs/Pairs";
+import AdminReportDownloadPage from "./pages/admin/ReportDownloadPage/AdminReportDownloadPage";
 import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 import WaitingForApprovalPage from "./components/ApprovalPage/ApprovalPage";
 import CreatetaskHandler from "./pages/mentor/createtask/CreateTasksHandler";
@@ -56,6 +56,10 @@ const AppRoutes = () => {
             <Route path="report/overall" element={<AdminReport />} />
             <Route path="report/mentor" element={<MentorReport />} />
             <Route path="report/pair" element={<PairReport />} />
+            <Route
+              path="report/download"
+              element={<AdminReportDownloadPage />}
+            />
 
             <Route path="pairs/create" element={<CreatePairCardHandler />} />
           </Route>

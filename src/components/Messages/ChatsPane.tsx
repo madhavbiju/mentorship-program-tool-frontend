@@ -1,10 +1,11 @@
 import Typography from "@mui/joy/Typography";
-import { Box, Breadcrumbs, Grid, Input, Link } from "@mui/joy";
+import { Box, Breadcrumbs, Grid, Input } from "@mui/joy";
 import List from "@mui/joy/List";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import ChatListItemHandler from "./ChatListItemHandler";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import { Link} from "react-router-dom";
 
 export default function ChatsPane() {
   return (
@@ -24,9 +25,7 @@ export default function ChatsPane() {
           sx={{ pl: 0 }}
         >
           <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
+            to="/mentor/home" style={{ color: "grey" }} 
             aria-label="Home"
           >
             <HomeRoundedIcon />

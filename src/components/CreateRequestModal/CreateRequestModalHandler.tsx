@@ -24,13 +24,14 @@ const CreateRequestModalHandler = ({
       Swal.fire("Error", "Failed to create meeting", "error");
     }
   };
-
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
+  var modfifiedBy: number = +EmployeeID!;
   const convertToRequestFormat = (formDataObject: Record<string, string>) => {
     return {
-      programID: menteeData.programID || 0,
+      programID: menteeData.programID,
       newEndDate: formDataObject.newEndDate + "T00:00:00.000Z" || "",
       reason: formDataObject.reason || "",
-      modifiedBy: 1 || 0,
+      modifiedBy: modfifiedBy,
       requestStatusID: 4,
     };
   };
