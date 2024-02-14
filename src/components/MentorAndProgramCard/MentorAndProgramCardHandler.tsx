@@ -9,13 +9,28 @@ const MentorAndProgramCardHandler = () => {
   const [menteeData, setMenteeData] = useState<Mentee>({
     mentorFirstName: "",
     programName: "",
+    startDate: "",
+    endDate: "",
   });
 
   const getMenteeData = async () => {
-    setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchMenteeData();
-    setMenteeData(response);
-    setIsLoading(false); // Set loading state to false after fetching data
+    try {
+      setIsLoading(true); // Set loading state to true while fetching data
+
+      // Get employee id from session storage
+      const EmployeeId = sessionStorage.getItem("EmployeeId");
+
+      if (EmployeeId) {
+        const response = await fetchMenteeData(EmployeeId);
+        setMenteeData(response);
+      } else {
+        throw new Error("Employee id not found in session storage");
+      }
+    } catch (error) {
+      console.error("Error fetching mentee data:", error);
+    } finally {
+      setIsLoading(false); // Set loading state to false regardless of success or failure
+    }
   };
 
   useEffect(() => {
@@ -28,9 +43,8 @@ const MentorAndProgramCardHandler = () => {
         <MentorDashboardSkeleton />
       ) : (
         <MentorAndProgramCard
-          mentorFirstName={menteeData.mentorFirstName}
-          programName={menteeData.programName}
-        />
+            mentorFirstName={menteeData.mentorFirstName}
+            programName={menteeData.programName} startDate={""} endDate={""}        />
       )}
     </>
   );
