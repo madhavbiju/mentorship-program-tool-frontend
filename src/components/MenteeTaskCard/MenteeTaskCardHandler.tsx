@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-
-import MentorDashboardSkeleton from "../../pages/mentor/dashboard/MentorDashboardSkeleton";
-
-import PaginationButtons from "../Pagination/Pagination";
-import { fetchTaskData } from "./API/fetchTaskData";
-import { Tasks } from "./Types/Index";
 import MenteeTaskCard from "./MenteeTaskCard";
+import { Tasks } from "./Types";
+import { fetchTaskData } from "./Api/getTaskData";
+import PaginationButtons from "../Pagination/Pagination";
 
-const MentorTaskCardHandler = ({
+const MenteeTaskCardHandler = ({
   selectedSortOption,
   selectedFilterOption,
 }: any) => {
@@ -20,10 +17,11 @@ const MentorTaskCardHandler = ({
     totalCount: 0,
   });
   const [pageApi, setPageApi] = useState<number>(1);
-
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
   const getTaskData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
     let response = await fetchTaskData(
+      EmployeeID!,
       pageApi,
       selectedSortOption,
       selectedFilterOption
@@ -39,7 +37,7 @@ const MentorTaskCardHandler = ({
   return (
     <>
       {isLoading ? ( // Render skeleton if loading
-        <MentorDashboardSkeleton />
+        <></>
       ) : (
         <MenteeTaskCard
           tasks={menteeTaskData.tasks}
@@ -57,4 +55,4 @@ const MentorTaskCardHandler = ({
   );
 };
 
-export default MentorTaskCardHandler;
+export default MenteeTaskCardHandler;

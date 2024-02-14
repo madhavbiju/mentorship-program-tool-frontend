@@ -6,7 +6,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Stack from "@mui/joy/Stack";
 import { useState } from "react";
 
-const SetEndDate = ({ startDate , onChange}: any) => {
+const SetEndDate = ({ startDate, onChange }: any) => {
   const [endDate, setEndDate] = useState(null);
   const handleEndDateChange = (date: React.SetStateAction<null>) => {
     setEndDate(date);
@@ -16,7 +16,6 @@ const SetEndDate = ({ startDate , onChange}: any) => {
     <Grid container justifyContent="center">
       <Grid item xs={12} sm={10}>
         <Stack>
-          <Grid item>End Date :</Grid>
           <LocalizationProvider dateAdapter={AdapterMoment}>
             <DatePicker
               sx={{
@@ -27,7 +26,7 @@ const SetEndDate = ({ startDate , onChange}: any) => {
               }}
               minDate={startDate} //after receiving start date setting end date accordingly using minDate
               value={endDate}
-              onChange={handleEndDateChange} 
+              onChange={handleEndDateChange}
             />
           </LocalizationProvider>
         </Stack>

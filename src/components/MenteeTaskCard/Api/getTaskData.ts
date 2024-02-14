@@ -1,9 +1,8 @@
-import { common } from "@mui/material/colors";
 import axios from "axios";
 import { baseUrl } from "../../../config/configUrl";
 import axiosInstance from "../../../config/configAxios";
 
-export const fetchMenteeData = async (
+export const fetchTaskData = async (
   EmployeeID: string,
   pageApi: number,
   selectedSortOption: string,
@@ -11,10 +10,10 @@ export const fetchMenteeData = async (
 ) => {
   try {
     const response = await axiosInstance.get(
-      `${baseUrl.mentee}/mentor/${EmployeeID}?pageNumber=${pageApi}&pageSize=5&sortBy=${selectedSortOption}&filterBy=${selectedFilterOption}`
+      `${baseUrl.task}/Mentee/${EmployeeID},${selectedFilterOption}?page=${pageApi}&sortBy=${selectedSortOption}`
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching mentees list", error);
+    console.error("Error fetching task list", error);
   }
 };

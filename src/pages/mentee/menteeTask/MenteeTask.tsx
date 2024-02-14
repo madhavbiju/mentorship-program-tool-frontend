@@ -12,8 +12,6 @@ import {
   FormLabel,
 } from "@mui/joy";
 import React, { useState } from "react";
-import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
-import MentorTaskCard from "../../../components/MentorTaskCard/MentorTaskCard";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddIcon from "@mui/icons-material/Add";
@@ -21,14 +19,10 @@ import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
-import MentorTaskCardHandler from "../../../components/MentorTaskCard/MentorTaskCardHandler";
+import MenteeTaskCardHandler from "../../../components/MenteeTaskCard/MenteeTaskCardHandler";
 
-const MentorTask = () => {
+const MenteeTask = () => {
   const history = useNavigate();
-
-  const handleClick = () => {
-    history("/mentor/tasks/create");
-  };
 
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [selectedFilterOption, setFilterSortOption] = useState("0");
@@ -87,22 +81,22 @@ const MentorTask = () => {
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
           <Option value="TaskName" onClick={() => handleSort("TaskName")}>
-            Asc Task
+            A-Z Task
           </Option>
           <Option
             value="TaskName_desc"
             onClick={() => handleSort("TaskName_desc")}
           >
-            Desc Task
+            Z-A Task
           </Option>
           <Option value="endDate" onClick={() => handleSort("endDate")}>
-            Asc Date
+            A-Z Date
           </Option>
           <Option
             value="endDate_desc"
             onClick={() => handleSort("endDate_desc")}
           >
-            Desc Date
+            Z-A Date
           </Option>
         </Select>
         <FormLabel sx={{ ml: 1 }}>Filter By</FormLabel>
@@ -125,7 +119,7 @@ const MentorTask = () => {
 
       <Grid container spacing={1} sx={{ my: "5%" }}>
         <Grid item xs={12} sm={12} md={12}>
-          <MentorTaskCardHandler
+          <MenteeTaskCardHandler
             selectedSortOption={selectedSortOption}
             selectedFilterOption={selectedFilterOption}
           />
@@ -135,4 +129,4 @@ const MentorTask = () => {
   );
 };
 
-export default MentorTask;
+export default MenteeTask;

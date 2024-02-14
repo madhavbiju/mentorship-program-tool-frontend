@@ -32,6 +32,7 @@ const CreateMeetingHandler = () => {
       startTime: input.startTime.toISOString(),
       endTime: input.endTime.toISOString(),
       agenda: input.agenda,
+      meetingStatus: 7,
     };
   }
 
@@ -55,11 +56,7 @@ const CreateMeetingHandler = () => {
 
     // Convert meeting data to meetingType
     const formatedMeetingData: meetingType = convertToMeetingType(meetingData);
-
-    console.log(meetingData);
-    console.log(formatedMeetingData);
-    // // Call sendMeetingData after conversion is completed
-    // await sendMeetingData(formatedMeetingData);
+    await sendMeetingData(formatedMeetingData);
   };
 
   const handleInputChange = (key: string, value: any) => {

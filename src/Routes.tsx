@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MenteeDashboard from "./pages/mentee/dashboard/MenteeDashboard";
 import App from "./App";
-import CalendarPage from "./pages/common/calendar/CalendarPage";
 import MentorReport from "./components/mentorreport/MentorReport";
 import MenteesList from "./pages/mentor/menteesList/MenteesList";
 import MentorTask from "./pages/mentor/mentorTask/MentorTask";
@@ -27,9 +26,12 @@ import CreateMeetingHandler from "./pages/mentor/createMeeting/CreateMeetingHand
 import EventPageHandler from "./pages/common/event/EventPageHandler";
 import CreatePairCardHandler from "./pages/admin/createPair/CreatePairCardHandler";
 import Chat from "./pages/mentor/chat/Chat";
-import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 import Pairs from "./pages/admin/pairs/Pairs";
+import MenteeTask from "./pages/mentee/menteeTask/MenteeTask";
 import WaitingForApprovalPage from "./components/ApprovalPage/ApprovalPage";
+import CreatetaskHandler from "./pages/mentor/createtask/CreateTasksHandler";
+import MenteeCalendarPage from "./pages/mentee/calendar/CalendarPage";
+import MentorCalendarPage from "./pages/mentor/calendar/CalendarPage";
 
 const AppRoutes = () => {
   return (
@@ -65,7 +67,11 @@ const AppRoutes = () => {
             }
           >
             <Route path="home" element={<MenteeDashboard />} />
-            <Route path="calendar" element={<CalendarPage />} />
+            <Route path="calendar" element={<MenteeCalendarPage />} />
+            <Route
+              path="calendar/event/:meetingId"
+              element={<EventPageHandler />}
+            />
             <Route path="report" element={<MenteeReport />} />
             <Route path="tasks" element={<MenteeTask />} />
           </Route>
@@ -78,11 +84,12 @@ const AppRoutes = () => {
             }
           >
             <Route path="home" element={<MentorDashboradHandler />} />
-            <Route path="calendar" element={<CalendarPage />} />
+            <Route path="calendar" element={<MentorCalendarPage />} />
             <Route path="mentees" element={<MenteesList />} />
             <Route path="tasks" element={<MentorTask />} />
             <Route path="tasks/selected" element={<MentorSelectedTask />} />
-            <Route path="tasks/create" element={<CreateTasks />} />
+            <Route path="tasks/create" element={<CreatetaskHandler />} />
+            <Route path="tasks/create" element={<CreatetaskHandler />} />
             <Route path="calendar/create" element={<CreateMeetingHandler />} />
             <Route
               path="calendar/event/:meetingId"
