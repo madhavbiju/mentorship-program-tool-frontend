@@ -26,7 +26,6 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [submitButtonPressed, setSubmitButtonPressed] =
     useState<boolean>(false);
-  console.log(selectedRole);
 
   const getUserData = async () => {
     try {

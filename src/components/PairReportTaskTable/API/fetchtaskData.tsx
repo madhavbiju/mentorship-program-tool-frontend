@@ -6,7 +6,6 @@ export const fetchtaskData = async (
   sort: string
 ) => {
   try {
-    console.log(sort);
     const response = await axios.get(
       `https://localhost:7259/api/task/Program/${programId},0?page=${pageApi}&sortBy=${sort}`
     );

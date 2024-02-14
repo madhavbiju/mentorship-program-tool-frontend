@@ -48,7 +48,6 @@ const EventPage = ({ detailsOfMeeting }: meetingProp) => {
 
   // Example usage:
   const dateTimeString = "2024-02-10T13:06:05.12";
-  console.log(formatTime(dateTimeString)); // Output: 13:06
 
   return (
     <>

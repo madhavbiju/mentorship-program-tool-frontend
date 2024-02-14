@@ -51,7 +51,6 @@ const RoleAssignmentModal: React.FC<RoleAssignmentModalProps> = ({
     axiosInstance
       .post(`${baseUrl.admin}/assignroles`, payload)
       .then((response) => {
-        console.log("Success:", response.data);
         // Here, you might want to call onSubmit to perform additional actions
         // For example, passing the updated roles back to the parent component
         onSubmit(selectedRoles); // Assuming you want to use it this way

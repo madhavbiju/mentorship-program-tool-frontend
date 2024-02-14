@@ -34,11 +34,6 @@ export default function Pairs() {
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    console.log(search);
-    console.log(sort);
-    console.log(status);
-  }, [search, sort, status]);
   const renderFilters = () => (
     <React.Fragment>
       <FormControl size="sm">

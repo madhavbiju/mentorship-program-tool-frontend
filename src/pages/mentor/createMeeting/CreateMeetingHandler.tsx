@@ -50,7 +50,7 @@ const CreateMeetingHandler = () => {
 
     const formatedMeetingData: meetingType =
       convertToMeetingType(formDataObject);
-    console.log(formatedMeetingData);
+
     await sendMeetingData(formatedMeetingData);
   };
 

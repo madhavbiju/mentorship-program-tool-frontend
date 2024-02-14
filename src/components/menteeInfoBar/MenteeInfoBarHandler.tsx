@@ -11,7 +11,6 @@ const MenteeInfoBarHandler = ({ programid }: { programid: number }) => {
       try {
         const data = await fetchProgramData(programid); // Pass the appropriate program ID
         setProgramData(data);
-        console.log("data");
       } catch (error) {
         // Handle error
       }

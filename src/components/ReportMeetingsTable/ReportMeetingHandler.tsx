@@ -20,11 +20,9 @@ const ReportMeetingHandler = ({ sort }: Sort) => {
 
   const getmeetingData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    console.log("sort in handler");
-    console.log(sort);
+
     let response = await getMeetingData(pageApi, sort);
     setmeetingData(response);
-    console.log(response);
 
     setIsLoading(false); // Set loading state to false after fetching data
   };
