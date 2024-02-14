@@ -12,7 +12,7 @@ interface Props {
 
 const SelectMenteeDropDown: React.FC<Props> = ({
   menteeListData,
-  setProgramID,
+  setProgramID
 }) => {
   const [value, setValue] = React.useState<string | null>("");
   useEffect(() => {
