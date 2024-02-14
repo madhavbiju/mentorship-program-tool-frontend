@@ -3,7 +3,7 @@ import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Grid from "@mui/joy/Grid";
 import Button from "@mui/joy/Button";
-import Link from "@mui/joy/Link";
+import { Link } from "react-router-dom";
 import SetStartDate from "../../../components/CourseSetDate/SetStartDate";
 import SetEndDate from "../../../components/CourseSetDate/SetEndDate";
 import Input from "@mui/joy/Input";
@@ -91,20 +91,13 @@ const CreatePairCard = ({ onSubmit, onChange }: CreateProgramProps) => {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
-            aria-label="Home"
-          >
+          <Link to="/admin/home" style={{ color: "grey" }} aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Link
-            fontSize={12}
-            fontWeight={500}
-            underline="none"
-            color="neutral"
-            href="#some-link"
+            to="/admin/pairs"
+            aria-label="Home"
+            style={{ fontSize: "12px", color: "grey", textDecoration: "none" }}
           >
             Pairs
           </Link>

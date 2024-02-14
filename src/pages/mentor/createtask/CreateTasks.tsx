@@ -1,15 +1,8 @@
-import {
-  Box,
-  Breadcrumbs,
-  Button,
-  Grid,
-  Link,
-  Textarea,
-  Typography,
-} from "@mui/joy";
+import { Box, Breadcrumbs, Button, Grid, Textarea, Typography } from "@mui/joy";
 import React, { useEffect, useState } from "react";
 import SelectMenteeDropDown from "../../../components/SelectMenteeDropDown/SelectMenteeDropDown";
 import SetEndDate from "../../../components/CourseSetDate/SetEndDate";
+import { Link } from "react-router-dom";
 import FileUploadButton from "../../../components/FileUploadButton.tsx/FileUploadButton";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import MenteeDropDownHandler from "../../../components/SelectMenteeDropDown/SelectMenteeDropDownHandler";
@@ -52,20 +45,13 @@ const CreateTasks: React.FC<CreatetaskProps> = ({ onCreate, onChange }) => {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
-            aria-label="Home"
-          >
+          <Link to="/mentor/home" style={{ color: "grey" }} aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Link
-            fontSize={12}
-            fontWeight={500}
-            underline="none"
-            color="neutral"
-            href="#some-link"
+            to="/mentor/tasks"
+            aria-label="Home"
+            style={{ fontSize: "12px", color: "grey", textDecoration: "none" }}
           >
             Tasks
           </Link>

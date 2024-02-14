@@ -4,7 +4,6 @@ import {
   Button,
   Dropdown,
   FormLabel,
-  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -12,13 +11,13 @@ import {
   Typography,
 } from "@mui/joy";
 import React, { useState } from "react";
-import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
 import Grid from "@mui/material/Grid";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import MenteesListHandler from "../../../components/MenteesList/MenteesListHandler";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import { Link} from "react-router-dom";
 
 const MenteesList = () => {
   const [selectedSortOption, setSelectedSortOption] = useState("");
@@ -44,9 +43,7 @@ const MenteesList = () => {
           sx={{ pl: 0 }}
         >
           <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
+            to="/mentor/home" style={{ color: "grey" }} 
             aria-label="Home"
           >
             <HomeRoundedIcon />

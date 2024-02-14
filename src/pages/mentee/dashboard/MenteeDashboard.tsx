@@ -1,6 +1,9 @@
-import { Box, Divider, Typography } from "@mui/joy";
+import { Box, Breadcrumbs, Divider, Typography } from "@mui/joy";
 import GreetCard from "../../../components/GreetCard/GreetCard";
 import { Grid } from "@mui/material";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import { Link } from "react-router-dom";
 import MeetingCardHandler from "../../../components/MeetingCard/MeetingCardHandler";
 import PendingTaskHandler from "../../../components/PendingTasks/PendingTaskHandler";
 import ProgramProgressBarHandler from "../../../components/ProgramProgressBar/ProgramProgressBarHandler";
@@ -9,6 +12,18 @@ import MentorAndProgramCardHandler from "../../../components/MentorAndProgramCar
 const MenteeDashboard = () => {
   return (
     <Box>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Breadcrumbs
+          size="sm"
+          aria-label="breadcrumbs"
+          separator={<ChevronRightRoundedIcon />}
+          sx={{ pl: 0 }}
+        >
+          <Link to="/mentee/home" style={{ color: "grey" }} aria-label="Home">
+            <HomeRoundedIcon />
+          </Link>
+        </Breadcrumbs>
+      </Box>
       <Grid
         container
         rowSpacing={1}

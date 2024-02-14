@@ -7,7 +7,6 @@ import {
   MenuList,
   Button,
   Breadcrumbs,
-  Link,
   Typography,
   FormLabel,
 } from "@mui/joy";
@@ -19,6 +18,7 @@ import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import { Link } from "react-router-dom";
 import MenteeTaskCardHandler from "../../../components/MenteeTaskCard/MenteeTaskCardHandler";
 
 const MenteeTask = () => {
@@ -46,9 +46,7 @@ const MenteeTask = () => {
           sx={{ pl: 0 }}
         >
           <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
+            to="/mentee/home" style={{ color: "grey" }} 
             aria-label="Home"
           >
             <HomeRoundedIcon />
