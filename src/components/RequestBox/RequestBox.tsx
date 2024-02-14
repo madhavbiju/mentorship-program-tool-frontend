@@ -6,42 +6,58 @@ import ListDivider from "@mui/joy/ListDivider";
 import ListItem from "@mui/joy/ListItem";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import Typography from "@mui/joy/Typography";
-import { ListItemContent } from "@mui/joy";
-import { RequestBoxProps } from "./Types";
+import { ListItemButton, ListItemContent } from "@mui/joy";
+import { RequestBoxProps, requests } from "./Types";
+import { RequestModal } from "../ApproveRequestModal/RequestModal";
 
 export default function RequestBox({ request, totalCount }: RequestBoxProps) {
+  const [open, setOpen] = React.useState(false);
+  const [selectedRequest, setSelectedRequest] = React.useState<requests | null>(
+    null
+  );
+
+  const handleClickOpen = (req: requests) => {
+    setSelectedRequest(req);
+    setOpen(true);
+  };
+  const modifiedBy: string = sessionStorage.getItem("EmployeeId") || "1";
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <Box>
-      <div>
+    <>
+      <Box>
         <List
           variant="outlined"
           sx={{
             minWidth: 240,
-            minHeight: 200,
             borderRadius: "sm",
             display: "flex",
+            flexDirection: "column",
           }}
         >
-          {request.map((request, index) => (
+          {request.map((req, index) => (
             <React.Fragment key={index}>
-              <ListItem>
+              <ListItemButton onClick={() => handleClickOpen(req)}>
                 <ListItemDecorator>
                   <Avatar size="sm" src="/static/images/avatar/1.jpg" />
                 </ListItemDecorator>
-                <ListItemContent>
-                  <Typography level="title-sm">
-                    Program Id: {request.programID}
-                  </Typography>
-                  <Typography level="body-sm" noWrap>
-                    {request.reason}
-                  </Typography>
-                </ListItemContent>
-              </ListItem>
-              {index < 2 && <ListDivider inset="gutter" />}
+                <Typography level="body-sm" sx={{ ml: 2 }}>
+                  Program: {req.programName}
+                </Typography>
+              </ListItemButton>
+              {index < totalCount - 1 && <ListDivider inset="gutter" />}
             </React.Fragment>
           ))}
         </List>
-      </div>
-    </Box>
+      </Box>
+      <RequestModal
+        open={open}
+        onClose={handleClose}
+        request={selectedRequest}
+        modifiedBy={parseInt(modifiedBy)}
+      />
+    </>
   );
 }
