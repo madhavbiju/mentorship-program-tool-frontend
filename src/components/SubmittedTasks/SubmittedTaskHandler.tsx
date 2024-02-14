@@ -30,12 +30,12 @@ const SubmittedTaskHandler = () => {
   }, [pageApi]);
   return (
     <>
-    <Stack
+      <Stack
         sx={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-        //   alignItems: "center",
+          // alignItems: "center", // Uncomment this line if needed
           mb: 1,
         }}
       >
@@ -57,10 +57,16 @@ const SubmittedTaskHandler = () => {
       {isLoading ? ( // Render skeleton if loading
         <MentorDashboardSkeleton />
       ) : (
-        <SubmittedTask
-          tasks={taskData.tasks}
-          totalCount={taskData.totalCount}
-        />
+        <>
+          {taskData.tasks.length === 0 ? (
+            <Typography>No Submitted Tasks</Typography>
+          ) : (
+            <SubmittedTask
+              tasks={taskData.tasks}
+              totalCount={taskData.totalCount}
+            />
+          )}
+        </>
       )}
     </>
   );

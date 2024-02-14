@@ -35,7 +35,7 @@ const PendingTaskHandler = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          //   alignItems: "center",
+          // alignItems: "center", // Uncomment this line if needed
           mb: 1,
         }}
       >
@@ -59,7 +59,13 @@ const PendingTaskHandler = () => {
       {isLoading ? ( // Render skeleton if loading
         <MentorDashboardSkeleton />
       ) : (
-        <PendingTask tasks={taskData.tasks} />
+        <>
+          {taskData.tasks.length === 0 ? (
+            <Typography>No Pending Tasks</Typography>
+          ) : (
+            <PendingTask tasks={taskData.tasks} />
+          )}
+        </>
       )}
     </>
   );
