@@ -17,6 +17,7 @@ const RequestBoxHandler: React.FC = () => {
   });
   const [pageApi, setPageApi] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isApprovedOrNot, setIsApprovedOrNot] = useState<boolean>(false);
   const getRequestData = async () => {
     setIsLoading(true);
     let response = await fetchRequestData(pageApi);
@@ -26,7 +27,7 @@ const RequestBoxHandler: React.FC = () => {
 
   useEffect(() => {
     getRequestData();
-  }, [pageApi]);
+  }, [pageApi, isApprovedOrNot]);
 
   return (
     <>
@@ -60,6 +61,7 @@ const RequestBoxHandler: React.FC = () => {
         <RequestBox
           request={requestData.requests}
           totalCount={requestData.totalCount}
+          setIsApprovedOrNot={setIsApprovedOrNot}
         />
       )}
     </>
