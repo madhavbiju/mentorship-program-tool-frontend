@@ -50,7 +50,7 @@ const MenteeDashboard = () => {
       <br />
       <Grid columnGap={2} sx={{ display: "flex" }} container>
         <Grid xs={12} lg={6}>
-          <PendingTaskHandler />
+          {/* <PendingTaskHandler /> */}
         </Grid>
         <Grid xs={12} lg={5}>
           <MeetingCardHandler />
