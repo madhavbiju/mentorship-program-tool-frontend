@@ -4,8 +4,10 @@ import CreatePairCard from "./CreatePairCard";
 import { programType } from "./Types";
 import { postProgramData } from "./Api/postProgram";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 const CreatePairCardHandler = () => {
+  const history = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [mentorID, setMentorID] = useState(0);
   const [menteeID, setMenteeID] = useState(0);
@@ -30,6 +32,7 @@ const CreatePairCardHandler = () => {
     // Use SweetAlert2 to show success or error message based on response
     if (response?.status == 201 || 200) {
       Swal.fire("Success", "Program created successfully!", "success");
+      history("/admin/pairs");
     } else {
       Swal.fire("Error", "Failed to create program", "error");
     }

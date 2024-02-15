@@ -32,7 +32,7 @@ const CreateMeetingHandler = () => {
     // Use SweetAlert2 to show success or error message based on response
     if (response && (response.status === 200 || response.status === 201)) {
       Swal.fire("Success", "Meeting created successfully!", "success");
-      history("/mentor/tasks");
+      history("/mentor/calendar");
     } else {
       Swal.fire("Error", "Failed to create meeting", "error");
     }

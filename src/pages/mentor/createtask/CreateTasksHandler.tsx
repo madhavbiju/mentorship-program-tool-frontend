@@ -4,11 +4,12 @@ import { taskType } from "./Types";
 import Swal from "sweetalert2";
 import CreateTasks from "./CreateTasks";
 import { posttaskData } from "./API/postTasks";
+import { useNavigate } from "react-router-dom";
 
 const CreatetaskHandler = () => {
   const now = new Date();
   const formattedDate = now.toISOString();
-
+  const history = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [taskData, settaskData] = useState({
     programID: "",
@@ -42,6 +43,7 @@ const CreatetaskHandler = () => {
     // Use SweetAlert2 to show success or error message based on response
     if (response?.status == 200) {
       Swal.fire("Success", "task created successfully!", "success");
+      history("/mentor/tasks");
     } else {
       Swal.fire("Error", "Failed to create task", "error");
     }
