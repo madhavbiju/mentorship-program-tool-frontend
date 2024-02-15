@@ -201,18 +201,6 @@ export default function Header() {
               <SearchInput />
             </Sheet>
           </Modal>
-          <Tooltip title="Notifications" variant="outlined">
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="neutral"
-              component="a"
-              href="/blog/first-look-at-joy/"
-              sx={{ alignSelf: "center" }}
-            >
-              <NotificationsIcon />
-            </IconButton>
-          </Tooltip>
           <ColorSchemeToggle sx={{ ml: "auto" }} />
           <ToggleRoleButton />
           <Dropdown>
