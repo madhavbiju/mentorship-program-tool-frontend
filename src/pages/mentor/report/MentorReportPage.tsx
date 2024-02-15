@@ -8,10 +8,10 @@ import SelectMenteeDropDown from "../../../components/SelectMenteeDropDown/Selec
 import PairReport from "../../../components/pairreport/PairReport";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MentorReportPage = () => {
-  const [reportType, setReportType] = useState<string>("My Report");
+  const [reportType, setReportType] = useState<string>("Pair Report");
 
   return (
     <div>
@@ -22,10 +22,7 @@ const MentorReportPage = () => {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link
-            to="/mentor/home" style={{ color: "grey" }} 
-            aria-label="Home"
-          >
+          <Link to="/mentor/home" style={{ color: "grey" }} aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>
@@ -39,7 +36,7 @@ const MentorReportPage = () => {
         </Grid>
         <Grid xs={6} lg={6}>
           <MentorReportButtonGroup
-            defaultReport="My Report"
+            defaultReport="Pair Report"
             onChange={(newValue: string) => setReportType(newValue)}
           />
         </Grid>

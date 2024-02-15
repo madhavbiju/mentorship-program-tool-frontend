@@ -21,7 +21,7 @@ const PairReport = () => {
   const handleMeetingSort = (selectedmeetingOption: string) => {
     setSelectedMeetingSortOption(selectedmeetingOption);
   };
-  const [programID, setProgramID] = useState<number>(3);
+  const [programID, setProgramID] = useState<number>(0);
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
