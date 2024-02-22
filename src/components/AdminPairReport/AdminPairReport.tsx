@@ -6,8 +6,12 @@ import { Grid } from "@mui/material";
 import { Option } from "@mui/joy";
 import PairReportTaskTableHandler from "../PairReportTaskTable/PairReportTaskTableHandler";
 import PairReportMeetingTableHandler from "../PairReportMeetingTable/PairReportMeetingTableHandler";
-
-const PairReport = () => {
+import SelectAllMenteedropDownHandler from "../SelectAllMenteeDropDown/SelectAllMenteedropDownHandler";
+interface AdminPairProp {
+  setProgramID: React.Dispatch<React.SetStateAction<number>>;
+  programID: number;
+}
+const AdminPairReport = ({ programID, setProgramID }: AdminPairProp) => {
   const [selectedSortOption, setSelectedSortOption] = useState("TaskName");
   const [selectedmeetingSortOption, setSelectedMeetingSortOption] =
     useState("MeetingName");
@@ -18,7 +22,6 @@ const PairReport = () => {
   const handleMeetingSort = (selectedmeetingOption: string) => {
     setSelectedMeetingSortOption(selectedmeetingOption);
   };
-  const [programID, setProgramID] = useState<number>(0);
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
@@ -31,7 +34,7 @@ const PairReport = () => {
       <Box>
         <br />
         <Grid sx={{ display: "flex", justifyContent: "center" }}>
-          <SelectMenteeDropDownHandler setProgramID={setProgramID} />
+          <SelectAllMenteedropDownHandler setProgramID={setProgramID} />
           <MenteeInfoBarHandler key={refreshKey} programid={programID} />
           {/* refresh key is used to re render the menu */}
         </Grid>
@@ -135,4 +138,4 @@ const PairReport = () => {
   );
 };
 
-export default PairReport;
+export default AdminPairReport;

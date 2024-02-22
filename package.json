@@ -20,8 +20,12 @@
     "@mui/material": "^5.15.6",
     "@mui/x-charts": "^6.19.1",
     "@mui/x-date-pickers": "^6.19.2",
+    "@react-pdf/renderer": "^3.3.8",
     "axios": "^1.6.7",
     "dayjs": "^1.11.10",
+    "html2canvas": "^1.4.1",
+    "html2pdf": "^0.0.11",
+    "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
     "jwt-decode": "^4.0.0",
@@ -35,6 +39,7 @@
     "sweetalert2": "^11.10.5"
   },
   "devDependencies": {
+    "@types/html2canvas": "^1.0.0",
     "@types/react": "^18.2.43",
     "@types/react-big-calendar": "^1.8.8",
     "@types/react-dom": "^18.2.17",
