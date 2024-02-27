@@ -1,0 +1,10 @@
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-quartz.css";
+
+.ag-theme-quartz-dark {
+  --ag-header-background-color: #171a1c;
+  --ag-background-color: #0b0d0e;
+}
+.ag-theme-quartz {
+  --ag-header-background-color: #f0f4f8;
+}

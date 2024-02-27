@@ -3,8 +3,8 @@ import { Stack, Typography } from "@mui/joy";
 import { FilterProps, programs } from "./Types";
 import { fetchPairData } from "./Api/getPairData";
 import PairTableSkeleton from "./PairTableSkeleton";
-import PairTable from "./PairTable";
 import PaginationButtons from "../Pagination/Pagination";
+import PairTable from "./PairTable";
 
 const PairTableHandler = ({ status, sort, search }: FilterProps) => {
   const [programData, settaskData] = useState<{
