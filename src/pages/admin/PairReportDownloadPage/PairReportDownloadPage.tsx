@@ -5,12 +5,22 @@ import { Grid, Button } from "@mui/joy";
 import ReportMeetingDownloadHandler from "../../../components/ReportMeetingDownload/ReportMeetingDownloadHandler";
 import ReportPairDownloadHandler from "../../../components/ReportPairDownload/ReportPairDownloadHandler";
 import ReportTaskDownloadHandler from "../../../components/ReportTaskDownload.tsx/ReportTaskDownloadHandler";
-
-const AdminReportDownloadPage = () => {
+import MenteeInfoBarHandler from "../../../components/menteeInfoBar/MenteeInfoBarHandler";
+import PairReportTaskTableHandler from "../../../components/PairReportTaskTable/PairReportTaskTableHandler";
+import AdminPairReportTaskTableHandler from "../../../components/AdminPairReportTaskTableHandler/AdminPairReportTaskTableHandler";
+import PairReportMeetingTableHandler from "../../../components/AdminPairReportMeetingTable/AdminPairReportMeetingTableHandler";
+import { useParams } from "react-router-dom";
+interface Params {
+  programId: number;
+  [key: string]: any;
+}
+const PairReportDownloadPage = () => {
+  const { programId } = useParams<Params>();
+  const programID = Number(programId);
   const handleDownloadPDF = () => {
     const element = document.getElementById("reportPage");
     const options = {
-      filename: "Admin_Report.pdf",
+      filename: "Pair_Report.pdf",
     };
     html2pdf().from(element).set(options).save();
   };
@@ -32,26 +42,23 @@ const AdminReportDownloadPage = () => {
       </Grid>
       <Grid id="reportPage" sx={{ padding: 2 }}>
         <Grid>
-          <Typography level="h2">Admin Report</Typography>
+          <Typography level="h2">Pair Report</Typography>
           <Typography level="body-sm">
             Generated On: {getCurrentDateTime()}
           </Typography>
+          <MenteeInfoBarHandler programid={programID} />
         </Grid>
-        <Box>
-          <Typography level="h4">PAIRS</Typography>
-          <ReportPairDownloadHandler status={""} sort={""} search={""} />
-        </Box>
 
         <Grid>
           <Box>
             <Typography level="h4">TASKS</Typography>{" "}
-            <ReportTaskDownloadHandler sort={"date"} />
+            <AdminPairReportTaskTableHandler sort={""} programid={programID} />{" "}
           </Box>
         </Grid>
         <Grid>
           <Box>
             <Typography level="h4">MEETINGS</Typography>{" "}
-            <ReportMeetingDownloadHandler sort={"date"} />
+            <PairReportMeetingTableHandler programid={programID} sort={""} />
           </Box>
         </Grid>
       </Grid>
@@ -59,4 +66,4 @@ const AdminReportDownloadPage = () => {
   );
 };
 
-export default AdminReportDownloadPage;
+export default PairReportDownloadPage;

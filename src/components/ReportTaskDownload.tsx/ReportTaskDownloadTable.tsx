@@ -28,11 +28,8 @@ export default function ReportTaskTable({ task }: ReportTaskTableProps) {
 
   return (
     <>
-      <Sheet
-        variant="outlined"
-        sx={{ width: "100%", boxShadow: "sm", borderRadius: "sm" }}
-      >
-        <Table hoverRow>
+      <Sheet>
+        <Table>
           <thead>
             <tr>
               <th>Mentee Name</th>
