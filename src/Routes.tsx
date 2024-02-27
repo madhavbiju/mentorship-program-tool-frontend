@@ -34,6 +34,7 @@ import CreatetaskHandler from "./pages/mentor/createtask/CreateTasksHandler";
 import MenteeCalendarPage from "./pages/mentee/calendar/CalendarPage";
 import MentorCalendarPage from "./pages/mentor/calendar/CalendarPage";
 import MenteeChat from "./pages/mentee/chat/Chat";
+import PairReportDownloadPage from "./pages/admin/PairReportDownloadPage/PairReportDownloadPage";
 
 const AppRoutes = () => {
   return (
@@ -58,8 +59,12 @@ const AppRoutes = () => {
             <Route path="report/mentor" element={<MentorReport />} />
             <Route path="report/pair" element={<PairReport />} />
             <Route
-              path="report/download"
+              path="report/adminreportdownload"
               element={<AdminReportDownloadPage />}
+            />
+            <Route
+              path="report/menteereportdownload/:programId"
+              element={<PairReportDownloadPage />}
             />
 
             <Route path="pairs/create" element={<CreatePairCardHandler />} />
