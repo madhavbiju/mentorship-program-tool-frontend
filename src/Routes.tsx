@@ -10,7 +10,6 @@ import PairReport from "./components/pairreport/PairReport";
 import AdminReportPage from "./pages/admin/report/AdminReportPage";
 import MentorReportPage from "./pages/mentor/report/MentorReportPage";
 import MentorSelectedTask from "./pages/mentor/mentorselectedtask/MentorSelectedTask";
-import CreateTasks from "./pages/mentor/createtask/CreateTasks";
 import AdminDashboardHandler from "./pages/admin/dashboard/AdminDashboardHandle";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
@@ -35,6 +34,7 @@ import MenteeCalendarPage from "./pages/mentee/calendar/CalendarPage";
 import MentorCalendarPage from "./pages/mentor/calendar/CalendarPage";
 import MenteeChat from "./pages/mentee/chat/Chat";
 import PairReportDownloadPage from "./pages/admin/PairReportDownloadPage/PairReportDownloadPage";
+import SubmitTaskHandler from "./pages/mentee/submitTask/SubmitTaskHandler";
 
 const AppRoutes = () => {
   return (
@@ -85,6 +85,12 @@ const AppRoutes = () => {
             />
             <Route path="report" element={<MenteeReport />} />
             <Route path="tasks" element={<MenteeTask />} />
+
+            <Route
+              path="tasks/submit/:taskId"
+              element={<SubmitTaskHandler />}
+            />
+
             <Route path="chat" element={<MenteeChat />} />
           </Route>
           <Route
