@@ -3,7 +3,7 @@ import MenteeInfoBar from "./MenteeInfoBar";
 import { fetchProgramData } from "./API/getProgramData";
 import { MenteeinfoBarProps } from "./Types";
 
-const MenteeInfoBarHandler = ({ programid }: { programid: number }) => {
+const MenteeInfoBarHandler = ({ programid }: { programid: number  }) => {
   const [programData, setProgramData] = useState<MenteeinfoBarProps>();
 
   useEffect(() => {
