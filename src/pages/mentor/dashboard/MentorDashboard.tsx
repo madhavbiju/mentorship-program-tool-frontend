@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Divider, Typography } from "@mui/joy";
+import { Box, Breadcrumbs, Card, CardContent, Divider, Typography } from "@mui/joy";
 import React from "react";
 import GreetCard from "../../../components/GreetCard/GreetCard";
 import CountCard from "../../../components/CountCard/CountCard";
@@ -8,10 +8,25 @@ import { Grid } from "@mui/material";
 import { ActiveMenteeCountData } from "./Types";
 import MeetingCardHandler from "../../../components/MeetingCard/MeetingCardHandler";
 import SubmittedTaskHandler from "../../../components/SubmittedTasks/SubmittedTaskHandler";
+import { Link} from "react-router-dom";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
 const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
   return (
     <Box sx={{ width: "100%" }}>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Breadcrumbs
+          size="sm"
+          aria-label="breadcrumbs"
+          separator={<ChevronRightRoundedIcon />}
+          sx={{ pl: 0 }}
+        >
+          <Link to="/mentor/home" style={{ color: "grey" }} aria-label="Home">
+            <HomeRoundedIcon />
+          </Link>
+        </Breadcrumbs>
+      </Box>
       <Grid
         container
         rowSpacing={1}

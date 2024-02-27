@@ -12,3 +12,7 @@ export interface ReportTaskTableProps {
   task: tasks[];
   totalCount: number;
 }
+
+export interface Sort {
+  sort: string;
+}

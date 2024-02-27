@@ -53,7 +53,13 @@ const MeetingCardHandler = () => {
         {isLoading ? ( // Render skeleton if loading
           <MentorDashboardSkeleton />
         ) : (
-          <MeetingCard meeting={meetingData.meeting} />
+          <>
+            {meetingData.meeting.length === 0 ? (
+              <Typography>No upcoming meetings</Typography>
+            ) : (
+              <MeetingCard meeting={meetingData.meeting} />
+            )}
+          </>
         )}
       </Stack>
     </>

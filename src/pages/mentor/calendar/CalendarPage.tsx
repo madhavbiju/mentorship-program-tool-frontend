@@ -1,22 +1,15 @@
-import { Box, Breadcrumbs, Button, Link, Typography } from "@mui/joy";
-import React from "react";
+import { Box, Breadcrumbs, Button, Typography } from "@mui/joy";
+import React, { useState } from "react";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
-import CalendarCC from "../../../components/Calendar/CalendarCC";
+import { Link } from "react-router-dom";
 import CalendarHandler from "../../../components/Calendar/CalendarHandler";
 
-const CalendarPage = () => {
+const MentorCalendarPage = () => {
   const [isMentor, setIsMentor] = React.useState(false);
-
-  React.useEffect(() => {
-    if (location.pathname.includes("/mentor/calendar")) {
-      setIsMentor(true);
-    } else {
-      setIsMentor(false);
-    }
-  }, [location.pathname]);
+  const [roleID, setroleID] = useState<number>(2);
   const history = useNavigate();
   const handleClick = () => {
     history("create");
@@ -31,9 +24,7 @@ const CalendarPage = () => {
           sx={{ pl: 0 }}
         >
           <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
+            to="/mentor/home" style={{ color: "grey" }} 
             aria-label="Home"
           >
             <HomeRoundedIcon />
@@ -57,20 +48,19 @@ const CalendarPage = () => {
         <Typography level="h2" component="h1">
           Calendar
         </Typography>
-        {isMentor && (
-          <Button
-            color="primary"
-            startDecorator={<AddIcon />}
-            size="sm"
-            onClick={handleClick}
-          >
-            Schedule Meeting
-          </Button>
-        )}
+
+        <Button
+          color="primary"
+          startDecorator={<AddIcon />}
+          size="sm"
+          onClick={handleClick}
+        >
+          Schedule Meeting
+        </Button>
       </Box>
-      <CalendarHandler />
+      <CalendarHandler roleID={roleID} />
     </>
   );
 };
 
-export default CalendarPage;
+export default MentorCalendarPage;

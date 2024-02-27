@@ -10,22 +10,22 @@ const PendingTaskHandler = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [taskData, setTaskData] = useState<{
     tasks: Task[];
+    totalCount: number;
   }>({
     tasks: [],
+    totalCount: 0,
   });
   const [pageApi, setPageApi] = useState<number>(1);
-
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
   const getTaskData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchPendingTaskData(pageApi);
-    setTaskData({ tasks: response });
-    console.log("pth-responsess", response);
+    let response = await fetchPendingTaskData(pageApi, EmployeeID!);
+    setTaskData(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
 
   useEffect(() => {
     getTaskData();
-    console.log("tasksdata.tasks getTask", taskData.tasks);
   }, []);
 
   return (
@@ -35,7 +35,7 @@ const PendingTaskHandler = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          //   alignItems: "center",
+          // alignItems: "center", // Uncomment this line if needed
           mb: 1,
         }}
       >
@@ -50,16 +50,22 @@ const PendingTaskHandler = () => {
             Pending Tasks
           </Typography>
         </Stack>
-        {/* <PaginationIcons
+        <PaginationIcons
           total={taskData.totalCount}
           setPageApi={setPageApi}
           perPage={5}
-        /> */}
+        />
       </Stack>
       {isLoading ? ( // Render skeleton if loading
         <MentorDashboardSkeleton />
       ) : (
-        <PendingTask tasks={taskData.tasks} />
+        <>
+          {taskData.tasks.length === 0 ? (
+            <Typography>No Pending Tasks</Typography>
+          ) : (
+            <PendingTask tasks={taskData.tasks} />
+          )}
+        </>
       )}
     </>
   );

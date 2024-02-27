@@ -1,31 +1,47 @@
-import { Button, Divider, Grid, Typography } from "@mui/joy";
-import { Box, flexbox } from "@mui/system";
-import React from "react";
-import MentorMenteeTable from "../MentorMenteeTable/MentorMenteeTable";
-import MentorReportPieChart from "../PieChart/AdminReportPieChart";
-import ReportTaskTable from "../ReportTables/ReportTaskTable/ReportTaskTable";
-import MeetingsTable from "../ReportTables/ReportMeetingsTable";
-import { end } from "@popperjs/core";
-import BandHighlight from "../PieChart/AdminReportPieChart";
-import Sort from "../Sort/SortByMentorMenteeTable";
-import SortByMentorMenteeTable from "../Sort/SortByMentorMenteeTable";
-import SortByReportTaskTable from "../Sort/SortByReportTaskTable";
-import SelectMenteeDropDown from "../SelectMenteeDropDown/SelectMenteeDropDown";
-import SortByReportMeetingsTable from "../Sort/SortByReportMeetingsTable";
-import ReportMeetingsTable from "../ReportTables/ReportMeetingsTable";
-import AdminReportPieChart from "../PieChart/AdminReportPieChart";
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Grid,
+  Select,
+  Typography,
+} from "@mui/joy";
+import { Option } from "@mui/joy";
+import { FormControlLabel, Switch } from "@mui/material";
 import MentorMenteeTableHandler from "../MentorMenteeTable/MentorMenteeTableHandler";
-import ReportTaskTableHandler from "../ReportTables/ReportTaskTable/ReportTaskTableHandler";
 import AdminReportPieChartHandler from "../PieChart/AdminReportPieChartHandler";
+import ReportTaskTableHandler from "../ReportTables/ReportTaskTable/ReportTaskTableHandler";
+import ReportMeetingsTable from "../ReportTables/ReportMeetingsTable";
+import SortByReportMeetingsTable from "../Sort/SortByReportMeetingsTable";
+import SortByReportTaskTable from "../Sort/SortByReportTaskTable";
+import SortByMentorMenteeTable from "../Sort/SortByMentorMenteeTable";
+import PairTableHandler from "../PairTable/PairTableHandler";
+import ReportMeetingHandler from "../ReportMeetingsTable/ReportMeetingHandler";
 
 const AdminReport = () => {
+  const [selectedSortOption, setSelectedSortOption] = useState("");
+
+  const handleSort = (selectedOption: string) => {
+    setSelectedSortOption(selectedOption);
+  };
+  const [sort, setSort] = useState("");
+  const [meetingSort, setMeetingSort] = useState("date");
+
+  const [showPieChart, setShowPieChart] = useState(true);
+
+  const togglePieChart = () => {
+    setShowPieChart(!showPieChart);
+  };
+
   return (
     <div>
       <Box>
         <Grid container>
           <Grid
             xs={12}
-            lg={2}
+            lg={4}
             container
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -34,16 +50,36 @@ const AdminReport = () => {
             </Grid>
 
             <Grid>
-              <SortByMentorMenteeTable />
+              <FormControl size="sm">
+                <Select
+                  size="sm"
+                  placeholder="Sort By"
+                  value={sort}
+                  onChange={(e, newValue) => setSort(newValue!)}
+                >
+                  <Option value="programName">Program Name (A-Z)</Option>
+                  <Option value="programName_desc">Program Name (Z-A)</Option>
+                  <Option value="endDate">End Date (Latest)</Option>
+                  <Option value="endDate_desc">End Date (Farthest)</Option>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid>
+              <FormControlLabel
+                control={
+                  <Switch checked={showPieChart} onChange={togglePieChart} />
+                }
+                label={showPieChart ? "Pie Chart" : "Pie Chart"}
+              />
             </Grid>
           </Grid>
 
           <Grid container>
-            <Grid xs={12} lg={7}>
-              <MentorMenteeTableHandler />
+            <Grid xs={12} lg={showPieChart ? 8 : 11}>
+              <PairTableHandler status={""} sort={sort} search={""} />
             </Grid>
-            <Grid xs={12} lg={5}>
-              <AdminReportPieChartHandler />
+            <Grid xs={12} lg={4}>
+              {showPieChart && <AdminReportPieChartHandler />}
             </Grid>
           </Grid>
         </Grid>
@@ -61,13 +97,36 @@ const AdminReport = () => {
             </Grid>
 
             <Grid>
-              <SortByReportTaskTable />
+              <Select
+                size="sm"
+                placeholder="Sort by"
+                slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
+              >
+                <Option value="TaskName" onClick={() => handleSort("TaskName")}>
+                  Title A-Z
+                </Option>
+                <Option
+                  value="TaskName_desc"
+                  onClick={() => handleSort("TaskName_desc")}
+                >
+                  Title Z-A
+                </Option>
+                <Option value="endDate" onClick={() => handleSort("endDate")}>
+                  Due Date Asc
+                </Option>
+                <Option
+                  value="endDate_desc"
+                  onClick={() => handleSort("endDate_desc")}
+                >
+                  Due Date Des
+                </Option>
+              </Select>
             </Grid>
           </Grid>
 
           <Grid>
             <Grid xs={12} lg={11}>
-              <ReportTaskTableHandler />
+              <ReportTaskTableHandler sort={selectedSortOption} />
             </Grid>
           </Grid>
         </Grid>
@@ -85,13 +144,23 @@ const AdminReport = () => {
             </Grid>
 
             <Grid>
-              <SortByReportMeetingsTable />
+              <FormControl size="sm">
+                <Select
+                  size="sm"
+                  placeholder="Sort By"
+                  onChange={(e, newValue) => setMeetingSort(newValue!)}
+                  value={meetingSort}
+                >
+                  <Option value="date">Schedule Date</Option>
+                  <Option value="menteeName">Mentee Name (A-Z)</Option>
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
 
           <Grid>
             <Grid xs={12} lg={11}>
-              <ReportMeetingsTable />
+              <ReportMeetingHandler sort={meetingSort} />
             </Grid>
           </Grid>
         </Grid>

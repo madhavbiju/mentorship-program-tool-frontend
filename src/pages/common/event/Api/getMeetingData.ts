@@ -1,9 +1,11 @@
 import axios from "axios";
+import { baseUrl } from "../../../../config/configUrl";
+import axiosInstance from "../../../../config/configAxios";
 
  export const fetchMeetingData = async (meetingID: number) => {
     try {
-      const response = await axios.get(
-        `https://localhost:7259/api/meeting/${meetingID}`
+      const response = await axiosInstance.get(
+        `${baseUrl.meeting}/Meetings${meetingID}`
       );
       return(response.data);
     } catch (error) {

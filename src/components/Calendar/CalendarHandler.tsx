@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ExtendedEvent, eventList } from "./Types";
+import { ExtendedEvent, eventList, roleProp } from "./Types";
 import CalendarCC from "./CalendarCC";
 import { fetchEventData } from "./Api/getEventData";
 import moment from "moment";
 
-const CalendarHandler: React.FC = () => {
+const CalendarHandler = ({ roleID }: roleProp) => {
   const event: eventList = {
     meetingID: 0,
     programID: 0,
@@ -21,13 +21,12 @@ const CalendarHandler: React.FC = () => {
   const [eventFormatedData, setEventFormatedData] = useState<ExtendedEvent[]>(
     []
   );
-  const [employeeID, setemployeeID] = useState<number>(2);
-  const [roleID, setroleID] = useState<number>(2);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
   const getEventData = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchEventData(employeeID, roleID);
+    let response = await fetchEventData(EmployeeID!, roleID);
     setEventData(response);
     // Map eventData to ExtendedEvent format
     const formattedData = response.map((eventList: eventList) => {
@@ -59,7 +58,7 @@ const CalendarHandler: React.FC = () => {
 
   useEffect(() => {
     getEventData();
-  }, []);
+  }, [roleID]);
   return (
     <>
       {isLoading ? ( // Render skeleton if loading

@@ -10,7 +10,7 @@ export async function callMsGraph(accessToken: any) {
 
   headers.append("Authorization", bearer);
 
-  console.log(bearer);
+  
   const options = {
     method: "GET",
     headers: headers,

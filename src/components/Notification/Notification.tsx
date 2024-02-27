@@ -41,7 +41,10 @@ const NotificationComponent: FC<{
         menteeUser
       );
       // Show the pair creation message as a notification
+      const employeeID = sessionStorage.getItem("EmployeeId");
+      if(employeeID==menteeUser || employeeID==mentorUser){
       toast.info("PairCreated");
+      }
     });
 
     // Handle ExtensionRequestNotification

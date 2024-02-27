@@ -23,7 +23,6 @@ const MenteeSearchHandler = ({ setMenteeID }: MenteeIdProps) => {
   return (
     <>
       <MenteeSearch mentees={menteeData.mentees} setMenteeID={setMenteeID} />
-      {console.log(menteeData.mentees)}
     </>
   );
 };

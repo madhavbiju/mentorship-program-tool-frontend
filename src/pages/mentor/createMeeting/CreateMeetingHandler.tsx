@@ -1,37 +1,27 @@
 import { useState } from "react";
-import CreateMeeting from "./CreateMeeting";
 import { postMeetingData } from "./Api/postMeeting";
 import { meetingType } from "./Types";
 import Swal from "sweetalert2";
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
+import CreateMeeting from "./CreateMeeting";
 
 const CreateMeetingHandler = () => {
-  const now = new Date();
-  const formattedDate = now.toISOString();
-
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [meetingData, setMeetingData] = useState({
-    programID: "",
-    title: "",
-    scheduleDate: null,
-    createdBy: 1,
-    meetingModeID: 1,
-    createdTime: "",
-    startTime: null,
-    endTime: null,
-    agenda: "",
-  });
-
+  const history = useNavigate();
   function convertToMeetingType(input: any): meetingType {
     return {
-      programID: input.programID,
+      programID: parseInt(input.programID),
       title: input.title,
-      scheduleDate: input.scheduleDate.toISOString(),
-      createdBy: input.createdBy,
-      meetingModeID: input.meetingModeID,
-      createdTime: input.createdTime,
-      startTime: input.startTime.toISOString(),
-      endTime: input.endTime.toISOString(),
+      scheduleDate: input.scheduledDate + "T00:00:00.000Z",
+      createdBy: parseInt(EmployeeID!),
+      meetingModeID: 1,
+      createdTime: new Date().toISOString(),
+      startTime: moment.utc(input.startTime, "HH:mm").format(),
+      endTime: moment.utc(input.endTime, "HH:mm").format(),
       agenda: input.agenda,
+      meetingStatus: 7,
     };
   }
 
@@ -40,38 +30,31 @@ const CreateMeetingHandler = () => {
     let response = await postMeetingData(formatedMeetingData);
     setIsLoading(false);
     // Use SweetAlert2 to show success or error message based on response
-    if (response?.status == 201) {
+    if (response && (response.status === 200 || response.status === 201)) {
       Swal.fire("Success", "Meeting created successfully!", "success");
+      history("/mentor/calendar");
     } else {
       Swal.fire("Error", "Failed to create meeting", "error");
     }
   };
 
-  const handleSchedule = async () => {
-    setMeetingData((prevData) => ({
-      ...prevData,
-      ["createdTime"]: formattedDate,
-    }));
+  const [programID, setProgramID] = useState(0);
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    formData.append("programID", programID.toString());
+    const formDataObject: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value as string;
+    });
 
-    // Convert meeting data to meetingType
-    const formatedMeetingData: meetingType = convertToMeetingType(meetingData);
+    const formatedMeetingData: meetingType =
+      convertToMeetingType(formDataObject);
 
-    console.log(meetingData);
-    console.log(formatedMeetingData);
-    // // Call sendMeetingData after conversion is completed
-    // await sendMeetingData(formatedMeetingData);
+    await sendMeetingData(formatedMeetingData);
   };
 
-  const handleInputChange = (key: string, value: any) => {
-    setMeetingData((prevData) => ({
-      ...prevData,
-      [key]: value,
-    }));
-  };
-
-  return (
-    <CreateMeeting onSchedule={handleSchedule} onChange={handleInputChange} />
-  );
+  return <CreateMeeting submit={submit} setProgramID={setProgramID} />;
 };
 
 export default CreateMeetingHandler;

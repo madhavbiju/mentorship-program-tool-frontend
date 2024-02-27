@@ -10,10 +10,10 @@ const MentorDashboradHandler = () => {
   const [activeCount, setActiveCount] = useState<ActiveMenteeCountData>({
     menteeCount: 0,
   });
-
+  const EmployeeID = sessionStorage.getItem("EmployeeId");
   const ActiveMenteeCount = async () => {
     setIsLoading(true); // Set loading state to true while fetching data
-    let response = await fetchActiveMenteeCount();
+    let response = await fetchActiveMenteeCount(EmployeeID!);
     setActiveCount(response);
     setIsLoading(false); // Set loading state to false after fetching data
   };
@@ -22,14 +22,14 @@ const MentorDashboradHandler = () => {
     ActiveMenteeCount();
   }, []);
 
-  return(
+  return (
     <>
-    {isLoading ? ( // Render skeleton if loading
+      {isLoading ? ( // Render skeleton if loading
         <MentorDashboardSkeleton />
       ) : (
         <MentorDashboard menteeCount={activeCount.menteeCount} />
       )}
-  </>
+    </>
   );
 };
 

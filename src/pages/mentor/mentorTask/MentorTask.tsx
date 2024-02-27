@@ -7,7 +7,6 @@ import {
   MenuList,
   Button,
   Breadcrumbs,
-  Link,
   Typography,
   FormLabel,
 } from "@mui/joy";
@@ -21,6 +20,7 @@ import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import { Link } from "react-router-dom";
 import MentorTaskCardHandler from "../../../components/MentorTaskCard/MentorTaskCardHandler";
 
 const MentorTask = () => {
@@ -35,7 +35,6 @@ const MentorTask = () => {
 
   const handleSort = (selectedOption: string) => {
     setSelectedSortOption(selectedOption);
-    console.log(selectedOption);
   };
 
   const handleFilter = (selectedOption: string) => {
@@ -51,12 +50,7 @@ const MentorTask = () => {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link
-            underline="none"
-            color="neutral"
-            href="#some-link"
-            aria-label="Home"
-          >
+          <Link to="/mentor/home" style={{ color: "grey" }} aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>
@@ -119,9 +113,15 @@ const MentorTask = () => {
           placeholder="Filter by"
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
-          <Option value="0" onClick={() => handleFilter("0")}>Show All</Option>
-          <Option value="1" onClick={() => handleFilter("1")}>In progress</Option>
-          <Option value="6" onClick={() => handleFilter("6")}>Completed</Option>
+          <Option value="0" onClick={() => handleFilter("0")}>
+            Show All
+          </Option>
+          <Option value="1" onClick={() => handleFilter("1")}>
+            In progress
+          </Option>
+          <Option value="6" onClick={() => handleFilter("6")}>
+            Completed
+          </Option>
         </Select>
       </Box>
 

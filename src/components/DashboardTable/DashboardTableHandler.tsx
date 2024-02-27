@@ -57,7 +57,16 @@ const DashboardTableHandler: React.FC = () => {
       {isLoading ? ( // Render skeleton if loading
         <DashboardTableSkeleton />
       ) : (
-        <DashboardTable program={programData.programs} totalCount={pageApi} />
+        <>
+          {programData.programs.length === 0 ? ( // Check if no programs
+            <Typography>No Programs to display</Typography>
+          ) : (
+            <DashboardTable
+              program={programData.programs}
+              totalCount={pageApi}
+            />
+          )}
+        </>
       )}
     </>
   );

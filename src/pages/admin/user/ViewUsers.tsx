@@ -1,51 +1,84 @@
-// React and MUI imports
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/joy/Box";
 import Breadcrumbs from "@mui/joy/Breadcrumbs";
-import FormControl from "@mui/joy/FormControl";
-import FormLabel from "@mui/joy/FormLabel";
-
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
+} from "@mui/material";
 import Input from "@mui/joy/Input";
-import Link from "@mui/joy/Link";
-import Option from "@mui/joy/Option";
-import Select from "@mui/joy/Select";
+import { Link} from "react-router-dom";
 import Typography from "@mui/joy/Typography";
-// Icons
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import SearchIcon from "@mui/icons-material/Search";
-// Custom components
 import UserPageHandler from "../../../components/UserTable/UserPageHandler";
 
 export default function ViewUsers() {
+  const [selectedRole, setSelectedRole] = useState("all");
+  const [status, setStatus] = useState("all");
+  const [sort, setSort] = useState("Asc");
+  const [search, setSearch] = useState("");
+  const handleRoleChange = (event: SelectChangeEvent<string>) => {
+    setSelectedRole(event.target.value);
+  };
+  const handleSortChange = (event: SelectChangeEvent<string>) => {
+    setSort(event.target.value);
+  };
+  const handleSearchChange = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const value = formData.get("searchParam") as string;
+    setSearch(value ?? "");
+  };
+  const handleStatusChange = (event: SelectChangeEvent<string>) => {
+    setStatus(event.target.value);
+  };
+
   const renderFilters = () => (
     <React.Fragment>
-      <FormControl size="sm">
-        <FormLabel>Sort By</FormLabel>
+      <FormControl size="small">
+        <InputLabel>Sort</InputLabel>
         <Select
-          size="sm"
-          placeholder="Filter by Name"
-          slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
+          label="Filter"
+          value={sort}
+          onChange={handleSortChange}
+          displayEmpty
         >
-          <Option value="ascending">Ascending</Option>
-          <Option value="descending">Descending</Option>
+          <MenuItem value="Asc">Ascending</MenuItem>
+          <MenuItem value="Desc">Descending</MenuItem>
         </Select>
       </FormControl>
-      <FormControl size="sm">
-        <FormLabel>Filter</FormLabel>
-        <Select size="sm" placeholder="All">
-          <Option value="all">All</Option>
-          <Option value="refund">Active</Option>
-          <Option value="purchase">Inactive</Option>
+
+      <FormControl size="small">
+        <InputLabel>Filter</InputLabel>
+        <Select
+          label="Filter"
+          value={status}
+          onChange={handleStatusChange}
+          displayEmpty
+        >
+          <MenuItem value="all">All</MenuItem>
+          <MenuItem value="active">Active</MenuItem>
+          <MenuItem value="inactive">Inactive</MenuItem>
         </Select>
       </FormControl>
-      <FormControl size="sm">
-        <FormLabel>Role</FormLabel>
-        <Select size="sm" placeholder="Select Role">
-          <Option value="all">All</Option>
-          <Option value="admin">Admin</Option>
-          <Option value="mentor">Mentor</Option>
-          <Option value="mentee">Mentee</Option>
+      <FormControl size="small" variant="outlined" fullWidth>
+        <InputLabel>Role</InputLabel>
+        <Select
+          label="Role" // This should match the InputLabel for proper alignment
+          value={selectedRole}
+          onChange={handleRoleChange} // Presuming handleRoleChange is defined to handle the event
+          displayEmpty
+        >
+          <MenuItem value="all">All</MenuItem>
+          <MenuItem value="assigned">Assigned</MenuItem>
+          <MenuItem value="unassigned">Unassigned</MenuItem>
+          <MenuItem value="admin">Admin</MenuItem>
+          <MenuItem value="mentor">Mentor</MenuItem>
+          <MenuItem value="mentee">Mentee</MenuItem>
         </Select>
       </FormControl>
     </React.Fragment>
@@ -60,7 +93,7 @@ export default function ViewUsers() {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link underline="none" color="neutral" href="#" aria-label="Home">
+          <Link to="/admin/home" style={{ color: "grey" }}  aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>
@@ -96,17 +129,25 @@ export default function ViewUsers() {
           },
         }}
       >
-        <FormControl sx={{ flex: 1 }} size="sm">
-          <FormLabel>Search for users</FormLabel>
-          <Input
-            size="sm"
-            placeholder="Search"
-            startDecorator={<SearchIcon />}
-          />
-        </FormControl>
+        <Box component="form" onSubmit={handleSearchChange} sx={{ flex: 1 }}>
+          <FormControl size="small">
+            {/* <FormLabel>Search</FormLabel> */}
+            <Input
+              size="sm"
+              placeholder="Search"
+              name="searchParam"
+              startDecorator={<SearchIcon />}
+            />
+          </FormControl>
+        </Box>
         {renderFilters()}
       </Box>
-      <UserPageHandler />
+      <UserPageHandler
+        selectedRole={selectedRole}
+        status={status}
+        sort={sort}
+        search={search}
+      />
     </React.Fragment>
   );
 }

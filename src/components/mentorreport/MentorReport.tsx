@@ -11,13 +11,16 @@ import SortByReportTaskTable from "../Sort/SortByReportTaskTable";
 import MentorReportGraph from "../MentorReportGraph/MentorReportGraph";
 import MenteeProgramTable from "../MenteeProgramTable/MenteeProgramTable";
 import PairReportTasksTable from "../PairReportTaskTable/PairReportTaskTable";
+import PairTableHandler from "../PairTable/PairTableHandler";
+import ReportTaskTableHandler from "../ReportTables/ReportTaskTable/ReportTaskTableHandler";
+import ReportMeetingHandler from "../ReportMeetingsTable/ReportMeetingHandler";
 
 const MentorReport = () => {
   return (
     <div>
       <Box>
         <Grid container sx={{ display: "flex", alignItems: "center" }}>
-          <Grid lg={6}>
+          <Grid lg={12}>
             <Grid
               xs={12}
               lg={6}
@@ -29,18 +32,18 @@ const MentorReport = () => {
                 <Typography level={"h3"}>Programs</Typography>
               </Grid>
 
-              <Grid lg={5}>
+              <Grid lg={12}>
                 <SortByMentorMenteeTable />
               </Grid>
             </Grid>
 
-            <Grid xs={12} lg={6}>
-              <MenteeProgramTable />
+            <Grid xs={12} lg={12}>
+              <PairTableHandler status={""} sort={"Name"} search={""} />
             </Grid>
           </Grid>
-          <Grid lg={6}>
+          {/* <Grid lg={6}>
             <MentorReportGraph />
-          </Grid>
+          </Grid> */}
         </Grid>
         <br />
 
@@ -62,7 +65,7 @@ const MentorReport = () => {
 
           <Grid>
             <Grid xs={12} lg={11}>
-              <PairReportTasksTable />
+              <ReportTaskTableHandler sort={"Name"} />
             </Grid>
           </Grid>
         </Grid>
@@ -86,7 +89,7 @@ const MentorReport = () => {
 
           <Grid>
             <Grid xs={12} lg={11}>
-              <ReportMeetingsTable />
+              <ReportMeetingHandler sort={"title"} />
             </Grid>
           </Grid>
         </Grid>

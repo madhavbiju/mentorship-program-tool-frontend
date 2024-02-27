@@ -1,10 +1,12 @@
 import axiosInstance from "../../../config/configAxios";
 import { baseUrl } from "../../../config/configUrl";
 
-export const fetchMenteeData = async () => {
+export const fetchMenteeData = async (EmployeeId: string) => {
   try {
-    const response = await axiosInstance.get(`${baseUrl.mentee}/details/3`);
-    console.log("response.data", response.data);
+    const response = await axiosInstance.get(
+      `${baseUrl.mentee}/details/${EmployeeId}`
+    );
+    
     return response.data;
   } catch (error) {
     console.error("Error fetching mentee details", error);

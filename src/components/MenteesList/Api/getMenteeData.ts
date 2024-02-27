@@ -1,14 +1,17 @@
 import { common } from "@mui/material/colors";
 import axios from "axios";
+import { baseUrl } from "../../../config/configUrl";
+import axiosInstance from "../../../config/configAxios";
 
 export const fetchMenteeData = async (
+  EmployeeID: string,
   pageApi: number,
   selectedSortOption: string,
   selectedFilterOption: string
 ) => {
   try {
-    const response = await axios.get(
-      `https://localhost:7259/api/mentee/mentor/2?pageNumber=${pageApi}&pageSize=5&sortBy=${selectedSortOption}&filterBy=${selectedFilterOption}`
+    const response = await axiosInstance.get(
+      `${baseUrl.mentee}/mentor/${EmployeeID}?pageNumber=${pageApi}&pageSize=5&sortBy=${selectedSortOption}&filterBy=${selectedFilterOption}`
     );
     return response.data;
   } catch (error) {
