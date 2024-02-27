@@ -38,6 +38,7 @@ const EventPageHandler: React.FC = () => {
   useEffect(() => {
     getMeetingData();
   }, []);
+  
   return (
     <>
       {isLoading ? ( // Render skeleton if loading
