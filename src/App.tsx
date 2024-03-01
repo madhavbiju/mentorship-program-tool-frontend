@@ -28,13 +28,7 @@ export default function JoyOrderDashboardTemplate({ role }: { role: string }) {
         <Box
           sx={{ display: "flex", flexDirection: "column", minHeight: "100dvh" }}
         >
-          <NotificationComponent>
-            {(notifications: any) => (
-              <>
-                <Header notifications={notifications} />
-              </>
-            )}
-          </NotificationComponent>
+          <Header />
 
           <Sidebar role={role} />
           <Box
