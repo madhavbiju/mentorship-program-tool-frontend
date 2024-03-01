@@ -4,11 +4,15 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const NotificationComponent: FC<{
-  children: (notificationCount: number,message:string) => ReactNode;
+  children: (notificationCount: number, message: string,changeNotification:()=>void) => ReactNode;
 }> = ({ children }) => {
-  // const [notifications, setNotifications] = useState<string[]>([]);
   const [notificationCount, setNotificationsCount] = useState<number>(0);
   const [message, setMessage] = useState<string>("");
+
+  const changeNotification=() => {
+    setMessage("");
+    setNotificationsCount(0);
+  };
 
   useEffect(() => {
     // Create SignalR connection
@@ -23,27 +27,30 @@ const NotificationComponent: FC<{
         console.log("SignalR Connected");
 
         // Handle PairCreated event
-        hubConnection.on("PairCreated", (message:string, mentorUser, menteeUser) => {
-          // Handle pair creation notification
-          console.log(
-            "Pair created for mentor:",
-            mentorUser,
-            "and mentee:",
-            menteeUser,
-            "message is:",
-            message
-          );
+        hubConnection.on(
+          "PairCreated",
+          (message: string, mentorUser, menteeUser) => {
+            // Handle pair creation notification
+            console.log(
+              "Pair created for mentor:",
+              mentorUser,
+              "and mentee:",
+              menteeUser,
+              "message is:",
+              message
+            );
 
-          // Check if the current user is either the mentor or mentee
-          const employeeID = sessionStorage.getItem("EmployeeId");
-          if (employeeID === menteeUser || employeeID === mentorUser) {
-            setNotificationsCount((prevCount) => prevCount + 1);
-            setMessage(message)
-            // Show the pair creation message as a notification
-            toast.info("PairCreated");
-            console.log("Toast Fired");
+            // Check if the current user is either the mentor or mentee
+            const employeeID = sessionStorage.getItem("EmployeeId");
+            if (employeeID === menteeUser || employeeID === mentorUser) {
+              setNotificationsCount((prevCount) => prevCount + 1);
+              setMessage(message);
+              // Show the pair creation message as a notification
+              toast.info("PairCreated");
+              console.log("Toast Fired");
+            }
           }
-        });
+        );
 
         // Handle ExtensionRequestNotification
         hubConnection.on(
@@ -74,7 +81,7 @@ const NotificationComponent: FC<{
     };
   }, []);
 
-  return <div>{children(notificationCount,message)}</div>;
+  return <div>{children(notificationCount, message,changeNotification)}</div>;
 };
 
 export default NotificationComponent;

@@ -6,16 +6,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
-import Tooltip from "@mui/joy/Tooltip";
 import Dropdown from "@mui/joy/Dropdown";
 import Menu from "@mui/joy/Menu";
 import MenuButton from "@mui/joy/MenuButton";
 import MenuItem from "@mui/joy/MenuItem";
 import ListDivider from "@mui/joy/ListDivider";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { toggleSidebar } from "../../utils/utils";
 import ColorSchemeToggle from "../ColorSchemeToggle/ColorSchemeToggle";
@@ -25,23 +21,16 @@ import ToggleRoleButton from "../toggleRoleButton/ToggleRoleButton";
 import SearchInput from "../SearchInput/SearchInput";
 import {
   Avatar,
-  AvatarGroup,
-  Badge,
   Card,
   CardCover,
   Modal,
   ModalClose,
-  Snackbar,
-  SnackbarOrigin,
   useTheme,
 } from "@mui/joy";
 import { decodeToken } from "../../apiHandler/Decoder";
-import NotificationComponent from "../Notification/Notification";
+import NotificationTest from "../NotificationButton/NotificationTest";
 
-interface State {
-  openSheet: boolean;
-  message: string;
-}
+
 
 export default function Header() {
   // console.log(notifications);
@@ -86,20 +75,6 @@ export default function Header() {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === "dark";
   const [open, setOpen] = React.useState<boolean>(false);
-
-  //for showing notification
-  const [state, setState] = React.useState<State>({
-    openSheet: false,
-    message: "", // Add message state
-  });
-  const { openSheet, message } = state;
-
-  const handleClick = (message: string) => () => {
-    setState((prevState) => ({
-      openSheet: !prevState.openSheet, // Toggle openSheet state
-      message: message, // Set message
-    }));
-  };
 
   return (
     <Sheet
@@ -226,50 +201,7 @@ export default function Header() {
             </Sheet>
           </Modal>
 
-          <NotificationComponent>
-            {(notificationCount, message) => (
-              <Stack direction="row" gap={1.5} alignItems="center">
-                <Tooltip title={``}>
-                  <IconButton
-                    onClick={handleClick(message)}
-                    disabled={notificationCount === 0}
-                  >
-                    <NotificationsIcon />
-                    {notificationCount > 0 && ( // Display count only if greater than 0
-                      <Badge badgeContent={notificationCount}></Badge>
-                    )}
-                  </IconButton>
-                </Tooltip>
-                {/* Other components */}
-              </Stack>
-            )}
-          </NotificationComponent>
-
-          <Sheet
-            sx={{
-              alignItems: "center",
-              px: 1.5,
-              py: 1.5,
-              ml: "auto",
-              width: { xs: "100dvw", md: 400 },
-              flexGrow: 1,
-              border: "1px solid",
-              borderRadius: "8px 8px 8px 8px",
-              backgroundColor: "background.level1",
-              borderColor: "neutral.outlinedBorder",
-              boxShadow: "lg",
-              zIndex: 100,
-              position: "fixed",
-              top: 50,
-              right: 24,
-              visibility: openSheet ? "visible" : "hidden",
-              transition: "transform 0.3s ease",
-            }}
-          >
-            <Box sx={{ mb: 2 }}>
-              <Typography level="title-sm">{message}</Typography>
-            </Box>
-          </Sheet>
+          <NotificationTest />
 
           <ColorSchemeToggle sx={{ ml: "auto" }} />
           <ToggleRoleButton />
