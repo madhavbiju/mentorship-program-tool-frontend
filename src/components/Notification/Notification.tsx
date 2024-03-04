@@ -4,12 +4,16 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const NotificationComponent: FC<{
-  children: (notificationCount: number, message: string,changeNotification:()=>void) => ReactNode;
+  children: (
+    notificationCount: number,
+    message: string,
+    changeNotification: () => void
+  ) => ReactNode;
 }> = ({ children }) => {
   const [notificationCount, setNotificationsCount] = useState<number>(0);
   const [message, setMessage] = useState<string>("");
 
-  const changeNotification=() => {
+  const changeNotification = () => {
     setMessage("");
     setNotificationsCount(0);
   };
@@ -30,21 +34,11 @@ const NotificationComponent: FC<{
         hubConnection.on(
           "PairCreated",
           (message: string, mentorUser, menteeUser) => {
-            // Handle pair creation notification
-            console.log(
-              "Pair created for mentor:",
-              mentorUser,
-              "and mentee:",
-              menteeUser,
-              "message is:",
-              message
-            );
-
             // Check if the current user is either the mentor or mentee
             const employeeID = sessionStorage.getItem("EmployeeId");
             if (employeeID === menteeUser || employeeID === mentorUser) {
               setNotificationsCount((prevCount) => prevCount + 1);
-              setMessage(message);
+              setMessage((prevmessage) => prevmessage + message);
               // Show the pair creation message as a notification
               toast.info("PairCreated");
               console.log("Toast Fired");
@@ -55,12 +49,29 @@ const NotificationComponent: FC<{
         // Handle ExtensionRequestNotification
         hubConnection.on(
           "ExtensionRequestNotification",
-          (adminUser: string) => {
+          (
+            message: string,
+            adminUser: string,
+            mentorUser: string,
+            mentorName: string
+          ) => {
             // Handle extension request notification
             console.log(
-              "Received Extension Request Notification for admin user: ",
-              adminUser
+              " admin user: ",
+              adminUser,
+              "mentor:",
+              mentorUser,
+              "message:",
+              message
             );
+
+            const employeeID = sessionStorage.getItem("EmployeeId");
+            if (employeeID === adminUser) {
+              setNotificationsCount((prevCount) => prevCount + 1);
+              setMessage((prevmessage) => prevmessage + message);
+              // Show the pair creation message as a notification
+              toast.info(`A Program extension request raised by ${mentorName}`);
+            }
             // You can add logic here to handle the extension request notification
           }
         );
@@ -81,7 +92,7 @@ const NotificationComponent: FC<{
     };
   }, []);
 
-  return <div>{children(notificationCount, message,changeNotification)}</div>;
+  return <div>{children(notificationCount, message, changeNotification)}</div>;
 };
 
 export default NotificationComponent;

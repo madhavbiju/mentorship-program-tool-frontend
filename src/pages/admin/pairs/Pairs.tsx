@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from "react";
 import Box from "@mui/joy/Box";
+import Grid from "@mui/joy/Grid";
 import Button from "@mui/joy/Button";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
@@ -127,7 +128,9 @@ export default function Pairs() {
         </form>
         {renderFilters()}
       </Box>
-      <PairTableHandler status={status} sort={sort} search={search} />
+      <Grid sm={12}>
+        <PairTableHandler status={status} sort={sort} search={search} />
+      </Grid>
     </React.Fragment>
   );
 }
