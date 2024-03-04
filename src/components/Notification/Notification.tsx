@@ -6,15 +6,15 @@ import "react-toastify/dist/ReactToastify.css";
 const NotificationComponent: FC<{
   children: (
     notificationCount: number,
-    message: string,
+    message: string[],
     changeNotification: () => void
   ) => ReactNode;
 }> = ({ children }) => {
   const [notificationCount, setNotificationsCount] = useState<number>(0);
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string[]>([]);
 
   const changeNotification = () => {
-    setMessage("");
+    setMessage([]);
     setNotificationsCount(0);
   };
 
@@ -38,10 +38,8 @@ const NotificationComponent: FC<{
             const employeeID = sessionStorage.getItem("EmployeeId");
             if (employeeID === menteeUser || employeeID === mentorUser) {
               setNotificationsCount((prevCount) => prevCount + 1);
-              setMessage((prevmessage) => prevmessage + message);
-              // Show the pair creation message as a notification
-              toast.info("PairCreated");
-              console.log("Toast Fired");
+              setMessage((prevmessage) => [...prevmessage, message]);
+              toast.info("New Pair Created");
             }
           }
         );
@@ -68,11 +66,9 @@ const NotificationComponent: FC<{
             const employeeID = sessionStorage.getItem("EmployeeId");
             if (employeeID === adminUser) {
               setNotificationsCount((prevCount) => prevCount + 1);
-              setMessage((prevmessage) => prevmessage + message);
-              // Show the pair creation message as a notification
+              setMessage((prevmessage) => [...prevmessage, message]);
               toast.info(`A Program extension request raised by ${mentorName}`);
             }
-            // You can add logic here to handle the extension request notification
           }
         );
 

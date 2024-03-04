@@ -7,21 +7,21 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 const NotificationTest = () => {
   interface State {
     openSheet: boolean;
-    message: string;
+    message: string[];
     notificationCount: number;
   }
   //for showing notification
   const [state, setState] = React.useState<State>({
     openSheet: false,
-    message: "", // Add message state
+    message: [], // Add message state
     notificationCount: 0,
   });
   const { openSheet, message } = state;
 
-  const handleClick = (message: string) => () => {
+  const handleClick = (message: string[]) => () => {
     setState((prevState) => ({
       openSheet: !prevState.openSheet, // Toggle openSheet state
-      message: message, // Set message
+      message: [...prevState.message, ...message], // Set message and // Concatenate arrays
       notificationCount: 0,
     }));
   };
@@ -29,7 +29,7 @@ const NotificationTest = () => {
     changeNotification();
     setState((prevState) => ({
       openSheet: !prevState, // Toggle openSheet state
-      message: "", // Set message
+      message: [], // Set message
       notificationCount: 0,
     }));
   };
@@ -73,13 +73,16 @@ const NotificationTest = () => {
                 transition: "transform 0.3s ease",
               }}
             >
-              <ModalClose id="close-icon" onClick={() => clearNotification(changeNotification)} />
+              <ModalClose
+                id="close-icon"
+                onClick={() => clearNotification(changeNotification)}
+              />
               <Box sx={{ mb: 2 }}>
-                {message && (
+                {message.map((message: string) => (
                   <Typography alignContent={"center"} level="title-sm">
                     {message}
                   </Typography>
-                )}
+                ))}
               </Box>
             </Sheet>
           </>
