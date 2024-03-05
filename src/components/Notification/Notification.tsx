@@ -54,20 +54,72 @@ const NotificationComponent: FC<{
             mentorName: string
           ) => {
             // Handle extension request notification
-            console.log(
-              " admin user: ",
-              adminUser,
-              "mentor:",
-              mentorUser,
-              "message:",
-              message
-            );
-
             const employeeID = sessionStorage.getItem("EmployeeId");
             if (employeeID === adminUser) {
               setNotificationsCount((prevCount) => prevCount + 1);
               setMessage((prevmessage) => [...prevmessage, message]);
               toast.info(`A Program extension request raised by ${mentorName}`);
+            }
+          }
+        );
+
+        hubConnection.on(
+          "ExtensionApprovalNotification",
+          (message: string, mentorUser: string) => {
+            console.log(message, ",", mentorUser);
+            const employeeID = sessionStorage.getItem("EmployeeId");
+            if (employeeID === mentorUser) {
+              setNotificationsCount((prevCount) => prevCount + 1);
+              setMessage((prevmessage) => [...prevmessage, message]);
+              toast.info("Your Program extension request has been approved");
+            }
+          }
+        );
+
+        hubConnection.on(
+          "TaskPostedNotification",
+          (message: string, menteeUser: string) => {
+            const employeeID = sessionStorage.getItem("EmployeeId");
+            if (employeeID === menteeUser) {
+              setNotificationsCount((prevCount) => prevCount + 1);
+              setMessage((prevmessage) => [...prevmessage, message]);
+              toast.info("New Task is Assigned to You");
+            }
+          }
+        );
+
+        hubConnection.on(
+          "TaskSubmittedNotification",
+          (message: string, mentorUser: string) => {
+            const employeeID = sessionStorage.getItem("EmployeeId");
+            if (employeeID === mentorUser) {
+              setNotificationsCount((prevCount) => prevCount + 1);
+              setMessage((prevmessage) => [...prevmessage, message]);
+              toast.info("A Task was Submitted");
+            }
+          }
+        );
+
+        hubConnection.on(
+          "TaskDueDateUpdatedNotification",
+          (message: string, menteeUser: string) => {
+            const employeeID = sessionStorage.getItem("EmployeeId");
+            if (employeeID === menteeUser) {
+              setNotificationsCount((prevCount) => prevCount + 1);
+              setMessage((prevmessage) => [...prevmessage, message]);
+              toast.info("A Task dueDate is extented");
+            }
+          }
+        );
+
+        hubConnection.on(
+          "MeetingScheduledNotification",
+          (message: string, menteeUser: string) => {
+            const employeeID = sessionStorage.getItem("EmployeeId");
+            if (employeeID === menteeUser) {
+              setNotificationsCount((prevCount) => prevCount + 1);
+              setMessage((prevmessage) => [...prevmessage, message]);
+              toast.info("New meeting is scheduled.");
             }
           }
         );

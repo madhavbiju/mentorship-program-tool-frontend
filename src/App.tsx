@@ -10,7 +10,6 @@ import {
 } from "@mui/material/styles";
 import { CssVarsProvider as JoyCssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
-import NotificationComponent from "../src/components/Notification/Notification";
 
 const materialTheme = materialExtendTheme();
 

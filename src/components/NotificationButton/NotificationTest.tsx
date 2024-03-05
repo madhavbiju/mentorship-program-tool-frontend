@@ -1,4 +1,4 @@
-import { Sheet, ModalClose, Box, Typography } from "@mui/joy";
+import { Sheet, ModalClose, Box, Typography, Card } from "@mui/joy";
 import { Stack, Tooltip, IconButton, Badge } from "@mui/joy";
 import React from "react";
 import NotificationComponent from "../Notification/Notification";
@@ -78,11 +78,15 @@ const NotificationTest = () => {
                 onClick={() => clearNotification(changeNotification)}
               />
               <Box sx={{ mb: 2 }}>
+                
                 {message.map((message: string) => (
+                  <Card>
                   <Typography alignContent={"center"} level="title-sm">
                     {message}
                   </Typography>
+                  </Card>
                 ))}
+                
               </Box>
             </Sheet>
           </>
