@@ -33,7 +33,6 @@ const CreateMeetingHandler = () => {
     setEndDate(response.endDate);
   };
   useEffect(() => {
-    console.log("hi useEffect");
     if (programID !== 0) {
       getProgramData();
     }
