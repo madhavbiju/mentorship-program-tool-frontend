@@ -78,15 +78,13 @@ const NotificationTest = () => {
                 onClick={() => clearNotification(changeNotification)}
               />
               <Box sx={{ mb: 2 }}>
-                
                 {message.map((message: string) => (
                   <Card>
-                  <Typography alignContent={"center"} level="title-sm">
-                    {message}
-                  </Typography>
+                    <Typography alignContent={"center"} level="title-sm">
+                      {message}
+                    </Typography>
                   </Card>
                 ))}
-                
               </Box>
             </Sheet>
           </>
