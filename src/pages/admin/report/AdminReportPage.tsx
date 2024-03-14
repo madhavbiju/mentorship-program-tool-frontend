@@ -9,6 +9,7 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AdminReport from "../../../components/adminreport/AdminReport"; // Import AdminReport component
 import { Link, useNavigate } from "react-router-dom";
 import AdminPairReport from "../../../components/AdminPairReport/AdminPairReport";
+import AdminMentorReportPage from "../../../components/AdminMentorReportPage/AdminMentorReportPage";
 
 const AdminReportPage = () => {
   const [reportType, setReportType] = useState<string>("Overall Report");
@@ -84,7 +85,7 @@ const AdminReportPage = () => {
               <>
                 {/* <SelectMentorDropDown /> */}
                 <Grid lg={12}>
-                  <MentorReport />
+                  <AdminMentorReportPage />{" "}
                 </Grid>
               </>
             ) : null}
