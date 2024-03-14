@@ -23,8 +23,6 @@
     "ag-grid-community": "^31.1.1",
     "ag-grid-react": "^31.1.1",
     "@react-pdf/renderer": "^3.3.8",
-    "ag-grid-community": "^31.1.1",
-    "ag-grid-react": "^31.1.1",
     "axios": "^1.6.7",
     "dayjs": "^1.11.10",
     "file-saver": "^2.0.5",
