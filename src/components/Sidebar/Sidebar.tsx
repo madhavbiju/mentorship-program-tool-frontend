@@ -221,6 +221,8 @@ export default function Sidebar({ role }: { role: string }) {
 
   return (
     <Sheet
+      color="neutral"
+      variant="soft"
       className="Sidebar"
       sx={{
         position: { xs: "fixed", md: "fixed" },
@@ -239,8 +241,6 @@ export default function Sidebar({ role }: { role: string }) {
         display: "flex",
         flexDirection: "column",
         gap: 2,
-        borderRight: "1px solid",
-        borderColor: "divider",
       }}
     >
       <GlobalStyles

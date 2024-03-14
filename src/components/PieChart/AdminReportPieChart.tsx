@@ -1,6 +1,11 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import React from "react";
 import { AdminReportPieChartProps } from ".";
+import {
+  blueberryTwilightPalette,
+  mangoFusionPalette,
+  cheerfulFiestaPalette,
+} from "@mui/x-charts/colorPalettes";
 
 const AdminReportPieChart: React.FC<AdminReportPieChartProps> = ({
   menteeCount,
@@ -24,6 +29,7 @@ const AdminReportPieChart: React.FC<AdminReportPieChartProps> = ({
       ]}
       width={400}
       height={200}
+      colors={mangoFusionPalette}
     />
   );
 };

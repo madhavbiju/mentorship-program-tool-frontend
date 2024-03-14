@@ -14,10 +14,7 @@ const formatDate = (dateString: string | number | Date) => {
 export default function DashboardTable({ program }: DashboardTableProps) {
   return (
     <>
-      <Sheet
-        variant="outlined"
-        sx={{ width: "100%", boxShadow: "sm", borderRadius: "sm" }}
-      >
+      <Sheet variant="outlined" sx={{ width: "100%", borderRadius: "sm" }}>
         <Table hoverRow>
           <thead>
             <tr>
