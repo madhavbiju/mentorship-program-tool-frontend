@@ -36,7 +36,7 @@ const GreetCard = () => {
         display: "flex",
         width: 400,
         height: 150,
-        mb: 2,
+
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",

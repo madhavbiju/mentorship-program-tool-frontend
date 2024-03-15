@@ -51,7 +51,7 @@ const RequestBoxHandler: React.FC = () => {
         </Typography>
         <PaginationIcons
           total={requestData.totalCount}
-          perPage={3}
+          perPage={10}
           setPageApi={setPageApi}
         />
       </Stack>

@@ -59,7 +59,6 @@ const AdminDashboard = ({ data }: AdminDashboardProps) => {
             alignItems: "center",
             borderRadius: "sm",
             paddingLeft: 2,
-            paddingTop: 2,
           }}
         >
           <GreetCard />

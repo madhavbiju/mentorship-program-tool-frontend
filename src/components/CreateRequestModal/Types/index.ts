@@ -14,15 +14,15 @@ export interface SubmitModalProps{
 }
 
 export interface Mentee {
-    employeeID: number;
-    firstName: string;
-    lastName: string;
-    programName: string;
-    programID: number;
-    endDate: string;
-    // Add other fields as needed
-  }
-
+  programName: string;
+  menteeFirstName: string;
+  menteeLastName: string;
+  mentorFirstName: string;
+  programID: number;
+  endDate: string;
+  startDate: string;
+  // Add other fields as needed
+}
   export interface requestType{
     programID: number;
       newEndDate: string,
