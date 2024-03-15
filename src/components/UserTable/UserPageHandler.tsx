@@ -5,6 +5,7 @@ import { User, UserDetailsResponse } from "./types";
 import PaginationButtons from "../Pagination/Pagination";
 import UserPageSkeleton from "./UserPageSkeleton";
 import UserTable from "./UserTable";
+import NewUserTable from "./NewUserTable";
 
 // Define the props type, including the selectedRole prop
 interface UserPageHandlerProps {
@@ -64,7 +65,7 @@ const UserPageHandler: React.FC<UserPageHandlerProps> = ({
         {isLoading ? (
           <UserPageSkeleton />
         ) : (
-          <UserTable
+          <NewUserTable
             userList={users}
             setSubmitButtonPressed={setSubmitButtonPressed}
           />

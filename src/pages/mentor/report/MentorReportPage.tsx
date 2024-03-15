@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 
 const MentorReportPage = () => {
   const [reportType, setReportType] = useState<string>("Pair Report");
-
+  const employeeID: string = sessionStorage.getItem("EmployeeId") || "";
+  const EmployeeId = parseInt(employeeID);
   return (
     <div>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -36,7 +37,7 @@ const MentorReportPage = () => {
         </Grid>
         <Grid xs={6} lg={6}>
           <MentorReportButtonGroup
-            defaultReport="Pair Report"
+            defaultReport="MentorReport"
             onChange={(newValue: string) => setReportType(newValue)}
           />
         </Grid>
@@ -49,7 +50,7 @@ const MentorReportPage = () => {
       </Grid>
       <Grid lg={12}>
         {reportType === "My Report" ? (
-          <MentorReport />
+          <MentorReport employeeId={EmployeeId} />
         ) : (
           <>
             <br />

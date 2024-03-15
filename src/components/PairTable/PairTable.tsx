@@ -68,7 +68,7 @@ const PairTable = ({ program, totalCount }: PairTableProps) => {
   const defaultColDef = useMemo<ColDef>(() => {
     return {
       filter: true,
-      editable: true,
+      editable: false,
     };
   }, []);
 
