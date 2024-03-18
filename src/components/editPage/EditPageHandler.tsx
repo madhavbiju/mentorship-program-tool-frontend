@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import EditPage from "./EditPage";
 import {
+  changeProgramDetails,
   fetchMentorMenteeName,
   fetchParticularProgram,
 } from "./Api/GetParticularProgram";
 import { ParticularProgramProps } from "./types";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchMenteeData } from "../SearchForMentee/Api/getMenteeData";
 import { Mentees } from "../SearchForMentee/Types";
 import { fetchMentorData } from "../SearchForMentor/Api/getMentorData";
 import { Mentors } from "../SearchForMentor/Types";
+import { requestType } from "../CreateRequestModal/Types";
+import Swal from "sweetalert2";
 
 export interface MentorMenteeData {
   mentorName: string;
@@ -20,6 +23,7 @@ interface Params {
   [key: string]: any;
 }
 const ProgramEditHandler = () => {
+  const history = useNavigate();
   const [ParticularProgram, SetParticularProgram] =
     useState<ParticularProgramProps>({
       programID: 0,
@@ -29,7 +33,7 @@ const ProgramEditHandler = () => {
       startDate: "",
       endDate: "",
       programName: "",
-      programStatus: 0,
+      modifiedBy: 0,
     });
   const [MentorMenteeData, SetMentorMenteeData] = useState<MentorMenteeData>({
     menteeName: "",
@@ -76,16 +80,14 @@ const ProgramEditHandler = () => {
     setMenteeData((prevState) => ({
       mentees: [...prevState.mentees, ...response], //to append fetched mentees to existing mentees data
     }));
-    console.log("mentee",response)
-    // setMenteeData(response);
+    // console.log("mentee", response);
   };
   const getMentorsData = async () => {
     let response = await fetchMentorData();
-    console.log("mentor",response)
+    // console.log("mentor", response);
     setMentorData((prevState) => ({
-      mentors: [...prevState.mentors, ...response]
+      mentors: [...prevState.mentors, ...response],
     }));
-    // setMenteeData(response);
   };
   useEffect(() => {
     getProgramData();
@@ -97,7 +99,45 @@ const ProgramEditHandler = () => {
     getMentorData();
     getMenteeData();
   }, [ParticularProgram]);
-  console.log("hello", MentorMenteeData.menteeName);
+
+  const sendChangingProgram = async (
+    changingProgram: ParticularProgramProps
+  ) => {
+    let response = await changeProgramDetails(changingProgram);
+    if (response?.status == 200 || 201) {
+      Swal.fire("Success", "Program Edited successfully!", "success");
+      history("/admin/pairs");
+    } else {
+      Swal.fire("Error", "Failed to edit program", "error");
+    }
+  };
+  const empid = sessionStorage.getItem("EmployeeId");
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const formDataObject: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value as string;
+    });
+    console.log("abii", formDataObject);
+    const changingProgram = {
+      programID: ParticularProgram.programID,
+      mentorID: formDataObject.mentorID
+        ? parseInt(formDataObject.mentorID)
+        : ParticularProgram.mentorID,
+      menteeID: ParticularProgram.menteeID,
+      modifiedTime: new Date().toISOString(),
+      startDate: formDataObject.startingDate
+        ? formDataObject.startingDate + "T00:00:00.000Z" || ""
+        : ParticularProgram.startDate,
+      endDate: formDataObject.endingDate
+        ? formDataObject.endingDate + "T00:00:00.000Z" || ""
+        : ParticularProgram.endDate,
+      programName: formDataObject.programName || ParticularProgram.programName,
+      modifiedBy: parseInt(empid as number),
+    };
+    sendChangingProgram(changingProgram);
+  };
 
   return (
     <div>
@@ -107,6 +147,7 @@ const ProgramEditHandler = () => {
         menteeName={MentorMenteeData.menteeName}
         mentees={menteeData.mentees}
         mentors={mentorData.mentors}
+        submitForm={submit}
       />
     </div>
   );

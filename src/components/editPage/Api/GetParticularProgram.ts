@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ParticularProgramProps } from "../types";
 
 export const fetchParticularProgram = async (programId: number) => {
   try {
@@ -19,5 +20,18 @@ export const fetchMentorMenteeName = async (employeeId: number) => {
     return response.data.firstName;
   } catch (error) {
     console.error("error employee data:", error);
+  }
+};
+
+export const changeProgramDetails = async (data: ParticularProgramProps) => {
+  try {
+    const response = await axios.put(
+      "https://localhost:7259/api/program/1",
+      data
+    );
+    console.log("hiii", response);
+    return response;
+  } catch (error) {
+    console.error("error in updating program:", error);
   }
 };

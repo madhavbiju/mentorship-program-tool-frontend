@@ -6,7 +6,7 @@ export interface ParticularProgramProps {
   startDate: string;
   endDate: string;
   programName: string;
-  programStatus: number;
+  modifiedBy: number;
 }
 export interface ProgramProps {
   program: ParticularProgramProps;

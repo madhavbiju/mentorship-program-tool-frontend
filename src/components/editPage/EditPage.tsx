@@ -4,19 +4,17 @@ import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { Button } from "@mui/joy";
 import { MenuItem, TextField } from "@mui/material";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, SetStateAction, useState } from "react";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import { EditPageProps } from "../SearchForMentee/Types";
 import { Mentors } from "../SearchForMentor/Types";
 
-const EditPage: React.FC<EditPageProps & { mentors: Mentors[] }> = ({
-  program,
-  mentorName,
-  menteeName,
-  mentees,
-  mentors,
-}) => {
+const EditPage: React.FC<
+  EditPageProps & { mentors: Mentors[] } & {
+    submitForm: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  }
+> = ({ program, mentorName, menteeName, mentees, mentors, submitForm }) => {
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const day = date.getDate();
@@ -24,16 +22,27 @@ const EditPage: React.FC<EditPageProps & { mentors: Mentors[] }> = ({
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
-  // let editMode = true;
   const [editableprogramName, setEditableProgramName] = useState<string>(
     program.programName
   );
-  // {
-  //   console.log("hii", mentorName);
-  // }
+  const [editableMentorid, setMentorID] = useState(0);
+  const [editableStartingDate, setStartingDate] = useState<string>("");
+  const [editableEndingDate, setEndingDate] = useState<string>("");
 
-  // var startingdate = formatDate(program.startDate);
-  // var endingdate = formatDate(program.endDate);
+  const changeMentorid = (mentorID: number) => {
+    setMentorID(mentorID);
+  };
+  const changeStartingDate = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setStartingDate(e.target.value);
+  };
+  const changeEndingDate = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setEndingDate(e.target.value);
+  };
+
   return (
     <div>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -58,99 +67,97 @@ const EditPage: React.FC<EditPageProps & { mentors: Mentors[] }> = ({
           </Typography>
         </Breadcrumbs>
       </Box>
-      <Box
-        rowGap={2}
-        columnGap={2}
-        sx={{
-          display: "flex",
-          justifyContent: "right",
-        }}
-      >
-        <Button
-          // onClick={() => {
-          //   editMode == !editMode;
-          // }}
-          sx={{ px: 4 }}
+      <form onSubmit={submitForm}>
+        <Box
+          rowGap={2}
+          columnGap={2}
+          sx={{
+            display: "flex",
+            justifyContent: "right",
+          }}
         >
-          Save
-        </Button>
-        <Button sx={{ px: 3 }}>Delete</Button>
-      </Box>
-      <Grid
-        container
-        rowGap={3}
-        columnGap={1}
-        xs={10}
-        sm={10}
-        md={12}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-          my: 3,
-        }}
-      >
-        <>
-          <TextField
-            InputLabelProps={{ shrink: true }}
-            label="Program Name"
-            size="small"
-            placeholder={program.programName}
-            value={editableprogramName}
-            onChange={(e) => setEditableProgramName(e.target.value)}
-          />
-          <TextField
-            size="small"
-            InputLabelProps={{ shrink: true }}
-            label="Mentor name"
-            select
-            value={program.mentorID}
-          >
-            {mentors?.map((mentor) => (
-              <MenuItem key={mentor.employeeID} value={mentor.employeeID}>
-                {mentor.firstName}
-              </MenuItem>
-            ))}
-          </TextField>
-          {/* <TextField
-            InputLabelProps={{ shrink: true }}
-            select
-            size="small"
-            label="Mentee name"
-            placeholder="choose mentee"
-          >
-            {mentees?.map((mentee) => (
-              <MenuItem key={mentee.employeeID} value={mentee.employeeID}>
-                {mentee.firstName}
-              </MenuItem>
-            ))}
-          </TextField> */}
-          <TextField
-            type="date"
-            name="scheduledDate"
-            label="Start Date"
-            InputLabelProps={{ shrink: true }}
-            InputProps={{
-              sx: { fontSize: "0.8rem" },
-              inputProps: {
-                min: new Date().toISOString().split("T")[0],
-              },
-            }}
-          ></TextField>
-          <TextField
-            type="date"
-            name="scheduledDate"
-            label="End Date"
-            InputLabelProps={{ shrink: true }}
-            InputProps={{
-              sx: { fontSize: "0.8rem" },
-              inputProps: {
-                min: new Date().toISOString().split("T")[0],
-              },
-            }}
-          ></TextField>
-        </>
-      </Grid>
+          <Button type="submit" sx={{ px: 4 }}>
+            Save
+          </Button>
+          <Button sx={{ px: 3 }}>Delete</Button>
+        </Box>
+        <Grid
+          container
+          rowGap={3}
+          columnGap={1}
+          xs={10}
+          sm={10}
+          md={12}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignContent: "center",
+            my: 3,
+          }}
+        >
+          <>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              label="Program Name"
+              name="programName"
+              size="small"
+              placeholder={program.programName}
+              value={editableprogramName}
+              onChange={(e) => setEditableProgramName(e.target.value)}
+            />
+            <TextField
+              size="small"
+              InputLabelProps={{ shrink: true }}
+              label="Mentor name"
+              name="mentorID"
+              select
+              value={program.mentorID}
+              onChange={(e) => {
+                const mentorID = e.target.value as unknown as number;
+                if (mentorID) {
+                  changeMentorid(mentorID);
+                }
+              }}
+            >
+              {mentors?.map((mentor) => (
+                <MenuItem key={mentor.employeeID} value={mentor.employeeID}>
+                  {mentor.firstName}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              type="date"
+              name="startDate"
+              label="Start Date"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+                inputProps: {
+                  min: new Date().toISOString().split("T")[0],
+                },
+              }}
+              onChange={(e) => {
+                changeStartingDate(e);
+              }}
+            ></TextField>
+            <TextField
+              type="date"
+              name="endDate"
+              label="End Date"
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                sx: { fontSize: "0.8rem" },
+                inputProps: {
+                  min: new Date().toISOString().split("T")[0],
+                },
+              }}
+              onChange={(e) => {
+                changeEndingDate(e);
+              }}
+            ></TextField>
+          </>
+        </Grid>
+      </form>
     </div>
   );
 };
