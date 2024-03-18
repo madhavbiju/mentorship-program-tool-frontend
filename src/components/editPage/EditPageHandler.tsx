@@ -11,8 +11,8 @@ import { fetchMenteeData } from "../SearchForMentee/Api/getMenteeData";
 import { Mentees } from "../SearchForMentee/Types";
 import { fetchMentorData } from "../SearchForMentor/Api/getMentorData";
 import { Mentors } from "../SearchForMentor/Types";
-import { requestType } from "../CreateRequestModal/Types";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 export interface MentorMenteeData {
   mentorName: string;
@@ -103,7 +103,10 @@ const ProgramEditHandler = () => {
   const sendChangingProgram = async (
     changingProgram: ParticularProgramProps
   ) => {
-    let response = await changeProgramDetails(changingProgram);
+    let response = await changeProgramDetails(
+      changingProgram,
+      ParticularProgram.programID
+    );
     if (response?.status == 200 || 201) {
       Swal.fire("Success", "Program Edited successfully!", "success");
       history("/admin/pairs");
@@ -127,16 +130,17 @@ const ProgramEditHandler = () => {
         : ParticularProgram.mentorID,
       menteeID: ParticularProgram.menteeID,
       modifiedTime: new Date().toISOString(),
-      startDate: formDataObject.startingDate
-        ? formDataObject.startingDate + "T00:00:00.000Z" || ""
+      startDate: formDataObject.startDate
+        ? moment.utc(formDataObject.startDate).format()
         : ParticularProgram.startDate,
-      endDate: formDataObject.endingDate
-        ? formDataObject.endingDate + "T00:00:00.000Z" || ""
+      endDate: formDataObject.endDate
+        ? moment.utc(formDataObject.endDate).format()
         : ParticularProgram.endDate,
       programName: formDataObject.programName || ParticularProgram.programName,
       modifiedBy: parseInt(empid as number),
     };
     sendChangingProgram(changingProgram);
+    console.log("poda",formDataObject.startDate);
   };
 
   return (

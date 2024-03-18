@@ -23,13 +23,16 @@ export const fetchMentorMenteeName = async (employeeId: number) => {
   }
 };
 
-export const changeProgramDetails = async (data: ParticularProgramProps) => {
+export const changeProgramDetails = async (
+  data: ParticularProgramProps,
+  programID: number
+) => {
   try {
     const response = await axios.put(
-      "https://localhost:7259/api/program/1",
+      `https://localhost:7259/api/program/${programID}`,
       data
     );
-    console.log("hiii", response);
+    console.log("hiii", data);
     return response;
   } catch (error) {
     console.error("error in updating program:", error);
