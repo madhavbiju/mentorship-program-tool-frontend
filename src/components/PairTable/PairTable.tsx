@@ -11,6 +11,7 @@ import { PairTableProps } from "./Types";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import { useColorScheme as useMaterialColorScheme } from "@mui/material/styles";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 // Create new GridExample component
 const PairTable = ({ program, totalCount }: PairTableProps) => {
@@ -31,10 +32,20 @@ const PairTable = ({ program, totalCount }: PairTableProps) => {
       size="sm"
       color={params.value === 1 ? "success" : "neutral"}
       startDecorator={
-        params.value === 1 ? <RotateRightIcon /> : <CheckRoundedIcon />
+        params.value === 1 ? (
+          <RotateRightIcon />
+        ) : params.value === 8 ? (
+          <CheckRoundedIcon />
+        ) : (
+          <HighlightOffIcon />
+        )
       }
     >
-      {params.value === 1 ? "Ongoing" : (params.value === 8 ? "Completed" : "Inactive")}
+      {params.value === 1
+        ? "Ongoing"
+        : params.value === 8
+        ? "Completed"
+        : "Inactive"}
     </Chip>
   );
 
