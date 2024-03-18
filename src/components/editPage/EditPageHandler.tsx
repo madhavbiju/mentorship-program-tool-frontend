@@ -34,6 +34,7 @@ const ProgramEditHandler = () => {
       endDate: "",
       programName: "",
       modifiedBy: 0,
+      programStatus: 1,
     });
   const [MentorMenteeData, SetMentorMenteeData] = useState<MentorMenteeData>({
     menteeName: "",
@@ -138,9 +139,34 @@ const ProgramEditHandler = () => {
         : ParticularProgram.endDate,
       programName: formDataObject.programName || ParticularProgram.programName,
       modifiedBy: parseInt(empid as number),
+      programStatus: 1,
     };
     sendChangingProgram(changingProgram);
-    console.log("poda",formDataObject.startDate);
+    console.log("poda", formDataObject.startDate);
+  };
+
+  const deleteProgramData = {
+    programStatus: 2,
+    programID: ParticularProgram.programID,
+    mentorID: ParticularProgram.mentorID,
+    menteeID: ParticularProgram.menteeID,
+    modifiedTime: ParticularProgram.modifiedTime,
+    startDate: ParticularProgram.startDate,
+    endDate: ParticularProgram.endDate,
+    programName: ParticularProgram.programName,
+    modifiedBy: ParticularProgram.modifiedBy,
+  };
+  const deleteProgram = async () => {
+    let response = await changeProgramDetails(
+      deleteProgramData,
+      ParticularProgram.programID
+    );
+    if (response?.status == 200 || 201) {
+      Swal.fire("Success", "Program Deleted successfully!", "success");
+      history("/admin/pairs");
+    } else {
+      Swal.fire("Error", "Failed to edit program", "error");
+    }
   };
 
   return (
@@ -152,6 +178,7 @@ const ProgramEditHandler = () => {
         mentees={menteeData.mentees}
         mentors={mentorData.mentors}
         submitForm={submit}
+        deleteProgram={deleteProgram}
       />
     </div>
   );

@@ -34,7 +34,7 @@ const PairTable = ({ program, totalCount }: PairTableProps) => {
         params.value === 1 ? <RotateRightIcon /> : <CheckRoundedIcon />
       }
     >
-      {params.value === 1 ? "Ongoing" : "Completed"}
+      {params.value === 1 ? "Ongoing" : (params.value === 8 ? "Completed" : "Inactive")}
     </Chip>
   );
 

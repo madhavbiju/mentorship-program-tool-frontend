@@ -13,8 +13,16 @@ import { Mentors } from "../SearchForMentor/Types";
 const EditPage: React.FC<
   EditPageProps & { mentors: Mentors[] } & {
     submitForm: (e: FormEvent<HTMLFormElement>) => Promise<void>;
-  }
-> = ({ program, mentorName, menteeName, mentees, mentors, submitForm }) => {
+  } & { deleteProgram: () => void }
+> = ({
+  program,
+  mentorName,
+  menteeName,
+  mentees,
+  mentors,
+  submitForm,
+  deleteProgram,
+}) => {
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const day = date.getDate();
@@ -25,23 +33,23 @@ const EditPage: React.FC<
   const [editableprogramName, setEditableProgramName] = useState<string>(
     program.programName
   );
-  const [editableMentorid, setMentorID] = useState(0);
-  const [editableStartingDate, setStartingDate] = useState<string>("");
-  const [editableEndingDate, setEndingDate] = useState<string>("");
+  // const [editableMentorid, setMentorID] = useState(0);
+  // const [editableStartingDate, setStartingDate] = useState<string>("");
+  // const [editableEndingDate, setEndingDate] = useState<string>("");
 
-  const changeMentorid = (mentorID: number) => {
-    setMentorID(mentorID);
-  };
-  const changeStartingDate = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setStartingDate(e.target.value);
-  };
-  const changeEndingDate = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setEndingDate(e.target.value);
-  };
+  // const changeMentorid = (mentorID: number) => {
+  //   setMentorID(mentorID);
+  // };
+  // const changeStartingDate = (
+  //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   setStartingDate(e.target.value);
+  // };
+  // const changeEndingDate = (
+  //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   setEndingDate(e.target.value);
+  // };
 
   return (
     <div>
@@ -79,7 +87,9 @@ const EditPage: React.FC<
           <Button type="submit" sx={{ px: 4 }}>
             Save
           </Button>
-          <Button sx={{ px: 3 }}>Delete</Button>
+          <Button onClick={deleteProgram} sx={{ px: 3 }}>
+            Delete
+          </Button>
         </Box>
         <Grid
           container
@@ -112,12 +122,12 @@ const EditPage: React.FC<
               name="mentorID"
               select
               value={program.mentorID}
-              onChange={(e) => {
-                const mentorID = e.target.value as unknown as number;
-                if (mentorID) {
-                  changeMentorid(mentorID);
-                }
-              }}
+              // onChange={(e) => {
+              //   const mentorID = e.target.value as unknown as number;
+              //   if (mentorID) {
+              //     changeMentorid(mentorID);
+              //   }
+              // }}
             >
               {mentors?.map((mentor) => (
                 <MenuItem key={mentor.employeeID} value={mentor.employeeID}>
@@ -136,9 +146,9 @@ const EditPage: React.FC<
                   min: new Date().toISOString().split("T")[0],
                 },
               }}
-              onChange={(e) => {
-                changeStartingDate(e);
-              }}
+              // onChange={(e) => {
+              //   changeStartingDate(e);
+              // }}
             ></TextField>
             <TextField
               type="date"
@@ -151,9 +161,9 @@ const EditPage: React.FC<
                   min: new Date().toISOString().split("T")[0],
                 },
               }}
-              onChange={(e) => {
-                changeEndingDate(e);
-              }}
+              // onChange={(e) => {
+              //   changeEndingDate(e);
+              // }}
             ></TextField>
           </>
         </Grid>
