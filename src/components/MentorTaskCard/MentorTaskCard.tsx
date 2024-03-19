@@ -49,7 +49,7 @@ const MentorTaskCard = ({ tasks }: TaskProps) => {
             </Typography>
             <ListItem>
               <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                <Typography>{Tasks.menteeFirstName}</Typography>
+                <Typography>{Tasks.menteeFirstName} </Typography>
                 <Typography>{Tasks.menteeLastName}</Typography>
               </Typography>
             </ListItem>
@@ -99,8 +99,12 @@ const MentorTaskCard = ({ tasks }: TaskProps) => {
               Status
             </Typography>
             <ListItem sx={{ color: "blue" }}>
-            {Tasks.taskStatus === 1 ? "In Progress" : Tasks.taskStatus === 6 ? "Completed" : ""}
-              </ListItem>
+              {Tasks.taskStatus === 1
+                ? "In Progress"
+                : Tasks.taskStatus === 8
+                ? "Completed"
+                : ""}
+            </ListItem>
           </Stack>
         </List>
       ))}

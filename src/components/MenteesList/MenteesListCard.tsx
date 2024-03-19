@@ -87,8 +87,9 @@ const MenteesListCard = ({ mentees, totalCount }: MenteesProps) => {
                   Mentee
                 </Typography>
                 <ListItem sx={{ paddingTop: 1.5 }}>
-                  <Typography>{Mentee.firstName}</Typography>
-                  <Typography>{Mentee.lastName}</Typography>
+                  <Typography>
+                    {Mentee.firstName} {Mentee.lastName}
+                  </Typography>
                 </ListItem>
               </Stack>
 
