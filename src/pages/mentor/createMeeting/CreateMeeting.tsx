@@ -9,15 +9,8 @@ import {
   Grid,
   FormControl,
 } from "@mui/joy";
-import SelectMenteeDropDown from "../../../components/SelectMenteeDropDown/SelectMenteeDropDown";
-import {
-  DatePicker,
-  LocalizationProvider,
-  TimePicker,
-} from "@mui/x-date-pickers";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import MenteeDropDownHandler from "../../../components/SelectMenteeDropDown/SelectMenteeDropDownHandler";
 import "moment/locale/en-gb";
 import { Link } from "react-router-dom";
@@ -26,11 +19,13 @@ import { Input, TextField } from "@mui/material";
 interface CreateMeetingProps {
   submit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   setProgramID: React.Dispatch<React.SetStateAction<number>>;
+  endDate: string;
 }
 
 const CreateMeeting: React.FC<CreateMeetingProps> = ({
   submit,
   setProgramID,
+  endDate,
 }) => {
   return (
     <>
@@ -89,7 +84,10 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                   sx: { fontSize: "0.8rem" },
-                  inputProps: { min: new Date().toISOString().split("T")[0] },
+                  inputProps: {
+                    min: new Date().toISOString().split("T")[0],
+                    max: endDate.split("T")[0],
+                  },
                 }}
                 required
               ></TextField>

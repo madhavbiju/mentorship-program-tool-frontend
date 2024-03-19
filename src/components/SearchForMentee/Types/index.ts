@@ -1,7 +1,8 @@
 import { SetStateAction } from "react";
+import { ParticularProgramProps } from "../../editPage/types";
 
 export interface Mentees {
-  employeeID: SetStateAction<number>;
+  employeeID: number;
   firstName: string;
   lastName: string;
 }
@@ -11,4 +12,11 @@ export interface MenteesProps {
 }
 export interface MenteeIdProps {
   setMenteeID: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface EditPageProps {
+  program: ParticularProgramProps;
+  mentorName: string;
+  menteeName: string;
+  mentees: Mentees[];
 }

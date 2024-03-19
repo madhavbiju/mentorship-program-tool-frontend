@@ -3,6 +3,8 @@ export interface programs {
   mentorFirstName: string;
   menteeFirstName: string;
   endDate: string;
+  startDate: string;
+  programStatus: number;
   // Add other fields as needed
 }
 

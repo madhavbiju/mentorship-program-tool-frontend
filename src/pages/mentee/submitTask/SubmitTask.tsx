@@ -97,7 +97,6 @@ const SubmitTask = ({ detailsOfTask }: TasksProp) => {
           </Grid>
         </FormControl>
       </form>
-      {/* </Grid> */}
     </div>
   );
 };
