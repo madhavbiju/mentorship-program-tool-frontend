@@ -36,6 +36,7 @@ import MenteeChat from "./pages/mentee/chat/Chat";
 import PairReportDownloadPage from "./pages/admin/PairReportDownloadPage/PairReportDownloadPage";
 import SubmitTaskHandler from "./pages/mentee/submitTask/SubmitTaskHandler";
 import EditPageHandler from "./components/editPage/EditPageHandler";
+import MenteeProfileHandler from "./pages/mentor/menteeProfile/MenteeProfileHandler";
 
 const AppRoutes = () => {
   return (
@@ -111,6 +112,10 @@ const AppRoutes = () => {
             <Route path="tasks/create" element={<CreatetaskHandler />} />
             <Route path="tasks/create" element={<CreatetaskHandler />} />
             <Route path="calendar/create" element={<CreateMeetingHandler />} />
+            <Route
+              path="mentees/profile/:menteeId"
+              element={<MenteeProfileHandler />}
+            />
             <Route
               path="calendar/event/:meetingId"
               element={<EventPageHandler />}

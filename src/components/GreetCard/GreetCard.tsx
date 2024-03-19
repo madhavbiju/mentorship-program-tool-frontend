@@ -23,7 +23,7 @@ const GreetCard = () => {
       if (decoded && decoded.name) {
         // Convert the name to uppercase before setting it
         const upperName = decoded.name.toUpperCase();
-        setName(upperName);
+        setName(upperName.split(" ")[0]);
         // Set initials
         setInitials(getInitials(upperName));
       }
@@ -36,7 +36,7 @@ const GreetCard = () => {
         display: "flex",
         width: 400,
         height: 150,
-        mb: 2,
+
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
@@ -44,7 +44,7 @@ const GreetCard = () => {
     >
       <AspectRatio
         ratio="1"
-        sx={{ minWidth: 130, borderRadius: "50%", width: 130, height: 130 }}
+        sx={{ minWidth: 120, borderRadius: "50%", width: 120, height: 120 }}
       >
         <Avatar
           sx={{
@@ -57,8 +57,8 @@ const GreetCard = () => {
         </Avatar>
       </AspectRatio>
       <Stack sx={{ ml: 2 }}>
-        <Typography level="h2">Hi,</Typography>
-        <Typography level="title-lg">{name}</Typography>
+        <Typography level="title-lg">Hi,</Typography>
+        <Typography level="h3">{name}</Typography>
       </Stack>
     </Box>
   );

@@ -6,7 +6,7 @@ import ListDivider from "@mui/joy/ListDivider";
 import ListItem from "@mui/joy/ListItem";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import Typography from "@mui/joy/Typography";
-import { ListItemButton } from "@mui/joy";
+import { ListItemButton, Sheet } from "@mui/joy";
 import { RequestBoxProps, requests } from "./Types";
 import { RequestModal } from "../ApproveRequestModal/RequestModal";
 
@@ -29,7 +29,15 @@ export default function RequestBox({
   };
   return (
     <>
-      <Box>
+      <Sheet
+        sx={{
+          height: "96%",
+          minWidth: 240,
+          borderRadius: "sm",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         {request.length > 0 ? (
           <List
             variant="outlined"
@@ -66,7 +74,7 @@ export default function RequestBox({
             <Typography>No Requests</Typography>
           </Box>
         )}
-      </Box>
+      </Sheet>
       <RequestModal
         open={open}
         onClose={handleClose}

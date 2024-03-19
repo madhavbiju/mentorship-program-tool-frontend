@@ -12,9 +12,11 @@ import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import { useColorScheme as useMaterialColorScheme } from "@mui/material/styles";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { useNavigate } from "react-router-dom";
 
 // Create new GridExample component
 const PairTable = ({ program, totalCount }: PairTableProps) => {
+  const history = useNavigate();
   const { mode } = useMaterialColorScheme();
   // Convert Date to Readable Format
   const dateFormatter = (params: ValueFormatterParams): string => {
@@ -105,6 +107,9 @@ const PairTable = ({ program, totalCount }: PairTableProps) => {
       <AgGridReact
         rowData={program}
         columnDefs={colDefs}
+        onRowClicked={(event) => {
+          history(`edit/${event.data.programID}`);
+        }}
         defaultColDef={defaultColDef}
         autoSizeStrategy={autoSizeStrategy}
       />

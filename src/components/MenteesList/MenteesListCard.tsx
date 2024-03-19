@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import { Mentee, MenteesProps } from "./Types";
 import CreateRequestModal from "../CreateRequestModal/CreateRequestModal";
 import CreateRequestModalHandler from "../CreateRequestModal/CreateRequestModalHandler";
+import { useNavigate } from "react-router-dom";
 
 const menteesData = [
   {
@@ -40,30 +41,13 @@ const MenteesListCard = ({ mentees, totalCount }: MenteesProps) => {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
-
-  const [open, setOpen] = React.useState<boolean>(false);
-  const [menteeData, setMenteeData] = useState<Mentee>({
-    employeeID: 0,
-    firstName: "",
-    lastName: "",
-    programName: "",
-    programID: 0,
-    endDate: "",
-  });
-
+  const history = useNavigate();
   const handleClick = (mentee: Mentee) => {
-    setOpen(true);
-
-    setMenteeData(mentee);
+    history(`profile/${mentee.employeeID}`);
   };
 
   return (
     <>
-      <CreateRequestModalHandler
-        open={open}
-        setOpen={setOpen}
-        menteeData={menteeData}
-      />
       <Grid xs={12}>
         {mentees.map((Mentee, index) => (
           <List

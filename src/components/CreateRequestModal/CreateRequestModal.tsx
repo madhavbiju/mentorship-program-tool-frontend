@@ -32,6 +32,14 @@ const CreateRequestModal = ({
     setReason(event.target.value);
   };
 
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month indexes are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   return (
     <>
       <Modal
@@ -63,11 +71,12 @@ const CreateRequestModal = ({
               Request Program Extension
             </Typography>
             <Typography id="modal-desc" textColor="text.tertiary">
-              Mentee: {menteeData.firstName + " " + menteeData.lastName}
+              Mentee:{" "}
+              {menteeData.menteeFirstName + " " + menteeData.menteeLastName}
               <br />
               Program: {menteeData.programName}
               <br />
-              Current End Date: {menteeData.endDate}
+              Current End Date: {formatDate(menteeData.endDate)}
             </Typography>
           </Grid>
           <Divider />

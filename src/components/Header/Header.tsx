@@ -78,6 +78,8 @@ export default function Header() {
 
   return (
     <Sheet
+      color="neutral"
+      variant="soft"
       sx={{
         display: { xs: "flex", md: "flex" },
         alignItems: "center",
@@ -89,8 +91,9 @@ export default function Header() {
         zIndex: 10000,
         p: 2,
         gap: 1,
-        borderBottom: "1px solid",
-        borderColor: "background.level1",
+        borderBottom: 1,
+        borderColor: "divider",
+        boxShadow: 3,
       }}
     >
       <GlobalStyles
@@ -127,7 +130,8 @@ export default function Header() {
           sx={{ display: { xs: "none", sm: "flex" } }}
         >
           <Card
-            variant="plain"
+            color="neutral"
+            variant="soft"
             sx={{ minWidth: 150, minHeight: 30, flexGrow: 1 }}
           >
             <CardCover>

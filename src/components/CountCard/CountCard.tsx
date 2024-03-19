@@ -1,28 +1,16 @@
-import { Card, Typography, CardContent } from '@mui/joy'
-import React from 'react'
-import { CountCardPropsType } from './CountCardPropType'
+import { Card, Typography, CardContent } from "@mui/joy";
+import React from "react";
+import { CountCardPropsType } from "./CountCardPropType";
 
-const CountCard = ({ title, count, sx = [] }: CountCardPropsType) => {
+const CountCard = ({ title, count }: CountCardPropsType) => {
   return (
-    <Card variant="soft"
-    sx={[
-        {
-        },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
-      <div>
-        <Typography level="title-lg">{title}</Typography>
-      </div>
-      <CardContent orientation="horizontal">
-        <div>
-          <Typography fontSize="lg" fontWeight="lg">
-            {count}
-          </Typography>
-        </div>
-      </CardContent>
+    <Card variant="outlined" sx={{ width: "100%", padding: 1, lineHeight: 0 }}>
+      <Typography sx={{ opacity: "90%", lineHeight: 1 }}>{title}</Typography>
+      <Typography level="h2" sx={{ lineHeight: 1 }}>
+        {count}
+      </Typography>
     </Card>
-  )
-}
+  );
+};
 
-export default CountCard
+export default CountCard;
