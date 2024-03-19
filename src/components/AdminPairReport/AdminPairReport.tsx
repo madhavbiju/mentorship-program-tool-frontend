@@ -6,7 +6,7 @@ import { Grid } from "@mui/material";
 import { Option } from "@mui/joy";
 import PairReportTaskTableHandler from "../PairReportTaskTable/PairReportTaskTableHandler";
 import PairReportMeetingTableHandler from "../PairReportMeetingTable/PairReportMeetingTableHandler";
-import SelectAllMenteedropDownHandler from "../SelectAllMenteeDropDown/SelectAllMenteedropDownHandler";
+import SelectAllMenteedropDownHandler from "../SelectAllMenteeDropDown/SelectAllMenteeDropDownHandler";
 interface AdminPairProp {
   setProgramID: React.Dispatch<React.SetStateAction<number>>;
   programID: number;

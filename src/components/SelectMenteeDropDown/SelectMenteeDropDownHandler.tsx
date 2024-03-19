@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
 import { menteeList, programStateProp } from "./Types";
 import SelectMenteeDropDown from "./SelectMenteeDropDown";
-import { fetchMenteeList } from "./API/getMenteeList";
+import { fetchMenteeList } from "./Api/getMenteeList";
 
 const MenteeDropDownHandler = ({ setProgramID }: programStateProp) => {
   const mentee: menteeList = {
