@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { taskType } from "./Types";
 import Swal from "sweetalert2";
 import CreateTasks from "./CreateTasks";
 import { posttaskData } from "./API/postTasks";
 import { useNavigate } from "react-router-dom";
+import { fetchProgramEndDate } from "../createMeeting/Api/postMeeting";
 
 const CreatetaskHandler = () => {
   const now = new Date();
@@ -61,6 +62,7 @@ const CreatetaskHandler = () => {
     // Call sendtaskData after conversion is completed
     await sendtaskData(formatedtaskData);
   };
+  const [programID, setProgramID] = useState(0);
 
   const handleInputChange = (key: string, value: any) => {
     settaskData((prevData) => ({
@@ -69,7 +71,19 @@ const CreatetaskHandler = () => {
     }));
   };
 
-  const [programID, setProgramID] = useState(0);
+  //task endDate max will be program endDate
+  const [endDate, SetendDate] = useState<string>(new Date().toISOString());
+  const getProgramEndDate = async () => {
+    let response = await fetchProgramEndDate(programID);
+    console.log(response);
+    SetendDate(response.endDate);
+  };
+  useEffect(() => {
+    if (programID !== 0) {
+      getProgramEndDate();
+    }
+  }, [programID]);
+
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -82,7 +96,13 @@ const CreatetaskHandler = () => {
     await sendtaskData(formatedtaskData);
   };
 
-  return <CreateTasks submit={submit} setProgramID={setProgramID} />;
+  return (
+    <CreateTasks
+      submit={submit}
+      setProgramID={setProgramID}
+      endDate={endDate}
+    />
+  );
 };
 
 export default CreatetaskHandler;

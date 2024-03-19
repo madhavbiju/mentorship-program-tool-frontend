@@ -6,16 +6,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
-import Tooltip from "@mui/joy/Tooltip";
 import Dropdown from "@mui/joy/Dropdown";
 import Menu from "@mui/joy/Menu";
 import MenuButton from "@mui/joy/MenuButton";
 import MenuItem from "@mui/joy/MenuItem";
 import ListDivider from "@mui/joy/ListDivider";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { toggleSidebar } from "../../utils/utils";
 import ColorSchemeToggle from "../ColorSchemeToggle/ColorSchemeToggle";
@@ -25,7 +21,6 @@ import ToggleRoleButton from "../toggleRoleButton/ToggleRoleButton";
 import SearchInput from "../SearchInput/SearchInput";
 import {
   Avatar,
-  AvatarGroup,
   Card,
   CardCover,
   Modal,
@@ -33,8 +28,12 @@ import {
   useTheme,
 } from "@mui/joy";
 import { decodeToken } from "../../apiHandler/Decoder";
+import NotificationTest from "../NotificationButton/NotificationTest";
+
+
 
 export default function Header() {
+  // console.log(notifications);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
   const history = useNavigate();
   const [name, setName] = React.useState("");
@@ -205,6 +204,9 @@ export default function Header() {
               <SearchInput />
             </Sheet>
           </Modal>
+
+          <NotificationTest />
+
           <ColorSchemeToggle sx={{ ml: "auto" }} />
           <ToggleRoleButton />
           <Dropdown>

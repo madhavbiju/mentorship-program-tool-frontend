@@ -10,3 +10,14 @@ import { meetingType } from "../Types";
       console.error("Error posting meeting:", error);
     }
   };
+
+  export const fetchProgramEndDate = async(programID : number)=>{
+    try {
+      const response = await axios.get(
+        `https://localhost:7259/api/program/${programID}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching endDate", error);
+    }
+  }

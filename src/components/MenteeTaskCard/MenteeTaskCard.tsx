@@ -24,14 +24,6 @@ const MenteeTaskCard = ({ tasks }: TaskProps) => {
     return `${day}/${month}/${year}`;
   };
   const history = useNavigate();
-  // const [taskData, setTaskData] = useState<Tasks>({
-  //   taskID: 0,
-  //   menteeFirstName: "",
-  //   menteeLastName: "",
-  //   taskName: "",
-  //   taskStatus: 0,
-  //   endDate: "",
-  // });
   const handleClick = (task: Tasks) => {
     console.log(task.taskID);
     // setTaskData(task);

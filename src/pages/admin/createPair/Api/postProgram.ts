@@ -11,6 +11,6 @@ export const postProgramData = async (programData: programType) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching active count:", error);
+    console.error("Error in creating program:", error);
   }
 };

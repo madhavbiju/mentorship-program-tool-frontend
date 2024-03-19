@@ -23,9 +23,10 @@ import { TextField } from "@mui/material";
 interface CreatetaskProps {
   submit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   setProgramID: React.Dispatch<React.SetStateAction<number>>;
+  endDate : string;
 }
 
-const CreateTasks: React.FC<CreatetaskProps> = ({ submit, setProgramID }) => {
+const CreateTasks: React.FC<CreatetaskProps> = ({ submit, setProgramID , endDate}) => {
   return (
     <div>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -76,7 +77,8 @@ const CreateTasks: React.FC<CreatetaskProps> = ({ submit, setProgramID }) => {
               InputLabelProps={{ shrink: true }}
               InputProps={{
                 sx: { fontSize: "0.8rem" },
-                inputProps: { min: new Date().toISOString().split("T")[0] },
+                inputProps: { min: new Date().toISOString().split("T")[0],
+              max: endDate.split("T")[0] },
               }}
               required
             ></TextField>

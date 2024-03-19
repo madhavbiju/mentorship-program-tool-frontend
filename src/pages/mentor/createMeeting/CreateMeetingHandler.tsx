@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { postMeetingData } from "./Api/postMeeting";
+import { useEffect, useState } from "react";
+import { fetchProgramEndDate, postMeetingData } from "./Api/postMeeting";
 import { meetingType } from "./Types";
 import Swal from "sweetalert2";
 import moment from "moment";
@@ -24,6 +24,19 @@ const CreateMeetingHandler = () => {
       meetingStatus: 7,
     };
   }
+  const [programID, setProgramID] = useState(0);
+
+  const [endDate, setEndDate] = useState<string>(new Date().toISOString());
+  const getProgramData = async () => {
+    let response = await fetchProgramEndDate(programID);
+    console.log(response);
+    setEndDate(response.endDate);
+  };
+  useEffect(() => {
+    if (programID !== 0) {
+      getProgramData();
+    }
+  }, [programID]);
 
   const sendMeetingData = async (formatedMeetingData: meetingType) => {
     setIsLoading(true);
@@ -38,7 +51,6 @@ const CreateMeetingHandler = () => {
     }
   };
 
-  const [programID, setProgramID] = useState(0);
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -54,7 +66,13 @@ const CreateMeetingHandler = () => {
     await sendMeetingData(formatedMeetingData);
   };
 
-  return <CreateMeeting submit={submit} setProgramID={setProgramID} />;
+  return (
+    <CreateMeeting
+      submit={submit}
+      setProgramID={setProgramID}
+      endDate={endDate}
+    />
+  );
 };
 
 export default CreateMeetingHandler;

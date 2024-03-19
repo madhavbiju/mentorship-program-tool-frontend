@@ -47,6 +47,7 @@ const CreatePairCardHandler = () => {
     formData.forEach((value, key) => {
       formDataObject[key] = value as string;
     });
+    console.log("hi",formDataObject)
     const formatedProgramData: programType =
       convertToProgramType(formDataObject);
     sendProgramData(formatedProgramData);

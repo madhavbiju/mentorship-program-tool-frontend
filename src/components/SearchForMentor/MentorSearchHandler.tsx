@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MenteeSearch from "../SearchForMentee/MenteeSearch";
-import { fetchMentorData } from "./Api/getMenteeData";
+import { fetchMentorData } from "./Api/getMentorData";
 import { MentorIdProps, Mentors } from "./Types";
 import MentorSearch from "./MentorSearch";
 
