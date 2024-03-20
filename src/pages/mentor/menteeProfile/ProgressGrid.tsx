@@ -1,14 +1,16 @@
-import { Box, Button, Grid, Sheet, Typography } from "@mui/joy";
 import React, { useEffect, useState } from "react";
+import { talkToPaLM } from "./Api/getFromPalm";
+import { Box, Button, Grid, Skeleton, Typography } from "@mui/joy";
 import ProgramProgressBar from "../../../components/ProgramProgressBar/ProgramProgressBar";
 import CreateRequestModalHandler from "../../../components/CreateRequestModal/CreateRequestModalHandler";
 import { menteeProfileProp } from "./Types";
+import StaggerText from "react-stagger-text";
 
 const ProgressGrid = ({ menteeData }: menteeProfileProp) => {
   const [daysLeft, setDaysLeft] = useState<number>(0);
   const [percentageCompletion, setPercentageCompletion] = useState<number>(0);
   const [open, setOpen] = React.useState<boolean>(false);
-
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
   const handleClick = () => {
     setOpen(true);
   };
@@ -40,6 +42,49 @@ const ProgressGrid = ({ menteeData }: menteeProfileProp) => {
     return `${day}/${month}/${year}`;
   };
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [inputText, setInputText] = useState<string>("");
+  const [responseText, setResponseText] = useState<string>("");
+
+  const requestData = {
+    prompt: {
+      context: "",
+      examples: [],
+      messages: [{ content: inputText }],
+    },
+    temperature: 0.25,
+    top_k: 40,
+    top_p: 0.95,
+    candidate_count: 1,
+  };
+
+  const sendToPalm = async () => {
+    console.log("Sending");
+    try {
+      const response = await talkToPaLM(requestData);
+      console.log(response.candidates[0].content);
+      setResponseText(response.candidates[0].content);
+    } catch (error) {
+      console.error("Error with PaLM", error);
+    }
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    setInputText(
+      `Program Name:${menteeData.programName};Mentor:${menteeData.mentorFirstName};Mentee:${menteeData.menteeFirstName};Start date:${menteeData.startDate};End Date:${menteeData.endDate};Total tasks assigned:10;Completed:8;2 pending;4 meetings scheduled. Summarize these details into a simple formal paragraph. Don't add any other information other than what is mentioned.Don't have to mention who is the mentor and mentee. Reply only the paragraph.`
+    );
+  }, []);
+
+  useEffect(() => {
+    console.log(inputText);
+    sendToPalm();
+  }, [inputText]);
+
+  useEffect(() => {
+    if (responseText != "") setIsLoading(false); // Set loading state to false regardless of success or failure
+  }, [responseText]);
+
   return (
     <>
       <CreateRequestModalHandler
@@ -62,15 +107,34 @@ const ProgressGrid = ({ menteeData }: menteeProfileProp) => {
             daysLeft={daysLeft}
             percentageCompletion={percentageCompletion}
           />
+          <br></br>
+          <Typography sx={{ opacity: "80%" }}>
+            ✨ AI Generated Summary:
+          </Typography>
+          {isLoading ? ( // Render skeleton if loading
+            <Typography>
+              <Skeleton>
+                The ReactJS program started on February 10, 2024 and will end on
+                March 20, 2024. A total of 10 tasks were assigned, 8 of which
+                have been completed. 2 tasks are pending and 4 meetings have
+                been scheduled.
+              </Skeleton>
+            </Typography>
+          ) : (
+            <Typography>
+              <StaggerText>{responseText}</StaggerText>
+            </Typography>
+          )}
         </Grid>
-        <Grid sx={{ padding: 2 }}>
+        {/* <Grid sx={{ padding: 2 }}>
           <Typography level="h4">
             Start Date: {formatDate(menteeData.startDate)}
           </Typography>
           <Typography level="h4">
             End Date: {formatDate(menteeData.endDate)}
           </Typography>
-        </Grid>
+        </Grid> */}
+        <br></br>
         <Button onClick={() => handleClick()}>Request Extension</Button>
       </Box>
     </>
