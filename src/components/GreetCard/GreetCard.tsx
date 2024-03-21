@@ -47,6 +47,7 @@ const GreetCard = () => {
         sx={{ minWidth: 120, borderRadius: "50%", width: 120, height: 120 }}
       >
         <Avatar
+          variant="outlined"
           sx={{
             width: "100%",
             height: "100%",

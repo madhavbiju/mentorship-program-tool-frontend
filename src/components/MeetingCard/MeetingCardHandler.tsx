@@ -4,7 +4,7 @@ import { getMeetingData } from "./Api/getMeetingData";
 import MentorDashboardSkeleton from "../../pages/mentor/dashboard/MentorDashboardSkeleton";
 import { Meeting } from "./Types";
 import { Stack } from "@mui/system";
-import { Typography } from "@mui/joy";
+import { Grid, Sheet, Typography } from "@mui/joy";
 
 const MeetingCardHandler = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true); // Set initial loading state to true
@@ -38,7 +38,13 @@ const MeetingCardHandler = () => {
 
   return (
     <>
-      <Stack>
+      <Stack
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
         <Typography
           level="h3"
           sx={{
@@ -49,19 +55,42 @@ const MeetingCardHandler = () => {
           Upcoming Meetings
         </Typography>
       </Stack>
-      <Stack sx={{ mt: 1 }}>
-        {isLoading ? ( // Render skeleton if loading
-          <MentorDashboardSkeleton />
-        ) : (
-          <>
+      {isLoading ? ( // Render skeleton if loading
+        <MentorDashboardSkeleton />
+      ) : (
+        <>
+          <Sheet
+            variant="outlined"
+            sx={{
+              mt: 1,
+              flex: 1,
+              borderRadius: "sm",
+              height: "100%",
+              padding: 1,
+            }}
+          >
             {meetingData.meeting.length === 0 ? (
-              <Typography>No upcoming meetings</Typography>
+              <Stack
+                justifyContent="center"
+                alignItems="center"
+                spacing={1}
+                sx={{ display: { xs: "none", sm: "flex" } }}
+              >
+                <img
+                  height={300}
+                  src="/Assets/time.png" // Specify your default image path
+                  srcSet="/Assets/time.png"
+                  loading="lazy"
+                  alt=""
+                />
+                <Typography>No Upcoming Meetings</Typography>
+              </Stack>
             ) : (
               <MeetingCard meeting={meetingData.meeting} />
             )}
-          </>
-        )}
-      </Stack>
+          </Sheet>
+        </>
+      )}
     </>
   );
 };

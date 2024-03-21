@@ -1,4 +1,13 @@
-import { Box, Breadcrumbs, Card, CardContent, Divider, Typography } from "@mui/joy";
+import {
+  Box,
+  Breadcrumbs,
+  Card,
+  CardContent,
+  Divider,
+  Sheet,
+  Stack,
+  Typography,
+} from "@mui/joy";
 import React from "react";
 import GreetCard from "../../../components/GreetCard/GreetCard";
 import CountCard from "../../../components/CountCard/CountCard";
@@ -8,7 +17,7 @@ import { Grid } from "@mui/material";
 import { ActiveMenteeCountData } from "./Types";
 import MeetingCardHandler from "../../../components/MeetingCard/MeetingCardHandler";
 import SubmittedTaskHandler from "../../../components/SubmittedTasks/SubmittedTaskHandler";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
@@ -47,21 +56,33 @@ const MentorDashboard = ({ menteeCount }: ActiveMenteeCountData) => {
         </Grid>
       </Grid>
       <Divider />
-
-      <Grid container spacing={2} sx={{ marginTop: ".5%" }}>
-        <Grid item xs={12} lg={6} sx={{ marginBottom: "2%" }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <MeetingCardHandler />
-            </Grid>
-          </Grid>
+      <Grid
+        md={12}
+        container
+        rowGap={1}
+        columnGap={1}
+        height="60vh"
+        mt={1}
+        display={"flex"}
+        flexDirection={{ xs: "row", lg: "column" }}
+      >
+        <Grid
+          xs={12}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <MeetingCardHandler />
         </Grid>
-        <Grid item xs={12} lg={6} sx={{ marginBottom: "2%" }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <SubmittedTaskHandler />
-            </Grid>
-          </Grid>
+        <Grid
+          xs={12}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <SubmittedTaskHandler />
         </Grid>
       </Grid>
     </Box>

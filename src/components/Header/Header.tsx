@@ -19,18 +19,9 @@ import { useNavigate } from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
 import ToggleRoleButton from "../toggleRoleButton/ToggleRoleButton";
 import SearchInput from "../SearchInput/SearchInput";
-import {
-  Avatar,
-  Card,
-  CardCover,
-  Modal,
-  ModalClose,
-  useTheme,
-} from "@mui/joy";
+import { Avatar, Card, CardCover, Modal, ModalClose, useTheme } from "@mui/joy";
 import { decodeToken } from "../../apiHandler/Decoder";
 import NotificationTest from "../NotificationButton/NotificationTest";
-
-
 
 export default function Header() {
   // console.log(notifications);
@@ -211,7 +202,7 @@ export default function Header() {
           <ToggleRoleButton />
           <Dropdown>
             <MenuButton
-              variant="plain"
+              variant="solid"
               size="sm"
               sx={{
                 maxWidth: "32px",

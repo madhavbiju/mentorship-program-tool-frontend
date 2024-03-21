@@ -1,8 +1,11 @@
 import {
+  AspectRatio,
   Box,
   Breadcrumbs,
   Button,
+  Card,
   FormControl,
+  FormHelperText,
   Grid,
   Input,
   Textarea,
@@ -20,13 +23,30 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { TextField } from "@mui/material";
 
+import { styled } from "@mui/joy";
+
 interface CreatetaskProps {
   submit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   setProgramID: React.Dispatch<React.SetStateAction<number>>;
-  endDate : string;
+  endDate: string;
 }
+const VisuallyHiddenInput = styled("input")`
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  white-space: nowrap;
+  width: 1px;
+`;
 
-const CreateTasks: React.FC<CreatetaskProps> = ({ submit, setProgramID , endDate}) => {
+const CreateTasks: React.FC<CreatetaskProps> = ({
+  submit,
+  setProgramID,
+  endDate,
+}) => {
   return (
     <div>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -51,53 +71,51 @@ const CreateTasks: React.FC<CreatetaskProps> = ({ submit, setProgramID , endDate
           </Typography>
         </Breadcrumbs>
       </Box>
-      <Grid>
-        <Typography level="h3">Create Task</Typography>
-      </Grid>
+      <Typography level="h2" component="h1">
+        Create Task
+      </Typography>
 
       <form onSubmit={submit}>
         <FormControl required>
           <Grid
             container
-            rowGap={3}
-            sx={{ display: "flex", flexDirection: "column", mx: 15 }}
+            rowGap={1}
+            sx={{ display: "flex", flexDirection: "column", mx: 10 }}
           >
+            <FormHelperText>Select Mentee</FormHelperText>
             <MenteeDropDownHandler setProgramID={setProgramID} />
+            <FormHelperText>Task Name</FormHelperText>
             <Input
               type="text"
               name="title"
-              placeholder="Task Name"
+              placeholder="Enter Task Name"
               required
               sx={{ height: 10 }}
             ></Input>
-            <TextField
+            <FormHelperText>Submission Date</FormHelperText>
+            <Input
               type="date"
               name="endDate"
-              label="Submission Date"
-              InputLabelProps={{ shrink: true }}
-              InputProps={{
-                sx: { fontSize: "0.8rem" },
-                inputProps: { min: new Date().toISOString().split("T")[0],
-              max: endDate.split("T")[0] },
-              }}
+              placeholder="Submission Date"
               required
-            ></TextField>
-
-            <TextField
+              slotProps={{
+                input: {
+                  min: new Date().toISOString().split("T")[0],
+                  max: endDate.split("T")[0],
+                },
+              }}
+            ></Input>
+            <FormHelperText>Description</FormHelperText>
+            <Input
               type="text"
-              size="medium"
               name="description"
-              label="Description"
-              InputLabelProps={{ shrink: true }}
-              InputProps={{
-                sx: { fontSize: "0.8rem" },
-              }}
+              placeholder="Enter Description"
               required
-            ></TextField>
-            <Grid lg={3} xs={12}>
-              <Typography level="h4">Upload Files</Typography>
-              <FileUploadButton />
-            </Grid>
+              sx={{ height: 10 }}
+            ></Input>
+            <br></br>
+            <FileUploadButton />
+            <br></br>
             <Button type="submit">Create</Button>
           </Grid>
         </FormControl>

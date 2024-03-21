@@ -27,8 +27,8 @@ const AdminReportPieChart: React.FC<AdminReportPieChartProps> = ({
           ],
         },
       ]}
-      width={400}
-      height={200}
+      width={380}
+      height={160}
       colors={mangoFusionPalette}
     />
   );

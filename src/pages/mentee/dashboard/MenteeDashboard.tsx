@@ -47,12 +47,33 @@ const MenteeDashboard = () => {
       <Divider />
       <br />
       <ProgramProgressBarHandler />
-      <br />
-      <Grid columnGap={2} sx={{ display: "flex" }} container>
-        <Grid xs={12} lg={6}>
+
+      <Grid
+        xs={12}
+        container
+        rowGap={1}
+        columnGap={1}
+        height="52vh"
+        mt={2}
+        display={"flex"}
+        flexDirection={{ xs: "row", lg: "column" }}
+      >
+        <Grid
+          xs={12}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <PendingTaskHandler />
         </Grid>
-        <Grid xs={12} lg={5}>
+        <Grid
+          xs={12}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <MeetingCardHandler />
         </Grid>
       </Grid>

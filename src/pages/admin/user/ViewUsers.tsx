@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import Box from "@mui/joy/Box";
 import Breadcrumbs from "@mui/joy/Breadcrumbs";
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  SelectChangeEvent,
-} from "@mui/material";
+import { FormControl, Select, FormLabel, Option } from "@mui/joy";
 import Input from "@mui/joy/Input";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Typography from "@mui/joy/Typography";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
@@ -21,64 +15,46 @@ export default function ViewUsers() {
   const [status, setStatus] = useState("all");
   const [sort, setSort] = useState("Asc");
   const [search, setSearch] = useState("");
-  const handleRoleChange = (event: SelectChangeEvent<string>) => {
-    setSelectedRole(event.target.value);
-  };
-  const handleSortChange = (event: SelectChangeEvent<string>) => {
-    setSort(event.target.value);
-  };
+
   const handleSearchChange = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const value = formData.get("searchParam") as string;
     setSearch(value ?? "");
   };
-  const handleStatusChange = (event: SelectChangeEvent<string>) => {
-    setStatus(event.target.value);
-  };
 
   const renderFilters = () => (
     <React.Fragment>
-      <FormControl size="small">
-        <InputLabel>Sort</InputLabel>
+      <FormControl size="sm">
+        <FormLabel>Status</FormLabel>
         <Select
-          label="Filter"
-          value={sort}
-          onChange={handleSortChange}
-          displayEmpty
+          size="sm"
+          placeholder="Filter by status"
+          slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
+          value={status}
+          onChange={(e, newValue) => setStatus(newValue!)}
         >
-          <MenuItem value="Asc">Ascending</MenuItem>
-          <MenuItem value="Desc">Descending</MenuItem>
+          <Option value="all">All</Option>
+          <Option value="active">Active</Option>
+          <Option value="inactive">Completed</Option>
         </Select>
       </FormControl>
 
-      <FormControl size="small">
-        <InputLabel>Filter</InputLabel>
+      <FormControl size="sm">
+        <FormLabel>Role</FormLabel>
         <Select
-          label="Filter"
-          value={status}
-          onChange={handleStatusChange}
-          displayEmpty
-        >
-          <MenuItem value="all">All</MenuItem>
-          <MenuItem value="active">Active</MenuItem>
-          <MenuItem value="inactive">Inactive</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl size="small" variant="outlined" fullWidth>
-        <InputLabel>Role</InputLabel>
-        <Select
-          label="Role" // This should match the InputLabel for proper alignment
+          size="sm"
+          placeholder="Filter by Role"
+          slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
           value={selectedRole}
-          onChange={handleRoleChange} // Presuming handleRoleChange is defined to handle the event
-          displayEmpty
+          onChange={(e, newValue) => setSelectedRole(newValue!)}
         >
-          <MenuItem value="all">All</MenuItem>
-          <MenuItem value="assigned">Assigned</MenuItem>
-          <MenuItem value="unassigned">Unassigned</MenuItem>
-          <MenuItem value="admin">Admin</MenuItem>
-          <MenuItem value="mentor">Mentor</MenuItem>
-          <MenuItem value="mentee">Mentee</MenuItem>
+          <Option value="all">All</Option>
+          <Option value="assigned">Assigned</Option>
+          <Option value="unassigned">Unassigned</Option>
+          <Option value="admin">Admin</Option>
+          <Option value="mentor">Mentor</Option>
+          <Option value="mentee">Mentee</Option>
         </Select>
       </FormControl>
     </React.Fragment>
@@ -93,7 +69,7 @@ export default function ViewUsers() {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link to="/admin/home" style={{ color: "grey" }}  aria-label="Home">
+          <Link to="/admin/home" style={{ color: "grey" }} aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>
@@ -130,8 +106,9 @@ export default function ViewUsers() {
         }}
       >
         <Box component="form" onSubmit={handleSearchChange} sx={{ flex: 1 }}>
-          <FormControl size="small">
+          <FormControl sx={{ flex: 1 }} size="sm">
             {/* <FormLabel>Search</FormLabel> */}
+            <FormLabel>Search for User</FormLabel>
             <Input
               size="sm"
               placeholder="Search"

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
 import { menteeList, programStateProp } from "./Types";
 import SelectMenteeDropDown from "./SelectMenteeDropDown";
-import { fetchMenteeList } from "./API/getMenteeList";
+import { fetchMenteeList } from "./Api/getMenteeList";
 
 const MenteeDropDownHandler = ({ setProgramID }: programStateProp) => {
   const mentee: menteeList = {
@@ -30,24 +30,14 @@ const MenteeDropDownHandler = ({ setProgramID }: programStateProp) => {
 
   return (
     <>
-      <Stack
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          mb: 1,
-        }}
-      >
-        {isLoading ? (
-          <Skeleton width={200} height={40} />
-        ) : (
-          <SelectMenteeDropDown
-            menteeListData={menteeListData}
-            setProgramID={setProgramID}
-          />
-        )}
-      </Stack>
+      {isLoading ? (
+        <Skeleton width={200} height={40} />
+      ) : (
+        <SelectMenteeDropDown
+          menteeListData={menteeListData}
+          setProgramID={setProgramID}
+        />
+      )}
     </>
   );
 };

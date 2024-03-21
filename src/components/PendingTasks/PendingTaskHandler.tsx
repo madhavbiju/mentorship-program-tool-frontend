@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MentorDashboardSkeleton from "../../pages/mentor/dashboard/MentorDashboardSkeleton";
 import { Task } from "./Types";
-import { Stack, Typography } from "@mui/joy";
+import { Sheet, Stack, Typography } from "@mui/joy";
 import PaginationIcons from "../Pagination/PaginationIcons";
 import PendingTask from "./PendingTask";
 import { fetchPendingTaskData } from "./Api/getPendingTask";
@@ -35,21 +35,17 @@ const PendingTaskHandler = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          // alignItems: "center", // Uncomment this line if needed
-          mb: 1,
         }}
       >
-        <Stack>
-          <Typography
-            level="h3"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            Pending Tasks
-          </Typography>
-        </Stack>
+        <Typography
+          level="h3"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          Pending Tasks
+        </Typography>
         <PaginationIcons
           total={taskData.totalCount}
           setPageApi={setPageApi}
@@ -60,11 +56,36 @@ const PendingTaskHandler = () => {
         <MentorDashboardSkeleton />
       ) : (
         <>
-          {taskData.tasks.length === 0 ? (
-            <Typography>No Pending Tasks</Typography>
-          ) : (
-            <PendingTask tasks={taskData.tasks} />
-          )}
+          <Sheet
+            variant="outlined"
+            sx={{
+              mt: 1,
+              flex: 1,
+              borderRadius: "sm",
+              height: "100%",
+              padding: 1,
+            }}
+          >
+            {taskData.tasks.length === 0 ? (
+              <Stack
+                justifyContent="center"
+                alignItems="center"
+                spacing={1}
+                sx={{ display: { xs: "none", sm: "flex" } }}
+              >
+                <img
+                  height={300}
+                  src="/Assets/file.png" // Specify your default image path
+                  srcSet="/Assets/file.png"
+                  loading="lazy"
+                  alt=""
+                />
+                <Typography>No Pending Tasks</Typography>
+              </Stack>
+            ) : (
+              <PendingTask tasks={taskData.tasks} />
+            )}
+          </Sheet>
         </>
       )}
     </>

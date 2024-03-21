@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Stack, Typography } from "@mui/joy";
+import { Sheet, Stack, Typography } from "@mui/joy";
 import PaginationIcons from "../Pagination/PaginationIcons";
 import RequestBox from "./RequestBox";
 import { fetchRequestData } from "./Api/GetRequestData";
@@ -37,7 +37,7 @@ const RequestBoxHandler: React.FC = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          mb: 1,
+          m: 0.8,
         }}
       >
         <Typography
@@ -58,11 +58,21 @@ const RequestBoxHandler: React.FC = () => {
       {isLoading ? ( // Render skeleton if loading
         <RequestBoxSkeleton />
       ) : (
-        <RequestBox
-          request={requestData.requests}
-          totalCount={requestData.totalCount}
-          setIsApprovedOrNot={setIsApprovedOrNot}
-        />
+        <Sheet
+          sx={{
+            height: "95%",
+            minWidth: 240,
+            borderRadius: "sm",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <RequestBox
+            request={requestData.requests}
+            totalCount={requestData.totalCount}
+            setIsApprovedOrNot={setIsApprovedOrNot}
+          />
+        </Sheet>
       )}
     </>
   );
