@@ -5,7 +5,7 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import ChatListItemHandler from "./ChatListItemHandler";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ChatsPane() {
   return (
@@ -24,10 +24,7 @@ export default function ChatsPane() {
           separator={<ChevronRightRoundedIcon />}
           sx={{ pl: 0 }}
         >
-          <Link
-            to="/mentor/home" style={{ color: "grey" }} 
-            aria-label="Home"
-          >
+          <Link to="/mentor/home" style={{ color: "grey" }} aria-label="Home">
             <HomeRoundedIcon />
           </Link>
           <Typography color="primary" fontWeight={500} fontSize={12}>
@@ -39,12 +36,12 @@ export default function ChatsPane() {
         Chat
       </Typography>
       <Box sx={{ py: 1.5, pr: 1.5 }}>
-        <Input
+        {/* <Input
           size="sm"
           startDecorator={<SearchRoundedIcon />}
           placeholder="Search"
           aria-label="Search"
-        />
+        /> */}
       </Box>
       <List
         sx={{

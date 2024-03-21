@@ -67,8 +67,7 @@ const MenteeTask = () => {
           Tasks
         </Typography>
       </Box>
-      <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
-        <FormLabel>Sort By</FormLabel>
+      <Box sx={{ display: "flex" }}>
         <Select
           size="sm"
           placeholder="Sort by"
@@ -93,10 +92,11 @@ const MenteeTask = () => {
             Z-A Date
           </Option>
         </Select>
-        <FormLabel sx={{ ml: 1 }}>Filter By</FormLabel>
+
         <Select
           size="sm"
           placeholder="Filter by"
+          sx={{ ml: 1 }}
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
           <Option value="0" onClick={() => handleFilter("0")}>
@@ -111,7 +111,7 @@ const MenteeTask = () => {
         </Select>
       </Box>
 
-      <Grid container spacing={1} sx={{ my: "5%" }}>
+      <Grid container spacing={1} sx={{ my: 2 }}>
         <Grid item xs={12} sm={12} md={12}>
           <MenteeTaskCardHandler
             selectedSortOption={selectedSortOption}

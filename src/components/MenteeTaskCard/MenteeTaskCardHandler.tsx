@@ -27,6 +27,7 @@ const MenteeTaskCardHandler = ({
       selectedFilterOption
     );
     setMenteeTaskData(response);
+    console.log(menteeTaskData);
     setIsLoading(false); // Set loading state to false after fetching data
   };
 

@@ -10,6 +10,7 @@ import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
 import ModalOverflow from "@mui/joy/ModalOverflow";
 import Stack from "@mui/joy/Stack";
 import { MentorsProps } from "./Types";
+import { FormHelperText } from "@mui/joy";
 
 const MentorSearch = ({ mentors, setMentorID }: MentorsProps) => {
   const [layout, setLayout] = React.useState<
@@ -31,62 +32,54 @@ const MentorSearch = ({ mentors, setMentorID }: MentorsProps) => {
   };
 
   return (
-    <Grid container justifyContent="center">
-      <Grid xs={12} sm={12}>
-        <Stack>
-          <Grid>Mentor :</Grid>
-          <Grid>
-            <Stack direction="row" spacing={1}>
-              <Button
-                variant="outlined"
-                color="neutral"
-                sx={{ width: "100%" }}
-                onClick={() => {
-                  setLayout("center");
-                  setSelectedMentor("");
+    <Grid container rowGap={1}>
+      <FormHelperText>Mentor</FormHelperText>
+      <Button
+        variant="outlined"
+        color="neutral"
+        sx={{ width: "100%" }}
+        onClick={() => {
+          setLayout("center");
+          setSelectedMentor("");
+        }}
+      >
+        {selectedMentor || "Select Mentor"}
+      </Button>
+      <Modal open={!!layout} onClose={() => setLayout(undefined)}>
+        <ModalDialog
+          aria-labelledby="modal-dialog-overflow"
+          layout={layout}
+          sx={{ left: "48rem", top: "18rem" }}
+        >
+          <ModalClose />
+          <Typography id="modal-dialog-overflow" level="h2">
+            Choose Mentor
+          </Typography>
+          <FormControl
+            orientation="horizontal"
+            sx={{
+              bgcolor: "background.level2",
+              p: 1,
+              borderRadius: "sm",
+            }}
+          >
+            <FormControl>
+              <Autocomplete
+                placeholder="Search here"
+                disableClearable
+                options={mentors.map(
+                  (option) => `${option.firstName} ${option.lastName}`
+                )}
+                onChange={(event, value) => {
+                  if (value) {
+                    handleMentorSelect(value);
+                  }
                 }}
-              >
-                {selectedMentor || "--SELECT MENTOR--"}
-              </Button>
-            </Stack>
-            <Modal open={!!layout} onClose={() => setLayout(undefined)}>
-              <ModalDialog
-                aria-labelledby="modal-dialog-overflow"
-                layout={layout}
-                sx={{ left: "48rem", top: "18rem" }}
-              >
-                <ModalClose />
-                <Typography id="modal-dialog-overflow" level="h2">
-                  Choose Mentor
-                </Typography>
-                <FormControl
-                  orientation="horizontal"
-                  sx={{
-                    bgcolor: "background.level2",
-                    p: 1,
-                    borderRadius: "sm",
-                  }}
-                >
-                  <FormControl>
-                    <Autocomplete
-                      placeholder="Search here"
-                      disableClearable
-                      options={mentors.map(
-                        (option) => `${option.firstName} ${option.lastName}`
-                      )}
-                      onChange={(event, value) => {
-                        if (value) {
-                          handleMentorSelect(value);
-                        }
-                      }}
-                    />
-                  </FormControl>
-                </FormControl>
-              </ModalDialog>
-            </Modal>
-          </Grid>
-        </Stack>
-      </Grid>
+              />
+            </FormControl>
+          </FormControl>
+        </ModalDialog>
+      </Modal>
     </Grid>
   );
 };

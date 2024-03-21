@@ -29,52 +29,42 @@ export default function RequestBox({
   };
   return (
     <>
-      <Sheet
-        sx={{
-          height: "96%",
-          minWidth: 240,
-          borderRadius: "sm",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {request.length > 0 ? (
-          <List
-            variant="outlined"
-            sx={{
-              minWidth: 240,
-              borderRadius: "sm",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            {request.map((req, index) => (
-              <React.Fragment key={index}>
-                <ListItemButton onClick={() => handleClickOpen(req)}>
-                  <ListItemDecorator>
-                    <Avatar size="sm" src="/static/images/avatar/1.jpg" />
-                  </ListItemDecorator>
-                  <Typography level="body-sm" sx={{ ml: 2 }}>
-                    Program: {req.programName}
-                  </Typography>
-                </ListItemButton>
-                {index < totalCount - 1 && <ListDivider inset="gutter" />}
-              </React.Fragment>
-            ))}
-          </List>
-        ) : (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100%",
-            }}
-          >
-            <Typography>No Requests</Typography>
-          </Box>
-        )}
-      </Sheet>
+      {request.length > 0 ? (
+        <List
+          variant="outlined"
+          sx={{
+            minWidth: 240,
+            borderRadius: "sm",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {request.map((req, index) => (
+            <React.Fragment key={index}>
+              <ListItemButton onClick={() => handleClickOpen(req)}>
+                <ListItemDecorator>
+                  <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+                </ListItemDecorator>
+                <Typography level="body-sm" sx={{ ml: 2 }}>
+                  Program Extension Request: {req.programName}
+                </Typography>
+              </ListItemButton>
+              {index < totalCount - 1 && <ListDivider inset="gutter" />}
+            </React.Fragment>
+          ))}
+        </List>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <Typography>No Requests</Typography>
+        </Box>
+      )}
       <RequestModal
         open={open}
         onClose={handleClose}

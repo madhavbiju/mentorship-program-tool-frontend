@@ -16,6 +16,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Link, useNavigate } from "react-router-dom";
 import PairTableHandler from "../../../components/PairTable/PairTableHandler";
 import { useEffect, useState } from "react";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function Pairs() {
   const history = useNavigate();
@@ -49,20 +50,6 @@ export default function Pairs() {
           <Option value="">All</Option>
           <Option value="1">Ongoing</Option>
           <Option value="8">Completed</Option>
-        </Select>
-      </FormControl>
-      <FormControl size="sm">
-        <FormLabel>Sort By</FormLabel>
-        <Select
-          size="sm"
-          placeholder="Program Name"
-          value={sort}
-          onChange={(e, newValue) => setSort(newValue!)}
-        >
-          <Option value="programName">Program Name (A-Z)</Option>
-          <Option value="programName_desc">Program Name (Z-A)</Option>
-          <Option value="endDate">End Date (Latest)</Option>
-          <Option value="endDate_desc">End Date (Farthest)</Option>
         </Select>
       </FormControl>
     </React.Fragment>
@@ -120,12 +107,16 @@ export default function Pairs() {
           },
         }}
       >
-        <form onSubmit={handleSubmit}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ flex: 1 }}>
           <FormControl sx={{ flex: 1 }} size="sm">
-            <FormLabel>Search for pairs</FormLabel>
-            <Input name="searchParam" placeholder="Search" />
+            <FormLabel>Search for Pair</FormLabel>
+            <Input
+              name="searchParam"
+              placeholder="Search"
+              startDecorator={<SearchIcon />}
+            />
           </FormControl>
-        </form>
+        </Box>
         {renderFilters()}
       </Box>
       <Grid sm={12}>

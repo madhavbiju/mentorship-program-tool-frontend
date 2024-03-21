@@ -5,9 +5,10 @@ import {
   FormControl,
   Button,
   Grid,
+  FormHelperText,
 } from "@mui/joy";
 import { Modal } from "@mui/joy";
-import { Input, TextField } from "@mui/material";
+import { Input, TextField } from "@mui/joy";
 import React, { useEffect, useState } from "react";
 import { SubmitModalProps } from "./Types";
 import SetEndDate from "../CourseSetDate/SetEndDate";
@@ -59,6 +60,7 @@ const CreateRequestModal = ({
           }}
         >
           <ModalClose variant="plain" sx={{ m: 1 }} />
+          <br></br>
           <Grid sx={{ mb: 1 }}>
             <Typography
               component="h2"
@@ -85,32 +87,25 @@ const CreateRequestModal = ({
               <Grid
                 container
                 columnGap={2}
-                rowGap={2}
+                rowGap={1}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   mt: 2,
                 }}
               >
-                <TextField
+                <FormHelperText>New End Date</FormHelperText>
+                <Input
                   type="date"
-                  size="small"
                   name="newEndDate"
-                  label="End Date"
-                  InputLabelProps={{ shrink: true }}
-                  InputProps={{
-                    sx: { fontSize: "0.8rem" },
-                    inputProps: { min: menteeData.endDate.split("T")[0] },
+                  slotProps={{
+                    input: {
+                      min: menteeData.endDate.split("T")[0],
+                    },
                   }}
                   required
                 />
-                {/* <SetEndDate
-                  startDate={moment(menteeData.endDate)}
-                  onChange={handleNewDateChange}
-                /> */}
-                <Typography id="modal-desc" textColor="text.tertiary">
-                  Reason:
-                </Typography>
+                <FormHelperText>Reason</FormHelperText>
                 {/* Input field for reason */}
                 <Input
                   type="text"
@@ -118,7 +113,7 @@ const CreateRequestModal = ({
                   value={reason}
                   onChange={handleReasonChange}
                 />
-
+                <br></br>
                 {/* Button to submit the form */}
                 <Button type="submit">Request</Button>
               </Grid>

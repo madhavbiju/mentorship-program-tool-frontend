@@ -30,11 +30,12 @@ const SelectMenteeDropDown: React.FC<Props> = ({
     }
   }, [value]);
   return (
-    <div>
+    <>
       <Select
         placeholder="Mentee"
         size="sm"
         onChange={(e, newValue) => setValue(newValue)}
+        sx={{ flex: 1 }}
       >
         {menteeListData.map((mentee) => (
           <Option
@@ -45,7 +46,7 @@ const SelectMenteeDropDown: React.FC<Props> = ({
           </Option>
         ))}
       </Select>
-    </div>
+    </>
   );
 };
 

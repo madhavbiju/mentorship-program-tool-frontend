@@ -4,7 +4,7 @@ import MentorDashboardSkeleton from "../../pages/mentor/dashboard/MentorDashboar
 import { Task } from "./Types";
 import { fetchTaskData } from "./Api/getSubmittedTaskData";
 import PaginationButtons from "../Pagination/Pagination";
-import { Stack, Typography } from "@mui/joy";
+import { Box, Card, CardCover, Sheet, Stack, Typography } from "@mui/joy";
 import PaginationIcons from "../Pagination/PaginationIcons";
 
 const SubmittedTaskHandler = () => {
@@ -35,8 +35,6 @@ const SubmittedTaskHandler = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          // alignItems: "center", // Uncomment this line if needed
-          mb: 1,
         }}
       >
         <Typography
@@ -46,7 +44,7 @@ const SubmittedTaskHandler = () => {
             alignItems: "center",
           }}
         >
-          Submitted Tasks
+          Submited Tasks
         </Typography>
         <PaginationIcons
           total={taskData.totalCount}
@@ -54,18 +52,46 @@ const SubmittedTaskHandler = () => {
           perPage={5}
         />
       </Stack>
+
       {isLoading ? ( // Render skeleton if loading
         <MentorDashboardSkeleton />
       ) : (
         <>
-          {taskData.tasks.length === 0 ? (
-            <Typography>No Submitted Tasks</Typography>
-          ) : (
-            <SubmittedTask
-              tasks={taskData.tasks}
-              totalCount={taskData.totalCount}
-            />
-          )}
+          <Sheet
+            variant="outlined"
+            sx={{
+              mt: 1,
+              flex: 1,
+              borderRadius: "sm",
+              height: "100%",
+              padding: 1,
+            }}
+          >
+            {taskData.tasks.length === 0 ? (
+              <>
+                <Stack
+                  justifyContent="center"
+                  alignItems="center"
+                  spacing={1}
+                  sx={{ display: { xs: "none", sm: "flex" } }}
+                >
+                  <img
+                    height={300}
+                    src="/Assets/file.png" // Specify your default image path
+                    srcSet="/Assets/file.png"
+                    loading="lazy"
+                    alt=""
+                  />
+                  <Typography>No Submitted Tasks</Typography>
+                </Stack>
+              </>
+            ) : (
+              <SubmittedTask
+                tasks={taskData.tasks}
+                totalCount={taskData.totalCount}
+              />
+            )}
+          </Sheet>
         </>
       )}
     </>

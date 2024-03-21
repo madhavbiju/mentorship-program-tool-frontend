@@ -1,18 +1,5 @@
-import {
-  Box,
-  Dropdown,
-  MenuButton,
-  Menu,
-  MenuItem,
-  MenuList,
-  Button,
-  Breadcrumbs,
-  Typography,
-  FormLabel,
-} from "@mui/joy";
-import React, { useState } from "react";
-import MenteesListCard from "../../../components/MenteesList/MenteesListCard";
-import MentorTaskCard from "../../../components/MentorTaskCard/MentorTaskCard";
+import { Box, Button, Breadcrumbs, Typography, FormLabel } from "@mui/joy";
+import { useState } from "react";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddIcon from "@mui/icons-material/Add";
@@ -81,8 +68,7 @@ const MentorTask = () => {
           Create Task
         </Button>
       </Box>
-      <Box sx={{ display: "flex", ml: 3, mt: 3 }}>
-        <FormLabel>Sort By</FormLabel>
+      <Box sx={{ display: "flex", mt: 2 }}>
         <Select
           size="sm"
           placeholder="Sort by"
@@ -107,9 +93,10 @@ const MentorTask = () => {
             Z-A Date
           </Option>
         </Select>
-        <FormLabel sx={{ ml: 1 }}>Filter By</FormLabel>
+
         <Select
           size="sm"
+          sx={{ ml: 1 }}
           placeholder="Filter by"
           slotProps={{ button: { sx: { whiteSpace: "nowrap" } } }}
         >
@@ -125,7 +112,7 @@ const MentorTask = () => {
         </Select>
       </Box>
 
-      <Grid container spacing={1} sx={{ my: "5%" }}>
+      <Grid container spacing={1} mt={2}>
         <Grid item xs={12} sm={12} md={12}>
           <MentorTaskCardHandler
             selectedSortOption={selectedSortOption}

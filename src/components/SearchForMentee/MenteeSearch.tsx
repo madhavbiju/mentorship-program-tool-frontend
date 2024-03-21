@@ -11,6 +11,7 @@ import ModalOverflow from "@mui/joy/ModalOverflow";
 import Stack from "@mui/joy/Stack";
 import { useState } from "react";
 import { MenteesProps } from "./Types";
+import { FormHelperText } from "@mui/joy";
 
 const MenteeSearch = ({ mentees, setMenteeID }: MenteesProps) => {
   const [layout, setLayout] = React.useState<
@@ -32,67 +33,58 @@ const MenteeSearch = ({ mentees, setMenteeID }: MenteesProps) => {
   };
 
   return (
-    <Grid container justifyContent="center">
-      <Grid xs={12} sm={12}>
-        <Stack>
-          <Grid>Mentee :</Grid>
-          <Grid>
-            <Stack direction="row">
-              <Button
-                variant="outlined"
-                color="neutral"
-                sx={{ width: "100%" }}
-                onClick={() => {
-                  setLayout("center"); //layout value becomes center
-                  setSelectedMentee(""); // Reset selectedMentee state
+    <Grid container rowGap={1}>
+      <FormHelperText>Mentee</FormHelperText>
+
+      <Button
+        variant="outlined"
+        color="neutral"
+        sx={{ width: "100%" }}
+        onClick={() => {
+          setLayout("center"); //layout value becomes center
+          setSelectedMentee(""); // Reset selectedMentee state
+        }}
+      >
+        {selectedMentee || "Select Mentee"}
+      </Button>
+
+      <Modal open={!!layout} onClose={() => setLayout(undefined)}>
+        {/* !!layout equals true,because layout=center is a true value.so modal opens*/}
+
+        <ModalDialog
+          aria-labelledby="modal-dialog-overflow"
+          layout={layout}
+          sx={{ left: "48rem", top: "18rem" }}
+        >
+          <ModalClose />
+          <Typography id="modal-dialog-overflow" level="h2">
+            Choose Mentee
+          </Typography>
+          <FormControl
+            orientation="horizontal"
+            sx={{
+              bgcolor: "background.level2",
+              p: 1,
+              borderRadius: "sm",
+            }}
+          >
+            <FormControl>
+              <Autocomplete
+                placeholder="Search here"
+                disableClearable
+                options={mentees.map(
+                  (option) => `${option.firstName} ${option.lastName}`
+                )}
+                onChange={(event, value) => {
+                  if (value) {
+                    handleMenteeSelect(value); // value.label contains the selected mentee's name
+                  }
                 }}
-              >
-                {selectedMentee || "--SELECT MENTEE--"}
-              </Button>
-            </Stack>
-
-            <Modal open={!!layout} onClose={() => setLayout(undefined)}>
-              {/* !!layout equals true,because layout=center is a true value.so modal opens*/}
-
-              
-                <ModalDialog
-                  aria-labelledby="modal-dialog-overflow"
-                  layout={layout}
-                  sx={{ left: "48rem", top: "18rem" }}
-                >
-                  <ModalClose />
-                  <Typography id="modal-dialog-overflow" level="h2">
-                    Choose Mentee
-                  </Typography>
-                  <FormControl
-                    orientation="horizontal"
-                    sx={{
-                      bgcolor: "background.level2",
-                      p: 1,
-                      borderRadius: "sm",
-                    }}
-                  >
-                    <FormControl>
-                      <Autocomplete
-                        placeholder="Search here"
-                        disableClearable
-                        options={mentees.map(
-                          (option) => `${option.firstName} ${option.lastName}`
-                        )}
-                        onChange={(event, value) => {
-                          if (value) {
-                            handleMenteeSelect(value); // value.label contains the selected mentee's name
-                          }
-                        }}
-                      />
-                    </FormControl>
-                  </FormControl>
-                </ModalDialog>
-              
-            </Modal>
-          </Grid>
-        </Stack>
-      </Grid>
+              />
+            </FormControl>
+          </FormControl>
+        </ModalDialog>
+      </Modal>
     </Grid>
   );
 };

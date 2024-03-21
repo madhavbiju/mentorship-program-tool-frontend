@@ -1,5 +1,6 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import {
+  Input,
   Box,
   Breadcrumbs,
   Stack,
@@ -8,13 +9,14 @@ import {
   Button,
   Grid,
   FormControl,
+  FormHelperText,
+  FormLabel,
 } from "@mui/joy";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import MenteeDropDownHandler from "../../../components/SelectMenteeDropDown/SelectMenteeDropDownHandler";
 import "moment/locale/en-gb";
 import { Link } from "react-router-dom";
-import { Input, TextField } from "@mui/material";
 
 interface CreateMeetingProps {
   submit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
@@ -64,68 +66,60 @@ const CreateMeeting: React.FC<CreateMeetingProps> = ({
           <FormControl required>
             <Grid
               container
-              rowGap={3}
-              sx={{ display: "flex", flexDirection: "column" }}
+              rowGap={1}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                mx: 10,
+              }}
             >
+              <FormHelperText>Select Mentee</FormHelperText>
+
               <MenteeDropDownHandler setProgramID={setProgramID} />
 
+              <FormHelperText>Meeting Name</FormHelperText>
               <Input
                 type="text"
                 name="title"
                 aria-label="Meeting name"
                 required
-                placeholder="Type Meeting name!"
+                placeholder="Enter Meeting name"
               ></Input>
-
-              <TextField
+              <FormHelperText>Meeting Date</FormHelperText>
+              <Input
                 type="date"
                 name="scheduledDate"
-                label="Date"
-                InputLabelProps={{ shrink: true }}
-                InputProps={{
-                  sx: { fontSize: "0.8rem" },
-                  inputProps: {
+                placeholder="Meeting Date"
+                required
+                slotProps={{
+                  input: {
                     min: new Date().toISOString().split("T")[0],
                     max: endDate.split("T")[0],
                   },
                 }}
-                required
-              ></TextField>
-
-              <TextField
+              ></Input>
+              <FormHelperText>Starting Time</FormHelperText>
+              <Input
                 type="time"
                 name="startTime"
-                label="Start Time"
-                InputLabelProps={{ shrink: true }}
-                InputProps={{
-                  sx: { fontSize: "0.8rem" },
-                }}
+                placeholder="Starting Time"
                 required
-              ></TextField>
-
-              <TextField
+              ></Input>
+              <FormHelperText>Ending Time</FormHelperText>
+              <Input
                 type="time"
                 name="endTime"
-                label="End Time"
-                InputLabelProps={{ shrink: true }}
-                InputProps={{
-                  sx: { fontSize: "0.8rem" },
-                }}
+                placeholder="Ending Time"
                 required
-              ></TextField>
-
-              <TextField
+              ></Input>
+              <FormHelperText>Meeting Agenda</FormHelperText>
+              <Input
                 type="text"
-                size="small"
                 name="agenda"
-                label="Agenda"
-                InputLabelProps={{ shrink: true }}
-                InputProps={{
-                  sx: { fontSize: "0.8rem", height: 50 },
-                }}
+                placeholder="Type Meeting Agenda"
                 required
-              ></TextField>
-
+              ></Input>
+              <br></br>
               <Button type="submit">Schedule</Button>
             </Grid>
           </FormControl>

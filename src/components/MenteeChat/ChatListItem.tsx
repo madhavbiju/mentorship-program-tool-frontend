@@ -15,21 +15,21 @@ export default function ChatListItem({ mentorListData }: mentorListProp) {
   };
 
   return (
-    <React.Fragment>
+    <>
       {mentorListData.map((mentor) => (
-        <React.Fragment key={mentor.emailID}>
-          <ListItem sx={{ width: "100%" }}>
+        <>
+          <ListItem sx={{ width: "100%", px: 0 }}>
             <ListItemButton
               onClick={() => handleClick(mentor.emailID)}
               color="neutral"
               sx={{
+                flex: 1,
+                mx: 0,
                 flexDirection: "column",
                 alignItems: "initial",
-                gap: 1,
-                width: "100%",
               }}
             >
-              <Stack direction="row" spacing={1.5}>
+              <Stack direction="row" flex={1}>
                 <Box
                   sx={{
                     display: "flex",
@@ -39,17 +39,27 @@ export default function ChatListItem({ mentorListData }: mentorListProp) {
                   <Avatar size="lg">
                     {mentor.firstName.charAt(0) + mentor.lastName.charAt(0)}
                   </Avatar>
-                  <Stack sx={{ ml: 2 }}>
-                    <Typography level="title-sm">{`${mentor.firstName} ${mentor.lastName}`}</Typography>
-                    <Typography level="body-sm">{mentor.emailID}</Typography>
+                  <Stack
+                    sx={{ ml: 2, overflow: "hidden", textOverflow: "ellipsis" }}
+                  >
+                    <Typography
+                      sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
+                      level="title-sm"
+                    >{`${mentor.firstName} ${mentor.lastName}`}</Typography>
+                    <Typography
+                      sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
+                      level="body-sm"
+                    >
+                      {mentor.emailID}
+                    </Typography>
                   </Stack>
                 </Box>
               </Stack>
             </ListItemButton>
           </ListItem>
           <ListDivider sx={{ margin: 0 }} />
-        </React.Fragment>
+        </>
       ))}
-    </React.Fragment>
+    </>
   );
 }

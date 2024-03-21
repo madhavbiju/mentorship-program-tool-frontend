@@ -36,12 +36,12 @@ export default function ChatsPane() {
         Chat
       </Typography>
       <Box sx={{ py: 1.5, pr: 1.5 }}>
-        <Input
+        {/* <Input
           size="sm"
           startDecorator={<SearchRoundedIcon />}
           placeholder="Search"
           aria-label="Search"
-        />
+        /> */}
       </Box>
       <List
         sx={{

@@ -65,41 +65,55 @@ const AdminDashboard = ({ data }: AdminDashboardProps) => {
         </Sheet>
 
         <Grid
+          xs={12}
           container
           columnSpacing={1}
           columnGap={1}
-          sx={{ marginTop: 1, flex: 1, display: "flex", flexDirection: "row" }}
+          rowGap={1}
+          mt={1}
+          flex={1}
+          display={"flex"}
+          flexDirection={{ xs: "column", md: "row" }}
         >
-          <Sheet
-            variant="outlined"
-            sx={{
-              flex: 1,
-              display: "flex",
-              alignItems: "center",
-              borderRadius: "sm",
-            }}
-          >
-            <AdminReportPieChartHandler />
-          </Sheet>
+          <Grid xs={12} flex={1}>
+            <Sheet
+              variant="outlined"
+              sx={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "sm",
+                flex: 1,
+              }}
+            >
+              <AdminReportPieChartHandler />
+            </Sheet>
+          </Grid>
           <Grid
+            xs={12}
+            md={4}
+            flex={1}
             container
             rowSpacing={1}
-            columnSpacing={3}
-            sx={{ display: "flex", flexDirection: "column" }}
+            columnSpacing={1}
+            display={"flex"}
+            flexDirection={{ sm: "row", md: "column" }}
           >
-            <Grid>
+            <Grid flex={1}>
               <CountCard
                 title={"Active Mentor Count"}
                 count={data.mentorCount}
               ></CountCard>
             </Grid>
-            <Grid>
+            <Grid flex={1}>
               <CountCard
                 title={"Active Mentee Count"}
                 count={data.menteeCount}
               ></CountCard>
             </Grid>
-            <Grid xs={12} lg={4}>
+            <Grid flex={1}>
               <CountCard
                 title={"Active Pair Count"}
                 count={data.activePairCount}
@@ -107,11 +121,24 @@ const AdminDashboard = ({ data }: AdminDashboardProps) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid sx={{ marginTop: 1 }}>
-          <DashboardTableHandler />
+        <Grid
+          container
+          rowGap={1}
+          columnGap={1}
+          height="30vh"
+          mt={1}
+          display={"flex"}
+          flexDirection={{ xs: "column", lg: "column" }}
+        >
+          <Sheet
+            variant="outlined"
+            sx={{ flex: 1, borderRadius: "sm", padding: 1 }}
+          >
+            <DashboardTableHandler />
+          </Sheet>
         </Grid>
       </Grid>
-      <Grid lg={4}>
+      <Grid xs={12} lg={4}>
         <RequestBoxHandler />
       </Grid>
     </Grid>
