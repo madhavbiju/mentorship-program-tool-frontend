@@ -4,7 +4,7 @@ import axiosInstance from "../../../config/configAxios";
 
 export const fetchPairData = async (id: number, pageApi: number) => {
   try {
-    let url = `https://localhost:7259/api/program/mentor/${id}?pageNumber=${pageApi}&pageSize=10`;
+    let url = `${baseUrl.program}/mentor/${id}?pageNumber=${pageApi}&pageSize=10`;
 
     // Add status query parameter if status is not empty
 
