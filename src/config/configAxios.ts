@@ -2,7 +2,7 @@ import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 
 // Create a custom Axios instance with a base URL
 const axiosInstance = axios.create({
-  baseURL: "https://localhost:7259", // Replace with your API base URL
+  baseURL: "https://transformapiv1.azurewebsites.net/", // Replace with your API base URL
 });
 
 // Define the exclude paths (paths where token should not be added)
