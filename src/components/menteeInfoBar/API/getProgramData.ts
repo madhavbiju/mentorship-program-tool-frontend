@@ -1,9 +1,11 @@
 import axios from "axios";
+import { baseUrl } from "../../../config/configUrl";
+import axiosInstance from "../../../config/configAxios";
 
 export const fetchProgramData = async (programId: number) => {
   try {
-    const response = await axios.get(
-      `https://localhost:7259/api/program/pair-details?id=${programId}`
+    const response = await axiosInstance.get(
+      `${baseUrl.program}/pair-details?id=${programId}`
     );
     
     

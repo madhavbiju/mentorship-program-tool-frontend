@@ -1,9 +1,11 @@
 import axios from "axios";
+import { baseUrl } from "../../../config/configUrl";
+import axiosInstance from "../../../config/configAxios";
 
 export const fetchMenteeData = async () => {
   try {
-    const response = await axios.get(
-      `https://localhost:7259/api/mentee/active-unpaired`
+    const response = await axiosInstance.get(
+      `${baseUrl.mentee}/active-unpaired`
     );
     
     return response.data;

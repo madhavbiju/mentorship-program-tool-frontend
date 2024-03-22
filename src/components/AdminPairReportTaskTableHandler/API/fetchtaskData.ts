@@ -1,9 +1,10 @@
-import axios from "axios";
+import axiosInstance from "../../../config/configAxios";
+import { baseUrl } from "../../../config/configUrl";
 
 export const fetchtaskData = async (programId: number) => {
   try {
-    const response = await axios.get(
-      `https://localhost:7259/api/task/Program/${programId},0?page=0`
+    const response = await axiosInstance.get(
+      `${baseUrl.task}/Program/${programId},0?page=0`
     );
     console.log("Admin Pair Tasks");
     console.log(response.data);
