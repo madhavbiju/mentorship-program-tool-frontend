@@ -30,7 +30,7 @@ export const changeProgramDetails = async (
   programID: number
 ) => {
   try {
-    const response = await axios.put(
+    const response = await axiosInstance.put(
       `${baseUrl.program}/${programID}`,
       data
     );
