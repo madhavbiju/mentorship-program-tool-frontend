@@ -1,19 +1,22 @@
+import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { JWTPayload } from "../../../../apiHandler/types";
+import { baseUrl } from "../../../../config/configUrl";
+import axiosInstance from "../../../../config/configAxios";
 
 const GetLogin = async (token: string): Promise<string[]> => {
   try {
-    const response = await fetch(
-      "https://localhost:7259/api/Login/CreateUser",
+    const response = await axiosInstance.post(
+      `${baseUrl.login}/CreateUser`,
+      null,
       {
-        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       }
     );
-    const data = await response.json();
+    const data = response.data;
 
     if (!data.token) {
       console.error("JWT not found in response");

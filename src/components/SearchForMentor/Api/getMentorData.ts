@@ -1,9 +1,11 @@
 import axios from "axios";
+import { baseUrl } from "../../../config/configUrl";
+import axiosInstance from "../../../config/configAxios";
 
 export const fetchMentorData = async () => {
   try {
-    const response = await axios.get(
-      `https://localhost:7259/api/mentor/active`
+    const response = await axiosInstance.get(
+      `${baseUrl.mentor}/active`
     );
     
     return response.data;

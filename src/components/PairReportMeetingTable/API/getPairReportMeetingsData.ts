@@ -1,4 +1,6 @@
 import axios from "axios";
+import { baseUrl } from "../../../config/configUrl";
+import axiosInstance from "../../../config/configAxios";
 
 export const getPairReportMeetingsData = async (
   programId: number,
@@ -6,8 +8,8 @@ export const getPairReportMeetingsData = async (
   sort: string
 ) => {
   try {
-    const response = await axios.get(
-      `https://localhost:7259/api/meeting/meetings/programid/${programId}?page=${pageApi}&sortBy=${sort}`
+    const response = await axiosInstance.get(
+      `${baseUrl.meeting}/meetings/programid/${programId}?page=${pageApi}&sortBy=${sort}`
     );
 
     return response.data;

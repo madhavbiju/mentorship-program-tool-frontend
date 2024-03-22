@@ -1,9 +1,11 @@
 import axios from "axios";
 import { meetingType } from "../Types";
+import { baseUrl } from "../../../../config/configUrl";
+import axiosInstance from "../../../../config/configAxios";
 
  export const postMeetingData = async (meetingData: meetingType) => {
     try {
-        const response = await axios.post('https://localhost:7259/api/meeting', (meetingData
+        const response = await axiosInstance.post(`${baseUrl.meeting}`, (meetingData
         ));
       return(response);
     } catch (error) {
@@ -13,8 +15,8 @@ import { meetingType } from "../Types";
 
   export const fetchProgramEndDate = async(programID : number)=>{
     try {
-      const response = await axios.get(
-        `https://localhost:7259/api/program/${programID}`
+      const response = await axiosInstance.get(
+        `${baseUrl.program}/${programID}`
       );
       return response.data;
     } catch (error) {

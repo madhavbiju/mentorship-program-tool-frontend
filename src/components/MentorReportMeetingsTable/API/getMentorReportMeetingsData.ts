@@ -1,12 +1,14 @@
 import axios from "axios";
+import { baseUrl } from "../../../config/configUrl";
+import axiosInstance from "../../../config/configAxios";
 
 export const getMentorReportMeetingsData = async (
   employeeId: number,
   pageNumber: number
 ) => {
   try {
-    const response = await axios.get(
-      `https://localhost:7259/api/meeting/meetings/employeeid/${employeeId}?page=${pageNumber}`
+    const response = await axiosInstance.get(
+      `${baseUrl.meeting}/meetings/employeeid/${employeeId}?page=${pageNumber}`
     );
 
     return response.data;
