@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Stack, Typography } from "@mui/joy";
-import { FilterProps, programs } from "./Types";
+import { FilterProps, programs } from "./Types/Index";
 import ReportPairDownloadSkeleton from "./ReportPairDownloadSkeleton";
 import ReportPairDownload from "./ReportPairDownload";
 import PaginationButtons from "../Pagination/Pagination";
