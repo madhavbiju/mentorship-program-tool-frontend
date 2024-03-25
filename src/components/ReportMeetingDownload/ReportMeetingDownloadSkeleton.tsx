@@ -1,7 +1,5 @@
-import * as React from "react";
+import { Sheet, Skeleton } from "@mui/joy";
 import Table from "@mui/joy/Table";
-import { Sheet, Skeleton, Typography } from "@mui/joy";
-import { Stack } from "@mui/material";
 
 export default function ReportMeetingDownloadTableSkeleton() {
   return (

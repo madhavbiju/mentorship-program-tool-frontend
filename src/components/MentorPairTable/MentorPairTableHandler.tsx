@@ -1,12 +1,11 @@
 import { Typography } from "@mui/joy";
 import { Stack } from "@mui/material";
 import { useState, useEffect } from "react";
-import { programs } from "../MentorMenteeTable";
+import { programs } from "./Types/Index";
 import PaginationButtons from "../Pagination/Pagination";
 import { fetchPairData } from "./API/fetchPairData";
 import MentorPairTable from "./MentorPairTable";
 import MentorPairTableSkeleton from "./MentorPairTableSkeleton";
-import { FilterProps } from "./Types";
 
 const MentorPairTableHandler = ({
   employeeId,

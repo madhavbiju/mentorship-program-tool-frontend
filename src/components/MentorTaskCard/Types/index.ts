@@ -1,5 +1,6 @@
 export interface Tasks {
   taskID:number;
+  taskName: string;
   menteeFirstName: string;
   menteeLastName: string;
   title: string;

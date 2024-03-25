@@ -65,7 +65,7 @@ const NewUserTable = ({ userList, setSubmitButtonPressed }: UserTableProps) => {
       variant="plain"
       size="md"
       startDecorator={<AddCircleOutlineIcon />}
-      onClick={() => handleOpenModal(params.data)}
+      onClick={() => handleOpenModal(params)}
     >
       Assign Roles
     </Button>

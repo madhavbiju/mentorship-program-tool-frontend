@@ -33,7 +33,7 @@ export const approveRequest = async (data: ApproveRequestData) => {
 };
 export const rejectRequest = async (data: ApproveRequestData) => {
   try {
-    const response = await axios.put(
+    const response = await axiosInstance.put(
       `${baseUrl.request}/approve${data.programExtensionID}`,
       data
     );
@@ -48,7 +48,7 @@ export const rejectRequest = async (data: ApproveRequestData) => {
 // Function to update the program date
 export const updateProgramDate = async (data: UpdateProgramDateData) => {
   try {
-    const response = await axios.put(
+    const response = await axiosInstance.put(
       `${baseUrl.program}/UpdateProgramDate`,
       data
     );
