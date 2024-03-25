@@ -1,9 +1,6 @@
-// import CreatePair from "../createPair/CreatePair";
-// import { Navigate } from "react-router";
-
 import { Sheet, Typography, Box } from "@mui/joy";
 import { Table, Avatar, Chip } from "@mui/joy";
-import { MentorPairTableProps } from "./Types";
+import { MentorPairTableProps } from "./Types/Index";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 

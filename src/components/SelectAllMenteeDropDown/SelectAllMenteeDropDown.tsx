@@ -32,7 +32,11 @@ const SelectAllMenteedropDown: React.FC<Props> = ({
       <Select
         placeholder="Mentee"
         size="sm"
-        onChange={(e, newValue) => setValue(newValue)}
+        onChange={(e, newValue) => {
+          if (typeof newValue === "string" || newValue === null) {
+            setValue(newValue);
+          }
+        }}
       >
         {menteeListData.map((mentee) => (
           <Option
