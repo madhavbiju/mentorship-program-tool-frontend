@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
 import { getPairReportMeetingsData } from "./API/getPairReportMeetingsData";
-import { meetings } from "./Types";
+import { meetings } from "./Types/index";
 import AdminPairReportMeetingTable from "./AdminPairReportMeetingTable";
 import AdminPairReportMeetingTableSkeleton from "./AdminPairReportMeetingTableSkeleton";
 

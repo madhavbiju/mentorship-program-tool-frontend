@@ -2,7 +2,7 @@ import * as React from "react";
 import Table from "@mui/joy/Table";
 import { Sheet } from "@mui/joy"; // Assuming Typography and Stack are not used
 import { useState } from "react";
-import { AdminPairReportMeetingTableProps } from "./Types";
+import { AdminPairReportMeetingTableProps } from "./Types/index";
 
 export default function AdminPairReportMeetingTable({
   meetings,
