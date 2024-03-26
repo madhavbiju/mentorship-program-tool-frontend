@@ -59,7 +59,6 @@ const AppRoutes = () => {
             <Route path="pairs/edit/:programId" element={<EditPageHandler />} />
             <Route path="report" element={<AdminReportPage />} />
             <Route path="report/overall" element={<AdminReport />} />
-            <Route path="report/mentor" element={<MentorReport />} />
             <Route path="report/pair" element={<PairReport />} />
             <Route
               path="report/adminreportdownload"

@@ -1,5 +1,7 @@
 // apiService.ts
 import axios from "axios";
+import axiosInstance from "../../../config/configAxios";
+import { baseUrl } from "../../../config/configUrl";
 
 // Define the types for your request and program update data structures
 interface ApproveRequestData {
@@ -18,8 +20,8 @@ interface UpdateProgramDateData {
 // Function to approve a request
 export const approveRequest = async (data: ApproveRequestData) => {
   try {
-    const response = await axios.put(
-      `https://localhost:7259/api/request/approve${data.programExtensionID}`,
+    const response = await axiosInstance.put(
+      `${baseUrl.request}/approve${data.programExtensionID}`,
       data
     );
     
@@ -31,8 +33,8 @@ export const approveRequest = async (data: ApproveRequestData) => {
 };
 export const rejectRequest = async (data: ApproveRequestData) => {
   try {
-    const response = await axios.put(
-      `https://localhost:7259/api/request/approve${data.programExtensionID}`,
+    const response = await axiosInstance.put(
+      `${baseUrl.request}/approve${data.programExtensionID}`,
       data
     );
     
@@ -46,8 +48,8 @@ export const rejectRequest = async (data: ApproveRequestData) => {
 // Function to update the program date
 export const updateProgramDate = async (data: UpdateProgramDateData) => {
   try {
-    const response = await axios.put(
-      "https://localhost:7259/api/program/UpdateProgramDate",
+    const response = await axiosInstance.put(
+      `${baseUrl.program}/UpdateProgramDate`,
       data
     );
     

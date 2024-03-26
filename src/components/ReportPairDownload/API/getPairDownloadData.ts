@@ -10,7 +10,7 @@ export const getPairDownloadData = async (
 ) => {
   try {
     let url =
-      "https://localhost:7259/api/program/All?page=0&programStatus=1&sortOrder=programName";
+      "${baseUrl.program}/All?page=0&programStatus=1&sortOrder=programName";
 
     const response = await axiosInstance.get(url);
     return response.data;

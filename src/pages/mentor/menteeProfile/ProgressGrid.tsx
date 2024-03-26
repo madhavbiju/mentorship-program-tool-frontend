@@ -10,7 +10,6 @@ const ProgressGrid = ({ menteeData }: menteeProfileProp) => {
   const [daysLeft, setDaysLeft] = useState<number>(0);
   const [percentageCompletion, setPercentageCompletion] = useState<number>(0);
   const [open, setOpen] = React.useState<boolean>(false);
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
   const handleClick = () => {
     setOpen(true);
   };

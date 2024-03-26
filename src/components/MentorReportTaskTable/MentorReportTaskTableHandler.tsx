@@ -5,7 +5,7 @@ import PaginationIcons from "../Pagination/PaginationIcons";
 import MentorReportTaskTable from "./MentorReportTaskTable";
 import MentorReportTaskTableSkeleton from "./MentorReportTaskTableSkeleton";
 import { fetchtaskData } from "./API/fetchtaskData";
-import { tasks } from "./Types";
+import { tasks } from "./Types/Index";
 
 const MentorReportTaskTableHandler = ({
   employeeId,

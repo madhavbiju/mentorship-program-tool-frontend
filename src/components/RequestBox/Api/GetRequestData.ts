@@ -1,9 +1,11 @@
 import axios from "axios";
+import { baseUrl } from "../../../config/configUrl";
+import axiosInstance from "../../../config/configAxios";
 
 export const fetchRequestData = async (pageApi: number) => {
   try {
-    const response = await axios.get(
-      `https://localhost:7259/api/request/allPendingRequests?status=4&pageNumber=${pageApi}&pageSize=10`
+    const response = await axiosInstance.get(
+      `${baseUrl.request}/allPendingRequests?status=4&pageNumber=${pageApi}&pageSize=10`
     );
     return response.data;
   } catch (error) {

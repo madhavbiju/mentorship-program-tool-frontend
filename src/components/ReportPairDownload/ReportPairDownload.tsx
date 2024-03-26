@@ -8,7 +8,7 @@ import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
-import { ReportPairDownloadProps } from "./Types";
+import { ReportPairDownloadProps } from "./Types/Index";
 // import CreatePair from "../createPair/CreatePair";
 // import { Navigate } from "react-router";
 

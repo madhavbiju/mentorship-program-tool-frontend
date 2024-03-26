@@ -10,10 +10,11 @@ interface Params {
 const SubmitTaskHandler = () => {
   const [taskData, setTaskData] = useState<Tasks>({
     taskID: 0,
+    taskName: "",
     menteeFirstName: "",
     menteeLastName: "",
     title: "",
-    taskDescription:"",
+    taskDescription: "",
     taskStatus: 0,
     endDate: "",
   });

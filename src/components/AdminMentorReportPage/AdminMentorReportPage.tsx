@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MentorReport from "../mentorreport/MentorReport";
 import MentorSearchHandler from "../SearchForMentor/MentorSearchHandler";
-import SelectMentorDropDownHandler from "../SelectMentorDropDown/SelectMentorDropDownHandler";
 
 const AdminMentorReportPage = () => {
   const [mentorID, setMentorID] = useState(0);

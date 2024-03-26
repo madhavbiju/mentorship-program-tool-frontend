@@ -10,4 +10,5 @@ export const baseUrl = {
   role: "api/role",
   status: "api/status",
   task: "api/task",
+  login: "api/Login",
 };

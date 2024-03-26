@@ -1,9 +1,11 @@
-import axios from "axios";
+
+import axiosInstance from "../../../config/configAxios";
+import { baseUrl } from "../../../config/configUrl";
 
  export const fetchProgramData = async (pageApi: number) => {
     try {
-      const response = await axios.get(
-        `https://localhost:7259/api/program/ending-soon?pageNumber=${pageApi}&pageSize=4`
+      const response = await axiosInstance.get(
+        `${baseUrl.program}/ending-soon?pageNumber=${pageApi}&pageSize=4`
       );
       return(response.data);
     } catch (error) {

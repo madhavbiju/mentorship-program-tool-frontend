@@ -138,7 +138,7 @@ const ProgramEditHandler = () => {
         ? moment.utc(formDataObject.endDate).format()
         : ParticularProgram.endDate,
       programName: formDataObject.programName || ParticularProgram.programName,
-      modifiedBy: parseInt(empid as number),
+      modifiedBy: parseInt(empid!),
       programStatus: 1,
     };
     sendChangingProgram(changingProgram);

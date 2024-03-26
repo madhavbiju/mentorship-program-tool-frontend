@@ -4,7 +4,7 @@ import { Stack, Typography, Skeleton, Card, CardContent } from "@mui/joy";
 import PaginationIcons from "../Pagination/PaginationIcons";
 import MentorReportMeetingTable from "./MentorReportMeetingsTable";
 import MentorReportMeetingTableSkeleton from "./MentorReportMeetingsTableSkeleton";
-import { meetings } from "./Types";
+import { meetings } from "./Types/Index";
 import { getMentorReportMeetingsData } from "./API/getMentorReportMeetingsData";
 
 const MentorReportMeetingTableHandler = ({

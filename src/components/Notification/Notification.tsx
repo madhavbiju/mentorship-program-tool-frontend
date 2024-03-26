@@ -2,6 +2,7 @@ import { FC, ReactNode, useEffect, useState } from "react";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { baseUrl } from "../../config/configUrl";
 
 const NotificationComponent: FC<{
   children: (
@@ -21,7 +22,7 @@ const NotificationComponent: FC<{
   useEffect(() => {
     // Create SignalR connection
     const hubConnection = new HubConnectionBuilder()
-      .withUrl("https://localhost:7259/notificationHub")
+      .withUrl(`${baseUrl}/notificationHub`)
       .build();
 
     // Start the connection
